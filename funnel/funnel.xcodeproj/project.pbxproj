@@ -16,7 +16,11 @@
 		D0B85C6620AA08E8006411AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6520AA08E8006411AA /* ViewController.swift */; };
 		D0B85C6820AA08F2006411AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6720AA08F2006411AA /* ViewController.swift */; };
 		F44C416D20AA0AD0004DEF19 /* PersonalFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C416C20AA0AD0004DEF19 /* PersonalFeedViewController.swift */; };
-		F44C416F20AA0B1A004DEF19 /* PersonalFeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44C416E20AA0B1A004DEF19 /* PersonalFeedStoryboard.storyboard */; };
+		F44C417120AA1D25004DEF19 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44C417020AA1D25004DEF19 /* Feed.storyboard */; };
+		F44C417420AA2110004DEF19 /* PersonalFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44C417220AA2110004DEF19 /* PersonalFeed.storyboard */; };
+		F44C417620AA215A004DEF19 /* ProfileAndSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44C417520AA215A004DEF19 /* ProfileAndSettings.storyboard */; };
+		F44C417920AA4641004DEF19 /* SubmitAndReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44C417720AA4641004DEF19 /* SubmitAndReview.storyboard */; };
+		F44C417B20AA46F4004DEF19 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44C417A20AA46F4004DEF19 /* Categories.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +36,11 @@
 		D0B85C6520AA08E8006411AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D0B85C6720AA08F2006411AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F44C416C20AA0AD0004DEF19 /* PersonalFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalFeedViewController.swift; sourceTree = "<group>"; };
-		F44C416E20AA0B1A004DEF19 /* PersonalFeedStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalFeedStoryboard.storyboard; sourceTree = "<group>"; };
+		F44C417020AA1D25004DEF19 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
+		F44C417320AA2110004DEF19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = funnel/Storyboards/Base.lproj/PersonalFeed.storyboard; sourceTree = "<group>"; };
+		F44C417520AA215A004DEF19 /* ProfileAndSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileAndSettings.storyboard; sourceTree = "<group>"; };
+		F44C417820AA4641004DEF19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = funnel/Storyboards/Base.lproj/SubmitAndReview.storyboard; sourceTree = "<group>"; };
+		F44C417A20AA46F4004DEF19 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +69,11 @@
 			children = (
 				3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */,
 				3A453EE920A9E8EF000CA14F /* Main.storyboard */,
-				F44C416E20AA0B1A004DEF19 /* PersonalFeedStoryboard.storyboard */,
+				F44C417020AA1D25004DEF19 /* Feed.storyboard */,
+				F44C417720AA4641004DEF19 /* SubmitAndReview.storyboard */,
+				F44C417A20AA46F4004DEF19 /* Categories.storyboard */,
+				F44C417220AA2110004DEF19 /* PersonalFeed.storyboard */,
+				F44C417520AA215A004DEF19 /* ProfileAndSettings.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -196,10 +208,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F44C417120AA1D25004DEF19 /* Feed.storyboard in Resources */,
+				F44C417620AA215A004DEF19 /* ProfileAndSettings.storyboard in Resources */,
+				F44C417B20AA46F4004DEF19 /* Categories.storyboard in Resources */,
 				3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */,
+				F44C417420AA2110004DEF19 /* PersonalFeed.storyboard in Resources */,
 				3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */,
+				F44C417920AA4641004DEF19 /* SubmitAndReview.storyboard in Resources */,
 				3A453EEB20A9E8EF000CA14F /* Main.storyboard in Resources */,
-				F44C416F20AA0B1A004DEF19 /* PersonalFeedStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +251,22 @@
 				3A453EEF20A9E8F1000CA14F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F44C417220AA2110004DEF19 /* PersonalFeed.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F44C417320AA2110004DEF19 /* Base */,
+			);
+			name = PersonalFeed.storyboard;
+			sourceTree = "<group>";
+		};
+		F44C417720AA4641004DEF19 /* SubmitAndReview.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F44C417820AA4641004DEF19 /* Base */,
+			);
+			name = SubmitAndReview.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
