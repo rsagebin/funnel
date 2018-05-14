@@ -11,6 +11,7 @@
 		3A453EEB20A9E8EF000CA14F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EE920A9E8EF000CA14F /* Main.storyboard */; };
 		3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEC20A9E8F1000CA14F /* Assets.xcassets */; };
 		3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */; };
+		D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B85C6020AA0828006411AA /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,8 @@
 		3A453EEC20A9E8F1000CA14F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A453EEF20A9E8F1000CA14F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A453EF120A9E8F1000CA14F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0B85C5E20AA080A006411AA /* funnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = funnel.entitlements; sourceTree = "<group>"; };
+		D0B85C6020AA0828006411AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,32 +55,12 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		3A30763020A9FEED00CE4FF7 /* Model+Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Model+Controller";
-			sourceTree = "<group>";
-		};
-		3A30763120A9FEFE00CE4FF7 /* View+Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View+Controller";
-			sourceTree = "<group>";
-		};
-		3A30763220A9FF0900CE4FF7 /* CloudKit */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CloudKit;
-			sourceTree = "<group>";
-		};
 		3A453ED920A9E8EF000CA14F = {
 			isa = PBXGroup;
 			children = (
 				3A453EE420A9E8EF000CA14F /* funnel */,
 				3A453EE320A9E8EF000CA14F /* Products */,
+				D0B85C5F20AA0828006411AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,14 +75,44 @@
 		3A453EE420A9E8EF000CA14F /* funnel */ = {
 			isa = PBXGroup;
 			children = (
+				D0B85C5E20AA080A006411AA /* funnel.entitlements */,
 				3A453EE520A9E8EF000CA14F /* AppDelegate.swift */,
-				3A30763220A9FF0900CE4FF7 /* CloudKit */,
-				3A30763120A9FEFE00CE4FF7 /* View+Controller */,
-				3A30763020A9FEED00CE4FF7 /* Model+Controller */,
+				D0B85C5B20AA07C8006411AA /* CloudKit */,
+				D0B85C6220AA085E006411AA /* Model+Controller */,
+				D0B85C5C20AA07D2006411AA /* Views+Controllers */,
 				3A30762F20A9FED900CE4FF7 /* Storyboards */,
 				3A30762E20A9FEC300CE4FF7 /* Resources */,
 			);
 			path = funnel;
+			sourceTree = "<group>";
+		};
+		D0B85C5B20AA07C8006411AA /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CloudKit;
+			sourceTree = "<group>";
+		};
+		D0B85C5C20AA07D2006411AA /* Views+Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Views+Controllers";
+			sourceTree = "<group>";
+		};
+		D0B85C5F20AA0828006411AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0B85C6020AA0828006411AA /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0B85C6220AA085E006411AA /* Model+Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model+Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +147,14 @@
 				TargetAttributes = {
 					3A453EE120A9E8EF000CA14F = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -316,8 +338,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = funnel/funnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L4BVN9TPVT;
+				DEVELOPMENT_TEAM = Z72V7S4H73;
 				INFOPLIST_FILE = "$(SRCROOT)/funnel/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -334,8 +357,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = funnel/funnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L4BVN9TPVT;
+				DEVELOPMENT_TEAM = Z72V7S4H73;
 				INFOPLIST_FILE = "$(SRCROOT)/funnel/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
