@@ -13,8 +13,9 @@
 		3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */; };
 		D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B85C6020AA0828006411AA /* CloudKit.framework */; };
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
-		D0B85C6620AA08E8006411AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6520AA08E8006411AA /* ViewController.swift */; };
 		D0B85C6820AA08F2006411AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6720AA08F2006411AA /* ViewController.swift */; };
+		D0B85C6A20AA45F9006411AA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6920AA45F9006411AA /* User.swift */; };
+		D0B85C6C20AA460F006411AA /* SubmittedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6B20AA460F006411AA /* SubmittedImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +28,9 @@
 		D0B85C5E20AA080A006411AA /* funnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = funnel.entitlements; sourceTree = "<group>"; };
 		D0B85C6020AA0828006411AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
-		D0B85C6520AA08E8006411AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D0B85C6720AA08F2006411AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0B85C6920AA45F9006411AA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D0B85C6B20AA460F006411AA /* SubmittedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +121,8 @@
 		D0B85C6220AA085E006411AA /* Model+Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D0B85C6520AA08E8006411AA /* ViewController.swift */,
+				D0B85C6920AA45F9006411AA /* User.swift */,
+				D0B85C6B20AA460F006411AA /* SubmittedImage.swift */,
 			);
 			path = "Model+Controller";
 			sourceTree = "<group>";
@@ -203,9 +206,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0B85C6620AA08E8006411AA /* ViewController.swift in Sources */,
+				D0B85C6A20AA45F9006411AA /* User.swift in Sources */,
 				3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */,
 				D0B85C6820AA08F2006411AA /* ViewController.swift in Sources */,
+				D0B85C6C20AA460F006411AA /* SubmittedImage.swift in Sources */,
 				D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
