@@ -24,11 +24,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7uY-Sg-Gsj">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Funnel" id="NxM-yc-0E3"/>
+                                </items>
+                            </navigationBar>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKL-bc-iRp">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items/>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="7uY-Sg-Gsj" firstAttribute="width" secondItem="MpK-py-pu9" secondAttribute="width" id="64O-es-DZB"/>
+                            <constraint firstItem="qKL-bc-iRp" firstAttribute="centerX" secondItem="Trd-Ot-PBs" secondAttribute="centerX" id="9gQ-ha-ufW"/>
+                            <constraint firstItem="Trd-Ot-PBs" firstAttribute="bottom" secondItem="qKL-bc-iRp" secondAttribute="bottom" id="ANs-wF-3Wx"/>
+                            <constraint firstItem="qKL-bc-iRp" firstAttribute="width" secondItem="MpK-py-pu9" secondAttribute="width" id="RbA-Ti-hJR"/>
                             <constraint firstItem="Sn8-Yy-zcm" firstAttribute="centerY" secondItem="MpK-py-pu9" secondAttribute="centerY" id="TLz-P3-Fqq"/>
                             <constraint firstItem="Sn8-Yy-zcm" firstAttribute="centerX" secondItem="MpK-py-pu9" secondAttribute="centerX" id="TM1-SL-JT4"/>
+                            <constraint firstItem="7uY-Sg-Gsj" firstAttribute="centerX" secondItem="Trd-Ot-PBs" secondAttribute="centerX" id="j9y-1d-447"/>
+                            <constraint firstItem="7uY-Sg-Gsj" firstAttribute="top" secondItem="Trd-Ot-PBs" secondAttribute="top" id="yHJ-Cr-9ic"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Trd-Ot-PBs"/>
                     </view>
