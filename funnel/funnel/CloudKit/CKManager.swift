@@ -7,3 +7,40 @@
 //
 
 import Foundation
+import CloudKit
+
+class CloudKitManager {
+    // Access public database
+    private let publicDB = CKContainer.default().publicCloudDatabase
+    
+    // Fetch from CloudKit
+    func fetchRecordsWith(type: String, completion: @escaping ((_ records: [CKRecord]?, _ error: Error?) -> Void)) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: type, predicate: predicate)
+        
+        publicDB.perform(query, inZoneWith: nil, completionHandler: completion)
+    }
+    
+    // Save to CloudKit
+    func save(records: [CKRecord], perRecordCompletion: ((_ record: CKRecord?, _ error: Error?) -> Void)?, completion: ((_ records: [CKRecord]?, _ error: Error?) -> Void)?) {
+        modify(records: records, perRecordCompletion: perRecordCompletion, completion: completion)
+    }
+    
+    // Modify CloudKit Records
+    func modify(records: [CKRecord], perRecordCompletion: ((_ record: CKRecord?, _ error: Error?) -> Void)?, completion: ((_ records: [CKRecord]?, _ error: Error?) -> Void)?) {
+        
+        let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+        
+        operation.savePolicy = .changedKeys
+        operation.queuePriority = .high
+        operation.qualityOfService = .userInitiated
+        
+        operation.perRecordCompletionBlock = perRecordCompletion
+        operation.modifyRecordsCompletionBlock = { (records, _, error) in
+            completion?(records, error)
+        }
+        
+        publicDB.add(operation)
+    }
+
+}
