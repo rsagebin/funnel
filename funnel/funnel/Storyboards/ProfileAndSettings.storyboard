@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OIP-DY-fk0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--ProfileAndSettings-->
         <scene sceneID="7ub-yl-j6N">
             <objects>
-                <viewController id="OIP-DY-fk0" sceneMemberID="viewController">
+                <viewController title="ProfileAndSettings" id="OIP-DY-fk0" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MpK-py-pu9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileAndSettings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sn8-Yy-zcm">
+                                <rect key="frame" x="116.5" y="323" width="142.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Sn8-Yy-zcm" firstAttribute="centerY" secondItem="MpK-py-pu9" secondAttribute="centerY" id="TLz-P3-Fqq"/>
+                            <constraint firstItem="Sn8-Yy-zcm" firstAttribute="centerX" secondItem="MpK-py-pu9" secondAttribute="centerX" id="TM1-SL-JT4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Trd-Ot-PBs"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="kBa-44-dBL"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="kBa-44-dBL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wPi-70-t6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
