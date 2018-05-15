@@ -12,12 +12,6 @@
 		3A453EEB20A9E8EF000CA14F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EE920A9E8EF000CA14F /* Main.storyboard */; };
 		3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEC20A9E8F1000CA14F /* Assets.xcassets */; };
 		3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */; };
-		D040DC6E20AB2A7400EB284F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC6D20AB2A7400EB284F /* Post.swift */; };
-		D040DC7020AB2A8300EB284F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC6F20AB2A8300EB284F /* Comment.swift */; };
-		D040DC7220AB2A9100EB284F /* RevisedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7120AB2A9100EB284F /* RevisedPost.swift */; };
-		D040DC7420AB2AC600EB284F /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7320AB2AC600EB284F /* PostController.swift */; };
-		D040DC7620AB2AD500EB284F /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7520AB2AD500EB284F /* UserController.swift */; };
-		D040DC7820AB2B0B00EB284F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7720AB2B0B00EB284F /* Categories.swift */; };
 		D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B85C6020AA0828006411AA /* CloudKit.framework */; };
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
 		D0B85C6820AA08F2006411AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6720AA08F2006411AA /* ViewController.swift */; };
@@ -37,12 +31,6 @@
 		3A453EEC20A9E8F1000CA14F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A453EEF20A9E8F1000CA14F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A453EF120A9E8F1000CA14F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D040DC6D20AB2A7400EB284F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		D040DC6F20AB2A8300EB284F /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		D040DC7120AB2A9100EB284F /* RevisedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisedPost.swift; sourceTree = "<group>"; };
-		D040DC7320AB2AC600EB284F /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
-		D040DC7520AB2AD500EB284F /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
-		D040DC7720AB2B0B00EB284F /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		D0B85C5E20AA080A006411AA /* funnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = funnel.entitlements; sourceTree = "<group>"; };
 		D0B85C6020AA0828006411AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
@@ -134,6 +122,7 @@
 			children = (
 				D0B85C6720AA08F2006411AA /* ViewController.swift */,
 				F44C416C20AA0AD0004DEF19 /* PersonalFeedViewController.swift */,
+				CB5211CF20AA5E2E0051B646 /* SubmitAndReviewViewController.swift */,
 			);
 			path = "Views+Controllers";
 			sourceTree = "<group>";
