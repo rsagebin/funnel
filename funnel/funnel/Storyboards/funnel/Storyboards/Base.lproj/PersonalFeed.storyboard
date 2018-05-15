@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oix-rw-UkP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--PersonalFeed-->
         <scene sceneID="eju-jA-aqg">
             <objects>
-                <viewController id="oix-rw-UkP" sceneMemberID="viewController">
+                <viewController title="PersonalFeed" id="oix-rw-UkP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Awo-xp-hff">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PersonalFeed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1s-Gj-4Tp">
+                                <rect key="frame" x="135.5" y="323" width="104.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bn7-Cc-BsT">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Funnel" id="EuO-o2-mjU"/>
+                                </items>
+                            </navigationBar>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5e-Xs-y3N">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items/>
+                            </tabBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="m5e-Xs-y3N" firstAttribute="centerX" secondItem="LRM-Iy-PX4" secondAttribute="centerX" id="0KP-Gb-dWZ"/>
+                            <constraint firstItem="LRM-Iy-PX4" firstAttribute="bottom" secondItem="m5e-Xs-y3N" secondAttribute="bottom" id="4X3-ex-bc0"/>
+                            <constraint firstItem="Bn7-Cc-BsT" firstAttribute="width" secondItem="Awo-xp-hff" secondAttribute="width" id="9bI-52-Bhl"/>
+                            <constraint firstItem="y1s-Gj-4Tp" firstAttribute="centerY" secondItem="Awo-xp-hff" secondAttribute="centerY" id="FDr-gB-v0y"/>
+                            <constraint firstItem="Bn7-Cc-BsT" firstAttribute="top" secondItem="LRM-Iy-PX4" secondAttribute="top" id="Fp3-QG-xoe"/>
+                            <constraint firstItem="Bn7-Cc-BsT" firstAttribute="centerX" secondItem="LRM-Iy-PX4" secondAttribute="centerX" id="NeF-fX-hvH"/>
+                            <constraint firstItem="m5e-Xs-y3N" firstAttribute="width" secondItem="Awo-xp-hff" secondAttribute="width" id="i29-WR-J1W"/>
+                            <constraint firstItem="y1s-Gj-4Tp" firstAttribute="centerX" secondItem="Awo-xp-hff" secondAttribute="centerX" id="yY6-df-QDd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LRM-Iy-PX4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="yC8-x6-lQ6"/>
+                    <tabBarItem key="tabBarItem" id="yC8-x6-lQ6"/>
                     <navigationItem key="navigationItem" id="B5d-OO-eDa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9I-Nl-Kne" userLabel="First Responder" sceneMemberID="firstResponder"/>

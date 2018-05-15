@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jl5-h7-eHU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,14 +10,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Feed-->
         <scene sceneID="lkF-00-KV1">
             <objects>
-                <viewController id="jl5-h7-eHU" sceneMemberID="viewController">
+                <viewController title="Feed" id="jl5-h7-eHU" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BIO-Hg-hPj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyv-C1-k4J">
+                                <rect key="frame" x="168.5" y="323" width="38.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9l-SC-2Lh">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="n0u-vO-8Xo"/>
+                                </items>
+                            </navigationBar>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81o-2s-YMc">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items/>
+                            </tabBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="i9l-SC-2Lh" firstAttribute="centerX" secondItem="NZX-JB-XNz" secondAttribute="centerX" id="0kq-fA-5CD"/>
+                            <constraint firstItem="81o-2s-YMc" firstAttribute="width" secondItem="BIO-Hg-hPj" secondAttribute="width" id="2Xg-y3-NZE"/>
+                            <constraint firstItem="Yyv-C1-k4J" firstAttribute="centerX" secondItem="BIO-Hg-hPj" secondAttribute="centerX" id="EwF-GZ-GXb"/>
+                            <constraint firstItem="i9l-SC-2Lh" firstAttribute="top" secondItem="NZX-JB-XNz" secondAttribute="top" id="X07-i6-27L"/>
+                            <constraint firstItem="Yyv-C1-k4J" firstAttribute="centerY" secondItem="BIO-Hg-hPj" secondAttribute="centerY" id="fca-rO-Xq6"/>
+                            <constraint firstItem="NZX-JB-XNz" firstAttribute="bottom" secondItem="81o-2s-YMc" secondAttribute="bottom" id="ikL-wW-RdC"/>
+                            <constraint firstItem="i9l-SC-2Lh" firstAttribute="width" secondItem="BIO-Hg-hPj" secondAttribute="width" id="sUu-XJ-MqZ"/>
+                            <constraint firstItem="81o-2s-YMc" firstAttribute="centerX" secondItem="NZX-JB-XNz" secondAttribute="centerX" id="xUb-ZK-CTw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="NZX-JB-XNz"/>
                     </view>
                     <navigationItem key="navigationItem" id="0Rw-Qc-DdF"/>

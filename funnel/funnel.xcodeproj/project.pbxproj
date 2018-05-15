@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3A0131B820AA4B5C0097E4A8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0131B620AA4B5C0097E4A8 /* User.swift */; };
-		3A0131B920AA4B5C0097E4A8 /* SubmittedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0131B720AA4B5C0097E4A8 /* SubmittedImage.swift */; };
 		3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A453EE520A9E8EF000CA14F /* AppDelegate.swift */; };
 		3A453EEB20A9E8EF000CA14F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EE920A9E8EF000CA14F /* Main.storyboard */; };
 		3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEC20A9E8F1000CA14F /* Assets.xcassets */; };
 		3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */; };
-		CB5211D020AA5E2E0051B646 /* SubmitAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5211CF20AA5E2E0051B646 /* SubmitAndReviewViewController.swift */; };
 		D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B85C6020AA0828006411AA /* CloudKit.framework */; };
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
 		D0B85C6820AA08F2006411AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6720AA08F2006411AA /* ViewController.swift */; };
@@ -27,14 +25,12 @@
 
 /* Begin PBXFileReference section */
 		3A0131B620AA4B5C0097E4A8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3A0131B720AA4B5C0097E4A8 /* SubmittedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmittedImage.swift; sourceTree = "<group>"; };
 		3A453EE220A9E8EF000CA14F /* funnel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = funnel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A453EE520A9E8EF000CA14F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A453EEA20A9E8EF000CA14F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A453EEC20A9E8F1000CA14F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A453EEF20A9E8F1000CA14F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A453EF120A9E8F1000CA14F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB5211CF20AA5E2E0051B646 /* SubmitAndReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAndReviewViewController.swift; sourceTree = "<group>"; };
 		D0B85C5E20AA080A006411AA /* funnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = funnel.entitlements; sourceTree = "<group>"; };
 		D0B85C6020AA0828006411AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
@@ -142,8 +138,13 @@
 		D0B85C6220AA085E006411AA /* Model+Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3A0131B720AA4B5C0097E4A8 /* SubmittedImage.swift */,
 				3A0131B620AA4B5C0097E4A8 /* User.swift */,
+				D040DC6D20AB2A7400EB284F /* Post.swift */,
+				D040DC6F20AB2A8300EB284F /* Comment.swift */,
+				D040DC7120AB2A9100EB284F /* RevisedPost.swift */,
+				D040DC7320AB2AC600EB284F /* PostController.swift */,
+				D040DC7520AB2AD500EB284F /* UserController.swift */,
+				D040DC7720AB2B0B00EB284F /* Categories.swift */,
 			);
 			path = "Model+Controller";
 			sourceTree = "<group>";
@@ -234,11 +235,15 @@
 			files = (
 				F44C416D20AA0AD0004DEF19 /* PersonalFeedViewController.swift in Sources */,
 				3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */,
+				D040DC7620AB2AD500EB284F /* UserController.swift in Sources */,
 				D0B85C6820AA08F2006411AA /* ViewController.swift in Sources */,
+				D040DC7020AB2A8300EB284F /* Comment.swift in Sources */,
+				D040DC7220AB2A9100EB284F /* RevisedPost.swift in Sources */,
+				D040DC7820AB2B0B00EB284F /* Categories.swift in Sources */,
+				D040DC7420AB2AC600EB284F /* PostController.swift in Sources */,
+				D040DC6E20AB2A7400EB284F /* Post.swift in Sources */,
 				3A0131B820AA4B5C0097E4A8 /* User.swift in Sources */,
 				D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */,
-				CB5211D020AA5E2E0051B646 /* SubmitAndReviewViewController.swift in Sources */,
-				3A0131B920AA4B5C0097E4A8 /* SubmittedImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
