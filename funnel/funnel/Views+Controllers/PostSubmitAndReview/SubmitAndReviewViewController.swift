@@ -10,17 +10,59 @@ import UIKit
 
 class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    // MARK: - Properties
+    
     let picker = UIImagePickerController()
 
-    @IBOutlet weak var myImageView: UIButton!
-    @IBOutlet weak var myImage: UIImageView!
+    // MARK: - Outlets
+    
+    
+    @IBOutlet weak var imageViewOutlet: UIImageView!
+    
+    
+    @IBOutlet weak var tagTextView: UITextView!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
+    // MARK: - Actions
+    
+    @IBAction func ImageButtonTapped(_ sender: Any) {
+        showActionSheet()
+    }
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         picker.delegate = self
         
+        tagTextView.layer.borderColor = UIColor.lightGray.cgColor
+        tagTextView.layer.borderWidth = 1.0
+        
+        descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
+        descriptionTextView.layer.borderWidth = 1.0
+        
+        createCameraButton()
+        
+        
     }
+    
+    // MARK: - Other functions
+    
+    func createCameraButton() {
+        
+        let button: UIButton = UIButton(type: UIButtonType.custom)
+        
+        button.setImage(#imageLiteral(resourceName: "camera"), for: .normal)
+        button.addTarget(self, action: #selector(showCameraOrLibrary), for: .touchUpInside)
+        let navButton = UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem = navButton
+    }
+    
+    @objc func showCameraOrLibrary() {
+        showActionSheet()
+    }
+    
     @IBAction func imageButtonTapped(_ sender: UIButton) {
        showActionSheet()
     }
@@ -66,7 +108,7 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
             // take to library
             
             self.picker.allowsEditing = false
-            self.picker.sourceType = .photoLibrary
+            self.picker.sourceType = .savedPhotosAlbum
             self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
             self.picker.modalPresentationStyle = .popover
             self.present(self.picker, animated: true, completion: nil)
@@ -86,10 +128,10 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
                                didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        myImageView.contentMode = .scaleAspectFit //3
-        myImageView.setImage(chosenImage, for: .normal)
-        dismiss(animated:true, completion: nil) //5
+        guard let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        imageViewOutlet.contentMode = .scaleAspectFit
+        imageViewOutlet.image = chosenImage
+        dismiss(animated:true, completion: nil) 
         
     }
     
