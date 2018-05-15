@@ -12,6 +12,7 @@ class User {
     let username: String
     let name: String
     let posts: [Post]
+    var following: [Post]
     var comments: [Comment]
     var isBanned: Bool
     var blockedUsers: [User]
@@ -21,6 +22,7 @@ class User {
         self.name = name
         
         self.posts = []
+        self.following = []
         self.comments = []
         self.isBanned = false
         self.blockedUsers = []
