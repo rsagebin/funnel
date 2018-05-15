@@ -32,7 +32,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LRM-Iy-PX4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" id="yC8-x6-lQ6"/>
+                    <tabBarItem key="tabBarItem" title="Personal" id="yC8-x6-lQ6"/>
                     <navigationItem key="navigationItem" id="B5d-OO-eDa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9I-Nl-Kne" userLabel="First Responder" sceneMemberID="firstResponder"/>
