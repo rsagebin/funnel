@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+class Comment {
+    let text: String
+    let user: User
+    
+    init(text: String, user: User) {
+        self.text = text
+        self.user = user
+    }
+}

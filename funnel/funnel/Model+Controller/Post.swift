@@ -7,3 +7,27 @@
 //
 
 import Foundation
+
+class Post {
+    let description: String
+    let imageURL: URL
+    var category: String
+    var comments: [Comment]
+    var numberOfFlags: Int
+    var isBanned: Bool
+    
+    func createCategory() -> String {
+        return ""
+    }
+    
+    init(description: String, imageURL: URL) {
+        self.description = description
+        self.imageURL = imageURL
+        self.category = ""
+        
+        self.comments = []
+        self.numberOfFlags = 0
+        self.isBanned = false
+    }
+    
+}
