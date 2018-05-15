@@ -27,6 +27,7 @@
 		D040DC9220AB316300EB284F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC9120AB316300EB284F /* LoginViewController.swift */; };
 		D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B85C6020AA0828006411AA /* CloudKit.framework */; };
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
+		F424A2C620AB5E2700431F2B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F424A2C420AB5E2700431F2B /* Login.storyboard */; };
 		F44C416D20AA0AD0004DEF19 /* PersonalFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C416C20AA0AD0004DEF19 /* PersonalFeedViewController.swift */; };
 		F44C417120AA1D25004DEF19 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44C417020AA1D25004DEF19 /* Feed.storyboard */; };
 		F44C417420AA2110004DEF19 /* PersonalFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44C417220AA2110004DEF19 /* PersonalFeed.storyboard */; };
@@ -59,6 +60,7 @@
 		D0B85C5E20AA080A006411AA /* funnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = funnel.entitlements; sourceTree = "<group>"; };
 		D0B85C6020AA0828006411AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
+		F424A2C520AB5E2700431F2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = funnel/Storyboards/Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		F44C416C20AA0AD0004DEF19 /* PersonalFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalFeedViewController.swift; sourceTree = "<group>"; };
 		F44C417020AA1D25004DEF19 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		F44C417320AA2110004DEF19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = funnel/Storyboards/Base.lproj/PersonalFeed.storyboard; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */,
 				3A453EE920A9E8EF000CA14F /* Main.storyboard */,
+				F424A2C420AB5E2700431F2B /* Login.storyboard */,
 				F44C417020AA1D25004DEF19 /* Feed.storyboard */,
 				F44C417720AA4641004DEF19 /* PostSubmitAndReview.storyboard */,
 				F44C417A20AA46F4004DEF19 /* Categories.storyboard */,
@@ -260,6 +263,7 @@
 				3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */,
 				F44C417920AA4641004DEF19 /* PostSubmitAndReview.storyboard in Resources */,
 				3A453EEB20A9E8EF000CA14F /* Main.storyboard in Resources */,
+				F424A2C620AB5E2700431F2B /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +311,14 @@
 				3A453EEF20A9E8F1000CA14F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F424A2C420AB5E2700431F2B /* Login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F424A2C520AB5E2700431F2B /* Base */,
+			);
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		F44C417220AA2110004DEF19 /* PersonalFeed.storyboard */ = {
