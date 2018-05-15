@@ -1,14 +1,14 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  funnel
 //
-//  Created by Drew Carver on 5/14/18.
+//  Created by Drew Carver on 5/15/18.
 //  Copyright © 2018 Rodrigo Sagebin. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
