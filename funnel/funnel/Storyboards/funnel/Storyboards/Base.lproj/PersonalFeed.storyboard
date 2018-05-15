@@ -24,27 +24,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bn7-Cc-BsT">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Funnel" id="EuO-o2-mjU"/>
-                                </items>
-                            </navigationBar>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5e-Xs-y3N">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items/>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="m5e-Xs-y3N" firstAttribute="centerX" secondItem="LRM-Iy-PX4" secondAttribute="centerX" id="0KP-Gb-dWZ"/>
-                            <constraint firstItem="LRM-Iy-PX4" firstAttribute="bottom" secondItem="m5e-Xs-y3N" secondAttribute="bottom" id="4X3-ex-bc0"/>
-                            <constraint firstItem="Bn7-Cc-BsT" firstAttribute="width" secondItem="Awo-xp-hff" secondAttribute="width" id="9bI-52-Bhl"/>
                             <constraint firstItem="y1s-Gj-4Tp" firstAttribute="centerY" secondItem="Awo-xp-hff" secondAttribute="centerY" id="FDr-gB-v0y"/>
-                            <constraint firstItem="Bn7-Cc-BsT" firstAttribute="top" secondItem="LRM-Iy-PX4" secondAttribute="top" id="Fp3-QG-xoe"/>
-                            <constraint firstItem="Bn7-Cc-BsT" firstAttribute="centerX" secondItem="LRM-Iy-PX4" secondAttribute="centerX" id="NeF-fX-hvH"/>
-                            <constraint firstItem="m5e-Xs-y3N" firstAttribute="width" secondItem="Awo-xp-hff" secondAttribute="width" id="i29-WR-J1W"/>
                             <constraint firstItem="y1s-Gj-4Tp" firstAttribute="centerX" secondItem="Awo-xp-hff" secondAttribute="centerX" id="yY6-df-QDd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LRM-Iy-PX4"/>
