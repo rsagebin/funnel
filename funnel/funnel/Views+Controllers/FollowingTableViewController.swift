@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FollowingViewController: UIViewController {
+class FollowingTableViewController: UIViewController {
 
     
     

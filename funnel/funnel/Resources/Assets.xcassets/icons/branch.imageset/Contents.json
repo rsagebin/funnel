@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "branch.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "branch.png",
       "scale" : "2x"
     },
     {

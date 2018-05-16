@@ -45,7 +45,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="c0o-Rb-SrI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="5rY-mq-f7k">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="P97-V2-bOl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="P97-V2-bOl">
                             <connections>
                                 <segue destination="cxd-mD-p8D" kind="show" id="rkQ-9w-0kP"/>
                             </connections>
@@ -67,20 +67,20 @@
             </objects>
             <point key="canvasLocation" x="1897" y="9"/>
         </scene>
-        <!--PersonalFeed-->
+        <!--Following-->
         <scene sceneID="P05-6S-m2E">
             <objects>
-                <viewControllerPlaceholder storyboardName="PersonalFeed" id="JrI-Uy-M5R" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Following" id="JrI-Uy-M5R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Personal Feed" id="tzs-le-OrO"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Cm-rQ-xlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1979" y="532"/>
         </scene>
-        <!--ProfileAndSettings-->
+        <!--Profile-->
         <scene sceneID="jXy-SJ-KlG">
             <objects>
-                <viewControllerPlaceholder storyboardName="ProfileAndSettings" id="bve-hw-fRZ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Profile" id="bve-hw-fRZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="MMO-ik-NQI"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uni-RH-Kxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -111,7 +111,7 @@
                 <viewControllerPlaceholder storyboardName="PostDetail" id="IhC-jy-wLK" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSj-nI-10V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2692" y="-71"/>
+            <point key="canvasLocation" x="2542" y="-88"/>
         </scene>
     </scenes>
 </document>

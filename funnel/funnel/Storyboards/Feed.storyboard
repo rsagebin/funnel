@@ -14,7 +14,7 @@
         <!--Feed-->
         <scene sceneID="spy-3L-KQ9">
             <objects>
-                <tableViewController id="nA6-DJ-UNl" customClass="FeedViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="nA6-DJ-UNl" customClass="FeedTableViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lvI-Es-NFY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
                             <outlet property="delegate" destination="nA6-DJ-UNl" id="RhC-Kv-eSq"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Feed" id="Eyh-X7-Eg2"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="funnel" id="Eyh-X7-Eg2"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fdh-an-U2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -105,9 +105,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="approved.2" width="50" height="50"/>
-        <image name="branch" width="50" height="50"/>
-        <image name="exclamation" width="50" height="50"/>
-        <image name="notification" width="50" height="50"/>
+        <image name="approved.2" width="25" height="25"/>
+        <image name="branch" width="25" height="25"/>
+        <image name="exclamation" width="25" height="25"/>
+        <image name="funnel" width="25" height="25"/>
+        <image name="notification" width="25" height="25"/>
     </resources>
 </document>

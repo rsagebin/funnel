@@ -1,5 +1,5 @@
 //
-//  FeedViewController.swift
+//  FeedTableViewController.swift
 //  funnel
 //
 //  Created by Drew Carver on 5/15/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedViewController: UITableViewController {
+class FeedTableViewController: UITableViewController {
 
     
     
