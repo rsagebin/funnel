@@ -10,6 +10,8 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
     var post: Post? {
         didSet {
             updateViews()
@@ -20,7 +22,6 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var commentsTextView: UITextView!
-    
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var exclamationButtonOutlet: UIButton!
@@ -28,14 +29,13 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var branchButtonOutlet: UIButton!
     @IBOutlet weak var aprovedButtonOutlet: UIButton!
    
+    // MARK: - Other Functions
     
     func updateViews() {
         if let post = post {
             self.categoriesLabel.text = post.category
             self.descriptionTextView.text = post.description
+            self.postImageView.image = post.image
         }
     }
-
-
-
 }

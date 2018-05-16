@@ -8,20 +8,39 @@
 
 import UIKit
 
-class ProfileSettingsViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
+    // MARK: - Outlets
+    
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var aboutLabel: UILabel!
+    
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+      setUpBorders()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Other Functions
+    
+    func setUpBorders() {
+    
+        usernameLabel.layer.borderColor = UIColor.black.cgColor
+        usernameLabel.layer.borderWidth = 1.0
+        
+        emailLabel.layer.borderColor = UIColor.black.cgColor
+        emailLabel.layer.borderWidth = 1.0
+        
+        aboutLabel.layer.borderColor = UIColor.black.cgColor
+        aboutLabel.layer.borderWidth = 1.0
+        
+        
     }
     
-
     /*
     // MARK: - Navigation
 

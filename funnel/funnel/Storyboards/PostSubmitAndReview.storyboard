@@ -28,7 +28,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ze6-ca-zJt">
-                                <rect key="frame" x="5" y="25" width="60" height="50"/>
+                                <rect key="frame" x="5" y="25" width="60" height="25"/>
                                 <state key="normal" image="modify"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJ9-n2-BSq">
@@ -37,24 +37,27 @@
                                 <state key="normal" title="Submit your suggested changes">
                                     <color key="titleColor" red="1" green="0.87928292149999998" blue="0.63976345800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="createOrSuggestPostButtonTapped:" destination="tqn-OU-1Co" eventType="touchUpInside" id="gvo-Yt-cY6"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CMK-05-JX3">
-                                <rect key="frame" x="99" y="466" width="236" height="128"/>
+                                <rect key="frame" x="74" y="466" width="261" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kh7-da-YpL">
-                                <rect key="frame" x="5" y="398" width="50" height="50"/>
+                                <rect key="frame" x="5" y="423" width="25" height="25"/>
                                 <state key="normal" image="modify"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOc-6u-Eeg">
-                                <rect key="frame" x="5" y="506" width="50" height="50"/>
+                                <rect key="frame" x="5" y="531" width="25" height="25"/>
                                 <state key="normal" image="modify"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="55e-A7-TCd">
-                                <rect key="frame" x="99" y="407" width="236" height="41"/>
+                                <rect key="frame" x="74" y="407" width="261" height="41"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="2wd-eA-I7D"/>
@@ -64,7 +67,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="new-3p-Awh">
-                                <rect key="frame" x="59" y="77" width="256" height="319"/>
+                                <rect key="frame" x="59" y="52" width="256" height="369"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -109,6 +112,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="modify" width="50" height="50"/>
+        <image name="modify" width="25" height="25"/>
     </resources>
 </document>
