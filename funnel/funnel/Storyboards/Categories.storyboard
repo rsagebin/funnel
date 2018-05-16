@@ -32,7 +32,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jX0-Ne-dZC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Categories" id="eOP-Pz-HDD"/>
+                    <tabBarItem key="tabBarItem" title="Categories" id="5M8-ws-N2k"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngu-aT-97M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
