@@ -54,7 +54,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nla-IJ-wpl">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="7Dx-76-p9Z" kind="relationship" relationship="viewControllers" id="ezT-V3-N0b"/>
@@ -114,4 +113,5 @@
             <point key="canvasLocation" x="2542" y="-88"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="Color"/>
 </document>

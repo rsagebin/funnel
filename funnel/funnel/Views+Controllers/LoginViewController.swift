@@ -19,8 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userSignedInView: UIView!
     @IBOutlet weak var userSignUpView: UIView!
     @IBOutlet weak var userUsernameTextField: UITextField!
-    @IBOutlet weak var userFirstNameTextField: UITextField!
-    @IBOutlet weak var userLastNameTextField: UITextField!
+    @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userEmailAddressTextField: UITextField!
 
     
@@ -60,8 +59,7 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     @IBAction func userSignUpButtonPressed(_ sender: UIButton) {
         guard let userName = userUsernameTextField.text, !userName.isEmpty,
-            let firstName = userFirstNameTextField.text, !firstName.isEmpty,
-            let lastName = userLastNameTextField.text, !lastName.isEmpty,
+            let name = userNameTextField.text, !name.isEmpty,
             let emailAddress = userEmailAddressTextField.text, !emailAddress.isEmpty
             else { return }
         
