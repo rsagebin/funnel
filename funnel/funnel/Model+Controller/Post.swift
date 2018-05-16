@@ -20,6 +20,7 @@ class Post {
     private static let commentsKey = "comments"
     private static let numberOfFlagsKey = "numberOfFlags"
     private static let isBannedKey = "isBanned"
+    private static let creatorRefKey = "creatorRef"
     
     let user: User
     let description: String
@@ -29,6 +30,7 @@ class Post {
     var comments: [Comment]
     var numberOfFlags: Int
     var isBanned: Bool
+    let creatorRef: CKReference
     
     var ckRecord: CKRecord {
         let record = CKRecord(recordType: Post.typeKey)
@@ -49,7 +51,7 @@ class Post {
         return ""
     }
     
-    init(user: User, description: String, imageURL: URL) {
+    init(user: User, description: String, imageURL: URL, creatorRef: CKReference) {
         self.user = user
         self.description = description
         self.imageURL = imageURL
@@ -59,6 +61,7 @@ class Post {
         self.tags = []
         self.numberOfFlags = 0
         self.isBanned = false
+        self.creatorRef = creatorRef
     }
     
     init?(cloudKitRecord: CKRecord) {
@@ -69,7 +72,8 @@ class Post {
             let tags = cloudKitRecord[Post.tagsKey] as? [String],
             let comments = cloudKitRecord[Post.commentsKey] as? [Comment],
             let numberOfFlags = cloudKitRecord[Post.numberOfFlagsKey] as? Int,
-            let isBanned = cloudKitRecord[Post.isBannedKey] as? Bool else { return nil }
+            let isBanned = cloudKitRecord[Post.isBannedKey] as? Bool,
+            let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference else { return nil }
         
         self.user = user
         self.description = description
@@ -79,6 +83,7 @@ class Post {
         self.comments = comments
         self.numberOfFlags = numberOfFlags
         self.isBanned = isBanned
+        self.creatorRef = creatorRef
         
     }
     

@@ -11,12 +11,16 @@ import CloudKit
 
 class PostController {
     
-    var shared = PostController()
+    static let shared = PostController()
     
     // Possibly have two collections of posts - Feed and Following.
     // Possibly use NSPredicate in CKManager to specific time frame, etc. Or implement infinite scroll.
     
     // Use notification center to notifiy feed view/following view when posts have been loaded to refresh the tableview
+    
+//    var user = User(username: "testing", name: "Test Test")
+//
+//    lazy var posts = [Post(user: user, description: "Test Post Description", imageURL: URL(string: "http://www.google.com/")!)]
     
     var posts = [Post]()
     
