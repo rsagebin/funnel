@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var funnelTwoLabel: UILabel!
     @IBOutlet weak var funnelThreeLabel: UILabel!
     
+    @IBOutlet weak var backgroundGif: UIImageView!
     @IBOutlet weak var userSignedInView: UIView!
     @IBOutlet weak var userSignUpView: UIView!
     @IBOutlet weak var userUsernameTextField: UITextField!
@@ -26,7 +27,7 @@ class LoginViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        backgroundGif.loadGif(asset: "inception")
         self.funnelAppLoadingView.isHidden = false
         self.funnelTitleView.isHidden = true
         self.userSignUpView.isHidden = true
