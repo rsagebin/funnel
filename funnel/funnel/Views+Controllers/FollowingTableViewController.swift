@@ -31,7 +31,7 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-         return 5
+         return 1
     }
     
 //    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
@@ -46,7 +46,17 @@ class FollowingTableViewController: UITableViewController {
     
     // Rows
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        var cellHeight = 100
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1136: cellHeight = 100; print("5, 5S, 5C, SE")
+            case 1334: cellHeight = 118; print("6, 6S, 7, 8")
+            case 2208: cellHeight = 131; print("6+, 6S+, 7+, 8+")
+            case 2436: cellHeight = 118; print("X")
+            default: print("Unknown Phone Height")
+            }
+        }
+        return CGFloat(cellHeight)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,10 +64,10 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
         
         
-        return UITableViewCell()
+        return cell
     }
     
     

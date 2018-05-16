@@ -10,15 +10,14 @@ import UIKit
 
 class FollowingTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    // MARK: - Outlets
+    @IBOutlet weak var postCategoryLabel: UILabel!
+    @IBOutlet weak var postSubmittedImage: UIImageView!
+    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var postFollowingLabel: UILabel!
+    @IBOutlet weak var postCuriosityLabel: UILabel!
+    @IBOutlet weak var postSuggestionLabel: UILabel!
+    @IBOutlet weak var postCommentsLabel: UILabel!
+    
+    
 }
