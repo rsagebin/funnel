@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+//        This is here for CloudKit testing
+//        PostController.shared.savePost()
+        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
         { (_, error) in
             if let error = error {
