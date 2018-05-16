@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonalFeedViewController: UIViewController {
+class FollowingViewController: UIViewController {
 
     
     

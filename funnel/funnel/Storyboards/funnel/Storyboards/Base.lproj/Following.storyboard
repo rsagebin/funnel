@@ -13,7 +13,7 @@
         <!--PersonalFeed-->
         <scene sceneID="eju-jA-aqg">
             <objects>
-                <viewController title="PersonalFeed" id="oix-rw-UkP" customClass="PersonalFeedViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="PersonalFeed" id="oix-rw-UkP" customClass="FollowingViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Awo-xp-hff">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
