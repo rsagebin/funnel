@@ -6,7 +6,7 @@
 //  Copyright © 2018 Rodrigo Sagebin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 
 class Post {
@@ -14,7 +14,7 @@ class Post {
     static let typeKey = "Post"
     private static let userKey = "user"
     private static let descriptionKey = "description"
-    private static let imageURLKey = "imageURL"
+    private static let imageKey = "image"
     private static let categoryKey = "category"
     private static let tagsKey = "tags"
     private static let commentsKey = "comments"
@@ -24,20 +24,26 @@ class Post {
     
     let user: User
     let description: String
-    let imageURL: URL
+    let image: UIImage
     var category: String
     var tags: [String]
     var comments: [Comment]
     var numberOfFlags: Int
     var isBanned: Bool
     let creatorRef: CKReference
+    var ckRecordID: CKRecordID?
     
     var ckRecord: CKRecord {
-        let record = CKRecord(recordType: Post.typeKey)
+        let record: CKRecord
+        if let ckRecordID = ckRecordID {
+            record = CKRecord(recordType: Post.typeKey, recordID: ckRecordID)
+        } else {
+            record = CKRecord(recordType: Post.typeKey)
+        }
         
         record.setValue(user, forKey: Post.userKey)
         record.setValue(description, forKey: Post.descriptionKey)
-        record.setValue(imageURL, forKey: Post.imageURLKey)
+        record.setValue(image, forKey: Post.imageKey)
         record.setValue(category, forKey: Post.categoryKey)
         record.setValue(tags, forKey: Post.tagsKey)
         record.setValue(comments, forKey: Post.commentsKey)
@@ -51,12 +57,11 @@ class Post {
         return ""
     }
     
-    init(user: User, description: String, imageURL: URL, creatorRef: CKReference) {
+    init(user: User, description: String, image: UIImage, creatorRef: CKReference) {
         self.user = user
         self.description = description
-        self.imageURL = imageURL
+        self.image = image
         self.category = ""
-        
         self.comments = []
         self.tags = []
         self.numberOfFlags = 0
@@ -67,7 +72,7 @@ class Post {
     init?(cloudKitRecord: CKRecord) {
         guard let user = cloudKitRecord[Post.userKey] as? User,
             let description = cloudKitRecord[Post.descriptionKey] as? String,
-            let imageURL = cloudKitRecord[Post.imageURLKey] as? URL,
+            let image = cloudKitRecord[Post.imageKey] as? UIImage,
             let category = cloudKitRecord[Post.categoryKey] as? String,
             let tags = cloudKitRecord[Post.tagsKey] as? [String],
             let comments = cloudKitRecord[Post.commentsKey] as? [Comment],
@@ -77,7 +82,7 @@ class Post {
         
         self.user = user
         self.description = description
-        self.imageURL = imageURL
+        self.image = image
         self.category = category
         self.tags = tags
         self.comments = comments

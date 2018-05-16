@@ -6,10 +6,12 @@
 //  Copyright © 2018 Rodrigo Sagebin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 
 class PostController {
+
+    let ckManager = CloudKitManager()
     
     static let shared = PostController()
     
@@ -18,13 +20,11 @@ class PostController {
     
     // Use notification center to notifiy feed view/following view when posts have been loaded to refresh the tableview
     
-//    var user = User(username: "testing", name: "Test Test")
-//
-//    lazy var posts = [Post(user: user, description: "Test Post Description", imageURL: URL(string: "http://www.google.com/")!)]
+    // No thouchy
+    var mockFeedPosts: [Post] = []
     
     var posts = [Post]()
     
-    let ckManager = CloudKitManager()
     
     func savePost() {
         let postsCKRecords = posts.map { $0.ckRecord }
@@ -58,6 +58,46 @@ class PostController {
     
     func fetchUserPosts() {
         
+    }
+    
+    func setUpMockData() {
+        
+        var userAppleIDReference: CKReference?
+        
+        ckManager.getUserReference { (recordID, error) in
+            if let error = error {
+                print("Error getting user's Apple ID: \(error)")
+                return
+            }
+            
+            guard let recordID = recordID else { return }
+            
+            userAppleIDReference = CKReference(recordID: recordID, action: .deleteSelf)
+            
+        }
+        
+        guard let reference = userAppleIDReference else { return }
+        
+        let user = User(username: "testing", name: "test2", userRef: reference)
+        let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+        
+        
+        let posts = [post]
+        
+        self.posts = posts
+    }
+    
+    init() {
+        // No thouchy
+        let user = User(username: "testing", name: "test2", userRef: nil)
+        let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+        let post2 = Post(user: user, description: "Image description 2.", image: UIImage(named: "settings")!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+
+        self.mockFeedPosts = [post, post2]
+    
+        
+        setUpMockData()
+        savePost()
     }
     
 }
