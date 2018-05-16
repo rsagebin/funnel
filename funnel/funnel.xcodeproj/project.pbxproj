@@ -34,6 +34,7 @@
 		D05F243A20ACA2A500D625E9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243320ACA2A400D625E9 /* Login.storyboard */; };
 		D05F243B20ACA2A500D625E9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243420ACA2A400D625E9 /* Profile.storyboard */; };
 		D05F243C20ACA2A500D625E9 /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243520ACA2A400D625E9 /* PostDetail.storyboard */; };
+		D05F243E20ACD32C00D625E9 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F243D20ACD32C00D625E9 /* CommentController.swift */; };
 		D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B85C6020AA0828006411AA /* CloudKit.framework */; };
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
 		F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */; };
@@ -72,6 +73,7 @@
 		D05F243320ACA2A400D625E9 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		D05F243420ACA2A400D625E9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D05F243520ACA2A400D625E9 /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
+		D05F243D20ACD32C00D625E9 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		D0B85C5E20AA080A006411AA /* funnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = funnel.entitlements; sourceTree = "<group>"; };
 		D0B85C6020AA0828006411AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
@@ -200,9 +202,10 @@
 				D040DC7B20AB301B00EB284F /* Post.swift */,
 				D040DC8020AB301B00EB284F /* Categories.swift */,
 				D040DC7C20AB301B00EB284F /* Comment.swift */,
-				D040DC7D20AB301B00EB284F /* PostController.swift */,
 				D040DC7E20AB301B00EB284F /* RevisedPost.swift */,
 				D040DC7F20AB301B00EB284F /* UserController.swift */,
+				D040DC7D20AB301B00EB284F /* PostController.swift */,
+				D05F243D20ACD32C00D625E9 /* CommentController.swift */,
 			);
 			path = "Model+Controller";
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D040DC8420AB301B00EB284F /* RevisedPost.swift in Sources */,
+				D05F243E20ACD32C00D625E9 /* CommentController.swift in Sources */,
 				F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */,
 				F4CD67F720AC9C0C003E7F3E /* PostDetailViewController.swift in Sources */,
 				3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */,

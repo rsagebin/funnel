@@ -26,20 +26,23 @@ class PostController {
     var posts = [Post]()
     
     
-    func savePost() {
-        let postsCKRecords = posts.map { $0.ckRecord }
-        ckManager.save(records: postsCKRecords, perRecordCompletion: nil) { (records, error) in
+    func createPost(user: User, description: String, image: UIImage, category: String) {
+        let creatorReference = CKReference(recordID: user.ckRecord.recordID, action: .deleteSelf)
+        let post = Post(user: user, description: description, image: image, category: category, creatorRef: creatorReference)
+        
+        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (record, error) in
             if let error = error {
-                print("Error saving records to CloudKit: \(error.localizedDescription)")
+                print("Error saving user to CloudKit: \(error)")
                 return
-            } else {
-                print("Successfully saved records to CloudKit.")
             }
         }
     }
     
-    func fetchPosts() {
-        ckManager.fetchRecordsWith(type: Post.typeKey) { (records, error) in
+    func fetchFeedPosts() {
+        
+        let predicate = NSPredicate(value: true)
+        
+        ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 return
@@ -50,9 +53,7 @@ class PostController {
                 return
             }
             
-            let posts = records.compactMap({ Post(cloudKitRecord: $0) })
-            
-            self.posts = posts
+            let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
         }
     }
     
@@ -64,7 +65,7 @@ class PostController {
         
         var userAppleIDReference: CKReference?
         
-        ckManager.getUserReference { (recordID, error) in
+        ckManager.getUserRecordID { (recordID, error) in
             if let error = error {
                 print("Error getting user's Apple ID: \(error)")
                 return
@@ -74,30 +75,33 @@ class PostController {
             
             userAppleIDReference = CKReference(recordID: recordID, action: .deleteSelf)
             
+            guard let reference = userAppleIDReference else { return }
+            
+            let user = User(username: "testing", name: "test2", appleUserRef: reference)
+            let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+            
+            let posts = [post]
+            
+            self.posts = posts
+            
+        
         }
         
-        guard let reference = userAppleIDReference else { return }
-        
-        let user = User(username: "testing", name: "test2", userRef: reference)
-        let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
-        
-        
-        let posts = [post]
-        
-        self.posts = posts
+
+
     }
     
     init() {
         // No thouchy
-        let user = User(username: "testing", name: "test2", userRef: nil)
-        let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
-        let post2 = Post(user: user, description: "Image description 2.", image: UIImage(named: "settings")!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+        
+        let user = User(username: "testing", name: "test2", appleUserRef: nil)
+        let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+        let post2 = Post(user: user, description: "Image description 2.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
 
         self.mockFeedPosts = [post, post2]
     
         
         setUpMockData()
-        savePost()
     }
     
 }

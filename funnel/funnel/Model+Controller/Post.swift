@@ -39,6 +39,7 @@ class Post {
             record = CKRecord(recordType: Post.typeKey, recordID: ckRecordID)
         } else {
             record = CKRecord(recordType: Post.typeKey)
+            self.ckRecordID = record.recordID
         }
         
         record.setValue(user, forKey: Post.userKey)
@@ -57,11 +58,11 @@ class Post {
         return ""
     }
     
-    init(user: User, description: String, image: UIImage, creatorRef: CKReference) {
+    init(user: User, description: String, image: UIImage, category: String, creatorRef: CKReference) {
         self.user = user
         self.description = description
         self.image = image
-        self.category = ""
+        self.category = category
         self.comments = []
         self.tags = []
         self.numberOfFlags = 0
@@ -89,6 +90,8 @@ class Post {
         self.numberOfFlags = numberOfFlags
         self.isBanned = isBanned
         self.creatorRef = creatorRef
+        
+        self.ckRecordID = cloudKitRecord.recordID
         
     }
     

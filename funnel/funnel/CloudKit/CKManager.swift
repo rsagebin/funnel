@@ -14,8 +14,7 @@ class CloudKitManager {
     private let publicDB = CKContainer.default().publicCloudDatabase
     
     // Fetch from CloudKit
-    func fetchRecordsWith(type: String, completion: @escaping ((_ records: [CKRecord]?, _ error: Error?) -> Void)) {
-        let predicate = NSPredicate(value: true)
+    func fetch(type: String, predicate: NSPredicate, completion: @escaping ((_ records: [CKRecord]?, _ error: Error?) -> Void)) {
         let query = CKQuery(recordType: type, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil, completionHandler: completion)
@@ -44,7 +43,7 @@ class CloudKitManager {
     }
     
     // Get user's Apple ID for object to reference
-    func getUserReference(completion: @escaping (CKRecordID?, Error?) -> Void) {
+    func getUserRecordID(completion: @escaping (CKRecordID?, Error?) -> Void) {
         CKContainer.default().fetchUserRecordID(completionHandler: completion)
     }
 
