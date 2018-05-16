@@ -33,18 +33,25 @@ class LoginViewController: UIViewController {
         self.userSignUpView.isHidden = true
         self.userSignedInView.isHidden = true
         
+        funnelTwoLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        funnelThreeLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        
         // Fetch User from MC
         
 //        DispatchQueue.main.async {
 //            if successly pulled user {
-//                self.performSegue(withIdentifier: "fromSignedInVCToMainVC", sender: nil)
+//        self.funnelAppLoadingView.isHidden = true
+//        self.funnelTitleView.isHidden = false
+//        self.userSignUpView.isHidden = true
+//        self.userSignedInView.isHidden = false
+//        self.performSegue(withIdentifier: "fromSignedInVCToMainVC", sender: nil)
 //            }
             
-//            if unsuccessful {
-//            self.userAccountCheckView.isHidden = true
-//            self.funnelAppLoadingView.isHidden = true
-//            self.userAccountCheckView.isHidden = true
-//            self.userSignUpView.isHidden = false
+//            if unsuccessful show sign up {
+//        self.funnelAppLoadingView.isHidden = true
+//        self.funnelTitleView.isHidden = false
+//        self.userSignUpView.isHidden = false
+//        self.userSignedInView.isHidden = true
 //            }
 //        }
     }
@@ -64,7 +71,9 @@ class LoginViewController: UIViewController {
         
 //        if success {
 //            DispatchQueue.main.async {
-//                self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
+        
+        
+        self.performSegue(withIdentifier: "fromSignedInVCToMainVC", sender: nil)
 //            }
         
         
@@ -72,15 +81,13 @@ class LoginViewController: UIViewController {
     }
     
     
-    
+    // Will be deleted later
     @IBAction func LoadButtonPressed(_ sender: UIButton) {
         self.funnelAppLoadingView.isHidden = false
         self.funnelTitleView.isHidden = true
         self.userSignUpView.isHidden = true
         self.userSignedInView.isHidden = true
         
-        funnelTwoLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        funnelThreeLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
     }
     
     @IBAction func SignUpPressed(_ sender: UIButton) {
