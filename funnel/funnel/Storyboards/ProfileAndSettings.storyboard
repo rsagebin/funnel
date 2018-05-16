@@ -32,7 +32,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Trd-Ot-PBs"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="kBa-44-dBL"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="Uir-9M-6Bw"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wPi-70-t6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

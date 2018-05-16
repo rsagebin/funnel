@@ -13,6 +13,7 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
     // MARK: - Properties
     
     let picker = UIImagePickerController()
+   
 
     // MARK: - Outlets
     
@@ -78,7 +79,9 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
             // show camera
             
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                self.picker.allowsEditing = false
+                self.picker.allowsEditing = true
+            
+//                 self.picker.navigationItem.rightBarButtonItem = self.editButtonItem
                 self.picker.sourceType = UIImagePickerControllerSourceType.camera
                 self.picker.cameraCaptureMode = .photo
                 self.picker.modalPresentationStyle = .fullScreen
@@ -107,10 +110,14 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
         let goToLibrary = UIAlertAction(title: "Photo Library", style: .default) { (_) in
             // take to library
             
-            self.picker.allowsEditing = false
-            self.picker.sourceType = .savedPhotosAlbum
-            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-            self.picker.modalPresentationStyle = .popover
+            
+            
+            self.picker.allowsEditing = true
+        
+           
+            self.picker.sourceType = .photoLibrary
+//            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+//            self.picker.modalPresentationStyle = .popover
             self.present(self.picker, animated: true, completion: nil)
 //            self.picker.popoverPresentationController?.sourceRect = self
             
@@ -123,12 +130,18 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
         present(actionSheet, animated: true, completion: nil)
     }
     
+//    override func setEditing(_ editing: Bool, animated: Bool) {
+//        super.setEditing(editing, animated: animated)
+//
+//        picker.setEditing(editing, animated: animated)
+//    }
+    
     
     @objc func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         
-        guard let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        guard let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
         imageViewOutlet.contentMode = .scaleAspectFit
         imageViewOutlet.image = chosenImage
         dismiss(animated:true, completion: nil) 
