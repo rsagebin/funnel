@@ -13,6 +13,7 @@
 		3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEC20A9E8F1000CA14F /* Assets.xcassets */; };
 		3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */; };
 		3AB33B2220AB78C500ACD6CD /* midgetPornVolume3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB33B2120AB78C500ACD6CD /* midgetPornVolume3.swift */; };
+		3AB33B4320ACBFC700ACD6CD /* comments in Resources */ = {isa = PBXBuildFile; fileRef = 3AB33B4220ACBFC700ACD6CD /* comments */; };
 		D040DC7A20AB301000EB284F /* SubmitAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */; };
 		D040DC8120AB301B00EB284F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7B20AB301B00EB284F /* Post.swift */; };
 		D040DC8220AB301B00EB284F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7C20AB301B00EB284F /* Comment.swift */; };
@@ -50,6 +51,7 @@
 		3A453EEF20A9E8F1000CA14F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A453EF120A9E8F1000CA14F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AB33B2120AB78C500ACD6CD /* midgetPornVolume3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midgetPornVolume3.swift; sourceTree = "<group>"; };
+		3AB33B4220ACBFC700ACD6CD /* comments */ = {isa = PBXFileReference; lastKnownFileType = text; path = comments; sourceTree = "<group>"; };
 		D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAndReviewViewController.swift; sourceTree = "<group>"; };
 		D040DC7B20AB301B00EB284F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D040DC7C20AB301B00EB284F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				3A453EEC20A9E8F1000CA14F /* Assets.xcassets */,
 				3A453EF120A9E8F1000CA14F /* Info.plist */,
 				3AB33B2120AB78C500ACD6CD /* midgetPornVolume3.swift */,
+				3AB33B4220ACBFC700ACD6CD /* comments */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */,
+				3AB33B4320ACBFC700ACD6CD /* comments in Resources */,
 				D05F243720ACA2A500D625E9 /* Following.storyboard in Resources */,
 				3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */,
 				D05F243620ACA2A500D625E9 /* Categories.storyboard in Resources */,
