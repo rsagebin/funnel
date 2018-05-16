@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,8 +25,8 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxT-ZT-HM8">
-                                        <rect key="frame" x="-0.5" y="220.5" width="375.5" height="50"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="-0.5" y="231" width="375.5" height="50"/>
+                                        <color key="backgroundColor" name="Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="RN6-ke-Cdv"/>
                                         </constraints>
@@ -33,45 +34,45 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rBV-FY-mR0">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="funnel" translatesAutoresizingMaskIntoConstraints="NO" id="rBV-FY-mR0">
                                         <rect key="frame" x="149.5" y="286" width="75" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="75" id="42S-Kn-nhf"/>
                                             <constraint firstAttribute="width" constant="75" id="vNc-wn-4mV"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvL-vg-zQO">
-                                        <rect key="frame" x="166.5" y="385.5" width="42" height="42"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvL-vg-zQO">
+                                        <rect key="frame" x="160" y="371" width="55" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="3S9-iU-FzD"/>
-                                            <constraint firstAttribute="width" constant="42" id="rR0-7Z-hHA"/>
+                                            <constraint firstAttribute="height" constant="55" id="3S9-iU-FzD"/>
+                                            <constraint firstAttribute="width" constant="55" id="rR0-7Z-hHA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zar-5y-JYq">
-                                        <rect key="frame" x="167" y="452.5" width="42" height="42"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zar-5y-JYq">
+                                        <rect key="frame" x="160.5" y="436" width="55" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="DGh-nr-NMs"/>
-                                            <constraint firstAttribute="width" constant="42" id="vDA-83-A4C"/>
+                                            <constraint firstAttribute="height" constant="55" id="DGh-nr-NMs"/>
+                                            <constraint firstAttribute="width" constant="55" id="vDA-83-A4C"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <constraints>
                                     <constraint firstItem="rBV-FY-mR0" firstAttribute="centerY" secondItem="24Z-0q-3Nw" secondAttribute="centerY" id="Hb3-PB-5fC"/>
                                     <constraint firstItem="rBV-FY-mR0" firstAttribute="centerX" secondItem="24Z-0q-3Nw" secondAttribute="centerX" id="LGj-9B-Aur"/>
                                     <constraint firstItem="VvL-vg-zQO" firstAttribute="centerX" secondItem="24Z-0q-3Nw" secondAttribute="centerX" id="Wkf-6f-Xax"/>
                                     <constraint firstItem="IxT-ZT-HM8" firstAttribute="width" secondItem="24Z-0q-3Nw" secondAttribute="width" id="fnp-mo-qzu"/>
                                     <constraint firstItem="Zar-5y-JYq" firstAttribute="centerX" secondItem="24Z-0q-3Nw" secondAttribute="centerX" id="hV6-Yc-0sc"/>
-                                    <constraint firstItem="VvL-vg-zQO" firstAttribute="top" secondItem="rBV-FY-mR0" secondAttribute="bottom" constant="25" id="iBj-Bq-GoH"/>
-                                    <constraint firstItem="Zar-5y-JYq" firstAttribute="top" secondItem="VvL-vg-zQO" secondAttribute="bottom" constant="25" id="lPp-Od-KfU"/>
+                                    <constraint firstItem="VvL-vg-zQO" firstAttribute="top" secondItem="rBV-FY-mR0" secondAttribute="bottom" constant="10" id="iBj-Bq-GoH"/>
+                                    <constraint firstItem="Zar-5y-JYq" firstAttribute="top" secondItem="VvL-vg-zQO" secondAttribute="bottom" constant="10" id="lPp-Od-KfU"/>
                                     <constraint firstItem="IxT-ZT-HM8" firstAttribute="centerX" secondItem="24Z-0q-3Nw" secondAttribute="centerX" id="uKh-jc-9P7"/>
-                                    <constraint firstItem="rBV-FY-mR0" firstAttribute="top" secondItem="IxT-ZT-HM8" secondAttribute="bottom" constant="15" id="xqP-xg-4od"/>
+                                    <constraint firstItem="rBV-FY-mR0" firstAttribute="top" secondItem="IxT-ZT-HM8" secondAttribute="bottom" constant="5" id="xqP-xg-4od"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Df-FN-GNl" userLabel="Funnel Title View">
@@ -79,7 +80,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNB-wF-I47">
                                         <rect key="frame" x="0.5" y="25" width="375" height="50"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="s5T-C0-FuX"/>
                                         </constraints>
@@ -88,7 +89,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <constraints>
                                     <constraint firstItem="oNB-wF-I47" firstAttribute="width" secondItem="8Df-FN-GNl" secondAttribute="width" id="736-gD-hPK"/>
                                     <constraint firstAttribute="bottom" secondItem="oNB-wF-I47" secondAttribute="bottom" id="GmP-0T-fCE"/>
@@ -182,7 +183,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLz-e0-bcE">
                                         <rect key="frame" x="112.5" y="424" width="150" height="35"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="B62-az-eda"/>
                                         </constraints>
@@ -196,7 +197,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="vhv-pG-4ZS" firstAttribute="top" secondItem="dgY-Zq-ioQ" secondAttribute="bottom" id="7jZ-fP-CnM"/>
                                     <constraint firstItem="vhv-pG-4ZS" firstAttribute="centerX" secondItem="a4w-eR-j41" secondAttribute="centerX" id="85X-Tg-iVP"/>
@@ -243,7 +243,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <constraints>
                                     <constraint firstItem="Qhp-eg-2b9" firstAttribute="width" secondItem="9Ff-Hm-bR6" secondAttribute="width" id="N97-6G-jVZ"/>
                                     <constraint firstItem="Qhp-eg-2b9" firstAttribute="centerX" secondItem="9Ff-Hm-bR6" secondAttribute="centerX" id="grY-UN-8vB"/>
@@ -346,4 +346,10 @@
             <point key="canvasLocation" x="1897" y="-692"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="funnel" width="50" height="50"/>
+        <namedColor name="Color">
+            <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
