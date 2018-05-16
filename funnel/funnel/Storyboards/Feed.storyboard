@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="462" id="85b-br-CUL">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="462" id="85b-br-CUL" customClass="FeedTableViewCell" customModule="funnel" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="462"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="85b-br-CUL" id="BQa-Xd-OnI">
@@ -28,19 +28,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="utO-wp-V4b">
-                                            <rect key="frame" x="86" y="41.5" width="203" height="203"/>
+                                            <rect key="frame" x="86" y="42" width="203" height="203"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="utO-wp-V4b" secondAttribute="height" multiplier="1:1" id="6Kk-aO-dnL"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories/sub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-Np-1m0">
-                                            <rect key="frame" x="56" y="16" width="263" height="20.5"/>
+                                            <rect key="frame" x="56" y="16" width="263" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qJL-SM-EbI">
-                                            <rect key="frame" x="56" y="254.5" width="263" height="50"/>
+                                            <rect key="frame" x="56" y="255" width="263" height="50"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pR-hd-8hF">
                                                     <rect key="frame" x="0.0" y="0.0" width="58.5" height="50"/>
@@ -63,32 +63,58 @@
                                                 <constraint firstAttribute="height" constant="50" id="84N-OS-jsK"/>
                                             </constraints>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJl-tg-b47">
-                                            <rect key="frame" x="56" y="319" width="263" height="127"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="127" id="PBJ-1I-YjD"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="F9x-nb-1ky">
+                                            <rect key="frame" x="66" y="300" width="243" height="136"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-dJ-WKN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="243" height="65"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="65" id="nQj-Ed-Q4m"/>
+                                                    </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oec-Z7-gqk">
+                                                    <rect key="frame" x="0.0" y="77" width="243" height="59"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="59" id="oyW-38-fkf"/>
+                                                    </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="qJL-SM-EbI" firstAttribute="top" secondItem="utO-wp-V4b" secondAttribute="bottom" constant="10" id="4cQ-fF-2na"/>
                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="top" secondItem="BQa-Xd-OnI" secondAttribute="topMargin" constant="5" id="8Sg-bN-y5Z"/>
                                         <constraint firstItem="utO-wp-V4b" firstAttribute="top" secondItem="v3r-Np-1m0" secondAttribute="bottom" constant="5" id="9Nl-aA-FvH"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="qJL-SM-EbI" secondAttribute="trailing" constant="40" id="AMT-FI-t0o"/>
-                                        <constraint firstItem="UJl-tg-b47" firstAttribute="leading" secondItem="BQa-Xd-OnI" secondAttribute="leadingMargin" constant="40" id="HK0-Zy-ow2"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="UJl-tg-b47" secondAttribute="bottom" constant="5" id="Rur-dO-XUf"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="F9x-nb-1ky" secondAttribute="bottom" constant="15" id="Dsa-wx-FUw"/>
+                                        <constraint firstItem="F9x-nb-1ky" firstAttribute="leading" secondItem="BQa-Xd-OnI" secondAttribute="leadingMargin" constant="50" id="JF1-uN-YXj"/>
+                                        <constraint firstItem="F9x-nb-1ky" firstAttribute="top" secondItem="qJL-SM-EbI" secondAttribute="bottom" constant="-4.5" id="bbb-A4-VoA"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="v3r-Np-1m0" secondAttribute="trailing" constant="40" id="cBh-Xy-Whx"/>
                                         <constraint firstItem="qJL-SM-EbI" firstAttribute="leading" secondItem="BQa-Xd-OnI" secondAttribute="leadingMargin" constant="40" id="iDr-Ca-wW2"/>
-                                        <constraint firstItem="UJl-tg-b47" firstAttribute="top" secondItem="qJL-SM-EbI" secondAttribute="bottom" constant="15" id="kN3-0U-SW4"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="F9x-nb-1ky" secondAttribute="trailing" constant="50" id="j3W-sj-b29"/>
                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="leading" secondItem="BQa-Xd-OnI" secondAttribute="leadingMargin" constant="40" id="lDm-Gt-7ec"/>
                                         <constraint firstItem="utO-wp-V4b" firstAttribute="leading" secondItem="BQa-Xd-OnI" secondAttribute="leadingMargin" constant="70" id="m7g-Bg-Lig"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="UJl-tg-b47" secondAttribute="trailing" constant="40" id="pni-5N-7uQ"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="utO-wp-V4b" secondAttribute="trailing" constant="70" id="vXZ-L3-bW6"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="aprovedButtonOutlet" destination="soo-Mg-fHf" id="B69-Ca-vup"/>
+                                    <outlet property="branchButtonOutlet" destination="0p7-NH-ynu" id="jsq-qv-ufV"/>
+                                    <outlet property="categoriesLabel" destination="v3r-Np-1m0" id="Q6q-SX-Ed4"/>
+                                    <outlet property="commentsTextView" destination="oec-Z7-gqk" id="aoy-JA-gwQ"/>
+                                    <outlet property="descriptionTextView" destination="bL8-dJ-WKN" id="VoN-3x-Hi4"/>
+                                    <outlet property="exclamationButtonOutlet" destination="5pR-hd-8hF" id="Dn7-AI-v71"/>
+                                    <outlet property="notificationButtonOutlet" destination="Neu-kN-ndN" id="Vr0-FV-8hk"/>
+                                    <outlet property="postImageView" destination="utO-wp-V4b" id="VA7-QJ-g1X"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

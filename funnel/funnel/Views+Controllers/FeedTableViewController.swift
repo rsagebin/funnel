@@ -10,16 +10,9 @@ import UIKit
 
 class FeedTableViewController: UITableViewController {
 
-    
-    
-    // MARK: - Outlets
-    
-    
-  
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
     }
     
@@ -36,9 +29,8 @@ class FeedTableViewController: UITableViewController {
     
    
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath)
+     let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! FeedTableViewCell
      
-     // Configure the cell...
      
      return cell
      }
