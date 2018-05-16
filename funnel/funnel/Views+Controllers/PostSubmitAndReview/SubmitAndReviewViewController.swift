@@ -15,7 +15,7 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
     
     let picker = UIImagePickerController()
 
-    let user = User(username: "Pedro", name: "PedroChiericatti", userRef: nil)
+//    let user = User(username: "Pedro", name: "PedroChiericatti", userRef: nil)
 
     // MARK: - Outlets
     
@@ -34,8 +34,8 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
         
-        let newPost = Post(user: self.user , description: descriptionTextView.text, image: imageViewOutlet.image!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
-        PostController.shared.mockFeedPosts.append(newPost)
+//        let newPost = Post(user: self.user , description: descriptionTextView.text, image: imageViewOutlet.image!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+//        PostController.shared.mockFeedPosts.append(newPost)
         
         navigationController?.popViewController(animated: true)
         
