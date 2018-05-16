@@ -28,7 +28,7 @@ class User {
     var isBanned: Bool
     var blockedUsers: [User]
     var ckRecordID: CKRecordID?
-    var userRef: CKReference
+    var userRef: CKReference?
     var ckRecord: CKRecord {
         let record: CKRecord
         if let ckRecordID = ckRecordID {
@@ -50,7 +50,7 @@ class User {
         return record
     }
     
-    init(username: String, name: String, userRef: CKReference) {
+    init(username: String, name: String, userRef: CKReference?) {
         self.username = username
         self.name = name
         

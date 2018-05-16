@@ -42,5 +42,10 @@ class CloudKitManager {
         
         publicDB.add(operation)
     }
+    
+    // Get user's Apple ID for object to reference
+    func getUserReference(completion: @escaping (CKRecordID?, Error?) -> Void) {
+        CKContainer.default().fetchUserRecordID(completionHandler: completion)
+    }
 
 }
