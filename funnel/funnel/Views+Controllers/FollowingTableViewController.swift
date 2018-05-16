@@ -8,12 +8,10 @@
 
 import UIKit
 
-class FollowingTableViewController: UIViewController {
+class FollowingTableViewController: UITableViewController {
 
-    
-    
     // MARK: - Outlets
-    @IBOutlet weak var followingTableView: UITableView!
+
     
 //    let post
     
@@ -28,24 +26,39 @@ class FollowingTableViewController: UIViewController {
     
     // MARK: - TableView Methods
     // Sections
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+         return 5
+    }
+    
+//    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+//
+//        return
+//    }
+    
+//    override func sectionIndexTitles(for tableView: UITableView) -> [String] {
+//
+//        return ["My Posts", "My Suggestions"]
+//    }
+    
+    // Rows
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    // Rows
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell", for: indexPath)
+        
+        
+        return UITableViewCell()
     }
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "<#T##String#>", for: indexPath)
-//
-//        return cell
-//    }
     
     
     /*
