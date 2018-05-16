@@ -10,15 +10,32 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var post: Post? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var commentsTextView: UITextView!
+    
+    @IBOutlet weak var categoriesLabel: UILabel!
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var exclamationButtonOutlet: UIButton!
+    @IBOutlet weak var notificationButtonOutlet: UIButton!
+    @IBOutlet weak var branchButtonOutlet: UIButton!
+    @IBOutlet weak var aprovedButtonOutlet: UIButton!
+   
+    
+    func updateViews() {
+        if let post = post {
+            self.categoriesLabel.text = post.category
+            self.descriptionTextView.text = post.description
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
 
 }
