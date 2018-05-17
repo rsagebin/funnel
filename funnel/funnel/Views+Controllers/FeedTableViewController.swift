@@ -8,7 +8,12 @@
 
 import UIKit
 
+
+
 class FeedTableViewController: UITableViewController {
+    
+
+    
 
     // MARK: - Life Cycle
    
@@ -49,14 +54,27 @@ class FeedTableViewController: UITableViewController {
         return cell
     }
    
-    /*
+  
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let mySB = UIStoryboard(name: "PostDetail", bundle: .main)
+        let vc = mySB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let selectedPost = PostController.shared.mockFeedPosts[indexPath.row]
+        vc.post = selectedPost
+        navigationController?.pushViewController(vc, animated: true)
+    }
+ 
+//     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "segueToPostDetail" {
+//            guard let destinationVC = segue.destination as? PostDetailViewController else { return }
+//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+//            let selectedPost = PostController.shared.mockFeedPosts[indexPath.row]
+//            destinationVC.post = selectedPost
+//        }
+//     }
+    
 
 }

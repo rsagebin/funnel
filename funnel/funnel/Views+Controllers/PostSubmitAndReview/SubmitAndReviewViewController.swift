@@ -11,18 +11,17 @@ import CloudKit
 
 class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
     // MARK: - Properties
     
     let picker = UIImagePickerController()
 
-//    let user = User(username: "Pedro", name: "PedroChiericatti", userRef: nil)
+//    let user = User(username: "Pedro", name: "Chiericatti", appleUserRef: nil)
 
     // MARK: - Outlets
     
-    
+    @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var imageViewOutlet: UIImageView!
-    
-    
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
     
@@ -33,8 +32,11 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
     }
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
+//        guard let image = imageViewOutlet.image, let category = categoryTextField.text else { return }
+//        
+//        let newPost = Post(user: self.user, description: descriptionTextView.text, image: image, category: category, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
         
-//        let newPost = Post(user: self.user , description: descriptionTextView.text, image: imageViewOutlet.image!, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+
 //        PostController.shared.mockFeedPosts.append(newPost)
         
         navigationController?.popViewController(animated: true)
@@ -55,7 +57,6 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
         descriptionTextView.layer.borderWidth = 1.0
         
         createCameraButton()
-        
         
     }
     
@@ -120,18 +121,15 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
         
         let goToLibrary = UIAlertAction(title: "Photo Library", style: .default) { (_) in
             // take to library
-            
-            
-            
+
             self.picker.allowsEditing = true
-        
-           
             self.picker.sourceType = .photoLibrary
-//            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-//            self.picker.modalPresentationStyle = .popover
             self.present(self.picker, animated: true, completion: nil)
-//            self.picker.popoverPresentationController?.sourceRect = self
             
+            
+//            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
+//            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+ 
         }
         
         actionSheet.addAction(cancelAction)
