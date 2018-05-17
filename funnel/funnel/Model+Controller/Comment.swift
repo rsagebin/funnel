@@ -15,12 +15,13 @@ class Comment {
     private static let textKey = "text"
     private static let userKey = "user"
     private static let postReferenceKey = "postReference"
-    private static let ckRecordIDKey = "ckRecordID"
+    private static let userReferenceKey = "userReference"
     
-    let post: Post
+    var post: Post?
     let text: String
-    let user: User
+    var user: User?
     let postReference: CKReference
+    let userReference: CKReference
     var ckRecordID: CKRecordID?
     var ckRecord: CKRecord {
         let record: CKRecord
@@ -30,21 +31,31 @@ class Comment {
             record = CKRecord(recordType: Comment.typeKey)
         }
         
-        record.setValue(post, forKey: Comment.postKey)
         record.setValue(text, forKey: Comment.textKey)
-        record.setValue(user, forKey: Comment.userKey)
         record.setValue(postReference, forKey: Comment.postReferenceKey)
-        record.setValue(ckRecordID, forKey: Comment.ckRecordIDKey)
+        record.setValue(userReference, forKey: Comment.userReferenceKey)
         
         return record
     }
     
+
+    init?(cloudKitRecord: CKRecord) {
+        guard let postReference = cloudKitRecord[Comment.postReferenceKey] as? CKReference,
+            let userReference = cloudKitRecord[Comment.userReferenceKey] as? CKReference,
+            let text = cloudKitRecord[Comment.textKey] as? String else { return nil }
+        
+        self.postReference = postReference
+        self.userReference = userReference
+        self.text = text
+        
+    }
     
-    init(post: Post, text: String, user: User) {
+    init(post: Post, text: String, user: User, postReference: CKReference, userReference: CKReference) {
         self.post = post
         self.text = text
         self.user = user
+        self.postReference = postReference
+        self.userReference = userReference
         
-        self.postReference = CKReference(record: post.ckRecord, action: .deleteSelf)
     }
 }

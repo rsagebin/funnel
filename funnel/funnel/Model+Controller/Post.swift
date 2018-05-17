@@ -22,6 +22,7 @@ class Post {
     private static let numberOfFlagsKey = "numberOfFlags"
     private static let isBannedKey = "isBanned"
     private static let creatorRefKey = "creatorRef"
+    private static let followersRefsKey = "followersRefs"
     
     let user: User
     let description: String
@@ -32,6 +33,7 @@ class Post {
     var comments: [Comment]
     var numberOfFlags: Int
     var isBanned: Bool
+    var followersRefs: [CKReference]
     let creatorRef: CKReference
     var ckRecordID: CKRecordID?
     
@@ -48,10 +50,11 @@ class Post {
         record.setValue(description, forKey: Post.descriptionKey)
         record.setValue(imageAsCKAsset, forKey: Post.imageAsCKAssetKey)
         record.setValue(category, forKey: Post.categoryKey)
-//        record.setValue(tags, forKey: Post.tagsKey)
-//        record.setValue(comments, forKey: Post.commentsKey)
+        record.setValue(tags, forKey: Post.tagsKey)
+        record.setValue(comments, forKey: Post.commentsKey)
         record.setValue(numberOfFlags, forKey: Post.numberOfFlagsKey)
         record.setValue(isBanned, forKey: Post.isBannedKey)
+        record.setValue(followersRefs, forKey: Post.followersRefsKey)
         
         return record
     }
@@ -71,6 +74,7 @@ class Post {
         self.numberOfFlags = 0
         self.isBanned = false
         self.creatorRef = creatorRef
+        self.followersRefs = []
     }
     
     init?(cloudKitRecord: CKRecord) {
@@ -81,7 +85,8 @@ class Post {
             let comments = cloudKitRecord[Post.commentsKey] as? [Comment],
             let numberOfFlags = cloudKitRecord[Post.numberOfFlagsKey] as? Int,
             let isBanned = cloudKitRecord[Post.isBannedKey] as? Bool,
-            let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference else { return nil }
+            let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference,
+            let followersRefs = cloudKitRecord[Post.followersRefsKey] as? [CKReference] else { return nil }
         
         guard let user = UserController.shared.fetchUser(ckRecordID: creatorRef.recordID) else {
             print("Error fetching post user when initializing post from CloudKit")
@@ -98,6 +103,7 @@ class Post {
         self.numberOfFlags = numberOfFlags
         self.isBanned = isBanned
         self.creatorRef = creatorRef
+        self.followersRefs = followersRefs
         
         self.ckRecordID = cloudKitRecord.recordID
         

@@ -27,7 +27,9 @@ class PostController {
     var followingPosts = [Post]()
     
     
-    func createPost(user: User, description: String, image: UIImage, category: String) {
+    func createPost(user: User, description: String, image: UIImage, category: String) -> Post? {
+        
+        var newPost: Post?
         
         // TODO: Look into a more efficient way to get record ID without having to create a new CK record every time.
         
@@ -41,13 +43,15 @@ class PostController {
             try imageAsJpeg?.write(to: url)
         } catch {
             print("Couldn't write temporary image to file: \(error)")
-            return
+            return nil
         }
         
         let asset = CKAsset(fileURL: url)
         
         let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
         let post = Post(user: user, description: description, imageAsCKAsset: asset, category: category, creatorRef: creatorReference)
+        
+        newPost = post
         
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (record, error) in
             if let error = error {
@@ -63,6 +67,8 @@ class PostController {
                 return
             }
         }
+        
+        return newPost
 
     }
     
@@ -87,10 +93,23 @@ class PostController {
         }
     }
     
+    func addFollowerToPost(user: User, post: Post) {
+        let reference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .none)
+        post.followersRefs.append(reference)
+        
+        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+            if let error = error {
+                print("Error saving updated following status to CloudKit: \(error)")
+            }
+        }
+    }
+    
     func fetchFollowingPosts(user: User) {
         
         // FIXME: This predicate needs to be updated to only pull posts that the person is following
-        let predicate = NSPredicate(format: "following == %@", user.following)
+        let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
+        
+        let predicate = NSPredicate(format: "followersRefs in %@", userRecordID)
         
         ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
             if let error = error {
@@ -108,16 +127,9 @@ class PostController {
             self.followingPosts = recordsArray
         }
     }
-        
 
     
-    init() {
-        
-        // No touchy - mock data
-//        let user = User(username: "testing", name: "test2", email: "test@test.com", appleUserRef: nil)
-//        let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
-//        let post2 = Post(user: user, description: "Image description 2.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
-//        self.mockFeedPosts = [post, post2]
+    init() {    
 
     }
     
