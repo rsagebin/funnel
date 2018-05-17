@@ -1,12 +1,10 @@
 //
-//  PhotoSelectorCellController.swift
+//  GifAnimationExtension.swift
 //  funnel
 //
 //  Created by Drew Carver on 5/15/18.
 //  Copyright © 2018 Rodrigo Sagebin. All rights reserved.
 //
-
-// MARK: - TODO Rename file to gif UIView extension or something like that
 
 import Foundation
 import ImageIO

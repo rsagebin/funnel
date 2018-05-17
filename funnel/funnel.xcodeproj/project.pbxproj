@@ -14,6 +14,9 @@
 		3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */; };
 		3AB33B2220AB78C500ACD6CD /* midgetPornVolume3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB33B2120AB78C500ACD6CD /* midgetPornVolume3.swift */; };
 		3AB33B4320ACBFC700ACD6CD /* comments in Resources */ = {isa = PBXBuildFile; fileRef = 3AB33B4220ACBFC700ACD6CD /* comments */; };
+		D00A724020ADDA2D00FBB2C8 /* CategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A723F20ADDA2D00FBB2C8 /* CategoriesController.swift */; };
+		D00A724220ADDDE900FBB2C8 /* BlankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724120ADDDE900FBB2C8 /* BlankViewController.swift */; };
+		D00A724420ADDDFB00FBB2C8 /* BlankStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */; };
 		D040DC7A20AB301000EB284F /* SubmitAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */; };
 		D040DC8120AB301B00EB284F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7B20AB301B00EB284F /* Post.swift */; };
 		D040DC8220AB301B00EB284F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7C20AB301B00EB284F /* Comment.swift */; };
@@ -24,7 +27,7 @@
 		D040DC8820AB305000EB284F /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8720AB305000EB284F /* FeedTableViewController.swift */; };
 		D040DC8A20AB306400EB284F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8920AB306400EB284F /* CategoriesViewController.swift */; };
 		D040DC8C20AB30E100EB284F /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8B20AB30E100EB284F /* PhotoSelectorCell.swift */; };
-		D040DC8E20AB30F100EB284F /* PhotoSelectorCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8D20AB30F100EB284F /* PhotoSelectorCellController.swift */; };
+		D040DC8E20AB30F100EB284F /* GifAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8D20AB30F100EB284F /* GifAnimationExtension.swift */; };
 		D040DC9020AB314100EB284F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8F20AB314100EB284F /* ProfileViewController.swift */; };
 		D040DC9220AB316300EB284F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC9120AB316300EB284F /* LoginViewController.swift */; };
 		D05F243620ACA2A500D625E9 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F242F20ACA2A300D625E9 /* Categories.storyboard */; };
@@ -53,6 +56,9 @@
 		3A453EF120A9E8F1000CA14F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AB33B2120AB78C500ACD6CD /* midgetPornVolume3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midgetPornVolume3.swift; sourceTree = "<group>"; };
 		3AB33B4220ACBFC700ACD6CD /* comments */ = {isa = PBXFileReference; lastKnownFileType = text; path = comments; sourceTree = "<group>"; };
+		D00A723F20ADDA2D00FBB2C8 /* CategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesController.swift; sourceTree = "<group>"; };
+		D00A724120ADDDE900FBB2C8 /* BlankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankViewController.swift; sourceTree = "<group>"; };
+		D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlankStoryboard.storyboard; sourceTree = "<group>"; };
 		D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAndReviewViewController.swift; sourceTree = "<group>"; };
 		D040DC7B20AB301B00EB284F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D040DC7C20AB301B00EB284F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -63,7 +69,7 @@
 		D040DC8720AB305000EB284F /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		D040DC8920AB306400EB284F /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		D040DC8B20AB30E100EB284F /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
-		D040DC8D20AB30F100EB284F /* PhotoSelectorCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCellController.swift; sourceTree = "<group>"; };
+		D040DC8D20AB30F100EB284F /* GifAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifAnimationExtension.swift; sourceTree = "<group>"; };
 		D040DC8F20AB314100EB284F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D040DC9120AB316300EB284F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D05F242F20ACA2A300D625E9 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 				D05F242F20ACA2A300D625E9 /* Categories.storyboard */,
 				D05F243020ACA2A400D625E9 /* Following.storyboard */,
 				D05F243420ACA2A400D625E9 /* Profile.storyboard */,
+				D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -157,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */,
-				D040DC8D20AB30F100EB284F /* PhotoSelectorCellController.swift */,
+				D040DC8D20AB30F100EB284F /* GifAnimationExtension.swift */,
 				D040DC8B20AB30E100EB284F /* PhotoSelectorCell.swift */,
 			);
 			path = PostSubmitAndReview;
@@ -183,6 +190,7 @@
 				F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */,
 				F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */,
 				D040DC8F20AB314100EB284F /* ProfileViewController.swift */,
+				D00A724120ADDDE900FBB2C8 /* BlankViewController.swift */,
 			);
 			path = "Views+Controllers";
 			sourceTree = "<group>";
@@ -206,6 +214,7 @@
 				D040DC7F20AB301B00EB284F /* UserController.swift */,
 				D040DC7D20AB301B00EB284F /* PostController.swift */,
 				D05F243D20ACD32C00D625E9 /* CommentController.swift */,
+				D00A723F20ADDA2D00FBB2C8 /* CategoriesController.swift */,
 			);
 			path = "Model+Controller";
 			sourceTree = "<group>";
@@ -278,6 +287,7 @@
 			files = (
 				3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */,
 				3AB33B4320ACBFC700ACD6CD /* comments in Resources */,
+				D00A724420ADDDFB00FBB2C8 /* BlankStoryboard.storyboard in Resources */,
 				D05F243720ACA2A500D625E9 /* Following.storyboard in Resources */,
 				3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */,
 				D05F243620ACA2A500D625E9 /* Categories.storyboard in Resources */,
@@ -300,7 +310,9 @@
 				D040DC8420AB301B00EB284F /* RevisedPost.swift in Sources */,
 				D05F243E20ACD32C00D625E9 /* CommentController.swift in Sources */,
 				F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */,
+				D00A724220ADDDE900FBB2C8 /* BlankViewController.swift in Sources */,
 				F4CD67F720AC9C0C003E7F3E /* PostDetailViewController.swift in Sources */,
+				D00A724020ADDA2D00FBB2C8 /* CategoriesController.swift in Sources */,
 				3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */,
 				D040DC8C20AB30E100EB284F /* PhotoSelectorCell.swift in Sources */,
 				D040DC8520AB301B00EB284F /* UserController.swift in Sources */,
@@ -314,7 +326,7 @@
 				F4CD67F520AC9BBE003E7F3E /* FollowingTableViewCell.swift in Sources */,
 				D040DC7A20AB301000EB284F /* SubmitAndReviewViewController.swift in Sources */,
 				D040DC8120AB301B00EB284F /* Post.swift in Sources */,
-				D040DC8E20AB30F100EB284F /* PhotoSelectorCellController.swift in Sources */,
+				D040DC8E20AB30F100EB284F /* GifAnimationExtension.swift in Sources */,
 				D040DC9220AB316300EB284F /* LoginViewController.swift in Sources */,
 				D040DC8820AB305000EB284F /* FeedTableViewController.swift in Sources */,
 				D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */,
