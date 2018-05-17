@@ -36,6 +36,7 @@ class User {
             record = CKRecord(recordType: User.typeKey, recordID: ckRecordID)
         } else {
             record = CKRecord(recordType: User.typeKey)
+            self.ckRecordID = record.recordID
         }
         
         record.setValue(username, forKey: User.usernameKey)
@@ -80,6 +81,8 @@ class User {
         self.isBanned = isBanned
         self.blockedUsers = blockedUsers
         self.appleUserRef = appleUserRef
+        
+        self.ckRecordID = cloudKitRecord.recordID
         
     }
     
