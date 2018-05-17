@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,7 +68,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="new-3p-Awh">
-                                <rect key="frame" x="59" y="52" width="256" height="369"/>
+                                <rect key="frame" x="20.5" y="70" width="333" height="333"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="new-3p-Awh" secondAttribute="height" multiplier="1:1" id="1dt-Rw-ZS3"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,7 +81,7 @@
                             <constraint firstItem="fOc-6u-Eeg" firstAttribute="leading" secondItem="I41-P5-hIt" secondAttribute="leading" constant="5" id="69k-vz-ELg"/>
                             <constraint firstItem="CMK-05-JX3" firstAttribute="top" secondItem="55e-A7-TCd" secondAttribute="bottom" constant="18" id="6Nx-jo-drV"/>
                             <constraint firstAttribute="bottom" secondItem="55e-A7-TCd" secondAttribute="bottom" constant="219" id="BQv-OT-gjl"/>
-                            <constraint firstItem="new-3p-Awh" firstAttribute="top" secondItem="ze6-ca-zJt" secondAttribute="bottom" constant="2" id="Bno-sG-Y3X"/>
+                            <constraint firstItem="new-3p-Awh" firstAttribute="top" secondItem="ze6-ca-zJt" secondAttribute="bottom" constant="20" id="Bno-sG-Y3X"/>
                             <constraint firstItem="ze6-ca-zJt" firstAttribute="top" secondItem="I41-P5-hIt" secondAttribute="top" constant="5" id="IIt-pD-TIv"/>
                             <constraint firstItem="I41-P5-hIt" firstAttribute="trailing" secondItem="Ftp-bU-hzp" secondAttribute="trailing" constant="15" id="Lax-6g-dOg"/>
                             <constraint firstItem="I41-P5-hIt" firstAttribute="trailing" secondItem="NJ9-n2-BSq" secondAttribute="trailing" constant="40" id="NTq-gN-m3P"/>
@@ -90,17 +94,17 @@
                             <constraint firstItem="new-3p-Awh" firstAttribute="centerX" secondItem="kCO-xX-X57" secondAttribute="centerX" id="b9c-Xw-j9H"/>
                             <constraint firstItem="I41-P5-hIt" firstAttribute="trailing" secondItem="CMK-05-JX3" secondAttribute="trailing" constant="40" id="byx-8m-cWJ"/>
                             <constraint firstItem="CMK-05-JX3" firstAttribute="leading" secondItem="fOc-6u-Eeg" secondAttribute="trailing" constant="44" id="hu1-N9-cNf"/>
-                            <constraint firstItem="new-3p-Awh" firstAttribute="leading" secondItem="I41-P5-hIt" secondAttribute="leading" constant="59" id="lIK-fb-9je"/>
                             <constraint firstItem="Kh7-da-YpL" firstAttribute="leading" secondItem="I41-P5-hIt" secondAttribute="leading" constant="5" id="qpm-ho-aoa"/>
                             <constraint firstItem="NJ9-n2-BSq" firstAttribute="top" secondItem="CMK-05-JX3" secondAttribute="bottom" constant="33" id="sLl-95-wGN"/>
                             <constraint firstItem="ze6-ca-zJt" firstAttribute="leading" secondItem="I41-P5-hIt" secondAttribute="leading" constant="5" id="y0a-fI-cSN"/>
                             <constraint firstItem="Ftp-bU-hzp" firstAttribute="leading" secondItem="ze6-ca-zJt" secondAttribute="trailing" constant="5" id="z2R-GP-3q8"/>
-                            <constraint firstItem="Kh7-da-YpL" firstAttribute="top" secondItem="new-3p-Awh" secondAttribute="bottom" constant="2" id="zFX-Mv-Mix"/>
+                            <constraint firstItem="Kh7-da-YpL" firstAttribute="top" secondItem="new-3p-Awh" secondAttribute="bottom" constant="20" id="zFX-Mv-Mix"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I41-P5-hIt"/>
                     </view>
                     <navigationItem key="navigationItem" id="FsC-sw-XDm"/>
                     <connections>
+                        <outlet property="categoryTextField" destination="Ftp-bU-hzp" id="H9h-1f-1B5"/>
                         <outlet property="descriptionTextView" destination="CMK-05-JX3" id="xmo-jq-GNK"/>
                         <outlet property="imageViewOutlet" destination="new-3p-Awh" id="n6B-6r-QJT"/>
                         <outlet property="tagTextView" destination="55e-A7-TCd" id="xcF-RE-93h"/>
