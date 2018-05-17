@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         backgroundGif.loadGif(asset: "inception")
         self.funnelAppLoadingView.isHidden = false
         self.funnelTitleView.isHidden = true
