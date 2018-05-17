@@ -10,15 +10,24 @@ import UIKit
 
 class PostDetailViewController: UIViewController {
 
+    // MARK: - Properties
+    
     var post: MockPost?
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    
+    @IBOutlet weak var branchButtonOutlet: UIButton!
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        branchButtonOutlet.isEnabled = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -26,6 +35,8 @@ class PostDetailViewController: UIViewController {
         descriptionLabel.layer.borderColor = UIColor.black.cgColor
         descriptionLabel.layer.borderWidth = 1.0
     }
+    
+    // MARK: - Other functions
     
     func updateViews() {
         
@@ -35,18 +46,13 @@ class PostDetailViewController: UIViewController {
         postImageView.image = post.image
     }
   
+    // MARK: - Actions
 
-
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func branchPostButtonTapped(_ sender: Any) {
+        print("button is working")
+        let mySB = UIStoryboard(name: "PostSubmitAndReview", bundle: .main)
+        let vc = mySB.instantiateViewController(withIdentifier: "PostAndSubmitSB") as! SubmitAndReviewViewController
+        vc.post = self.post
+        navigationController?.pushViewController(vc, animated: true)
     }
-    */
-
 }

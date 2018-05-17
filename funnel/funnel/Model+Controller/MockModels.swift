@@ -9,12 +9,19 @@
 import UIKit
 
 class MockPost {
+    let description: String
+    let image: UIImage
+    var category: String
+    
     let user = MockUser()
-    let description: String = ""
-    let image = UIImage()
-    var category: String = ""
     var tags: [String] = []
     var comments: [MockComment] = []
+    
+    init(description: String, image: UIImage, category: String) {
+        self.description = description
+        self.image = image
+        self.category = category
+    }
 }
 
 

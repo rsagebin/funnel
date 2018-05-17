@@ -11,36 +11,44 @@ import CloudKit
 
 class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    
     // MARK: - Properties
     
     let picker = UIImagePickerController()
-
-//    let user = User(username: "Pedro", name: "Chiericatti", appleUserRef: nil)
+    var post: MockPost?
+    var category = ""
 
     // MARK: - Outlets
     
-    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var topCategory: UITextField!
+    @IBOutlet weak var mediumCategory: UITextField!
+    @IBOutlet weak var bottomCategory: UITextField!
+    
     @IBOutlet weak var imageViewOutlet: UIImageView!
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var createAndSuggestButtonOutlet: UIButton!
     
     // MARK: - Actions
     
-    @IBAction func ImageButtonTapped(_ sender: Any) {
-        showActionSheet()
-    }
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
-//        guard let image = imageViewOutlet.image, let category = categoryTextField.text else { return }
-//        
-//        let newPost = Post(user: self.user, description: descriptionTextView.text, image: image, category: category, creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
-        
+        guard let image = imageViewOutlet.image, let description = descriptionTextView.text else { return }
 
-//        PostController.shared.mockFeedPosts.append(newPost)
+        guard let topCategory = topCategory.text, let mediumCategory = mediumCategory.text, let bottomCategory = bottomCategory.text else { return }
         
-        navigationController?.popViewController(animated: true)
+        if mediumCategory == "" && bottomCategory == "" {
+            self.category = topCategory
+        } else if bottomCategory == "" {
+            self.category = "\(topCategory)/\(mediumCategory)"
+        } else {
+            self.category = "\(topCategory)/\(mediumCategory)/\(bottomCategory)"
+        }
+    
+        let newPost = MockPost(description: description, image: image, category: self.category)
         
+        PostController.shared.mockFeedPosts.append(newPost)
+        
+        navigationController?.popToRootViewController(animated: true)
     }
     
     // MARK: - Life Cycle
@@ -50,17 +58,38 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
 
         picker.delegate = self
         
+        createCameraButton()
+        updateViews()
+        setButtonTitle()
+        setBorders()
+    }
+    
+    // MARK: - Other functions
+    
+    func setBorders() {
+        
         tagTextView.layer.borderColor = UIColor.lightGray.cgColor
         tagTextView.layer.borderWidth = 1.0
         
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0
-        
-        createCameraButton()
-        
     }
     
-    // MARK: - Other functions
+    func setButtonTitle() {
+        
+        if post != nil {
+            self.createAndSuggestButtonOutlet.setTitle("Suggest change", for: .normal)
+        } else {
+            self.createAndSuggestButtonOutlet.setTitle("Create new post", for: .normal)
+        }
+    }
+    
+    func updateViews() {
+        guard let post = post else { return }
+        self.category = post.category
+        self.imageViewOutlet.image = post.image
+        self.descriptionTextView.text = post.description
+    }
     
     func createCameraButton() {
         
@@ -76,12 +105,7 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
         showActionSheet()
     }
     
-    @IBAction func imageButtonTapped(_ sender: UIButton) {
-       showActionSheet()
-    }
-    
     func showActionSheet() {
-        
         
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -91,13 +115,13 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
             // show camera
             
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
+               
                 self.picker.allowsEditing = true
-            
-//                 self.picker.navigationItem.rightBarButtonItem = self.editButtonItem
                 self.picker.sourceType = UIImagePickerControllerSourceType.camera
                 self.picker.cameraCaptureMode = .photo
                 self.picker.modalPresentationStyle = .fullScreen
                 self.present(self.picker,animated: true,completion: nil)
+                
             } else {
                 noCamera()
             }
@@ -125,11 +149,6 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
             self.picker.allowsEditing = true
             self.picker.sourceType = .photoLibrary
             self.present(self.picker, animated: true, completion: nil)
-            
-            
-//            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
-//            self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
- 
         }
         
         actionSheet.addAction(cancelAction)
@@ -139,13 +158,6 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
         present(actionSheet, animated: true, completion: nil)
     }
     
-//    override func setEditing(_ editing: Bool, animated: Bool) {
-//        super.setEditing(editing, animated: animated)
-//
-//        picker.setEditing(editing, animated: animated)
-//    }
-    
-    
     @objc func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
@@ -153,22 +165,10 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
         guard let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
         imageViewOutlet.contentMode = .scaleAspectFit
         imageViewOutlet.image = chosenImage
-        dismiss(animated:true, completion: nil) 
-        
+        dismiss(animated:true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
