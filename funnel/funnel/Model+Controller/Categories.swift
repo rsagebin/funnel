@@ -10,7 +10,7 @@ import Foundation
 import CloudKit
 
 class Category {
-    
+
     let ckManager = CloudKitManager()
     
     // MARK: - Placeholder code to test

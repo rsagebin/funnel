@@ -82,16 +82,17 @@ extension UIImage {
             print("Can't convert to to asset, Rod messed up... \"\(asset)\"")
             return nil
         }
-        
         return gif(data: dataAsset.data)
     }
     
-    internal class func delayForImageAtIndex(_ index: Int, source: CGImageSource!) -> Double {
+    internal class func delayForImageAtIndex(_ index: Int,
+                                             source: CGImageSource!) -> Double {
         var delay = 0.1
         
         // Get dictionaries
         let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
-        let gifPropertiesPointer = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 0)
+        let gifPropertiesPointer =
+            UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 0)
         if CFDictionaryGetValueIfPresent(cfProperties, Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque(), gifPropertiesPointer) == false {
             return delay
         }
@@ -103,13 +104,13 @@ extension UIImage {
             CFDictionaryGetValue(gifProperties,
                                  Unmanaged.passUnretained(kCGImagePropertyGIFUnclampedDelayTime).toOpaque()),
             to: AnyObject.self)
+        
         if delayObject.doubleValue == 0 {
             delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties,
                                                              Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
         }
         
         delay = delayObject as? Double ?? 0
-        
         if delay < 0.1 {
             delay = 0.1 // capping the speed
         }
@@ -158,11 +159,9 @@ extension UIImage {
         }
         
         var gcd = array[0]
-        
         for val in array {
             gcd = UIImage.gcdForPair(val, gcd)
         }
-        
         return gcd
     }
     
@@ -181,7 +180,7 @@ extension UIImage {
             // At it's delay in cs
             let delaySeconds = UIImage.delayForImageAtIndex(Int(i),
                                                             source: source)
-            delays.append(Int(delaySeconds * 800.0)) // Seconds to ms
+            delays.append(Int(delaySeconds * 300.0)) // Seconds to ms
         }
         
         // Getting it to loop

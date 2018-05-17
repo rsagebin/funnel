@@ -13,12 +13,12 @@ class CategoryController {
     static var shared = CategoryController()
     var categories = [Category]()
     
+    let category = ["food", "health", "animals", "education", "transportation", "tech", "outdoors", "personal", "science", "lifestyle"]
+    
     func createNewCategory(withName name: String, completion: @escaping (Bool) -> Void) {
-        
     }
     
     func updateCategory(category: Category, name: String, completion: @escaping (Bool) -> Void) {
-        
     }
     
     // delete capability in the future
@@ -26,5 +26,4 @@ class CategoryController {
     func fetchAllCategories(completion: @escaping (Bool) -> Void) {
         //get predicate set up
     }
-    
 }
