@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundGif.loadGif(asset: "inception")
+        backgroundGif.loadGif(asset: "raining1")
         funnelTwoLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         funnelThreeLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
         
@@ -80,13 +80,13 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     @IBAction func userSignUpButtonPressed(_ sender: UIButton) {
         guard let username = userUsernameTextField.text, !username.isEmpty,
-            let name = userNameTextField.text, !name.isEmpty
-//            let email = userEmailAddressTextField.text
+            let name = userNameTextField.text, !name.isEmpty,
+            let email = userEmailAddressTextField.text, !email.isEmpty
             else { return }
         
         
         
-        UserController.shared.createNewUserWith(username: username, name: name) { (success) in
+        UserController.shared.createNewUserWith(username: username, name: name, email: email) { (success) in
             
             // Segue to Main
             if success {
