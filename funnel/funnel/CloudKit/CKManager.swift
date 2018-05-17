@@ -20,6 +20,10 @@ class CloudKitManager {
         publicDB.perform(query, inZoneWith: nil, completionHandler: completion)
     }
     
+    func fetchSingleRecord(ckRecordID: CKRecordID, completion: @escaping (CKRecord?, Error?) -> Void) {
+        publicDB.fetch(withRecordID: ckRecordID, completionHandler: completion)
+    }
+    
     // Save to CloudKit
     func save(records: [CKRecord], perRecordCompletion: ((_ record: CKRecord?, _ error: Error?) -> Void)?, completion: ((_ records: [CKRecord]?, _ error: Error?) -> Void)?) {
         modify(records: records, perRecordCompletion: perRecordCompletion, completion: completion)

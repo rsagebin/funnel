@@ -17,6 +17,7 @@
 		D00A724020ADDA2D00FBB2C8 /* CategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A723F20ADDA2D00FBB2C8 /* CategoriesController.swift */; };
 		D00A724220ADDDE900FBB2C8 /* BlankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724120ADDDE900FBB2C8 /* BlankViewController.swift */; };
 		D00A724420ADDDFB00FBB2C8 /* BlankStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */; };
+		D00A724620AE001500FBB2C8 /* MockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724520AE001500FBB2C8 /* MockModels.swift */; };
 		D040DC7A20AB301000EB284F /* SubmitAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */; };
 		D040DC8120AB301B00EB284F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7B20AB301B00EB284F /* Post.swift */; };
 		D040DC8220AB301B00EB284F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7C20AB301B00EB284F /* Comment.swift */; };
@@ -59,6 +60,7 @@
 		D00A723F20ADDA2D00FBB2C8 /* CategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesController.swift; sourceTree = "<group>"; };
 		D00A724120ADDDE900FBB2C8 /* BlankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankViewController.swift; sourceTree = "<group>"; };
 		D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlankStoryboard.storyboard; sourceTree = "<group>"; };
+		D00A724520AE001500FBB2C8 /* MockModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModels.swift; sourceTree = "<group>"; };
 		D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAndReviewViewController.swift; sourceTree = "<group>"; };
 		D040DC7B20AB301B00EB284F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D040DC7C20AB301B00EB284F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				D040DC7D20AB301B00EB284F /* PostController.swift */,
 				D05F243D20ACD32C00D625E9 /* CommentController.swift */,
 				D00A723F20ADDA2D00FBB2C8 /* CategoriesController.swift */,
+				D00A724520AE001500FBB2C8 /* MockModels.swift */,
 			);
 			path = "Model+Controller";
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				D040DC9220AB316300EB284F /* LoginViewController.swift in Sources */,
 				D040DC8820AB305000EB284F /* FeedTableViewController.swift in Sources */,
 				D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */,
+				D00A724620AE001500FBB2C8 /* MockModels.swift in Sources */,
 				D040DC8A20AB306400EB284F /* CategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,7 +480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = funnel/funnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EDRWFSBTAV;
+				DEVELOPMENT_TEAM = Z72V7S4H73;
 				INFOPLIST_FILE = "$(SRCROOT)/funnel/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -495,7 +499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = funnel/funnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EDRWFSBTAV;
+				DEVELOPMENT_TEAM = Z72V7S4H73;
 				INFOPLIST_FILE = "$(SRCROOT)/funnel/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

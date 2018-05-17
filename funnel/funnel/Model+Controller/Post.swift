@@ -15,6 +15,7 @@ class Post {
     private static let userKey = "user"
     private static let descriptionKey = "description"
     private static let imageKey = "image"
+    private static let imageAsCKAssetKey = "imageAsCKAsset"
     private static let categoryKey = "category"
     private static let tagsKey = "tags"
     private static let commentsKey = "comments"
@@ -24,7 +25,8 @@ class Post {
     
     let user: User
     let description: String
-    let image: UIImage
+    let image: UIImage?
+    let imageAsCKAsset: CKAsset
     var category: String
     var tags: [String]
     var comments: [Comment]
@@ -42,12 +44,12 @@ class Post {
             self.ckRecordID = record.recordID
         }
         
-        record.setValue(user, forKey: Post.userKey)
+        record.setValue(creatorRef, forKey: Post.creatorRefKey)
         record.setValue(description, forKey: Post.descriptionKey)
-        record.setValue(image, forKey: Post.imageKey)
+        record.setValue(imageAsCKAsset, forKey: Post.imageAsCKAssetKey)
         record.setValue(category, forKey: Post.categoryKey)
-        record.setValue(tags, forKey: Post.tagsKey)
-        record.setValue(comments, forKey: Post.commentsKey)
+//        record.setValue(tags, forKey: Post.tagsKey)
+//        record.setValue(comments, forKey: Post.commentsKey)
         record.setValue(numberOfFlags, forKey: Post.numberOfFlagsKey)
         record.setValue(isBanned, forKey: Post.isBannedKey)
         
@@ -58,10 +60,11 @@ class Post {
         return ""
     }
     
-    init(user: User, description: String, image: UIImage, category: String, creatorRef: CKReference) {
+    init(user: User, description: String, imageAsCKAsset: CKAsset, category: String, creatorRef: CKReference) {
         self.user = user
         self.description = description
-        self.image = image
+        self.image = UIImage(ckAsset: imageAsCKAsset)
+        self.imageAsCKAsset = imageAsCKAsset
         self.category = category
         self.comments = []
         self.tags = []
@@ -71,9 +74,8 @@ class Post {
     }
     
     init?(cloudKitRecord: CKRecord) {
-        guard let user = cloudKitRecord[Post.userKey] as? User,
-            let description = cloudKitRecord[Post.descriptionKey] as? String,
-            let image = cloudKitRecord[Post.imageKey] as? UIImage,
+            guard let description = cloudKitRecord[Post.descriptionKey] as? String,
+            let imageAsCKAsset = cloudKitRecord[Post.imageAsCKAssetKey] as? CKAsset,
             let category = cloudKitRecord[Post.categoryKey] as? String,
             let tags = cloudKitRecord[Post.tagsKey] as? [String],
             let comments = cloudKitRecord[Post.commentsKey] as? [Comment],
@@ -81,9 +83,15 @@ class Post {
             let isBanned = cloudKitRecord[Post.isBannedKey] as? Bool,
             let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference else { return nil }
         
+        guard let user = UserController.shared.fetchUser(ckRecordID: creatorRef.recordID) else {
+            print("Error fetching post user when initializing post from CloudKit")
+            return nil
+        }
+        
         self.user = user
         self.description = description
-        self.image = image
+        self.imageAsCKAsset = imageAsCKAsset
+        self.image = UIImage(ckAsset: imageAsCKAsset)
         self.category = category
         self.tags = tags
         self.comments = comments
@@ -94,5 +102,4 @@ class Post {
         self.ckRecordID = cloudKitRecord.recordID
         
     }
-    
 }

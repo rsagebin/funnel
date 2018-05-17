@@ -12,6 +12,7 @@ import CloudKit
 class User {
     static let typeKey = "User"
     private static let usernameKey = "username"
+    private static let emailKey = "email"
     private static let nameKey = "name"
     private static let postsKey = "posts"
     private static let followingKey = "following"
@@ -23,6 +24,7 @@ class User {
     
     let username: String
     let name: String
+    var email: String
     let posts: [Post]
     var following: [Post]
     var comments: [Comment]
@@ -41,6 +43,7 @@ class User {
         
         record.setValue(username, forKey: User.usernameKey)
         record.setValue(name, forKey: User.nameKey)
+        record.setValue(email, forKey: User.emailKey)
         record.setValue(posts, forKey: User.postsKey)
         record.setValue(following, forKey: User.followingKey)
         record.setValue(comments, forKey: User.commentsKey)
@@ -51,9 +54,10 @@ class User {
         return record
     }
     
-    init(username: String, name: String, appleUserRef: CKReference?) {
+    init(username: String, name: String, email: String, appleUserRef: CKReference?) {
         self.username = username
         self.name = name
+        self.email = email
         
         self.posts = []
         self.following = []
@@ -66,6 +70,7 @@ class User {
     init?(cloudKitRecord: CKRecord) {
         guard let username = cloudKitRecord[User.usernameKey] as? String,
             let name = cloudKitRecord[User.nameKey] as? String,
+            let email = cloudKitRecord[User.emailKey] as? String,
             let posts = cloudKitRecord[User.postsKey] as? [Post],
             let following = cloudKitRecord[User.followingKey] as? [Post],
             let comments = cloudKitRecord[User.commentsKey] as? [Comment],
@@ -75,6 +80,7 @@ class User {
         
         self.username = username
         self.name = name
+        self.email = email
         self.posts = posts
         self.following = following
         self.comments = comments
