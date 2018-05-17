@@ -18,6 +18,8 @@
 		D00A724220ADDDE900FBB2C8 /* BlankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724120ADDDE900FBB2C8 /* BlankViewController.swift */; };
 		D00A724420ADDDFB00FBB2C8 /* BlankStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */; };
 		D00A724620AE001500FBB2C8 /* MockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724520AE001500FBB2C8 /* MockModels.swift */; };
+		D00A724820AE2C9F00FBB2C8 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724720AE2C9F00FBB2C8 /* Tag.swift */; };
+		D00A724A20AE2CAF00FBB2C8 /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724920AE2CAF00FBB2C8 /* TagController.swift */; };
 		D040DC7A20AB301000EB284F /* SubmitAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */; };
 		D040DC8120AB301B00EB284F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7B20AB301B00EB284F /* Post.swift */; };
 		D040DC8220AB301B00EB284F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7C20AB301B00EB284F /* Comment.swift */; };
@@ -61,6 +63,8 @@
 		D00A724120ADDDE900FBB2C8 /* BlankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankViewController.swift; sourceTree = "<group>"; };
 		D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlankStoryboard.storyboard; sourceTree = "<group>"; };
 		D00A724520AE001500FBB2C8 /* MockModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModels.swift; sourceTree = "<group>"; };
+		D00A724720AE2C9F00FBB2C8 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		D00A724920AE2CAF00FBB2C8 /* TagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagController.swift; sourceTree = "<group>"; };
 		D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAndReviewViewController.swift; sourceTree = "<group>"; };
 		D040DC7B20AB301B00EB284F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D040DC7C20AB301B00EB284F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -210,12 +214,14 @@
 			children = (
 				3A0131B620AA4B5C0097E4A8 /* User.swift */,
 				D040DC7B20AB301B00EB284F /* Post.swift */,
+				D00A724720AE2C9F00FBB2C8 /* Tag.swift */,
 				D040DC8020AB301B00EB284F /* Categories.swift */,
 				D040DC7C20AB301B00EB284F /* Comment.swift */,
 				D040DC7E20AB301B00EB284F /* RevisedPost.swift */,
 				D040DC7F20AB301B00EB284F /* UserController.swift */,
 				D040DC7D20AB301B00EB284F /* PostController.swift */,
 				D05F243D20ACD32C00D625E9 /* CommentController.swift */,
+				D00A724920AE2CAF00FBB2C8 /* TagController.swift */,
 				D00A723F20ADDA2D00FBB2C8 /* CategoriesController.swift */,
 				D00A724520AE001500FBB2C8 /* MockModels.swift */,
 			);
@@ -317,11 +323,13 @@
 				F4CD67F720AC9C0C003E7F3E /* PostDetailViewController.swift in Sources */,
 				D00A724020ADDA2D00FBB2C8 /* CategoriesController.swift in Sources */,
 				3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */,
+				D00A724A20AE2CAF00FBB2C8 /* TagController.swift in Sources */,
 				D040DC8C20AB30E100EB284F /* PhotoSelectorCell.swift in Sources */,
 				D040DC8520AB301B00EB284F /* UserController.swift in Sources */,
 				D040DC8620AB301B00EB284F /* Categories.swift in Sources */,
 				D040DC8220AB301B00EB284F /* Comment.swift in Sources */,
 				D040DC9020AB314100EB284F /* ProfileViewController.swift in Sources */,
+				D00A724820AE2C9F00FBB2C8 /* Tag.swift in Sources */,
 				F4CD67F320AC9BAE003E7F3E /* FeedTableViewCell.swift in Sources */,
 				3AB33B2220AB78C500ACD6CD /* midgetPornVolume3.swift in Sources */,
 				3A0131B820AA4B5C0097E4A8 /* User.swift in Sources */,
