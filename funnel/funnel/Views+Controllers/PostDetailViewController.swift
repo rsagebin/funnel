@@ -10,7 +10,7 @@ import UIKit
 
 class PostDetailViewController: UIViewController {
 
-    var post: Post?
+    var post: MockPost?
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
