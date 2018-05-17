@@ -29,62 +29,84 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         backgroundGif.loadGif(asset: "inception")
-        self.funnelAppLoadingView.isHidden = false
-        self.funnelTitleView.isHidden = true
-        self.userSignUpView.isHidden = true
-        self.userSignedInView.isHidden = true
-        
         funnelTwoLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         funnelThreeLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
         
-        // Fetch User from MC
+        self.funnelAppLoadingView.isHidden = false
+        self.funnelTitleView.isHidden = false
+        self.userSignUpView.isHidden = true
+        self.userSignedInView.isHidden = true
         
-//        DispatchQueue.main.async {
-//            if successly pulled user {
-//        self.funnelAppLoadingView.isHidden = true
-//        self.funnelTitleView.isHidden = false
-//        self.userSignUpView.isHidden = true
-//        self.userSignedInView.isHidden = false
-//        self.performSegue(withIdentifier: "fromSignedInVCToMainVC", sender: nil)
-//            }
-            
-//            if unsuccessful show sign up {
-//        self.funnelAppLoadingView.isHidden = true
-//        self.funnelTitleView.isHidden = false
-//        self.userSignUpView.isHidden = false
-//        self.userSignedInView.isHidden = true
-//            }
-//        }
+        fetchUser()
+    }
+    
+    
+    // MARK: - Methods
+    func fetchUser() {
+        UserController.shared.fetchCurrentUser { (success) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                
+                // Show Signed In
+                if success {
+                    self.funnelAppLoadingView.isHidden = true
+                    self.funnelTitleView.isHidden = false
+                    self.userSignUpView.isHidden = true
+                    self.userSignedInView.isHidden = false
+                    
+                }
+                
+                // Show Sign Up
+                if !success {
+                    self.funnelAppLoadingView.isHidden = true
+                    self.funnelTitleView.isHidden = false
+                    self.userSignUpView.isHidden = false
+                    self.userSignedInView.isHidden = true
+                }
+            })
+        }
+    }
+    
+    func couldNotFetchUser() {
+        
+        let alertcontroller = UIAlertController(title: "User Error", message: "Could not create user, please check your network connection and try again", preferredStyle: .alert)
+        
+        let alertDismiss = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertcontroller.addAction(alertDismiss)
+        present(alertcontroller, animated: true)
     }
     
     
     // MARK: - Actions
     @IBAction func userSignUpButtonPressed(_ sender: UIButton) {
-        guard let userName = userUsernameTextField.text, !userName.isEmpty,
-            let name = userNameTextField.text, !name.isEmpty,
-            let emailAddress = userEmailAddressTextField.text, !emailAddress.isEmpty
+        guard let username = userUsernameTextField.text, !username.isEmpty,
+            let name = userNameTextField.text, !name.isEmpty
+//            let email = userEmailAddressTextField.text
             else { return }
         
         
         
-        // Create User from MC
-        
-//        if success {
-//            DispatchQueue.main.async {
-        
-        
-        self.performSegue(withIdentifier: "fromSignedInVCToMainVC", sender: nil)
-//            }
-        
-        
-//        }
+        UserController.shared.createNewUserWith(username: username, name: name) { (success) in
+            
+            // Segue to Main
+            if success {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
+                }
+            }
+            
+            // Present Alert Controller
+            if !success {
+                self.couldNotFetchUser()
+            }
+        }
     }
     
     
     // Will be deleted later
     @IBAction func LoadButtonPressed(_ sender: UIButton) {
         self.funnelAppLoadingView.isHidden = false
-        self.funnelTitleView.isHidden = true
+        self.funnelTitleView.isHidden = false
         self.userSignUpView.isHidden = true
         self.userSignedInView.isHidden = true
         
@@ -103,4 +125,28 @@ class LoginViewController: UIViewController {
         self.userSignUpView.isHidden = true
         self.userSignedInView.isHidden = false
     }
+    
+    //        var emptyUsername = ""
+    //        var emptyName = ""
+    //        var emptyEmail = ""
+    //
+    //        if username.isEmpty == true {
+    //            emptyUsername = "Username needs to be filled in"
+    //        }
+    //
+    //        if name.isEmpty == true {
+    //            emptyName = "Name needs to be filled in"
+    //        }
+    //
+    //        if email.isEmpty == true {
+    //            emptyEmail = "Username needs to be filled in"
+    //        }
+    //
+    //        let alertController = UIAlertController(title: "Enter Additional Details", message: "\(emptyUsername) \(emptyName) \(emptyEmail)", preferredStyle: .alert)
+    //
+    //        let dismissAlert = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    //
+    //        alertController.addAction(dismissAlert)
+    //
+    //        present(alertController, animated: true)
 }
