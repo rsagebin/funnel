@@ -9,21 +9,51 @@
 import UIKit
 
 class CategoriesViewController: UIViewController {
-    @IBOutlet weak var category1Picker: UIPickerView!
-    @IBOutlet weak var category2Picker: UIPickerView!
-    @IBOutlet weak var category3Picker: UIPickerView!
-    @IBOutlet weak var categoryLabel: UILabel!
     
-    let category = ["food", "health", "animals", "education", "transportation", "tech", "outdoors", "personal", "science", "lifestyle"]
+    @IBOutlet weak var background: UIImageView!
+    @IBOutlet weak var categoryOneTextField: UITextField!
+    @IBOutlet weak var categoryTwoTextField: UITextField!
+    @IBOutlet weak var categoryThreeTextField: UITextField!
     
-    var selectedCategory: String?
+    //    let category1 = CategoriesViewController.
+    
+    let categoryOne = ["food", "health", "animals", "education", "transportation", "tech", "outdoors", "personal", "science", "lifestyle"]
+    
+    let categoryTwo = ["food", "health", "animals", "education", "transportation", "tech", "outdoors", "personal", "science", "lifestyle"]
+    
+    let categoryThree = ["food", "health", "animals", "education", "transportation", "tech", "outdoors", "personal", "science", "lifestyle"]
+    
+    var selectedCategoryOne: String?
+    var selectedCategoryTwo: String?
+    var selectedCategoryThree: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // self.view.backgroundColor = UIColor(patternImage: )
-
-        //backgroundGif.loadGif(asset: "inception")
+        background.loadGif(name: "raining1")
+        createCategoryPickerOne()
+        createCategoryPickerTwo()
+        createCategoryPickerThree()
     }
+    
+    func createCategoryPickerOne() {
+        let categoryPickerOne = UIPickerView()
+        categoryPickerOne.delegate = self
+        categoryOneTextField.inputView = categoryPickerOne
+    }
+    
+    func createCategoryPickerTwo() {
+        let categoryPickerTwo = UIPickerView()
+        categoryPickerTwo.delegate = self
+        categoryTwoTextField.inputView = categoryPickerTwo
+    }
+    
+    func createCategoryPickerThree() {
+        let categoryPickerThree = UIPickerView()
+        categoryPickerThree.delegate = self
+        categoryThreeTextField.inputView = categoryPickerThree
+    }
+    
+    
     
     @IBAction func categorySearchButtonTapped(_ sender: Any) {
         
@@ -39,17 +69,35 @@ extension CategoriesViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return category.count
+        return categoryOne.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return category[row]
+        return categoryOne[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCategory = category[row]
-        categoryLabel.text = selectedCategory
+        selectedCategoryOne = categoryOne[row]
+        categoryOneTextField.text = selectedCategoryOne
+        pickerView .removeFromSuperview()
+    }
+    
+    // Picker Two
+    func numberOfComponentsTwo(in pickerViewTwo: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerViewTwo(_ pickerViewTwo: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryTwo.count
+    }
+    
+    func pickerViewTwo(_ pickerViewTwo: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoryTwo[row]
+    }
+    
+    func pickerViewTwo(_ pickerViewTwo: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCategoryTwo = categoryTwo[row]
+        categoryTwoTextField.text = selectedCategoryTwo
+        pickerViewTwo .removeFromSuperview()
     }
 }
-
-
