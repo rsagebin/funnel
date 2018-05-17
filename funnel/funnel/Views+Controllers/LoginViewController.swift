@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
                     self.funnelTitleView.isHidden = false
                     self.userSignUpView.isHidden = true
                     self.userSignedInView.isHidden = false
-                    
+                    self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
                 }
                 
                 // Show Sign Up
@@ -90,9 +90,9 @@ class LoginViewController: UIViewController {
             
             // Segue to Main
             if success {
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                     self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
-                }
+                })
             }
             
             // Present Alert Controller
@@ -125,28 +125,4 @@ class LoginViewController: UIViewController {
         self.userSignUpView.isHidden = true
         self.userSignedInView.isHidden = false
     }
-    
-    //        var emptyUsername = ""
-    //        var emptyName = ""
-    //        var emptyEmail = ""
-    //
-    //        if username.isEmpty == true {
-    //            emptyUsername = "Username needs to be filled in"
-    //        }
-    //
-    //        if name.isEmpty == true {
-    //            emptyName = "Name needs to be filled in"
-    //        }
-    //
-    //        if email.isEmpty == true {
-    //            emptyEmail = "Username needs to be filled in"
-    //        }
-    //
-    //        let alertController = UIAlertController(title: "Enter Additional Details", message: "\(emptyUsername) \(emptyName) \(emptyEmail)", preferredStyle: .alert)
-    //
-    //        let dismissAlert = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-    //
-    //        alertController.addAction(dismissAlert)
-    //
-    //        present(alertController, animated: true)
 }

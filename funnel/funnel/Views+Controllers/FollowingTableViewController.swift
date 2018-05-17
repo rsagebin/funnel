@@ -13,7 +13,9 @@ class FollowingTableViewController: UITableViewController {
     // MARK: - Outlets
 
     
-//    let post
+    
+    // MARK: - Properties
+    let sectionTitles = ["My Posts", "My Suggestions"]
     
 
     // MARK: - Lifecycle
@@ -31,29 +33,26 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-         return 1
+//        let sectionCount = 1
+        return sectionTitles.count // Change to be dynamic with
     }
     
-//    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-//
-//        return
-//    }
-    
-//    override func sectionIndexTitles(for tableView: UITableView) -> [String] {
-//
-//        return ["My Posts", "My Suggestions"]
-//    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard sectionTitles.indices ~= section else { return nil }
+        return sectionTitles[section]
+    }
     
     // Rows
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var cellHeight = 100
+        
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
             case 1136: cellHeight = 113; print("5, 5S, 5C, SE")
             case 1334: cellHeight = 125; print("6, 6S, 7, 8")
             case 2208: cellHeight = 133; print("6+, 6S+, 7+, 8+")
             case 2436: cellHeight = 125; print("X")
-            default: print("Unknown Phone Height")
+            default: print("Unknown Device Height \(#function)")
             }
         }
         return CGFloat(cellHeight)

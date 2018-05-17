@@ -20,4 +20,30 @@ class FollowingTableViewCell: UITableViewCell {
     @IBOutlet weak var postCommentsLabel: UILabel!
     
     
+    // MARK: - Properties
+    var post: MockPost? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    var user: MockUser? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    
+    // MARK: - Methods
+    func updateViews() {
+        if let post = post {
+            self.postCategoryLabel.text = post.category
+            self.postSubmittedImage.image = post.image
+//            self.userProfileImage.image = user.
+//            self.postFollowingLabel.text = post.
+//            self.postCuriosityLabel.text = post.
+//            self.postSuggestionLabel.text = post.
+            self.postCommentsLabel.text = post.comments
+        }
+    }
 }
