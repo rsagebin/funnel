@@ -43,7 +43,7 @@ class FollowingTableViewCell: UITableViewCell {
 //            self.postFollowingLabel.text = post.
 //            self.postCuriosityLabel.text = post.
 //            self.postSuggestionLabel.text = post.
-            self.postCommentsLabel.text = post.comments
+            self.postCommentsLabel.text = String(post.comments.count)
         }
     }
 }
