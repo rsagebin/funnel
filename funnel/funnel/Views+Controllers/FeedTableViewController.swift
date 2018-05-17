@@ -12,14 +12,10 @@ import UIKit
 
 class FeedTableViewController: UITableViewController {
     
-
-    
-
     // MARK: - Life Cycle
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,14 +29,11 @@ class FeedTableViewController: UITableViewController {
         return 500
     }
 
-   
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return PostController.shared.mockFeedPosts.count
     }
     
-   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! FeedTableViewCell
         
@@ -54,7 +47,6 @@ class FeedTableViewController: UITableViewController {
         return cell
     }
    
-  
      // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -66,15 +58,4 @@ class FeedTableViewController: UITableViewController {
         vc.post = selectedPost
         navigationController?.pushViewController(vc, animated: true)
     }
- 
-//     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "segueToPostDetail" {
-//            guard let destinationVC = segue.destination as? PostDetailViewController else { return }
-//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-//            let selectedPost = PostController.shared.mockFeedPosts[indexPath.row]
-//            destinationVC.post = selectedPost
-//        }
-//     }
-    
-
 }

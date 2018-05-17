@@ -40,10 +40,14 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roZ-A2-iQz">
                                 <rect key="frame" x="290" y="414" width="25" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Q2N-00-Hfo"/>
                                 </constraints>
                                 <state key="normal" image="branch"/>
+                                <connections>
+                                    <action selector="branchPostButtonTapped:" destination="Hji-QH-X2h" eventType="touchUpInside" id="g5M-Db-Fk2"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSw-25-Dqw">
                                 <rect key="frame" x="5" y="449" width="365" height="108"/>
@@ -73,7 +77,8 @@
                         <viewLayoutGuide key="safeArea" id="FoH-Iv-4Us"/>
                     </view>
                     <connections>
-                        <outlet property="categoryLabel" destination="VDH-2N-Rb5" id="kt6-4L-hHa"/>
+                        <outlet property="branchButtonOutlet" destination="roZ-A2-iQz" id="MOk-CA-eca"/>
+                        <outlet property="categoryLabel" destination="VDH-2N-Rb5" id="swJ-fr-saG"/>
                         <outlet property="descriptionLabel" destination="zSw-25-Dqw" id="YBo-Es-sUO"/>
                         <outlet property="postImageView" destination="5b6-6G-ta2" id="dGF-oQ-rbY"/>
                     </connections>
