@@ -21,7 +21,7 @@ class PostController {
     
 
     // No touchy - mock data
-    var mockFeedPosts: [Post] = []
+    var mockFeedPosts = [MockPost(), MockPost(), MockPost()]
     
     var feedPosts = [Post]()
     var followingPosts = [Post]()
@@ -29,17 +29,41 @@ class PostController {
     
     func createPost(user: User, description: String, image: UIImage, category: String) {
         
-        // Ask about a more efficient way to get record ID without having to create a new CK record every time.
+        // TODO: Look into a more efficient way to get record ID without having to create a new CK record every time.
+        
+        // Create CKAsset from image
+        
+        // Write image to disk as a temprary file in order to create CKAsset
+        let imageAsJpeg = UIImageJPEGRepresentation(image, 5.0)
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
+    
+        do {
+            try imageAsJpeg?.write(to: url)
+        } catch {
+            print("Couldn't write temporary image to file: \(error)")
+            return
+        }
+        
+        let asset = CKAsset(fileURL: url)
         
         let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
-        let post = Post(user: user, description: description, image: image, category: category, creatorRef: creatorReference)
+        let post = Post(user: user, description: description, imageAsCKAsset: asset, category: category, creatorRef: creatorReference)
         
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (record, error) in
             if let error = error {
-                print("Error saving user to CloudKit: \(error)")
+                print("Error saving post to CloudKit: \(error)")
+                return
+            }
+            
+            // Delete temporary image after creating CKAsset and saving new post
+            do {
+                try FileManager.default.removeItem(at: url)
+            } catch {
+                print("Error deleting temporary image file: \(error)")
                 return
             }
         }
+
     }
     
     
@@ -63,10 +87,10 @@ class PostController {
         }
     }
     
-    func fetchFollowingPosts() {
+    func fetchFollowingPosts(user: User) {
         
         // FIXME: This predicate needs to be updated to only pull posts that the person is following
-        let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "following == %@", user.following)
         
         ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
             if let error = error {
@@ -90,11 +114,26 @@ class PostController {
     init() {
         
         // No touchy - mock data
-        let user = User(username: "testing", name: "test2", appleUserRef: nil)
-        let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
-        let post2 = Post(user: user, description: "Image description 2.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
-        self.mockFeedPosts = [post, post2]
+//        let user = User(username: "testing", name: "test2", email: "test@test.com", appleUserRef: nil)
+//        let post = Post(user: user, description: "Image description.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+//        let post2 = Post(user: user, description: "Image description 2.", image: UIImage(named: "settings")!, category: "Test category", creatorRef: CKReference(record: user.ckRecord, action: .deleteSelf))
+//        self.mockFeedPosts = [post, post2]
 
     }
     
+}
+
+extension UIImage {
+    convenience init?(ckAsset: CKAsset) {
+        var imageData = Data()
+        
+        do {
+            let data = try Data(contentsOf: ckAsset.fileURL)
+            imageData = data
+        } catch {
+            print("Error re-creating data from CKAsset: \(error)")
+        }
+        
+        self.init(data: imageData)
+    }
 }

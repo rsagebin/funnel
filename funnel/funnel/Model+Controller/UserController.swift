@@ -12,6 +12,8 @@ import CloudKit
 
 class UserController {
     
+    var mockUser = MockUser()
+    
     let ckManager = CloudKitManager()
     
     static let shared = UserController()
@@ -58,7 +60,7 @@ class UserController {
         
     }
     
-    func createNewUserWith(username: String, name: String, completion: @escaping (Bool) -> Void) {
+    func createNewUserWith(username: String, name: String, email: String, completion: @escaping (Bool) -> Void) {
         ckManager.getUserRecordID { (userRecordID, error) in
             if let error = error {
                 print("Error getting Apple record ID: \(error)")
@@ -73,7 +75,7 @@ class UserController {
             
             let reference = CKReference(recordID: userRecordID, action: .deleteSelf)
             
-            let newUser = User(username: username, name: name, appleUserRef: reference)
+            let newUser = User(username: username, name: name, email: email, appleUserRef: reference)
             
             self.loggedInUser = newUser
             
@@ -87,6 +89,30 @@ class UserController {
             completion(true)
             
         }
+    }
+    
+    func fetchUser(ckRecordID: CKRecordID) -> User? {
+        
+        var user: User?
+        
+        ckManager.fetchSingleRecord(ckRecordID: ckRecordID) { (record, error) in
+            if let error = error {
+                print("Error fetching a single user record: \(error)")
+                user = nil
+                return
+            }
+            
+            guard let record = record else {
+                user = nil
+                return
+            }
+            
+            let fetchedUser = User(cloudKitRecord: record)
+            user = fetchedUser
+            return
+        }
+        
+        return user
     }
     
 }

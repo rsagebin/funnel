@@ -20,7 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
 //        This is here for CloudKit testing
-        let pc = PostController()
+        
+        UserController.shared.fetchCurrentUser(completion: { (success) in
+            if success {
+                PostController.shared.createPost(user: UserController.shared.loggedInUser!, description: "Post Description", image: UIImage(named: "settings")!, category: "Test Category")
+            } else {
+                UserController.shared.createNewUserWith(username: "TestUser", name: "Test User", email: "test@test.com", completion: { (success) in
+                    if success {
+                        let image = #imageLiteral(resourceName: "settings")
+                        PostController.shared.createPost(user: UserController.shared.loggedInUser!, description: "Post Description", image: image, category: "Test Category")
+                    }
+                    
+                })
+            }
+        })
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
         { (_, error) in

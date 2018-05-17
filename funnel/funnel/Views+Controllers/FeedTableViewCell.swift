@@ -12,7 +12,7 @@ class FeedTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     
-    var post: Post? {
+    var post: MockPost? {
         didSet {
             updateViews()
         }
