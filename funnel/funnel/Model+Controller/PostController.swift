@@ -21,7 +21,7 @@ class PostController {
     
 
     // No touchy - mock data
-    var mockFeedPosts = [MockPost(), MockPost(), MockPost()]
+    var mockFeedPosts: [MockPost] = []
     
     var feedPosts = [Post]()
     var followingPosts = [Post]()

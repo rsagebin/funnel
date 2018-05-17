@@ -26,7 +26,6 @@ class MockPost {
 
 
 class MockComment {
-    let post = MockPost()
     let text: String = ""
     let user = MockUser()
 }
