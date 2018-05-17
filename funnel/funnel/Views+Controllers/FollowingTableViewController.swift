@@ -49,10 +49,10 @@ class FollowingTableViewController: UITableViewController {
         var cellHeight = 100
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
-            case 1136: cellHeight = 100; print("5, 5S, 5C, SE")
-            case 1334: cellHeight = 118; print("6, 6S, 7, 8")
-            case 2208: cellHeight = 131; print("6+, 6S+, 7+, 8+")
-            case 2436: cellHeight = 118; print("X")
+            case 1136: cellHeight = 113; print("5, 5S, 5C, SE")
+            case 1334: cellHeight = 125; print("6, 6S, 7, 8")
+            case 2208: cellHeight = 133; print("6+, 6S+, 7+, 8+")
+            case 2436: cellHeight = 125; print("X")
             default: print("Unknown Phone Height")
             }
         }
