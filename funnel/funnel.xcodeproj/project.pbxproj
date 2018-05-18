@@ -43,6 +43,7 @@
 		D05F243E20ACD32C00D625E9 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F243D20ACD32C00D625E9 /* CommentController.swift */; };
 		D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B85C6020AA0828006411AA /* CloudKit.framework */; };
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
+		D0D6ACE020AF8C5D00BE5660 /* RevisedPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */; };
 		F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */; };
 		F4CD67F320AC9BAE003E7F3E /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */; };
 		F4CD67F520AC9BBE003E7F3E /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */; };
@@ -89,6 +90,7 @@
 		D0B85C5E20AA080A006411AA /* funnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = funnel.entitlements; sourceTree = "<group>"; };
 		D0B85C6020AA0828006411AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
+		D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisedPostController.swift; sourceTree = "<group>"; };
 		F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewController.swift; sourceTree = "<group>"; };
 		F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				D040DC8020AB301B00EB284F /* Categories.swift */,
 				D040DC7C20AB301B00EB284F /* Comment.swift */,
 				D040DC7E20AB301B00EB284F /* RevisedPost.swift */,
+				D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */,
 				D040DC7F20AB301B00EB284F /* UserController.swift */,
 				D040DC7D20AB301B00EB284F /* PostController.swift */,
 				D05F243D20ACD32C00D625E9 /* CommentController.swift */,
@@ -342,6 +345,7 @@
 				D040DC8820AB305000EB284F /* FeedTableViewController.swift in Sources */,
 				D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */,
 				D00A724620AE001500FBB2C8 /* MockModels.swift in Sources */,
+				D0D6ACE020AF8C5D00BE5660 /* RevisedPostController.swift in Sources */,
 				D040DC8A20AB306400EB284F /* CategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +494,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z72V7S4H73;
 				INFOPLIST_FILE = "$(SRCROOT)/funnel/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -509,6 +514,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z72V7S4H73;
 				INFOPLIST_FILE = "$(SRCROOT)/funnel/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
