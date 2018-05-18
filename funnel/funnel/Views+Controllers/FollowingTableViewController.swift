@@ -15,14 +15,14 @@ class FollowingTableViewController: UITableViewController {
     
     
     // MARK: - Properties
-    let sectionTitles = ["My Posts", "My Suggestions"]
+    var sectionTitles: [String] = []
     
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+//        self.navigationController?.title = "Following"
     }
     
     
@@ -33,8 +33,33 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-//        let sectionCount = 1
-        return sectionTitles.count // Change to be dynamic with
+        var sectionCount = 0
+        
+        let userPosts = 1 // Change to 1 from 0 if user has any posts
+        if userPosts > 0 {
+            sectionTitles.append("My Posts")
+            sectionCount += 1
+        }
+        
+        let suggestedAnswers = 1 // Change to 1 from 0 if user has any suggested answers
+        if suggestedAnswers > 0 {
+            sectionCount += 1
+            sectionTitles.append("My Suggested Answers")
+        }
+        
+        let followingPosts = 1 // Change to 1 from 0 if user is following posts
+        if followingPosts > 0 {
+            sectionCount += 1
+            sectionTitles.append("Posts I'm Following")
+        }
+        
+        let commentedOn = 1 // Change to 1 from 0 if user has any comments
+        if commentedOn > 0 {
+            sectionCount += 1
+            sectionTitles.append("Posts I have commented on")
+        }
+        
+        return sectionCount
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -44,7 +69,7 @@ class FollowingTableViewController: UITableViewController {
     
     // Rows
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var cellHeight = 100
+        var cellHeight = 115
         
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
@@ -64,7 +89,6 @@ class FollowingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
-        
         
         return cell
     }

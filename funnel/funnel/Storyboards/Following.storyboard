@@ -58,7 +58,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHV-Cj-dxf" userLabel="Post Details View">
                                                     <rect key="frame" x="114.99999999999999" y="4" width="246.66666666666663" height="102.33333333333333"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="public figgures/actors (Category)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mPf-8s-6NE" userLabel="Category Label">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="public figures/actors (Category)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mPf-8s-6NE" userLabel="Category Label">
                                                             <rect key="frame" x="4.3333333333333286" y="4.6666666666666661" width="238.66666666666669" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="yYM-yi-bzn"/>
