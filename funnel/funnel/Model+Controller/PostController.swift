@@ -25,6 +25,7 @@ class PostController {
     
     var feedPosts = [Post]()
     var followingPosts = [Post]()
+    var myPosts = [Post]()
     
     
     func createPost(description: String, image: UIImage, category: String) -> Post? {
@@ -82,6 +83,9 @@ class PostController {
     
     
     func fetchFeedPosts() {
+        
+        self.feedPosts = []
+        
         let predicate = NSPredicate(value: true)
         
         ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
@@ -116,8 +120,33 @@ class PostController {
         
         // FIXME: This predicate needs to be updated to only pull posts that the person is following
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
+        let userReference = CKReference(recordID: userRecordID, action: .deleteSelf)
         
-        let predicate = NSPredicate(format: "followersRefs in %@", userRecordID)
+        let predicate = NSPredicate(format: "followersRefs CONTAINS %@", userReference)
+        
+        ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
+            if let error = error {
+                print("Error fetching posts from CloudKit: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let records = records else {
+                print("Found nil for records fetched from CloudKit.")
+                return
+            }
+            
+            let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
+            
+            self.myPosts = recordsArray
+        }
+    }
+
+    func fetchMyPosts(user: User) {
+        
+        // FIXME: This predicate needs to be updated to only pull posts that the person is following
+        let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
+        
+        let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
         
         ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
             if let error = error {
@@ -135,7 +164,8 @@ class PostController {
             self.followingPosts = recordsArray
         }
     }
-
+    
+    
     
     init() {    
 
