@@ -24,7 +24,7 @@ class PostController {
     
     var feedPosts = [Post]()
     var followingPosts = [Post]()
-    var myPosts = [Post]()
+    var userPosts = [Post]()
     
     
     func createPost(description: String, image: UIImage, category: String) -> Post? {
@@ -138,11 +138,11 @@ class PostController {
             
             let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
             
-            self.myPosts = recordsArray
+            self.userPosts = recordsArray
         }
     }
 
-    func fetchMyPosts(user: User) {
+    func fetchUserPosts(user: User) {
         
         // FIXME: This predicate needs to be updated to only pull posts that the person is following
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
