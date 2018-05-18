@@ -10,10 +10,6 @@ import UIKit
 
 class FollowingTableViewController: UITableViewController {
 
-    // MARK: - Outlets
-
-    
-    
     // MARK: - Properties
     let sectionTitles = ["My Posts", "My Suggestions"]
     
@@ -64,7 +60,6 @@ class FollowingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
-        
         
         return cell
     }
