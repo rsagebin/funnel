@@ -11,15 +11,14 @@ import CloudKit
 
 class PostController {
 
+    static let feedFetchCompletedNotificationName = "feedFetchCompleted"
+    
     let ckManager = CloudKitManager()
     
     static let shared = PostController()
     
     // Possibly use NSPredicate in CKManager to specific time frame, etc. Or implement infinite scroll.
     
-    // Use notification center to notifiy feed view/following view when posts have been loaded to refresh the tableview
-    
-
     // No touchy - mock data
     var mockFeedPosts: [MockPost] = []
     
@@ -102,6 +101,8 @@ class PostController {
             let recordsArray = records.compactMap( {Post(cloudKitRecord: $0)})
             
             self.feedPosts = recordsArray
+            
+            NotificationCenter.default.post(name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: self)
         }
     }
     
