@@ -14,25 +14,8 @@ class CategoryController {
 
     static var shared = CategoryController()
    
-    let categories: [String:[[String:[String]]]] = [
-        "food":[
-            ["mexican":
-                ["tortillas","sopa"]],
-            ["italian":
-                ["pasta","vino"]]
-        ],
-        "health":[[:]],
-        "animals":[[:]],
-        "education":[[:]],
-        "transportation":[[:]],
-        "tech":[[:]],
-        "outdoors":[[:]],
-        "personal":[[:]],
-        "science":[[:]],
-        "lifestyle":[[:]]
-    ]
     
-    func createNewSubCategory(within: String) {
+    func addCategory2(post: Post, categoryName: String) {
         
     }
     
