@@ -44,9 +44,11 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
             self.category = "\(topCategory)/\(mediumCategory)/\(bottomCategory)"
         }
     
-        let newPost = MockPost(description: description, image: image, category: self.category)
+//        let newPost = MockPost(description: description, image: image, category: self.category)
         
-        PostController.shared.mockFeedPosts.append(newPost)
+//        PostController.shared.mockFeedPosts.append(newPost)
+        
+        PostController.shared.createPost(description: description, image: image, category: category)
         
         navigationController?.popToRootViewController(animated: true)
     }

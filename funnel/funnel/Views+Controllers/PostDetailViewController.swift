@@ -20,6 +20,7 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
+    
     @IBOutlet weak var tagsTextView: UITextView!
     
     @IBOutlet weak var branchButtonOutlet: UIButton!
@@ -29,11 +30,12 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        branchButtonOutlet.isEnabled = true
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         descriptionTextView.layer.borderColor = UIColor.black.cgColor
         descriptionTextView.layer.borderWidth = 1.0
         tagsTextView.layer.borderColor = UIColor.black.cgColor
