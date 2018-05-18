@@ -12,7 +12,7 @@ class PostDetailViewController: UIViewController {
 
     // MARK: - Properties
     
-    var post: MockPost?
+    var post: Post?
     
     // MARK: - Outlets
     
