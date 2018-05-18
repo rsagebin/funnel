@@ -17,14 +17,17 @@ class FeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        PostController.shared.fetchFeedPosts()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
     }
     
     @objc func reloadFeedView() {
         
+        
         DispatchQueue.main.async {
             
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
