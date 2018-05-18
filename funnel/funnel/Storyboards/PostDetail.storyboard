@@ -82,6 +82,9 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6R-i8-JF7">
                                                                 <rect key="frame" x="42" y="0.0" width="46.5" height="25"/>
                                                                 <state key="normal" image="branch"/>
+                                                                <connections>
+                                                                    <action selector="branchPostButtonTapped:" destination="Hji-QH-X2h" eventType="touchUpInside" id="78g-zD-50B"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -140,6 +143,7 @@
                         <viewLayoutGuide key="safeArea" id="3PT-xs-Cpq"/>
                     </view>
                     <connections>
+                        <outlet property="branchButtonOutlet" destination="Z6R-i8-JF7" id="cb4-l4-M84"/>
                         <outlet property="categoryLabel" destination="7sh-vL-BMp" id="cRh-yR-LIQ"/>
                         <outlet property="descriptionTextView" destination="RL5-00-NW0" id="Ts0-hl-TLs"/>
                         <outlet property="postImageView" destination="IbP-DJ-gPm" id="evT-Yh-NZh"/>
