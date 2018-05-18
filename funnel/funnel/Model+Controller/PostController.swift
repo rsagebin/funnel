@@ -122,7 +122,7 @@ class PostController {
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
         let userReference = CKReference(recordID: userRecordID, action: .deleteSelf)
         
-        let predicate = NSPredicate(format: "followersRefs CONTAINS %@", [userReference])
+        let predicate = NSPredicate(format: "followersRefs CONTAINS %@", userReference)
         
         ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
             if let error = error {
