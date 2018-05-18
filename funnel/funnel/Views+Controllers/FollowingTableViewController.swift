@@ -18,7 +18,7 @@ class FollowingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationController?.title = "Following"
+        navigationItem.title = "Following"
     }
     
     
@@ -31,14 +31,14 @@ class FollowingTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         var sectionCount = 0
         
-        let userPosts = 1 // Change to 1 from 0 if user has any posts
+        let userPosts = 0 // Change to 1 from 0 if user has any posts
         if userPosts > 0 {
-            sectionTitles.append("My Posts")
             sectionCount += 1
+            sectionTitles.append("My Posts")
         }
         
-        let suggestedAnswers = 1 // Change to 1 from 0 if user has any suggested answers
-        if suggestedAnswers > 0 {
+        let submittedAnswers = 1 // Change to 1 from 0 if user has any suggested answers
+        if submittedAnswers > 0 {
             sectionCount += 1
             sectionTitles.append("My Suggested Answers")
         }
@@ -80,6 +80,16 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 0 {
+//            guard let userPosts = UserController.shared.mockUser.posts.count else { return 0 }
+//            return userPosts
+        }
+        
+        if section == 1 {
+            
+        }
+        
         return 1
     }
     
@@ -87,6 +97,12 @@ class FollowingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
         
         return cell
+    }
+    
+    func fetchUser() {
+        guard let loggedInUser = UserController.shared.loggedInUser else { return } // Add error alert controller later
+//        let userPosts = PostController.shared.fetchMyPosts(user: loggedInUser)
+//        let userSubmissions = PostController.shared.
     }
     
     
