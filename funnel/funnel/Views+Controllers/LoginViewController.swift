@@ -52,7 +52,10 @@ class LoginViewController: UIViewController {
                     self.funnelTitleView.isHidden = false
                     self.userSignUpView.isHidden = true
                     self.userSignedInView.isHidden = false
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                     self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
+                    })
                 }
                 
                 // Show Sign Up

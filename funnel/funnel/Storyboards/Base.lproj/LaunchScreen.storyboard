@@ -18,17 +18,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LV-hF-XOW">
-                                <rect key="frame" x="141.5" y="314.5" width="93" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oT-zW-eJc" userLabel="Initial View">
+                                <rect key="frame" x="-0.5" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZW3-Oc-mwY" userLabel="Funnel Title">
+                                        <rect key="frame" x="0.0" y="25" width="375.5" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="sGY-uB-A69"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="funnel" translatesAutoresizingMaskIntoConstraints="NO" id="bpF-Lc-Dvo">
+                                        <rect key="frame" x="150" y="95" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="GBq-3a-sgZ"/>
+                                            <constraint firstAttribute="width" constant="75" id="yek-Sh-2uL"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9K0-i0-v6S" userLabel="Funnel One">
+                                        <rect key="frame" x="130" y="73" width="55" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="Ea2-se-oJG"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="dha-RF-ZZe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hw5-Ze-SNX" userLabel="Funnel Two">
+                                        <rect key="frame" x="190" y="73" width="55" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="KC2-YS-AZA"/>
+                                            <constraint firstAttribute="height" constant="22" id="vts-Bo-7e2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ZW3-Oc-mwY" firstAttribute="centerX" secondItem="7oT-zW-eJc" secondAttribute="centerX" id="35F-A0-2TF"/>
+                                    <constraint firstItem="ZW3-Oc-mwY" firstAttribute="width" secondItem="7oT-zW-eJc" secondAttribute="width" id="5z3-ga-70B"/>
+                                    <constraint firstItem="hw5-Ze-SNX" firstAttribute="centerX" secondItem="7oT-zW-eJc" secondAttribute="centerX" constant="30" id="QXy-hW-nID"/>
+                                    <constraint firstItem="bpF-Lc-Dvo" firstAttribute="top" secondItem="ZW3-Oc-mwY" secondAttribute="bottom" constant="20" id="QZY-22-zXU"/>
+                                    <constraint firstItem="ZW3-Oc-mwY" firstAttribute="top" secondItem="7oT-zW-eJc" secondAttribute="top" constant="25" id="Rb1-F0-iVU"/>
+                                    <constraint firstItem="9K0-i0-v6S" firstAttribute="bottom" secondItem="bpF-Lc-Dvo" secondAttribute="top" id="UcU-Bb-ar8"/>
+                                    <constraint firstItem="bpF-Lc-Dvo" firstAttribute="centerX" secondItem="7oT-zW-eJc" secondAttribute="centerX" id="bBM-jr-MtI"/>
+                                    <constraint firstItem="hw5-Ze-SNX" firstAttribute="bottom" secondItem="bpF-Lc-Dvo" secondAttribute="top" id="g00-Dn-Zhl"/>
+                                    <constraint firstItem="9K0-i0-v6S" firstAttribute="centerX" secondItem="7oT-zW-eJc" secondAttribute="centerX" constant="-30" id="mod-zM-l8w"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5LV-hF-XOW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0Nk-Xl-ciI"/>
-                            <constraint firstItem="5LV-hF-XOW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ouo-Ed-gKs"/>
+                            <constraint firstItem="7oT-zW-eJc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="0Tt-xu-nVp"/>
+                            <constraint firstItem="7oT-zW-eJc" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="DSb-zx-zKS"/>
+                            <constraint firstItem="7oT-zW-eJc" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="GWR-i4-rBH"/>
+                            <constraint firstItem="7oT-zW-eJc" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="iCi-ht-mOT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,4 +86,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="funnel" width="25" height="25"/>
+    </resources>
 </document>

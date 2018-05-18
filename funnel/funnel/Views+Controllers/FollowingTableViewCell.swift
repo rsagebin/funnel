@@ -11,11 +11,12 @@ import UIKit
 class FollowingTableViewCell: UITableViewCell {
 
     // MARK: - Outlets
-    @IBOutlet weak var postCategoryLabel: UILabel!
     @IBOutlet weak var postSubmittedImage: UIImageView!
-    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var postAcceptedSolutionIcon: UIImageView!
+    @IBOutlet weak var postCategoryLabel: UILabel!
+    @IBOutlet weak var postDescriptionLabel: UILabel!
+    @IBOutlet weak var postHashTagsLabel: UILabel!
     @IBOutlet weak var postFollowingLabel: UILabel!
-    @IBOutlet weak var postCuriosityLabel: UILabel!
     @IBOutlet weak var postSuggestionLabel: UILabel!
     @IBOutlet weak var postCommentsLabel: UILabel!
     
@@ -27,23 +28,20 @@ class FollowingTableViewCell: UITableViewCell {
         }
     }
     
-    var user: MockUser? {
-        didSet {
-            updateViews()
-        }
-    }
-    
     
     // MARK: - Methods
     func updateViews() {
         if let post = post {
-            self.postCategoryLabel.text = post.category
             self.postSubmittedImage.image = post.image
-//            self.userProfileImage.image = user.
-//            self.postFollowingLabel.text = post.
-//            self.postCuriosityLabel.text = post.
-//            self.postSuggestionLabel.text = post.
+            self.postAcceptedSolutionIcon.isHidden = true
+            self.postCategoryLabel.text = post.category
+            self.postDescriptionLabel.text = post.description
+//            self.postHashTagsLabel.text = post.tags
+//            self.postFollowingLabel.text = post
+//            self.postSuggestionLabel.text = post
             self.postCommentsLabel.text = String(post.comments.count)
         }
+        
+        // Post solution unhide accepted soulution
     }
 }

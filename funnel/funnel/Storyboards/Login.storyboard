@@ -28,14 +28,14 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="funnel" translatesAutoresizingMaskIntoConstraints="NO" id="rBV-FY-mR0">
-                                        <rect key="frame" x="149.5" y="75" width="75" height="75"/>
+                                        <rect key="frame" x="149.5" y="95" width="75" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="75" id="42S-Kn-nhf"/>
                                             <constraint firstAttribute="width" constant="75" id="vNc-wn-4mV"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvL-vg-zQO">
-                                        <rect key="frame" x="160" y="160" width="55" height="55"/>
+                                        <rect key="frame" x="160" y="180" width="55" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="3S9-iU-FzD"/>
                                             <constraint firstAttribute="width" constant="55" id="rR0-7Z-hHA"/>
@@ -45,7 +45,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zar-5y-JYq">
-                                        <rect key="frame" x="160.5" y="225" width="55" height="55"/>
+                                        <rect key="frame" x="160.5" y="245" width="55" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="DGh-nr-NMs"/>
                                             <constraint firstAttribute="width" constant="55" id="vDA-83-A4C"/>
@@ -56,7 +56,7 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="rBV-FY-mR0" firstAttribute="top" secondItem="24Z-0q-3Nw" secondAttribute="top" constant="75" id="Hb3-PB-5fC"/>
+                                    <constraint firstItem="rBV-FY-mR0" firstAttribute="top" secondItem="24Z-0q-3Nw" secondAttribute="top" constant="95" id="Hb3-PB-5fC"/>
                                     <constraint firstItem="rBV-FY-mR0" firstAttribute="centerX" secondItem="24Z-0q-3Nw" secondAttribute="centerX" id="LGj-9B-Aur"/>
                                     <constraint firstItem="VvL-vg-zQO" firstAttribute="centerX" secondItem="24Z-0q-3Nw" secondAttribute="centerX" id="Wkf-6f-Xax"/>
                                     <constraint firstItem="Zar-5y-JYq" firstAttribute="centerX" secondItem="24Z-0q-3Nw" secondAttribute="centerX" id="hV6-Yc-0sc"/>
@@ -221,8 +221,7 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="SignUpPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="ff2-t4-aQz"/>
-                                    <segue destination="jtt-qs-lMy" kind="show" id="j8Q-YN-PgW"/>
+                                    <segue destination="jtt-qs-lMy" kind="show" identifier="WillBeDeletedLater" id="FEM-qf-fIu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2d-nz-vPO">
@@ -236,7 +235,7 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="LoadButtonPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="XkK-Sx-ghO"/>
+                                    <action selector="LoadButtonPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="2Gx-Ab-MOX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ce3-EH-iV0">
@@ -250,7 +249,7 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="SignUpPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="flj-Uj-73K"/>
+                                    <action selector="SignUpPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="4PQ-0x-Re8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6N-9W-3w3">
@@ -264,7 +263,7 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="SignInPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="ruu-hp-zn4"/>
+                                    <action selector="SignInPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="DaD-f5-La6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -313,7 +312,7 @@
                         <outlet property="userSignUpView" destination="a4w-eR-j41" id="2Vz-ko-zR5"/>
                         <outlet property="userSignedInView" destination="9Ff-Hm-bR6" id="BTl-QL-2sE"/>
                         <outlet property="userUsernameTextField" destination="N19-ma-mU8" id="DIz-Gd-hgo"/>
-                        <segue destination="jtt-qs-lMy" kind="show" id="COH-N8-U21"/>
+                        <segue destination="jtt-qs-lMy" kind="show" identifier="fromLoginVCToMainVC" id="TxM-66-ckE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMm-Kj-gR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -336,6 +335,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j8Q-YN-PgW"/>
+        <segue reference="TxM-66-ckE"/>
     </inferredMetricsTieBreakers>
 </document>
