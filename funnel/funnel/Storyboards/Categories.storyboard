@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XsO-Gd-SO4">
-                                <rect key="frame" x="10" y="64" width="355" height="40"/>
+                                <rect key="frame" x="10" y="94" width="355" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uQN-Zu-muL">
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="40"/>
@@ -71,7 +71,7 @@
                             <constraint firstItem="zRL-B4-XKz" firstAttribute="centerX" secondItem="XsO-Gd-SO4" secondAttribute="centerX" id="eHx-so-hRI"/>
                             <constraint firstItem="zRL-B4-XKz" firstAttribute="centerX" secondItem="ijr-qJ-fTr" secondAttribute="centerX" id="n46-D0-DP7"/>
                             <constraint firstItem="jX0-Ne-dZC" firstAttribute="bottom" secondItem="zRL-B4-XKz" secondAttribute="bottom" constant="20" id="pu1-4q-Jg3"/>
-                            <constraint firstItem="XsO-Gd-SO4" firstAttribute="top" secondItem="jX0-Ne-dZC" secondAttribute="top" constant="20" id="r2r-Fd-a91"/>
+                            <constraint firstItem="XsO-Gd-SO4" firstAttribute="top" secondItem="jX0-Ne-dZC" secondAttribute="top" constant="50" id="r2r-Fd-a91"/>
                             <constraint firstItem="ijr-qJ-fTr" firstAttribute="leading" secondItem="Cvz-jQ-TeK" secondAttribute="leading" id="sx1-ug-KLJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jX0-Ne-dZC"/>
