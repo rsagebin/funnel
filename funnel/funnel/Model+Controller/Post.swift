@@ -19,6 +19,7 @@ class Post {
     private static let categoryKey = "category"
     private static let tagsKey = "tags"
     private static let commentsKey = "comments"
+    private static let isAnsweredKey = "isAnswered"
     private static let numberOfFlagsKey = "numberOfFlags"
     private static let isBannedKey = "isBanned"
     private static let creatorRefKey = "creatorRef"
@@ -31,6 +32,7 @@ class Post {
     var category: String
     var tags: [String]
     var comments: [Comment]
+    var isAnswered: Bool
     var numberOfFlags: Int
     var isBanned: Bool
     var followersRefs: [CKReference]
@@ -52,6 +54,7 @@ class Post {
         record.setValue(category, forKey: Post.categoryKey)
         record.setValue(tags, forKey: Post.tagsKey)
         record.setValue(comments, forKey: Post.commentsKey)
+        record.setValue(isAnswered, forKey: Post.isAnsweredKey)
         record.setValue(numberOfFlags, forKey: Post.numberOfFlagsKey)
         record.setValue(isBanned, forKey: Post.isBannedKey)
         record.setValue(followersRefs, forKey: Post.followersRefsKey)
@@ -73,6 +76,7 @@ class Post {
         self.tags = []
         self.numberOfFlags = 0
         self.isBanned = false
+        self.isAnswered = false
         self.creatorRef = creatorRef
         self.followersRefs = []
     }
@@ -83,6 +87,7 @@ class Post {
             let category = cloudKitRecord[Post.categoryKey] as? String,
             let tags = cloudKitRecord[Post.tagsKey] as? [String],
             let comments = cloudKitRecord[Post.commentsKey] as? [Comment],
+            let isAnswered = cloudKitRecord[Post.isAnsweredKey] as? Bool,
             let numberOfFlags = cloudKitRecord[Post.numberOfFlagsKey] as? Int,
             let isBanned = cloudKitRecord[Post.isBannedKey] as? Bool,
             let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference,
@@ -94,6 +99,7 @@ class Post {
         self.category = category
         self.tags = tags
         self.comments = comments
+        self.isAnswered = isAnswered
         self.numberOfFlags = numberOfFlags
         self.isBanned = isBanned
         self.creatorRef = creatorRef

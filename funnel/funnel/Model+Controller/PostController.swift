@@ -57,6 +57,8 @@ class PostController {
         
         newPost = post
         
+        self.feedPosts.insert(post, at: 0)
+        
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (record, error) in
             if let error = error {
                 print("Error saving post to CloudKit: \(error)")
@@ -72,8 +74,10 @@ class PostController {
             }
         }
         
+        fetchFollowingPosts(user: user)
+        
         return newPost
-
+        
     }
     
     
