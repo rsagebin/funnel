@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,22 +25,22 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oXG-9G-ykf">
-                                                <rect key="frame" x="20" y="15" width="335" height="0.0"/>
+                                                <rect key="frame" x="20" y="15" width="335" height="30"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqb-pr-dc8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="105" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="105" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="55G-eP-uRy">
-                                                        <rect key="frame" x="115" y="0.0" width="105" height="0.0"/>
+                                                        <rect key="frame" x="115" y="0.0" width="105" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aot-kO-Ysh">
-                                                        <rect key="frame" x="230" y="0.0" width="105" height="0.0"/>
+                                                        <rect key="frame" x="230" y="0.0" width="105" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -49,30 +48,33 @@
                                                 </subviews>
                                             </stackView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="94a-fO-z93">
-                                                <rect key="frame" x="53" y="35" width="270" height="270"/>
+                                                <rect key="frame" x="53" y="65" width="270" height="270"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="270" id="3MR-0G-MrF"/>
                                                     <constraint firstAttribute="width" secondItem="94a-fO-z93" secondAttribute="height" multiplier="1:1" id="7Pa-uf-TJr"/>
                                                     <constraint firstAttribute="width" constant="270" id="Ete-ap-dVd"/>
                                                 </constraints>
                                             </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="752" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nZh-iw-mZW">
-                                                <rect key="frame" x="15" y="315" width="345" height="200"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="752" scrollEnabled="NO" text="#Hashtag #Hashtag #Hashtag #Hashtag #Hashtag #Hashtag #Hashtag #Hashtag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nZh-iw-mZW">
+                                                <rect key="frame" x="15" y="345" width="345" height="49.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <string key="text">#Hashtag #Hashtag #Hashtag #Hashtag #Hashtag #Hashtag #Hashtag #Hashtaglabore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. #Hashtag  </string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F00-2T-gaC">
-                                                <rect key="frame" x="15" y="535" width="345" height="23"/>
+                                                <rect key="frame" x="15" y="414.5" width="345" height="250"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </mutableString>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8x-PB-1z2">
-                                                <rect key="frame" x="60" y="637" width="255" height="0.0"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVd-5I-PQk">
+                                                <rect key="frame" x="15" y="684.5" width="345" height="30"/>
+                                                <color key="backgroundColor" red="0.51200000000000001" green="0.754" blue="0.34300000000000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="createOrSuggestPostButtonTapped:" destination="tqn-OU-1Co" eventType="touchUpInside" id="jza-K9-Uhh"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -82,15 +84,14 @@
                                             <constraint firstAttribute="trailing" secondItem="oXG-9G-ykf" secondAttribute="trailing" constant="20" id="5xh-YO-R3F"/>
                                             <constraint firstItem="oXG-9G-ykf" firstAttribute="leading" secondItem="h3i-RK-E5A" secondAttribute="leading" constant="20" id="AGA-oR-pbd"/>
                                             <constraint firstAttribute="trailing" secondItem="nZh-iw-mZW" secondAttribute="trailing" constant="15" id="CZj-kN-s5R"/>
-                                            <constraint firstItem="A8x-PB-1z2" firstAttribute="leading" secondItem="h3i-RK-E5A" secondAttribute="leading" constant="60" id="CeB-TS-okl"/>
                                             <constraint firstItem="F00-2T-gaC" firstAttribute="top" secondItem="nZh-iw-mZW" secondAttribute="bottom" constant="20" id="DvJ-mb-VvD"/>
+                                            <constraint firstItem="YVd-5I-PQk" firstAttribute="top" secondItem="F00-2T-gaC" secondAttribute="bottom" constant="20" id="FdZ-LC-ELT"/>
+                                            <constraint firstAttribute="trailing" secondItem="YVd-5I-PQk" secondAttribute="trailing" constant="15" id="Gko-X8-0LR"/>
                                             <constraint firstItem="94a-fO-z93" firstAttribute="top" secondItem="oXG-9G-ykf" secondAttribute="bottom" constant="20" id="LXG-Uh-K0s"/>
                                             <constraint firstItem="nZh-iw-mZW" firstAttribute="leading" secondItem="h3i-RK-E5A" secondAttribute="leading" constant="15" id="OpV-mn-8qy"/>
                                             <constraint firstItem="94a-fO-z93" firstAttribute="centerX" secondItem="h3i-RK-E5A" secondAttribute="centerX" id="TTv-Y9-ayK"/>
-                                            <constraint firstAttribute="trailing" secondItem="A8x-PB-1z2" secondAttribute="trailing" constant="60" id="XHi-b9-x6O"/>
                                             <constraint firstItem="F00-2T-gaC" firstAttribute="leading" secondItem="h3i-RK-E5A" secondAttribute="leading" constant="15" id="baL-e9-RVg"/>
-                                            <constraint firstAttribute="bottom" secondItem="A8x-PB-1z2" secondAttribute="bottom" constant="10" id="gKb-Jf-m5q"/>
-                                            <constraint firstItem="A8x-PB-1z2" firstAttribute="top" secondItem="F00-2T-gaC" secondAttribute="bottom" constant="79" id="tTA-MB-RUb"/>
+                                            <constraint firstItem="YVd-5I-PQk" firstAttribute="leading" secondItem="h3i-RK-E5A" secondAttribute="leading" constant="15" id="oAC-34-zXj"/>
                                             <constraint firstAttribute="trailing" secondItem="F00-2T-gaC" secondAttribute="trailing" constant="15" id="ufZ-A5-5Ia"/>
                                         </constraints>
                                     </view>
@@ -115,6 +116,15 @@
                         <viewLayoutGuide key="safeArea" id="I41-P5-hIt"/>
                     </view>
                     <navigationItem key="navigationItem" id="FsC-sw-XDm"/>
+                    <connections>
+                        <outlet property="bottomCategory" destination="Aot-kO-Ysh" id="iRl-dl-UuJ"/>
+                        <outlet property="createAndSuggestButtonOutlet" destination="YVd-5I-PQk" id="ouQ-Fm-6Rh"/>
+                        <outlet property="descriptionTextView" destination="F00-2T-gaC" id="xUh-Q5-kon"/>
+                        <outlet property="imageViewOutlet" destination="94a-fO-z93" id="9lH-TV-dSf"/>
+                        <outlet property="mediumCategory" destination="55G-eP-uRy" id="m9J-Ko-tXw"/>
+                        <outlet property="tagTextView" destination="nZh-iw-mZW" id="xAo-s0-B0F"/>
+                        <outlet property="topCategory" destination="aqb-pr-dc8" id="3fU-6d-Fjj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7v-Vn-gHm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
