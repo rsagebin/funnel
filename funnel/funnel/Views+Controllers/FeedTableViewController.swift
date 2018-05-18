@@ -24,7 +24,7 @@ class FeedTableViewController: UITableViewController {
         
         DispatchQueue.main.async {
             
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
