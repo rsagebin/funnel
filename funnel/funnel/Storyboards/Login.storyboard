@@ -224,6 +224,22 @@
                                     <segue destination="jtt-qs-lMy" kind="show" identifier="WillBeDeletedLater" id="FEM-qf-fIu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIc-TE-SnD">
+                                <rect key="frame" x="10" y="567" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6QT-md-d9G"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="6ho-WY-XjO"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="VQM-zK-lBg"/>
+                                    <constraint firstAttribute="width" constant="100" id="nIh-ci-Dzl"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Authenticate">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="authenticateButtonTapped:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="2t8-if-faj"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2d-nz-vPO">
                                 <rect key="frame" x="0.0" y="637" width="100" height="30"/>
                                 <constraints>
@@ -296,7 +312,9 @@
                             <constraint firstItem="9Ff-Hm-bR6" firstAttribute="top" secondItem="8Df-FN-GNl" secondAttribute="bottom" id="t5J-Ef-WKs"/>
                             <constraint firstItem="8Df-FN-GNl" firstAttribute="centerX" secondItem="o9u-63-ZrU" secondAttribute="centerX" id="twU-eS-fE1"/>
                             <constraint firstItem="a4w-eR-j41" firstAttribute="width" secondItem="WO7-pS-ahW" secondAttribute="width" id="uA1-JT-u7u"/>
+                            <constraint firstItem="Ce3-EH-iV0" firstAttribute="top" secondItem="fIc-TE-SnD" secondAttribute="bottom" constant="40" id="vi1-ic-phm"/>
                             <constraint firstItem="o9u-63-ZrU" firstAttribute="bottom" secondItem="Ce3-EH-iV0" secondAttribute="bottom" id="z3C-np-fQp"/>
+                            <constraint firstItem="fIc-TE-SnD" firstAttribute="leading" secondItem="o9u-63-ZrU" secondAttribute="leading" constant="10" id="zh6-2s-IHv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o9u-63-ZrU"/>
                     </view>

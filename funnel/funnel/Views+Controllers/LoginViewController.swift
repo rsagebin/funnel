@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
     
@@ -15,14 +16,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var funnelTitleView: UIView!
     @IBOutlet weak var funnelTwoLabel: UILabel!
     @IBOutlet weak var funnelThreeLabel: UILabel!
-    
     @IBOutlet weak var backgroundGif: UIImageView!
     @IBOutlet weak var userSignedInView: UIView!
     @IBOutlet weak var userSignUpView: UIView!
     @IBOutlet weak var userUsernameTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userEmailAddressTextField: UITextField!
-
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -40,7 +40,6 @@ class LoginViewController: UIViewController {
         fetchUser()
     }
     
-    
     // MARK: - Methods
     func fetchUser() {
         UserController.shared.fetchCurrentUser { (success) in
@@ -54,7 +53,7 @@ class LoginViewController: UIViewController {
                     self.userSignedInView.isHidden = false
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                    self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
+                        self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
                     })
                 }
                 
@@ -78,7 +77,6 @@ class LoginViewController: UIViewController {
         alertcontroller.addAction(alertDismiss)
         present(alertcontroller, animated: true)
     }
-    
     
     // MARK: - Actions
     @IBAction func userSignUpButtonPressed(_ sender: UIButton) {
@@ -105,6 +103,20 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: Biometric Authentication
+    @IBAction func authenticateButtonTapped(_ sender: Any) {
+        let context: LAContext = LAContext()
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+            context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Login with TouchID?", reply: { (wasSuccessful, error) in
+                if wasSuccessful {
+                    print("Success")
+                }
+                else {
+                    print("Not logged in")
+                }
+            })
+        }
+    }
     
     // Will be deleted later
     @IBAction func LoadButtonPressed(_ sender: UIButton) {
