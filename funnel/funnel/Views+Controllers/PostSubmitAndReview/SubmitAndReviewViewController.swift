@@ -14,7 +14,7 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
     // MARK: - Properties
     
     let picker = UIImagePickerController()
-    var post: MockPost?
+    var post: Post?
     var category = ""
 
     // MARK: - Outlets

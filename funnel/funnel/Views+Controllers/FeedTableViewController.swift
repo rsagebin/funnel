@@ -16,7 +16,21 @@ class FeedTableViewController: UITableViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        PostController.shared.fetchFeedPosts()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
     }
+    
+    @objc func reloadFeedView() {
+        
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -31,13 +45,13 @@ class FeedTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return PostController.shared.mockFeedPosts.count
+        return PostController.shared.feedPosts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! FeedTableViewCell
         
-        let post = PostController.shared.mockFeedPosts[indexPath.row]
+        let post = PostController.shared.feedPosts[indexPath.row]
         cell.post = post
         cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
         cell.descriptionTextView.layer.borderWidth = 1.0
@@ -54,7 +68,7 @@ class FeedTableViewController: UITableViewController {
         let mySB = UIStoryboard(name: "PostDetail", bundle: .main)
         let vc = mySB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let selectedPost = PostController.shared.mockFeedPosts[indexPath.row]
+        let selectedPost = PostController.shared.feedPosts[indexPath.row]
         vc.post = selectedPost
         navigationController?.pushViewController(vc, animated: true)
     }
