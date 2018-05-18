@@ -24,7 +24,7 @@ class Post {
     private static let creatorRefKey = "creatorRef"
     private static let followersRefsKey = "followersRefs"
     
-    let user: User
+    var user: User?
     let description: String
     let image: UIImage?
     let imageAsCKAsset: CKAsset
@@ -87,13 +87,7 @@ class Post {
             let isBanned = cloudKitRecord[Post.isBannedKey] as? Bool,
             let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference,
             let followersRefs = cloudKitRecord[Post.followersRefsKey] as? [CKReference] else { return nil }
-        
-        guard let user = UserController.shared.fetchUser(ckRecordID: creatorRef.recordID) else {
-            print("Error fetching post user when initializing post from CloudKit")
-            return nil
-        }
-        
-        self.user = user
+    
         self.description = description
         self.imageAsCKAsset = imageAsCKAsset
         self.image = UIImage(ckAsset: imageAsCKAsset)

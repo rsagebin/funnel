@@ -10,15 +10,47 @@ import Foundation
 import CloudKit
 
 class CategoryController {
+    let ckManager = CloudKitManager()
+
     static var shared = CategoryController()
-    var categories = [Category]()
+   
+    let categories: [String:[[String:[String]]]] = [
+        "food":[
+            ["mexican":
+                ["tortillas","sopa"]],
+            ["italian":
+                ["pasta","vino"]]
+        ],
+        "health":[[:]],
+        "animals":[[:]],
+        "education":[[:]],
+        "transportation":[[:]],
+        "tech":[[:]],
+        "outdoors":[[:]],
+        "personal":[[:]],
+        "science":[[:]],
+        "lifestyle":[[:]]
+    ]
     
-    let category = ["food", "health", "animals", "education", "transportation", "tech", "outdoors", "personal", "science", "lifestyle"]
-    
-    func createNewCategory(withName name: String, completion: @escaping (Bool) -> Void) {
+    func createNewSubCategory(within: String) {
+        
     }
     
+    func loadTopLevelCategory() {
+        
+    }
+    
+    func loadSubCategory(categoryAbove: String) {
+        
+    }
+    
+    func loadSubSubCategory(categoryAbove: String) {
+        
+    }
+    
+    
     func updateCategory(category: Category, name: String, completion: @escaping (Bool) -> Void) {
+    
     }
     
     // delete capability in the future
