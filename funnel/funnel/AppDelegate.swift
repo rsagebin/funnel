@@ -23,18 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserController.shared.fetchCurrentUser(completion: { (success) in
             if success {
-                let post = PostController.shared.createPost(user: UserController.shared.loggedInUser!, description: "Post Description", image: UIImage(named: "settings")!, category: "Test Category")!
+                let post = PostController.shared.createPost(description: "Post Description", image: UIImage(named: "settings")!, category: "Test Category")!
                 
                 TagController.shared.createTagOn(post: post, text: "#test")
                 PostController.shared.addFollowerToPost(user: UserController.shared.loggedInUser!, post: post)
                 
-                CommentController.shared.addCommentTo(post: post, text: "Test comment", user: UserController.shared.loggedInUser!)
+                CommentController.shared.addCommentTo(post: post, text: "Test comment")
+                
+                PostController.shared.fetchFeedPosts()
                 
             } else {
                 UserController.shared.createNewUserWith(username: "TestUser", name: "Test User", email: "test@test.com", completion: { (success) in
                     if success {
                         let image = #imageLiteral(resourceName: "settings")
-                        PostController.shared.createPost(user: UserController.shared.loggedInUser!, description: "Post Description", image: image, category: "Test Category")
+                        PostController.shared.createPost(description: "Post Description", image: image, category: "Test Category")
                     }
                     
                 })

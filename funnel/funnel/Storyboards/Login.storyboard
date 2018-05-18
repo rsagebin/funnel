@@ -313,7 +313,7 @@
                         <outlet property="userSignUpView" destination="a4w-eR-j41" id="2Vz-ko-zR5"/>
                         <outlet property="userSignedInView" destination="9Ff-Hm-bR6" id="BTl-QL-2sE"/>
                         <outlet property="userUsernameTextField" destination="N19-ma-mU8" id="DIz-Gd-hgo"/>
-                        <segue destination="jtt-qs-lMy" kind="show" id="COH-N8-U21"/>
+                        <segue destination="jtt-qs-lMy" kind="show" identifier="fromLoginVCToMainVC" id="COH-N8-U21"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMm-Kj-gR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -336,6 +336,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j8Q-YN-PgW"/>
+        <segue reference="COH-N8-U21"/>
     </inferredMetricsTieBreakers>
 </document>

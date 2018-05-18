@@ -27,7 +27,7 @@ class PostController {
     var followingPosts = [Post]()
     
     
-    func createPost(user: User, description: String, image: UIImage, category: String) -> Post? {
+    func createPost(description: String, image: UIImage, category: String) -> Post? {
         
         var newPost: Post?
         
@@ -48,8 +48,12 @@ class PostController {
         
         let asset = CKAsset(fileURL: url)
         
+        guard let user = UserController.shared.loggedInUser else { return nil }
+        
         let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
         let post = Post(user: user, description: description, imageAsCKAsset: asset, category: category, creatorRef: creatorReference)
+        
+        post.followersRefs.append(creatorReference)
         
         newPost = post
         
@@ -87,7 +91,7 @@ class PostController {
                 return
             }
             
-            let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
+            let recordsArray = records.compactMap( {Post(cloudKitRecord: $0)})
             
             self.feedPosts = recordsArray
         }

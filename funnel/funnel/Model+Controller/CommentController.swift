@@ -16,8 +16,11 @@ class CommentController {
     
     static let shared = CommentController()
     
-    func addCommentTo(post: Post, text: String, user: User) {
+    func addCommentTo(post: Post, text: String) {
+        guard let user = UserController.shared.loggedInUser else { return }
+        
         let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        
         let userReference = CKReference(recordID: user.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
         
         let comment = Comment(post: post, text: text, user: user, postReference: postReference, userReference: userReference)
