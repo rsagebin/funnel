@@ -16,9 +16,11 @@ class PostDetailViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var tagsTextView: UITextView!
     
     @IBOutlet weak var branchButtonOutlet: UIButton!
     
@@ -32,8 +34,10 @@ class PostDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        descriptionLabel.layer.borderColor = UIColor.black.cgColor
-        descriptionLabel.layer.borderWidth = 1.0
+        descriptionTextView.layer.borderColor = UIColor.black.cgColor
+        descriptionTextView.layer.borderWidth = 1.0
+        tagsTextView.layer.borderColor = UIColor.black.cgColor
+        tagsTextView.layer.borderWidth = 1.0
     }
     
     // MARK: - Other functions
@@ -41,7 +45,7 @@ class PostDetailViewController: UIViewController {
     func updateViews() {
         
         guard let post = post else { return }
-        descriptionLabel.text = post.description
+        descriptionTextView.text = post.description
         categoryLabel.text = post.category
         postImageView.image = post.image
     }
