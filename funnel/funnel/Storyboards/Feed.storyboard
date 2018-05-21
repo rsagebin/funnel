@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -63,17 +62,16 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="F9x-nb-1ky">
                                                             <rect key="frame" x="8" y="350" width="307" height="100"/>
                                                             <subviews>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-dJ-WKN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="307" height="44.5"/>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" scrollEnabled="NO" text="#Alien? #rock?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-dJ-WKN">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="307" height="26"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oec-Z7-gqk">
-                                                                    <rect key="frame" x="0.0" y="56.5" width="307" height="43.5"/>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oec-Z7-gqk">
+                                                                    <rect key="frame" x="0.0" y="38" width="307" height="62"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
@@ -136,11 +134,11 @@
                                     <outlet property="aprovedButtonOutlet" destination="soo-Mg-fHf" id="B69-Ca-vup"/>
                                     <outlet property="branchButtonOutlet" destination="0p7-NH-ynu" id="jsq-qv-ufV"/>
                                     <outlet property="categoriesLabel" destination="v3r-Np-1m0" id="Q6q-SX-Ed4"/>
-                                    <outlet property="commentsTextView" destination="oec-Z7-gqk" id="aoy-JA-gwQ"/>
-                                    <outlet property="descriptionTextView" destination="bL8-dJ-WKN" id="VoN-3x-Hi4"/>
+                                    <outlet property="descriptionTextView" destination="oec-Z7-gqk" id="7eS-9d-XTD"/>
                                     <outlet property="exclamationButtonOutlet" destination="5pR-hd-8hF" id="Dn7-AI-v71"/>
                                     <outlet property="notificationButtonOutlet" destination="Neu-kN-ndN" id="Vr0-FV-8hk"/>
                                     <outlet property="postImageView" destination="utO-wp-V4b" id="VA7-QJ-g1X"/>
+                                    <outlet property="tagsTextView" destination="bL8-dJ-WKN" id="9m7-fp-hif"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

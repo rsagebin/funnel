@@ -160,10 +160,12 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
         present(actionSheet, animated: true, completion: nil)
     }
     
+    // MARK: - UIImagePickerDelegate functions
+    
     @objc func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-        
+
         guard let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
         imageViewOutlet.contentMode = .scaleAspectFit
         imageViewOutlet.image = chosenImage
@@ -173,4 +175,17 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+}
+
+extension SubmitAndReviewViewController {
+    
+//    func imagePickerController(_ picker: UIImagePickerController,
+//                                     didFinishPickingMediaWithInfo info: [String : AnyObject])
+//    {
+//
+//        guard let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
+//        imageViewOutlet.contentMode = .scaleAspectFit
+//        imageViewOutlet.image = chosenImage
+//        dismiss(animated:true, completion: nil)
+//    }
 }

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -28,7 +27,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sh-vL-BMp">
                                                 <rect key="frame" x="15" y="10" width="345" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IbP-DJ-gPm">
@@ -91,7 +90,7 @@
                                                 </subviews>
                                             </stackView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" scrollEnabled="NO" text="#Hashtags... " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zqr-jz-tyb">
-                                                <rect key="frame" x="15" y="450.5" width="345" height="33"/>
+                                                <rect key="frame" x="15" y="465.5" width="345" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -113,13 +112,13 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="RL5-00-NW0" secondAttribute="bottom" id="3Q7-fL-Oof"/>
-                                            <constraint firstItem="RL5-00-NW0" firstAttribute="top" secondItem="zqr-jz-tyb" secondAttribute="bottom" constant="30" id="8vY-ho-zHK"/>
+                                            <constraint firstItem="RL5-00-NW0" firstAttribute="top" secondItem="zqr-jz-tyb" secondAttribute="bottom" constant="15" id="8vY-ho-zHK"/>
                                             <constraint firstItem="KSM-z6-dv6" firstAttribute="top" secondItem="IbP-DJ-gPm" secondAttribute="bottom" constant="5" id="Ajx-Dy-JfI"/>
                                             <constraint firstItem="AAQ-WP-y6H" firstAttribute="trailing" secondItem="IbP-DJ-gPm" secondAttribute="trailing" id="CIf-0E-lam"/>
                                             <constraint firstAttribute="trailing" secondItem="KSM-z6-dv6" secondAttribute="trailing" constant="15" id="Ffx-dT-98P"/>
                                             <constraint firstItem="IbP-DJ-gPm" firstAttribute="top" secondItem="7sh-vL-BMp" secondAttribute="bottom" constant="10" id="RUJ-JW-fI6"/>
                                             <constraint firstAttribute="trailing" secondItem="RL5-00-NW0" secondAttribute="trailing" constant="15" id="Ss8-JU-ze6"/>
-                                            <constraint firstItem="zqr-jz-tyb" firstAttribute="top" secondItem="KSM-z6-dv6" secondAttribute="bottom" constant="5" id="Vr4-Oh-Uep"/>
+                                            <constraint firstItem="zqr-jz-tyb" firstAttribute="top" secondItem="KSM-z6-dv6" secondAttribute="bottom" constant="20" id="Vr4-Oh-Uep"/>
                                             <constraint firstItem="KSM-z6-dv6" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" constant="15" id="ilH-r3-Upo"/>
                                             <constraint firstItem="IbP-DJ-gPm" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" id="m9D-v3-ZLt"/>
                                             <constraint firstItem="7sh-vL-BMp" firstAttribute="top" secondItem="HYl-qu-L1u" secondAttribute="top" constant="10" id="maJ-bU-r0w"/>
