@@ -11,13 +11,15 @@ import UIKit
 class CategoriesEditCreateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var mainLabel: UILabel!
-    @IBOutlet weak var categoryOneTextField: UITextField!
-    @IBOutlet weak var categoryTwoTextField: UITextField!
-    @IBOutlet weak var categoryThreeTextField: UITextField!
     @IBOutlet weak var pickerOne: UIPickerView!
     @IBOutlet weak var pickerTwo: UIPickerView!
     @IBOutlet weak var pickerThree: UIPickerView!
     @IBOutlet weak var picture: UIImageView!
+    
+    @IBOutlet weak var textFieldOne: UITextField!
+    @IBOutlet weak var textFieldTwo: UITextField!
+    @IBOutlet weak var textFieldThree: UITextField!
+    
     
     
     var category = ["food", "health", "animals", "education", "transportation"]
@@ -62,27 +64,40 @@ class CategoriesEditCreateViewController: UIViewController, UIPickerViewDelegate
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        
         if pickerView == pickerOne {
-            self.categoryOneTextField.text = self.category[row]
-            self.mainLabel.text = "\(self.categoryOneTextField.text!)"
-            //            self.pickerOne.isHidden = true
+            self.textFieldOne.text = self.category[row]
+            self.mainLabel.text = "\(self.textFieldOne.text!)"
+//                        self.pickerOne.isHidden = true
         }
             
         else if pickerView == pickerTwo {
-            self.categoryTwoTextField.text = self.subCategory[row]
-            self.mainLabel.text = "\(self.categoryOneTextField.text!)/\(self.categoryTwoTextField.text!)"
-            //            self.pickerTwo.isHidden = true
+            self.textFieldTwo.text = self.subCategory[row]
+            self.mainLabel.text = "\(self.textFieldOne.text!)/\(self.textFieldTwo.text!)"
+//                        self.pickerTwo.isHidden = true
         }
             
         else if pickerView == pickerThree {
-            self.categoryThreeTextField.text = self.subSubCategory[row]
-            self.mainLabel.text = "\(self.categoryOneTextField.text!)/\(self.categoryTwoTextField.text!)/\(self.categoryThreeTextField.text!)"
-            //            self.pickerThree.isHidden = true
+            self.textFieldThree.text = self.subSubCategory[row]
+            self.mainLabel.text = "\(self.textFieldTwo.text!)/\(self.textFieldTwo.text!)/\(self.textFieldThree.text!)"
+//                        self.pickerThree.isHidden = true
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    @IBAction func textFieldOnePressed(_ sender: Any) {
+        self.pickerOne.didMoveToSuperview()
+    }
+    
+    @IBAction func textFieldTwoPressed(_ sender: Any) {
+        self.pickerTwo.isHidden = false
+    }
+    
+    @IBAction func textFieldThreePressed(_ sender: Any) {
+        self.pickerThree.isHidden = false
+    }
+    
+    
+    
 }
