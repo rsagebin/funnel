@@ -34,9 +34,9 @@ class CommentController {
         
     }
     
-    func loadCommentsFor(post: Post) -> [Comment]? {
+    func loadCommentsFor(post: Post) -> [Comment] {
         
-        var comments: [Comment]?
+        var comments: [Comment] = []
         
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
         
@@ -46,7 +46,7 @@ class CommentController {
                 return
             }
             
-            let commentsArray = records?.compactMap({Comment(cloudKitRecord: $0)})
+            guard let commentsArray = records?.compactMap({Comment(cloudKitRecord: $0)}) else { return }
             comments = commentsArray
         }
         
