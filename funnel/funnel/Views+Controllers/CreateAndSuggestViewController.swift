@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - Properties
     
@@ -177,7 +177,7 @@ class SubmitAndReviewViewController: UIViewController, UIImagePickerControllerDe
     }
 }
 
-extension SubmitAndReviewViewController {
+extension CreateAndSuggestViewController {
     
 //    func imagePickerController(_ picker: UIImagePickerController,
 //                                     didFinishPickingMediaWithInfo info: [String : AnyObject])

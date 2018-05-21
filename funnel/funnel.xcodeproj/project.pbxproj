@@ -21,7 +21,7 @@
 		D00A724620AE001500FBB2C8 /* MockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724520AE001500FBB2C8 /* MockModels.swift */; };
 		D00A724820AE2C9F00FBB2C8 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724720AE2C9F00FBB2C8 /* Tag.swift */; };
 		D00A724A20AE2CAF00FBB2C8 /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724920AE2CAF00FBB2C8 /* TagController.swift */; };
-		D040DC7A20AB301000EB284F /* SubmitAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */; };
+		D040DC7A20AB301000EB284F /* CreateAndSuggestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7920AB301000EB284F /* CreateAndSuggestViewController.swift */; };
 		D040DC8120AB301B00EB284F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7B20AB301B00EB284F /* Post.swift */; };
 		D040DC8220AB301B00EB284F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7C20AB301B00EB284F /* Comment.swift */; };
 		D040DC8320AB301B00EB284F /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7D20AB301B00EB284F /* PostController.swift */; };
@@ -36,7 +36,7 @@
 		D040DC9220AB316300EB284F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC9120AB316300EB284F /* LoginViewController.swift */; };
 		D05F243620ACA2A500D625E9 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F242F20ACA2A300D625E9 /* Categories.storyboard */; };
 		D05F243720ACA2A500D625E9 /* Following.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243020ACA2A400D625E9 /* Following.storyboard */; };
-		D05F243820ACA2A500D625E9 /* PostSubmitAndReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243120ACA2A400D625E9 /* PostSubmitAndReview.storyboard */; };
+		D05F243820ACA2A500D625E9 /* CreateAndSuggest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243120ACA2A400D625E9 /* CreateAndSuggest.storyboard */; };
 		D05F243920ACA2A500D625E9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243220ACA2A400D625E9 /* Feed.storyboard */; };
 		D05F243A20ACA2A500D625E9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243320ACA2A400D625E9 /* Login.storyboard */; };
 		D05F243B20ACA2A500D625E9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243420ACA2A400D625E9 /* Profile.storyboard */; };
@@ -46,6 +46,9 @@
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
 		D0D6ACE020AF8C5D00BE5660 /* RevisedPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */; };
 		F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */; };
+		F450270020B3594700D0EC45 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45026FF20B3594700D0EC45 /* CategoriesTableViewController.swift */; };
+		F450270220B35B1F00D0EC45 /* CategoriesTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450270120B35B1F00D0EC45 /* CategoriesTable.storyboard */; };
+		F450270420B35BAF00D0EC45 /* BlankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450270320B35BAF00D0EC45 /* BlankViewController.swift */; };
 		F4CD67F320AC9BAE003E7F3E /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */; };
 		F4CD67F520AC9BBE003E7F3E /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */; };
 		F4CD67F720AC9C0C003E7F3E /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F620AC9C0C003E7F3E /* PostDetailViewController.swift */; };
@@ -68,7 +71,7 @@
 		D00A724520AE001500FBB2C8 /* MockModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModels.swift; sourceTree = "<group>"; };
 		D00A724720AE2C9F00FBB2C8 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		D00A724920AE2CAF00FBB2C8 /* TagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagController.swift; sourceTree = "<group>"; };
-		D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAndReviewViewController.swift; sourceTree = "<group>"; };
+		D040DC7920AB301000EB284F /* CreateAndSuggestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAndSuggestViewController.swift; sourceTree = "<group>"; };
 		D040DC7B20AB301B00EB284F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D040DC7C20AB301B00EB284F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D040DC7D20AB301B00EB284F /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
@@ -83,7 +86,7 @@
 		D040DC9120AB316300EB284F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D05F242F20ACA2A300D625E9 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
 		D05F243020ACA2A400D625E9 /* Following.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Following.storyboard; sourceTree = "<group>"; };
-		D05F243120ACA2A400D625E9 /* PostSubmitAndReview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostSubmitAndReview.storyboard; sourceTree = "<group>"; };
+		D05F243120ACA2A400D625E9 /* CreateAndSuggest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAndSuggest.storyboard; sourceTree = "<group>"; };
 		D05F243220ACA2A400D625E9 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		D05F243320ACA2A400D625E9 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		D05F243420ACA2A400D625E9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -94,6 +97,9 @@
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
 		D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisedPostController.swift; sourceTree = "<group>"; };
 		F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewController.swift; sourceTree = "<group>"; };
+		F45026FF20B3594700D0EC45 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		F450270120B35B1F00D0EC45 /* CategoriesTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoriesTable.storyboard; sourceTree = "<group>"; };
+		F450270320B35BAF00D0EC45 /* BlankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankViewController.swift; sourceTree = "<group>"; };
 		F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		F4CD67F620AC9C0C003E7F3E /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
@@ -128,10 +134,11 @@
 				3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */,
 				D05F243320ACA2A400D625E9 /* Login.storyboard */,
 				3A453EE920A9E8EF000CA14F /* Main.storyboard */,
-				D05F243120ACA2A400D625E9 /* PostSubmitAndReview.storyboard */,
+				D05F243120ACA2A400D625E9 /* CreateAndSuggest.storyboard */,
 				D05F243520ACA2A400D625E9 /* PostDetail.storyboard */,
 				D05F243220ACA2A400D625E9 /* Feed.storyboard */,
 				D05F242F20ACA2A300D625E9 /* Categories.storyboard */,
+				F450270120B35B1F00D0EC45 /* CategoriesTable.storyboard */,
 				D05F243020ACA2A400D625E9 /* Following.storyboard */,
 				D05F243420ACA2A400D625E9 /* Profile.storyboard */,
 				D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */,
@@ -174,7 +181,6 @@
 		D040DC9320AB31A100EB284F /* PostSubmitAndReview */ = {
 			isa = PBXGroup;
 			children = (
-				D040DC7920AB301000EB284F /* SubmitAndReviewViewController.swift */,
 				D040DC8D20AB30F100EB284F /* GifAnimationExtension.swift */,
 				D040DC8B20AB30E100EB284F /* Cell.swift */,
 			);
@@ -194,14 +200,17 @@
 			children = (
 				D040DC9320AB31A100EB284F /* PostSubmitAndReview */,
 				D040DC9120AB316300EB284F /* LoginViewController.swift */,
+				D040DC7920AB301000EB284F /* CreateAndSuggestViewController.swift */,
 				F4CD67F620AC9C0C003E7F3E /* PostDetailViewController.swift */,
 				D040DC8720AB305000EB284F /* FeedTableViewController.swift */,
 				F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */,
 				D040DC8920AB306400EB284F /* CategoriesViewController.swift */,
+				F45026FF20B3594700D0EC45 /* CategoriesTableViewController.swift */,
 				F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */,
 				F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */,
 				D040DC8F20AB314100EB284F /* ProfileViewController.swift */,
 				D00A724120ADDDE900FBB2C8 /* CommentsTableViewController.swift */,
+				F450270320B35BAF00D0EC45 /* BlankViewController.swift */,
 			);
 			path = "Views+Controllers";
 			sourceTree = "<group>";
@@ -307,11 +316,12 @@
 				3A453EED20A9E8F1000CA14F /* Assets.xcassets in Resources */,
 				D05F243620ACA2A500D625E9 /* Categories.storyboard in Resources */,
 				D05F243A20ACA2A500D625E9 /* Login.storyboard in Resources */,
+				F450270220B35B1F00D0EC45 /* CategoriesTable.storyboard in Resources */,
 				D05F243920ACA2A500D625E9 /* Feed.storyboard in Resources */,
 				D05F243B20ACA2A500D625E9 /* Profile.storyboard in Resources */,
 				D05F243C20ACA2A500D625E9 /* PostDetail.storyboard in Resources */,
 				3A453EEB20A9E8EF000CA14F /* Main.storyboard in Resources */,
-				D05F243820ACA2A500D625E9 /* PostSubmitAndReview.storyboard in Resources */,
+				D05F243820ACA2A500D625E9 /* CreateAndSuggest.storyboard in Resources */,
 				CB06B3A920B31EE7009A1211 /* Comments.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,11 +336,13 @@
 				D040DC8420AB301B00EB284F /* RevisedPost.swift in Sources */,
 				D05F243E20ACD32C00D625E9 /* CommentController.swift in Sources */,
 				F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */,
+				F450270020B3594700D0EC45 /* CategoriesTableViewController.swift in Sources */,
 				D00A724220ADDDE900FBB2C8 /* CommentsTableViewController.swift in Sources */,
 				F4CD67F720AC9C0C003E7F3E /* PostDetailViewController.swift in Sources */,
 				D00A724020ADDA2D00FBB2C8 /* CategoryController.swift in Sources */,
 				3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */,
 				D00A724A20AE2CAF00FBB2C8 /* TagController.swift in Sources */,
+				F450270420B35BAF00D0EC45 /* BlankViewController.swift in Sources */,
 				D040DC8C20AB30E100EB284F /* Cell.swift in Sources */,
 				D040DC8520AB301B00EB284F /* UserController.swift in Sources */,
 				D040DC8620AB301B00EB284F /* Categories.swift in Sources */,
@@ -342,7 +354,7 @@
 				3A0131B820AA4B5C0097E4A8 /* User.swift in Sources */,
 				D040DC8320AB301B00EB284F /* PostController.swift in Sources */,
 				F4CD67F520AC9BBE003E7F3E /* FollowingTableViewCell.swift in Sources */,
-				D040DC7A20AB301000EB284F /* SubmitAndReviewViewController.swift in Sources */,
+				D040DC7A20AB301000EB284F /* CreateAndSuggestViewController.swift in Sources */,
 				D040DC8120AB301B00EB284F /* Post.swift in Sources */,
 				D040DC8E20AB30F100EB284F /* GifAnimationExtension.swift in Sources */,
 				D040DC9220AB316300EB284F /* LoginViewController.swift in Sources */,
