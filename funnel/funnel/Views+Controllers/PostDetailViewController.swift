@@ -66,7 +66,7 @@ class PostDetailViewController: UIViewController {
     
     @IBAction func branchPostButtonTapped(_ sender: Any) {
         print("button is working")
-        let mySB = UIStoryboard(name: "PostSubmitAndReview", bundle: .main)
+        let mySB = UIStoryboard(name: "CreateAndSuggest", bundle: .main)
         let vc = mySB.instantiateViewController(withIdentifier: "PostAndSubmitSB") as! CreateAndSuggestViewController
         vc.post = self.post
         navigationController?.pushViewController(vc, animated: true)

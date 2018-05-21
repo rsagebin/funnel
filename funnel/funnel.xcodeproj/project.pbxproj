@@ -15,6 +15,7 @@
 		3AB33B2220AB78C500ACD6CD /* midgetPornVolume3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB33B2120AB78C500ACD6CD /* midgetPornVolume3.swift */; };
 		3AB33B4320ACBFC700ACD6CD /* comments in Resources */ = {isa = PBXBuildFile; fileRef = 3AB33B4220ACBFC700ACD6CD /* comments */; };
 		CB06B3A920B31EE7009A1211 /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB06B3A820B31EE7009A1211 /* Comments.storyboard */; };
+		CB54654720B35FC9001B025C /* CreateAndSuggest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB54654620B35FC9001B025C /* CreateAndSuggest.storyboard */; };
 		D00A724020ADDA2D00FBB2C8 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A723F20ADDA2D00FBB2C8 /* CategoryController.swift */; };
 		D00A724220ADDDE900FBB2C8 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A724120ADDDE900FBB2C8 /* CommentsTableViewController.swift */; };
 		D00A724420ADDDFB00FBB2C8 /* BlankStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */; };
@@ -36,7 +37,6 @@
 		D040DC9220AB316300EB284F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC9120AB316300EB284F /* LoginViewController.swift */; };
 		D05F243620ACA2A500D625E9 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F242F20ACA2A300D625E9 /* Categories.storyboard */; };
 		D05F243720ACA2A500D625E9 /* Following.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243020ACA2A400D625E9 /* Following.storyboard */; };
-		D05F243820ACA2A500D625E9 /* CreateAndSuggest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243120ACA2A400D625E9 /* CreateAndSuggest.storyboard */; };
 		D05F243920ACA2A500D625E9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243220ACA2A400D625E9 /* Feed.storyboard */; };
 		D05F243A20ACA2A500D625E9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243320ACA2A400D625E9 /* Login.storyboard */; };
 		D05F243B20ACA2A500D625E9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243420ACA2A400D625E9 /* Profile.storyboard */; };
@@ -65,6 +65,7 @@
 		3AB33B2120AB78C500ACD6CD /* midgetPornVolume3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midgetPornVolume3.swift; sourceTree = "<group>"; };
 		3AB33B4220ACBFC700ACD6CD /* comments */ = {isa = PBXFileReference; lastKnownFileType = text; path = comments; sourceTree = "<group>"; };
 		CB06B3A820B31EE7009A1211 /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
+		CB54654620B35FC9001B025C /* CreateAndSuggest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAndSuggest.storyboard; sourceTree = "<group>"; };
 		D00A723F20ADDA2D00FBB2C8 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		D00A724120ADDDE900FBB2C8 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlankStoryboard.storyboard; sourceTree = "<group>"; };
@@ -86,7 +87,6 @@
 		D040DC9120AB316300EB284F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D05F242F20ACA2A300D625E9 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
 		D05F243020ACA2A400D625E9 /* Following.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Following.storyboard; sourceTree = "<group>"; };
-		D05F243120ACA2A400D625E9 /* CreateAndSuggest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAndSuggest.storyboard; sourceTree = "<group>"; };
 		D05F243220ACA2A400D625E9 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		D05F243320ACA2A400D625E9 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		D05F243420ACA2A400D625E9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */,
 				D05F243320ACA2A400D625E9 /* Login.storyboard */,
 				3A453EE920A9E8EF000CA14F /* Main.storyboard */,
-				D05F243120ACA2A400D625E9 /* CreateAndSuggest.storyboard */,
+				CB54654620B35FC9001B025C /* CreateAndSuggest.storyboard */,
 				D05F243520ACA2A400D625E9 /* PostDetail.storyboard */,
 				D05F243220ACA2A400D625E9 /* Feed.storyboard */,
 				D05F242F20ACA2A300D625E9 /* Categories.storyboard */,
@@ -309,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB54654720B35FC9001B025C /* CreateAndSuggest.storyboard in Resources */,
 				3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */,
 				3AB33B4320ACBFC700ACD6CD /* comments in Resources */,
 				D00A724420ADDDFB00FBB2C8 /* BlankStoryboard.storyboard in Resources */,
@@ -321,7 +322,6 @@
 				D05F243B20ACA2A500D625E9 /* Profile.storyboard in Resources */,
 				D05F243C20ACA2A500D625E9 /* PostDetail.storyboard in Resources */,
 				3A453EEB20A9E8EF000CA14F /* Main.storyboard in Resources */,
-				D05F243820ACA2A500D625E9 /* CreateAndSuggest.storyboard in Resources */,
 				CB06B3A920B31EE7009A1211 /* Comments.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
