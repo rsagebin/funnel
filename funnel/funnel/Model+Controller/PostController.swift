@@ -53,7 +53,7 @@ class PostController {
         let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
         let post = Post(user: user, description: description, imageAsCKAsset: asset, category: category, creatorRef: creatorReference)
         
-        post.followersRefs.append(creatorReference)
+//        post.followersRefs.append(creatorReference)
         
         newPost = post
         
@@ -113,8 +113,30 @@ class PostController {
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving updated following status to CloudKit: \(error)")
+                return
             }
         }
+    }
+    
+    func addTagsTo(tags: [String], post: Post) {
+        let postRecordID = post.ckRecordID ?? post.ckRecord.recordID
+        let postReference = CKReference(recordID: postRecordID, action: .deleteSelf)
+        var tagsRecordArray: [CKRecord] = []
+        
+        
+        for tag in tags {
+            let tag = Tag(text: tag, postReference: postReference)
+//            post.tags.append(tag)
+            tagsRecordArray.append(tag.ckRecord)
+        }
+        
+        ckManager.save(records: tagsRecordArray, perRecordCompletion: nil) { (records, error) in
+            if let error = error {
+                print("Error saving tags to CloudKit: \(error)")
+                return
+            }
+        }
+        
     }
     
     func fetchFollowingPosts(user: User) {
