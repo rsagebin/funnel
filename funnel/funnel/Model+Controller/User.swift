@@ -45,7 +45,7 @@ class User {
         record.setValue(name, forKey: User.nameKey)
         record.setValue(email, forKey: User.emailKey)
         record.setValue(isBanned, forKey: User.isBannedKey)
-//        record.setValue(blockedUsers, forKey: User.blockedUsersKey)
+        record.setValue(blockedUsers, forKey: User.blockedUsersKey)
         record.setValue(appleUserRef, forKey: User.appleUserRefKey)
         
         return record
@@ -69,15 +69,19 @@ class User {
             let name = cloudKitRecord[User.nameKey] as? String,
             let email = cloudKitRecord[User.emailKey] as? String,
             let isBanned = cloudKitRecord[User.isBannedKey] as? Bool,
-            let appleUserRef = cloudKitRecord[User.appleUserRefKey] as? CKReference,
-            let blockedUsers = cloudKitRecord[User.blockedUsersKey] as? [CKReference] else { return nil }
+            let appleUserRef = cloudKitRecord[User.appleUserRefKey] as? CKReference else { return nil }
+        
+        if let blockedUsers = cloudKitRecord[User.blockedUsersKey] as? [CKReference] {
+            self.blockedUsers = blockedUsers
+        } else {
+            self.blockedUsers = []
+        }
         
         self.username = username
         self.name = name
         self.email = email
         self.isBanned = isBanned
         self.appleUserRef = appleUserRef
-        self.blockedUsers = blockedUsers
         
         self.ckRecordID = cloudKitRecord.recordID
         

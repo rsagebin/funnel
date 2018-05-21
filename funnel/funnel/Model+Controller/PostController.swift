@@ -53,8 +53,6 @@ class PostController {
         let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
         let post = Post(user: user, description: description, imageAsCKAsset: asset, category: category, creatorRef: creatorReference)
         
-//        post.followersRefs.append(creatorReference)
-        
         newPost = post
         
         self.feedPosts.insert(post, at: 0)
@@ -164,7 +162,7 @@ class PostController {
         }
     }
 
-    func fetchUserPosts(user: User) {
+    func fetchUserPosts(user: User, completion: @escaping (Bool) -> Void) {
         
         // FIXME: This predicate needs to be updated to only pull posts that the person is following
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
@@ -174,17 +172,21 @@ class PostController {
         ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
+                completion(false)
                 return
             }
             
             guard let records = records else {
                 print("Found nil for records fetched from CloudKit.")
+                completion(false)
                 return
             }
             
             let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
             
             self.followingPosts = recordsArray
+            
+            completion(true)
         }
     }
     
