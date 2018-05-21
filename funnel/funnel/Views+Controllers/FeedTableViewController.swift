@@ -63,9 +63,9 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
     
     // MARK: - Delegate functions
     
-    func didTapComment() {
+    func didTapComment(post: Post) {
         print("Massaeg coming from FeedController")
-        
+        print(post.description)
         let commentasSB = UIStoryboard(name: "Comments", bundle: .main)
         let commentsController = commentasSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController
         

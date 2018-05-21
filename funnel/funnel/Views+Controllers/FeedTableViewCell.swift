@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CommentsDelegate {
-    func didTapComment()
+    func didTapComment(post: Post)
 }
 
 class FeedTableViewCell: UITableViewCell {
@@ -40,7 +40,8 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBAction func commentsButtonTapped(_ sender: Any) {
         print("Trying to show comments...")
-        delegate?.didTapComment()
+        guard let post = post else { return }
+        delegate?.didTapComment(post: post)
     }
     
     
