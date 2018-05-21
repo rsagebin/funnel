@@ -33,7 +33,7 @@ class UserController {
             
             let predicate = NSPredicate(format: "appleUserRef == %@", userRecordID)
             
-            self.ckManager.fetch(type: User.typeKey, predicate: predicate, completion: { (records, error) in
+            self.ckManager.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil, completion: { (records, error) in
                 if let error = error {
                     print("There was an error fetcing user by appleUserRef: \(error)")
                     completion(false)

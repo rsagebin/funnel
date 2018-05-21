@@ -24,6 +24,9 @@ class Post {
     private static let isBannedKey = "isBanned"
     private static let creatorRefKey = "creatorRef"
     private static let followersRefsKey = "followersRefs"
+    private static let category1RefKey = "category1Ref"
+    private static let category2RefKey = "category2Ref"
+    private static let category3RefKey = "category3Ref"
     
     var user: User?
     let description: String
@@ -35,6 +38,11 @@ class Post {
     var isAnswered: Bool
     var numberOfFlags: Int
     var isBanned: Bool
+    
+    var category1Ref: CKReference?
+    var category2Ref: CKReference?
+    var category3Ref: CKReference?
+    
     var followersRefs: [CKReference]
     let creatorRef: CKReference
     var ckRecordID: CKRecordID?
@@ -55,7 +63,20 @@ class Post {
         record.setValue(isAnswered, forKey: Post.isAnsweredKey)
         record.setValue(numberOfFlags, forKey: Post.numberOfFlagsKey)
         record.setValue(isBanned, forKey: Post.isBannedKey)
-//        record.setValue(followersRefs, forKey: Post.followersRefsKey)
+        
+        if let category1Ref = category1Ref {
+            record.setValue(category1Ref, forKey: Post.category1RefKey)
+        }
+        
+        if let category2Ref = category2Ref {
+            record.setValue(category2Ref, forKey: Post.category2RefKey)
+        }
+        
+        if let category3Ref = category3Ref {
+            record.setValue(category3Ref, forKey: Post.category3RefKey)
+        }
+        
+        record.setValue(followersRefs, forKey: Post.followersRefsKey)
         
         return record
     }
@@ -93,6 +114,18 @@ class Post {
             self.followersRefs = followersRefs
         } else {
             self.followersRefs = []
+        }
+
+        if let category1Ref = cloudKitRecord[Post.category1RefKey] as? CKReference {
+            self.category1Ref = category1Ref
+        }
+        
+        if let category2Ref = cloudKitRecord[Post.category2RefKey] as? CKReference {
+            self.category2Ref = category2Ref
+        }
+        
+        if let category3Ref = cloudKitRecord[Post.category3RefKey] as? CKReference {
+            self.category3Ref = category3Ref
         }
         
         self.description = description

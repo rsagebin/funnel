@@ -10,24 +10,12 @@ import Foundation
 import CloudKit
 
 
-let topCategories: [Category1] = [Category1(title: "food"),
-                                  Category1(title: "health"),
-                                  Category1(title: "animals"),
-                                  Category1(title: "education"),
-                                  Category1(title: "transportation"),
-                                  Category1(title: "tech"),
-                                  Category1(title: "outdoors"),
-                                  Category1(title: "personal"),
-                                  Category1(title: "science"),
-                                  Category1(title: "lifestyle")
-                                ]
-
 class Category1 {
     static let typeKey = "Category1"
     private static let titleKey = "title"
 
     let title: String
-    var children: [Category2]
+    var children: [Category2]?
     
     var ckRecordID: CKRecordID?
     var ckRecord: CKRecord {
@@ -44,6 +32,15 @@ class Category1 {
         return record
     }
     
+    init?(cloudKitRecord: CKRecord) {
+        guard let title = cloudKitRecord[Category1.titleKey] as? String
+            else { return nil }
+        
+        self.title = title
+        self.ckRecordID = cloudKitRecord.recordID
+    }
+    
+    
     init(title: String) {
         self.title = title
         self.children = []
@@ -57,10 +54,10 @@ class Category2 {
     private static let parentRefKey = "parentRef"
     
     let title: String
-    let parent: Category1
-    var children: [Category3]
+    var parent: Category1?
+    var children: [Category3]?
     
-    let parentRef: CKReference
+    var parentRef: CKReference
     var ckRecordID: CKRecordID?
     var ckRecord: CKRecord {
         let record: CKRecord
@@ -75,6 +72,17 @@ class Category2 {
         record.setValue(parentRef, forKey: Category2.parentRefKey)
         
         return record
+    }
+    
+    init?(cloudKitRecord: CKRecord) {
+        guard let title = cloudKitRecord[Category2.titleKey] as? String,
+            let parentRef = cloudKitRecord[Category2.parentRefKey] as? CKReference
+                else { return nil }
+        
+        self.title = title
+        self.parentRef = parentRef
+        self.ckRecordID = cloudKitRecord.recordID
+        
     }
     
     init(title: String, parent: Category1) {
@@ -94,10 +102,10 @@ class Category3 {
     private static let parentRefKey = "parentRef"
     
     let title: String
-    let parent: Category2
-    var children: [String]
+    var parent: Category2?
+    var children: [String]?
     
-    let parentRef: CKReference
+    var parentRef: CKReference
     var ckRecordID: CKRecordID?
     var ckRecord: CKRecord {
         let record: CKRecord
@@ -112,6 +120,17 @@ class Category3 {
         record.setValue(parentRef, forKey: Category3.parentRefKey)
         
         return record
+    }
+    
+    init?(cloudKitRecord: CKRecord) {
+        guard let title = cloudKitRecord[Category3.titleKey] as? String,
+            let parentRef = cloudKitRecord[Category3.parentRefKey] as? CKReference
+            else { return nil }
+        
+        self.title = title
+        self.parentRef = parentRef
+        self.ckRecordID = cloudKitRecord.recordID
+        
     }
     
     init(title: String, parent: Category2) {

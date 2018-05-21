@@ -84,8 +84,9 @@ class PostController {
         self.feedPosts = []
         
         let predicate = NSPredicate(value: true)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 return
@@ -102,6 +103,41 @@ class PostController {
             
             NotificationCenter.default.post(name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: self)
         }
+    }
+    
+    
+    func addCategories(to post: Post, category1: Category1? = nil, category2: Category2? = nil, category3: Category3? = nil) {
+        if let category1 = category1 {
+            let reference = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
+            post.category1Ref = reference
+        }
+        
+        if let category2 = category2 {
+            guard post.category1Ref != nil || category1 != nil else {
+                print("Must have a category 1 before adding category 2.")
+                return
+            }
+            
+//            for category in CategoryController.shared.topCategories {
+//                if category2.parentRef != category.ckRecordID ?? category.ckRecord.recordID {
+//                    print("Category 2 is not contained within a category 1")
+//                    return
+//                }
+//            }
+            
+            let reference = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
+            post.category2Ref = reference
+        }
+        
+        if let category3 = category3 {
+            guard post.category2Ref != nil || category2 != nil else {
+                print("Must have a category 2 before adding category 3.")
+                return
+            }
+            let reference = CKReference(recordID: category3.ckRecordID ?? category3.ckRecord.recordID, action: .none)
+            post.category3Ref = reference
+        }
+        
     }
     
     func addFollowerToPost(user: User, post: Post) {
@@ -138,14 +174,13 @@ class PostController {
     }
     
     func fetchFollowingPosts(user: User) {
-        
-        // FIXME: This predicate needs to be updated to only pull posts that the person is following
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
         let userReference = CKReference(recordID: userRecordID, action: .deleteSelf)
         
         let predicate = NSPredicate(format: "followersRefs CONTAINS %@", userReference)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 return
@@ -153,38 +188,38 @@ class PostController {
             
             guard let records = records else {
                 print("Found nil for records fetched from CloudKit.")
-                return
-            }
-            
-            let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
-            
-            self.userPosts = recordsArray
-        }
-    }
-
-    func fetchUserPosts(user: User, completion: @escaping (Bool) -> Void) {
-        
-        // FIXME: This predicate needs to be updated to only pull posts that the person is following
-        let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
-        
-        let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
-        
-        ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
-            if let error = error {
-                print("Error fetching posts from CloudKit: \(error.localizedDescription)")
-                completion(false)
-                return
-            }
-            
-            guard let records = records else {
-                print("Found nil for records fetched from CloudKit.")
-                completion(false)
                 return
             }
             
             let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
             
             self.followingPosts = recordsArray
+            
+        }
+    }
+
+    func fetchUserPosts(user: User, completion: @escaping (Bool) -> Void) {
+        let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
+        
+        let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+            if let error = error {
+                print("Error fetching posts from CloudKit: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            
+            guard let records = records else {
+                print("Found nil for records fetched from CloudKit.")
+                completion(false)
+                return
+            }
+            
+            let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
+            
+            self.userPosts = recordsArray
             
             completion(true)
         }

@@ -28,23 +28,24 @@ class TagController {
             }
         }
         
-        func fetchTagsFor(post: Post) -> [Tag] {
-            var tags: [Tag] = []
-            
-            let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
-            
-            ckManager.fetch(type: Tag.typeKey, predicate: predicate) { (records, error) in
-                if let error = error {
-                    print("Error loading tags for post: \(error)")
-                    return
-                }
-                
-                guard let tagsArray = records?.compactMap({Tag(cloudKitRecord: $0)}) else { return }
-                tags = tagsArray
+    }
+    
+    func fetchTagsFor(post: Post) -> [Tag] {
+        var tags: [Tag] = []
+        
+        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
+        
+        ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+            if let error = error {
+                print("Error loading tags for post: \(error)")
+                return
             }
             
-            return tags
+            guard let tagsArray = records?.compactMap({Tag(cloudKitRecord: $0)}) else { return }
+            tags = tagsArray
         }
+        
+        return tags
     }
     
     

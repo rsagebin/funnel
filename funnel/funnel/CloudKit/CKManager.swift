@@ -14,9 +14,11 @@ class CloudKitManager {
     private let publicDB = CKContainer.default().publicCloudDatabase
     
     // Fetch from CloudKit
-    func fetch(type: String, predicate: NSPredicate, completion: @escaping ((_ records: [CKRecord]?, _ error: Error?) -> Void)) {
+    func fetch(type: String, predicate: NSPredicate, sortDescriptor: NSSortDescriptor?, completion: @escaping ((_ records: [CKRecord]?, _ error: Error?) -> Void)) {
         let query = CKQuery(recordType: type, predicate: predicate)
-        query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        if let sortDescriptor = sortDescriptor {
+            query.sortDescriptors = [sortDescriptor]
+        }
         
         publicDB.perform(query, inZoneWith: nil, completionHandler: completion)
     }
