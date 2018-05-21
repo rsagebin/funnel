@@ -41,9 +41,36 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Methods
+    func couldNotFetchUser() {
+        let alertcontroller = UIAlertController(title: "User Error", message: "Could not create user, please check your network connection and try again", preferredStyle: .alert)
+        
+        let alertDismiss = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertcontroller.addAction(alertDismiss)
+        present(alertcontroller, animated: true)
+    }
+    
+    func checkIfBanned() {
+        self.funnelAppLoadingView.isHidden = false
+        self.funnelTitleView.isHidden = false
+        self.userSignUpView.isHidden = true
+        self.userSignedInView.isHidden = true
+        
+        guard let user = UserController.shared.loggedInUser else { return }
+        if user.isBanned == true {
+            
+            let alertController = UIAlertController(title: "You have been banned!", message: "Due to your interaction with the community, you have had three strikes", preferredStyle: .alert)
+            
+            let dismissAction = UIAlertAction(title: "I'm the worst", style: .cancel, handler: nil)
+            
+            alertController.addAction(dismissAction)
+            present(alertController, animated: true)
+        }
+    }
+    
     func fetchUser() {
         UserController.shared.fetchCurrentUser { (success) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: { // Change back to 3
                 
                 // Show Signed In
                 if success {
@@ -52,7 +79,7 @@ class LoginViewController: UIViewController {
                     self.userSignUpView.isHidden = true
                     self.userSignedInView.isHidden = false
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: { // Change back to 2
                         self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
                     })
                 }
@@ -63,19 +90,10 @@ class LoginViewController: UIViewController {
                     self.funnelTitleView.isHidden = false
                     self.userSignUpView.isHidden = false
                     self.userSignedInView.isHidden = true
+                    self.checkIfBanned()
                 }
             })
         }
-    }
-    
-    func couldNotFetchUser() {
-        
-        let alertcontroller = UIAlertController(title: "User Error", message: "Could not create user, please check your network connection and try again", preferredStyle: .alert)
-        
-        let alertDismiss = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertcontroller.addAction(alertDismiss)
-        present(alertcontroller, animated: true)
     }
     
     // MARK: - Actions
@@ -100,6 +118,8 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    
     
     // MARK: Biometric Authentication
     @IBAction func authenticateButtonTapped(_ sender: Any) {

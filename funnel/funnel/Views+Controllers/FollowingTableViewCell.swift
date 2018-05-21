@@ -48,10 +48,10 @@ class FollowingTableViewCell: UITableViewCell {
             self.postAcceptedSolutionIcon.isHidden = true
             self.postCategoryLabel.text = post.category
             self.postDescriptionLabel.text = post.description
-//            self.postHashTagsLabel.text = post.tags // Change tags from array to string
-//            self.postFollowingLabel.text = post
+            self.postHashTagsLabel.text = ""
+            self.postFollowingLabel.text = String(post.followersRefs.count)
 //            self.postSuggestionLabel.text = post
-//            self.postCommentsLabel.text = String(post.comments.count)
+//            self.postCommentsLabel.text = "\(post.comments?.count)" ?? "\(0)"
         }
         
         // Post solution unhide accepted soulution
