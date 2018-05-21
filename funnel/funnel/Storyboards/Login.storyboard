@@ -15,7 +15,7 @@
         <!--Login View Controller-->
         <scene sceneID="r7g-85-9cX">
             <objects>
-                <viewController id="qaQ-oX-pVw" customClass="LoginViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginSB" id="qaQ-oX-pVw" customClass="LoginViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WO7-pS-ahW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,7 +104,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <size key="shadowOffset" width="-1" height="-2"/>
+                                        <size key="shadowOffset" width="1" height="-3"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N19-ma-mU8">
                                         <rect key="frame" x="28" y="124" width="319" height="30"/>
@@ -213,20 +213,6 @@
                                     <constraint firstItem="Qhp-eg-2b9" firstAttribute="centerX" secondItem="9Ff-Hm-bR6" secondAttribute="centerX" id="grY-UN-8vB"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmg-4e-Hz0">
-                                <rect key="frame" x="137" y="557" width="100" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="NTJ-fa-OGR"/>
-                                    <constraint firstAttribute="height" constant="30" id="dlf-tC-w0y"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Jump to Main">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <segue destination="jtt-qs-lMy" kind="show" identifier="WillBeDeletedLater" id="FEM-qf-fIu"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIc-TE-SnD">
                                 <rect key="frame" x="10" y="567" width="100" height="30"/>
                                 <constraints>
@@ -294,11 +280,9 @@
                             <constraint firstItem="Z2d-nz-vPO" firstAttribute="leading" secondItem="o9u-63-ZrU" secondAttribute="leading" id="Cit-JQ-YwX"/>
                             <constraint firstItem="24Z-0q-3Nw" firstAttribute="width" secondItem="WO7-pS-ahW" secondAttribute="width" id="Gq1-pa-V5V"/>
                             <constraint firstItem="9Ff-Hm-bR6" firstAttribute="width" secondItem="WO7-pS-ahW" secondAttribute="width" id="IjX-2t-iz6"/>
-                            <constraint firstItem="cmg-4e-Hz0" firstAttribute="centerX" secondItem="o9u-63-ZrU" secondAttribute="centerX" id="KFx-Mq-Qck"/>
                             <constraint firstItem="00T-8c-ujL" firstAttribute="leading" secondItem="o9u-63-ZrU" secondAttribute="leading" id="OdK-tV-FAG"/>
                             <constraint firstItem="o9u-63-ZrU" firstAttribute="bottom" secondItem="a4w-eR-j41" secondAttribute="bottom" id="S0V-Rd-qhY"/>
                             <constraint firstItem="o9u-63-ZrU" firstAttribute="top" secondItem="8Df-FN-GNl" secondAttribute="top" id="UMv-cC-YD5"/>
-                            <constraint firstItem="Ce3-EH-iV0" firstAttribute="top" secondItem="cmg-4e-Hz0" secondAttribute="bottom" constant="50" id="USk-xA-sX5"/>
                             <constraint firstItem="o9u-63-ZrU" firstAttribute="bottom" secondItem="00T-8c-ujL" secondAttribute="bottom" id="VVZ-U3-NUe"/>
                             <constraint firstItem="Ce3-EH-iV0" firstAttribute="centerX" secondItem="o9u-63-ZrU" secondAttribute="centerX" id="XxL-9K-DNF"/>
                             <constraint firstItem="a4w-eR-j41" firstAttribute="centerX" secondItem="o9u-63-ZrU" secondAttribute="centerX" id="YiY-Xp-IFP"/>
@@ -355,7 +339,4 @@
             <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="TxM-66-ckE"/>
-    </inferredMetricsTieBreakers>
 </document>

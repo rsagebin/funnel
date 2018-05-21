@@ -21,19 +21,18 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
     }
     
     @objc func reloadFeedView() {
-        
-        
         DispatchQueue.main.async {
             
             self.tableView.reloadData()
         }
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         tableView.reloadData()
     }
+    
     
     // MARK: - Table view data source
     
@@ -61,6 +60,7 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
         return cell
     }
     
+    
     // MARK: - Delegate functions
     
     func didTapComment(post: Post) {
@@ -72,6 +72,7 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
         navigationController?.pushViewController(commentsController, animated: true)
     }
    
+    
      // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -82,5 +83,11 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
         let selectedPost = PostController.shared.feedPosts[indexPath.row]
         vc.post = selectedPost
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    // MARK: - Actions
+    @IBAction func postFollowButtonPressed(_ sender: UIButton) {
+        
     }
 }

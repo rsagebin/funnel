@@ -22,7 +22,26 @@ class FollowingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Following"
+        navigationItem.title = "Following" // Isn't reflecting on the bar
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let user = UserController.shared.loggedInUser else { return }
+        PostController.shared.fetchUserPosts(user: user) { (success) in
+            DispatchQueue.main.async {
+                
+                if success {
+                    self.userPosts = PostController.shared.followingPosts // Update to userPosts before push
+                    self.tableView.reloadData()
+                }
+                
+                if !success {
+                    print("Could not fetch user posts")
+                }
+            }
+        }
     }
     
     
@@ -35,19 +54,19 @@ class FollowingTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         var sectionCount = 0
         
-        let userPosts = PostController.shared.userPosts.count // Change to 1 from 0 if user has any posts
-        if userPosts > 0 {
+        let posts = userPosts.count // Change to 1 from 0 if user has any posts
+        if posts > 0 {
             sectionCount += 1
             sectionTitles.append("My Posts")
         }
         
-        let submittedAnswers = 1 // Change to 1 from 0 if user has any suggested answers
+        let submittedAnswers = 0 // Change to 1 from 0 if user has any suggested answers
         if submittedAnswers > 0 {
             sectionCount += 1
             sectionTitles.append("My Suggested Answers")
         }
         
-        let followingPosts = 1 // Change to 1 from 0 if user is following posts
+        let followingPosts = 0 // Change to 1 from 0 if user is following posts
         if followingPosts > 0 {
             sectionCount += 1
             sectionTitles.append("Posts I'm Following")
@@ -66,6 +85,10 @@ class FollowingTableViewController: UITableViewController {
         guard sectionTitles.indices ~= section else { return nil }
         return sectionTitles[section]
     }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        <#code#>
+//    }
     
     // Rows
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,16 +109,17 @@ class FollowingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 { // User posts
-//            let userPosts = PostController.shared.userPosts.count
-//            return userPosts
+            let posts = userPosts.count
+            return posts
         }
         
-        if section == 1 { // User submissions
-            
-        }
-        
+//        if section == 1 { // User submissions
+//
+//        }
+//
         if section == 2 { // User followings
-            
+            let followings = userFollowings.count
+            return followings
         }
         
         return 1
@@ -104,10 +128,10 @@ class FollowingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? FollowingTableViewCell else { return UITableViewCell() }
         
-//        let posts = PostController.shared.userPosts[indexPath.row]
-//        if indexPath.section == 0 {
-//            cell.userPost = posts
-//        }
+        if indexPath.section == 0 {
+            let post = userPosts[indexPath.row]
+            cell.userPost = post
+        }
         
 //        let suggestions = PostController.shared
 //        if indexPath.section == 1 {
@@ -115,9 +139,23 @@ class FollowingTableViewController: UITableViewController {
 //        }
         
         
-//        let following = PostController.shared
+        if indexPath.section == 2 {
+            let following = userFollowings[indexPath.row]
+            cell.userFollowing = following
+        }
         
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let postDetailSB = UIStoryboard(name: "PostDetail", bundle: .main)
+        let currentVC = postDetailSB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let selectedPost = PostController.shared.feedPosts[indexPath.row]
+        
+        currentVC.post = selectedPost
+        navigationController?.pushViewController(currentVC, animated: true)
     }
 }
