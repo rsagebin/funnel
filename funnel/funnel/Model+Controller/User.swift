@@ -62,6 +62,7 @@ class User {
         self.isBanned = false
         self.blockedUsers = []
         self.appleUserRef = appleUserRef
+        self.ckRecordID = CKRecordID(recordName: UUID().uuidString)
     }
     
     init?(cloudKitRecord: CKRecord) {
