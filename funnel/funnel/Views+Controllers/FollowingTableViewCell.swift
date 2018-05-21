@@ -51,7 +51,7 @@ class FollowingTableViewCell: UITableViewCell {
 //            self.postHashTagsLabel.text = post.tags // Change tags from array to string
 //            self.postFollowingLabel.text = post
 //            self.postSuggestionLabel.text = post
-            self.postCommentsLabel.text = String(post.comments.count)
+//            self.postCommentsLabel.text = String(post.comments.count)
         }
         
         // Post solution unhide accepted soulution
