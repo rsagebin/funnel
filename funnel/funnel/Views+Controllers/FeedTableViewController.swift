@@ -66,9 +66,9 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
     func didTapComment(post: Post) {
         print("Massaeg coming from FeedController")
         print(post.description)
-        let commentasSB = UIStoryboard(name: "Comments", bundle: .main)
-        let commentsController = commentasSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController
-        
+        let commentsSB = UIStoryboard(name: "Comments", bundle: .main)
+        let commentsController = commentsSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController
+        commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
     }
    
