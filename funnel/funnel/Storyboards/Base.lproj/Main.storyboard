@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,13 +85,13 @@
             </objects>
             <point key="canvasLocation" x="2238" y="532"/>
         </scene>
-        <!--PostSubmitAndReview-->
+        <!--CreateAndSuggest-->
         <scene sceneID="vdQ-Pn-Hoo">
             <objects>
-                <viewControllerPlaceholder storyboardName="PostSubmitAndReview" id="cxd-mD-p8D" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="CreateAndSuggest" id="cxd-mD-p8D" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXu-3W-hxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2483" y="-252"/>
+            <point key="canvasLocation" x="2482" y="-248"/>
         </scene>
         <!--Categories-->
         <scene sceneID="ZY6-CF-VIb">
