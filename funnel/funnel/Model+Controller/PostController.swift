@@ -104,6 +104,41 @@ class PostController {
         }
     }
     
+    
+    func addCategories(to post: Post, category1: Category1? = nil, category2: Category2? = nil, category3: Category3? = nil) {
+        if let category1 = category1 {
+            let reference = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
+            post.category1Ref = reference
+        }
+        
+        if let category2 = category2 {
+            guard post.category1Ref != nil || category1 != nil else {
+                print("Must have a category 1 before adding category 2.")
+                return
+            }
+            
+//            for category in CategoryController.shared.topCategories {
+//                if category2.parentRef != category.ckRecordID ?? category.ckRecord.recordID {
+//                    print("Category 2 is not contained within a category 1")
+//                    return
+//                }
+//            }
+            
+            let reference = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
+            post.category2Ref = reference
+        }
+        
+        if let category3 = category3 {
+            guard post.category2Ref != nil || category2 != nil else {
+                print("Must have a category 2 before adding category 3.")
+                return
+            }
+            let reference = CKReference(recordID: category3.ckRecordID ?? category3.ckRecord.recordID, action: .none)
+            post.category3Ref = reference
+        }
+        
+    }
+    
     func addFollowerToPost(user: User, post: Post) {
         let reference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .none)
         post.followersRefs.append(reference)
@@ -138,8 +173,6 @@ class PostController {
     }
     
     func fetchFollowingPosts(user: User) {
-        
-        // FIXME: This predicate needs to be updated to only pull posts that the person is following
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
         let userReference = CKReference(recordID: userRecordID, action: .deleteSelf)
         
@@ -158,13 +191,12 @@ class PostController {
             
             let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
             
-            self.userPosts = recordsArray
+            self.followingPosts = recordsArray
+            
         }
     }
 
     func fetchUserPosts(user: User, completion: @escaping (Bool) -> Void) {
-        
-        // FIXME: This predicate needs to be updated to only pull posts that the person is following
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
         
         let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
@@ -184,7 +216,7 @@ class PostController {
             
             let recordsArray = records.compactMap( {Post(cloudKitRecord: $0) })
             
-            self.followingPosts = recordsArray
+            self.userPosts = recordsArray
             
             completion(true)
         }
