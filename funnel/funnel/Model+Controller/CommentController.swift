@@ -40,7 +40,7 @@ class CommentController {
         
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
         
-        ckManager.fetch(type: Comment.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error loading comments for post: \(error)")
                 return

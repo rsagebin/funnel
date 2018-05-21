@@ -84,8 +84,9 @@ class PostController {
         self.feedPosts = []
         
         let predicate = NSPredicate(value: true)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 return
@@ -177,8 +178,9 @@ class PostController {
         let userReference = CKReference(recordID: userRecordID, action: .deleteSelf)
         
         let predicate = NSPredicate(format: "followersRefs CONTAINS %@", userReference)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 return
@@ -200,8 +202,9 @@ class PostController {
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
         
         let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: Post.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 completion(false)

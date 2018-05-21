@@ -35,7 +35,7 @@ class TagController {
         
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
         
-        ckManager.fetch(type: Tag.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error loading tags for post: \(error)")
                 return

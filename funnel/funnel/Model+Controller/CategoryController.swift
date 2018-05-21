@@ -58,8 +58,9 @@ class CategoryController {
     func loadCategories() {
         
         let predicate = NSPredicate(value: true)
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         
-        ckManager.fetch(type: Category3.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Category3.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching level 3 categories: \(error)")
                 return
@@ -71,7 +72,7 @@ class CategoryController {
             
         }
         
-        ckManager.fetch(type: Category2.typeKey, predicate: predicate) { (records, error) in
+        ckManager.fetch(type: Category2.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching level 2 categories: \(error)")
                 return
