@@ -8,10 +8,15 @@
 
 import UIKit
 
+//protocol CommentsDelegate {
+//    func didTapComment()
+//}
+
 class PostDetailViewController: UIViewController {
 
     // MARK: - Properties
     
+//    var delegate: CommentsDelegate?
     var post: Post?
     
     // MARK: - Outlets
@@ -53,7 +58,12 @@ class PostDetailViewController: UIViewController {
     }
   
     // MARK: - Actions
-
+    
+    @IBAction func commentsButtonTapped(_ sender: Any) {
+        print("Trying to show comments")
+//        delegate?.didTapComment()
+    }
+    
     @IBAction func branchPostButtonTapped(_ sender: Any) {
         print("button is working")
         let mySB = UIStoryboard(name: "PostSubmitAndReview", bundle: .main)

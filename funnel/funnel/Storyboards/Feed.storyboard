@@ -47,7 +47,10 @@
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-kN-ndN">
                                                                     <rect key="frame" x="35" y="0.0" width="25" height="25"/>
-                                                                    <state key="normal" image="notification"/>
+                                                                    <state key="normal" image="speech"/>
+                                                                    <connections>
+                                                                        <action selector="commentsButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="ekZ-kA-Ap3"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0p7-NH-ynu">
                                                                     <rect key="frame" x="70" y="0.0" width="25" height="25"/>
@@ -59,34 +62,6 @@
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="F9x-nb-1ky">
-                                                            <rect key="frame" x="8" y="350" width="307" height="100"/>
-                                                            <subviews>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" scrollEnabled="NO" text="#Alien? #rock?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-dJ-WKN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="307" height="26"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                </textView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oec-Z7-gqk">
-                                                                    <rect key="frame" x="0.0" y="38" width="307" height="62"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                </textView>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="oec-Z7-gqk" firstAttribute="top" secondItem="bL8-dJ-WKN" secondAttribute="bottom" constant="12" id="CA1-9X-lwc"/>
-                                                                <constraint firstAttribute="height" constant="100" id="E3z-fW-y3T"/>
-                                                                <constraint firstAttribute="trailing" secondItem="oec-Z7-gqk" secondAttribute="trailing" id="Htp-Sx-GvF"/>
-                                                                <constraint firstAttribute="trailing" secondItem="bL8-dJ-WKN" secondAttribute="trailing" id="TEU-Ji-BhQ"/>
-                                                                <constraint firstItem="bL8-dJ-WKN" firstAttribute="leading" secondItem="F9x-nb-1ky" secondAttribute="leading" id="UM4-3t-ZSM"/>
-                                                                <constraint firstItem="bL8-dJ-WKN" firstAttribute="top" secondItem="F9x-nb-1ky" secondAttribute="top" id="lWN-wg-Qjc"/>
-                                                                <constraint firstItem="oec-Z7-gqk" firstAttribute="leading" secondItem="F9x-nb-1ky" secondAttribute="leading" id="olc-ar-H9Z"/>
-                                                                <constraint firstAttribute="bottom" secondItem="oec-Z7-gqk" secondAttribute="bottom" id="plB-wW-NGd"/>
-                                                            </constraints>
-                                                        </stackView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="utO-wp-V4b">
                                                             <rect key="frame" x="26" y="45" width="270" height="270"/>
                                                             <constraints>
@@ -94,23 +69,41 @@
                                                                 <constraint firstAttribute="height" constant="270" id="ghi-d0-x0i"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oec-Z7-gqk">
+                                                            <rect key="frame" x="15" y="391" width="293" height="59"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" scrollEnabled="NO" text="#Alien? #rock?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-dJ-WKN">
+                                                            <rect key="frame" x="15" y="353" width="293" height="33"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
+                                                        <constraint firstItem="bL8-dJ-WKN" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="3YL-XX-cIU"/>
                                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="top" secondItem="rhU-Ev-K2I" secondAttribute="top" constant="5" id="5B6-nO-GEc"/>
+                                                        <constraint firstItem="oec-Z7-gqk" firstAttribute="top" secondItem="bL8-dJ-WKN" secondAttribute="bottom" constant="5" id="5nr-TB-xuO"/>
                                                         <constraint firstAttribute="trailing" secondItem="qJL-SM-EbI" secondAttribute="trailing" constant="37" id="9C1-i2-Qt9"/>
                                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="40" id="Ewk-Nj-eGR"/>
-                                                        <constraint firstAttribute="bottom" secondItem="F9x-nb-1ky" secondAttribute="bottom" constant="5" id="H4G-mn-hP0"/>
                                                         <constraint firstItem="qJL-SM-EbI" firstAttribute="top" secondItem="utO-wp-V4b" secondAttribute="bottom" constant="5" id="J8N-5z-tjX"/>
+                                                        <constraint firstItem="oec-Z7-gqk" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="15" id="SEo-hl-FZo"/>
                                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="VF2-0n-0yJ"/>
                                                         <constraint firstItem="utO-wp-V4b" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="26" id="aDR-PF-flj"/>
                                                         <constraint firstAttribute="trailing" secondItem="v3r-Np-1m0" secondAttribute="trailing" constant="40" id="d2Y-44-oml"/>
-                                                        <constraint firstItem="bL8-dJ-WKN" firstAttribute="top" secondItem="qJL-SM-EbI" secondAttribute="bottom" constant="5" id="jgJ-T3-Xyh"/>
-                                                        <constraint firstItem="F9x-nb-1ky" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leadingMargin" id="pRK-pE-jKc"/>
+                                                        <constraint firstItem="oec-Z7-gqk" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="e0F-Hv-kce"/>
+                                                        <constraint firstAttribute="trailing" secondItem="oec-Z7-gqk" secondAttribute="trailing" constant="15" id="jvg-pE-TnF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bL8-dJ-WKN" secondAttribute="trailing" constant="15" id="oxC-qb-uhA"/>
                                                         <constraint firstItem="utO-wp-V4b" firstAttribute="top" secondItem="v3r-Np-1m0" secondAttribute="bottom" constant="19.5" id="rRp-Xh-aK1"/>
                                                         <constraint firstItem="utO-wp-V4b" firstAttribute="top" secondItem="rhU-Ev-K2I" secondAttribute="top" constant="45" id="rry-Eo-a7F"/>
+                                                        <constraint firstItem="bL8-dJ-WKN" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="15" id="tKX-uj-Smd"/>
+                                                        <constraint firstItem="bL8-dJ-WKN" firstAttribute="top" secondItem="qJL-SM-EbI" secondAttribute="bottom" constant="8" id="tsV-lt-IdI"/>
+                                                        <constraint firstAttribute="bottom" secondItem="oec-Z7-gqk" secondAttribute="bottom" constant="5" id="vDb-mv-H77"/>
                                                         <constraint firstItem="utO-wp-V4b" firstAttribute="centerX" secondItem="v3r-Np-1m0" secondAttribute="centerX" id="xKP-4p-31j"/>
-                                                        <constraint firstItem="F9x-nb-1ky" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="yau-XI-QgR"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -134,9 +127,9 @@
                                     <outlet property="aprovedButtonOutlet" destination="soo-Mg-fHf" id="B69-Ca-vup"/>
                                     <outlet property="branchButtonOutlet" destination="0p7-NH-ynu" id="jsq-qv-ufV"/>
                                     <outlet property="categoriesLabel" destination="v3r-Np-1m0" id="Q6q-SX-Ed4"/>
+                                    <outlet property="commentsButtonOutlet" destination="Neu-kN-ndN" id="nGd-UM-9vd"/>
                                     <outlet property="descriptionTextView" destination="oec-Z7-gqk" id="7eS-9d-XTD"/>
                                     <outlet property="exclamationButtonOutlet" destination="5pR-hd-8hF" id="Dn7-AI-v71"/>
-                                    <outlet property="notificationButtonOutlet" destination="Neu-kN-ndN" id="Vr0-FV-8hk"/>
                                     <outlet property="postImageView" destination="utO-wp-V4b" id="VA7-QJ-g1X"/>
                                     <outlet property="tagsTextView" destination="bL8-dJ-WKN" id="9m7-fp-hif"/>
                                 </connections>
@@ -160,6 +153,6 @@
         <image name="branch" width="25" height="25"/>
         <image name="exclamation" width="25" height="25"/>
         <image name="funnel" width="25" height="25"/>
-        <image name="notification" width="25" height="25"/>
+        <image name="speech" width="25" height="25"/>
     </resources>
 </document>

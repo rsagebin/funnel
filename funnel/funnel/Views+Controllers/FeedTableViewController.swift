@@ -8,9 +8,7 @@
 
 import UIKit
 
-
-
-class FeedTableViewController: UITableViewController {
+class FeedTableViewController: UITableViewController, CommentsDelegate {
     
     // MARK: - Life Cycle
    
@@ -58,7 +56,20 @@ class FeedTableViewController: UITableViewController {
         cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
         cell.tagsTextView.layer.borderWidth = 1.0
         
+        cell.delegate = self
+        
         return cell
+    }
+    
+    // MARK: - Delegate functions
+    
+    func didTapComment() {
+        print("Massaeg coming from FeedController")
+        
+        let commentasSB = UIStoryboard(name: "Comments", bundle: .main)
+        let commentsController = commentasSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController
+        
+        navigationController?.pushViewController(commentsController, animated: true)
     }
    
      // MARK: - Navigation
