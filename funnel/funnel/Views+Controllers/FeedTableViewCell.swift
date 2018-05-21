@@ -20,8 +20,8 @@ class FeedTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var tagsTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var commentsTextView: UITextView!
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var exclamationButtonOutlet: UIButton!

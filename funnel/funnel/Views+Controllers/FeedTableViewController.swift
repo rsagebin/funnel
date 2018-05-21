@@ -55,8 +55,8 @@ class FeedTableViewController: UITableViewController {
         cell.post = post
         cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
         cell.descriptionTextView.layer.borderWidth = 1.0
-        cell.commentsTextView.layer.borderColor = UIColor.black.cgColor
-        cell.commentsTextView.layer.borderWidth = 1.0
+        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
+        cell.tagsTextView.layer.borderWidth = 1.0
         
         return cell
     }
