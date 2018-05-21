@@ -27,6 +27,7 @@ class Category1 {
     private static let titleKey = "title"
 
     let title: String
+    var children: [Category2]
     
     var ckRecordID: CKRecordID?
     var ckRecord: CKRecord {
@@ -45,6 +46,7 @@ class Category1 {
     
     init(title: String) {
         self.title = title
+        self.children = []
     }
 }
 
@@ -56,6 +58,7 @@ class Category2 {
     
     let title: String
     let parent: Category1
+    var children: [Category3]
     
     let parentRef: CKReference
     var ckRecordID: CKRecordID?
@@ -80,6 +83,7 @@ class Category2 {
         
         let reference = CKReference(recordID: parent.ckRecordID ?? parent.ckRecord.recordID, action: .deleteSelf)
         self.parentRef = reference
+        self.children = []
     }
 }
 
@@ -91,6 +95,7 @@ class Category3 {
     
     let title: String
     let parent: Category2
+    var children: [String]
     
     let parentRef: CKReference
     var ckRecordID: CKRecordID?
@@ -115,5 +120,6 @@ class Category3 {
         
         let reference = CKReference(recordID: parent.ckRecordID ?? parent.ckRecord.recordID, action: .deleteSelf)
         self.parentRef = reference
+        self.children = []
     }
 }

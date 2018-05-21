@@ -25,11 +25,11 @@ class User {
     let username: String
     let name: String
     var email: String
-    let posts: [Post]
-    var following: [Post]
-    var comments: [Comment]
+    var posts: [Post]?
+    var following: [Post]?
+    var comments: [Comment]?
     var isBanned: Bool
-    var blockedUsers: [User]
+    var blockedUsers: [CKReference]
     var ckRecordID: CKRecordID?
     var appleUserRef: CKReference?
     var ckRecord: CKRecord {
@@ -44,11 +44,8 @@ class User {
         record.setValue(username, forKey: User.usernameKey)
         record.setValue(name, forKey: User.nameKey)
         record.setValue(email, forKey: User.emailKey)
-        record.setValue(posts, forKey: User.postsKey)
-        record.setValue(following, forKey: User.followingKey)
-        record.setValue(comments, forKey: User.commentsKey)
         record.setValue(isBanned, forKey: User.isBannedKey)
-        record.setValue(blockedUsers, forKey: User.blockedUsersKey)
+//        record.setValue(blockedUsers, forKey: User.blockedUsersKey)
         record.setValue(appleUserRef, forKey: User.appleUserRefKey)
         
         return record
@@ -71,22 +68,16 @@ class User {
         guard let username = cloudKitRecord[User.usernameKey] as? String,
             let name = cloudKitRecord[User.nameKey] as? String,
             let email = cloudKitRecord[User.emailKey] as? String,
-            let posts = cloudKitRecord[User.postsKey] as? [Post],
-            let following = cloudKitRecord[User.followingKey] as? [Post],
-            let comments = cloudKitRecord[User.commentsKey] as? [Comment],
             let isBanned = cloudKitRecord[User.isBannedKey] as? Bool,
-            let blockedUsers = cloudKitRecord[User.blockedUsersKey] as? [User],
-            let appleUserRef = cloudKitRecord[User.appleUserRefKey] as? CKReference else { return nil }
+            let appleUserRef = cloudKitRecord[User.appleUserRefKey] as? CKReference,
+            let blockedUsers = cloudKitRecord[User.blockedUsersKey] as? [CKReference] else { return nil }
         
         self.username = username
         self.name = name
         self.email = email
-        self.posts = posts
-        self.following = following
-        self.comments = comments
         self.isBanned = isBanned
-        self.blockedUsers = blockedUsers
         self.appleUserRef = appleUserRef
+        self.blockedUsers = blockedUsers
         
         self.ckRecordID = cloudKitRecord.recordID
         
