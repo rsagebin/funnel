@@ -22,7 +22,19 @@ class FollowingTableViewCell: UITableViewCell {
     
     
     // MARK: - Properties
-    var post: MockPost? {
+    var userPost: Post? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    var userSuggestion: Post? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    var userFollowing: Post? {
         didSet {
             updateViews()
         }
@@ -31,12 +43,12 @@ class FollowingTableViewCell: UITableViewCell {
     
     // MARK: - Methods
     func updateViews() {
-        if let post = post {
+        if let post = userPost {
             self.postSubmittedImage.image = post.image
             self.postAcceptedSolutionIcon.isHidden = true
             self.postCategoryLabel.text = post.category
             self.postDescriptionLabel.text = post.description
-//            self.postHashTagsLabel.text = post.tags
+//            self.postHashTagsLabel.text = post.tags // Change tags from array to string
 //            self.postFollowingLabel.text = post
 //            self.postSuggestionLabel.text = post
             self.postCommentsLabel.text = String(post.comments.count)

@@ -12,6 +12,10 @@ class FollowingTableViewController: UITableViewController {
 
     // MARK: - Properties
     var sectionTitles: [String] = []
+    var userPosts = [Post]()
+    var userSuggestions = [Post]()
+    var userFollowings = [Post]()
+//    let userContent = [[self.userPosts], [self.userSuggestions], [self.userFollowings]]
     
 
     // MARK: - Lifecycle
@@ -31,7 +35,7 @@ class FollowingTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         var sectionCount = 0
         
-        let userPosts = 0 // Change to 1 from 0 if user has any posts
+        let userPosts = PostController.shared.userPosts.count // Change to 1 from 0 if user has any posts
         if userPosts > 0 {
             sectionCount += 1
             sectionTitles.append("My Posts")
@@ -49,7 +53,7 @@ class FollowingTableViewController: UITableViewController {
             sectionTitles.append("Posts I'm Following")
         }
         
-        let commentedOn = 1 // Change to 1 from 0 if user has any comments
+        let commentedOn = 0 // Change to 1 if user has any comments // Maybe impliment later on
         if commentedOn > 0 {
             sectionCount += 1
             sectionTitles.append("Posts I have commented on")
@@ -81,12 +85,16 @@ class FollowingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 {
-//            guard let userPosts = UserController.shared.mockUser.posts.count else { return 0 }
-//            return userPosts
+        if section == 0 { // User posts
+            let userPosts = PostController.shared.userPosts.count
+            return userPosts
         }
         
-        if section == 1 {
+        if section == 1 { // User submissions
+            
+        }
+        
+        if section == 2 { // User followings
             
         }
         
@@ -94,24 +102,22 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? FollowingTableViewCell else { return UITableViewCell() }
+        
+        let posts = PostController.shared.userPosts[indexPath.row]
+        if indexPath.section == 0 {
+            cell.userPost = posts
+        }
+        
+//        let suggestions = PostController.shared
+//        if indexPath.section == 1 {
+//            cell.userSuggestion =
+//        }
+        
+        
+//        let following = PostController.shared
+        
         
         return cell
     }
-    
-    func fetchUser() {
-        guard let loggedInUser = UserController.shared.loggedInUser else { return } // Add error alert controller later
-//        let userPosts = PostController.shared.fetchMyPosts(user: loggedInUser)
-//        let userSubmissions = PostController.shared.
-    }
-    
-    
-    /*
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

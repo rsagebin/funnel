@@ -85,8 +85,6 @@ class LoginViewController: UIViewController {
             let email = userEmailAddressTextField.text, !email.isEmpty
             else { return }
         
-        
-        
         UserController.shared.createNewUserWith(username: username, name: name, email: email) { (success) in
             
             // Segue to Main
