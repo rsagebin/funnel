@@ -66,6 +66,9 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oux-iq-Yz5">
                                                                 <rect key="frame" x="50" y="0.0" width="28" height="25"/>
                                                                 <state key="normal" image="speech"/>
+                                                                <connections>
+                                                                    <action selector="commentsButtonTapped:" destination="Hji-QH-X2h" eventType="touchUpInside" id="I72-nI-czK"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
