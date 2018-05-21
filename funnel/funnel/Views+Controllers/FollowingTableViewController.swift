@@ -86,8 +86,8 @@ class FollowingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 { // User posts
-            let userPosts = PostController.shared.userPosts.count
-            return userPosts
+//            let userPosts = PostController.shared.userPosts.count
+//            return userPosts
         }
         
         if section == 1 { // User submissions
@@ -104,10 +104,10 @@ class FollowingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? FollowingTableViewCell else { return UITableViewCell() }
         
-        let posts = PostController.shared.userPosts[indexPath.row]
-        if indexPath.section == 0 {
-            cell.userPost = posts
-        }
+//        let posts = PostController.shared.userPosts[indexPath.row]
+//        if indexPath.section == 0 {
+//            cell.userPost = posts
+//        }
         
 //        let suggestions = PostController.shared
 //        if indexPath.section == 1 {
