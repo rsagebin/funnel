@@ -10,6 +10,8 @@ import UIKit
 
 class CommentsTableViewController: UITableViewController {
 
+    var theRefreshControl: UIRefreshControl!
+    
     var post: Post?
     
     override func viewDidLoad() {
@@ -24,6 +26,10 @@ class CommentsTableViewController: UITableViewController {
                 }
             }
         }
+        
+        theRefreshControl = UIRefreshControl()
+        theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
+        tableView.addSubview(theRefreshControl)
     }
     
     lazy var containerView: UIView = {
@@ -86,6 +92,20 @@ class CommentsTableViewController: UITableViewController {
         return true
     }
     
+    @objc func didPullForRefresh() {
+        
+        guard let post = post else { return }
+        CommentController.shared.loadCommentsFor(post: post) { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.theRefreshControl.endRefreshing()
+                }
+            }
+        }
+        
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,8 +114,13 @@ class CommentsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentsTableViewCell
+        
+        
         let comment = CommentController.shared.postComments[indexPath.row]
+        let user = CommentController.shared.loadUserFor(comment: comment)
+        print("User:",user)
         cell.comment = comment
+        cell.user = user
         
         return cell
     }
