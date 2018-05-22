@@ -72,15 +72,19 @@ class PostController {
             }
         }
         
-        fetchFollowingPosts(user: user)
-        
         return newPost
         
     }
     
+    func delete(post: Post) {
+        ckManager.delete(recordID: post.ckRecordID ?? post.ckRecord.recordID) { (recordID, error) in
+            if let error = error {
+                print("Error deleting record from CloudKit: \(error)")
+            }
+        }
+    }
     
     func fetchFeedPosts() {
-        
         self.feedPosts = []
         
         let predicate = NSPredicate(value: true)
@@ -118,13 +122,6 @@ class PostController {
                 return
             }
             
-//            for category in CategoryController.shared.topCategories {
-//                if category2.parentRef != category.ckRecordID ?? category.ckRecord.recordID {
-//                    print("Category 2 is not contained within a category 1")
-//                    return
-//                }
-//            }
-            
             let reference = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
             post.category2Ref = reference
         }
@@ -152,6 +149,18 @@ class PostController {
         }
     }
     
+    func removeFollowerFromPost(user: User, post: Post) {
+        let reference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .none)
+        guard let index = post.followersRefs.index(of: reference) else { return }
+        post.followersRefs.remove(at: index)
+        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+            if let error = error {
+                print("Error remove follower from post: \(error)")
+                return
+            }
+        }
+    }
+    
     func addTagsTo(tags: [String], post: Post) {
         let postRecordID = post.ckRecordID ?? post.ckRecord.recordID
         let postReference = CKReference(recordID: postRecordID, action: .deleteSelf)
@@ -173,7 +182,7 @@ class PostController {
         
     }
     
-    func fetchFollowingPosts(user: User) {
+    func fetchFollowingPosts(user: User, completion: @escaping (Bool) -> Void) {
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
         let userReference = CKReference(recordID: userRecordID, action: .deleteSelf)
         
@@ -183,11 +192,13 @@ class PostController {
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
+                completion(false)
                 return
             }
             
             guard let records = records else {
                 print("Found nil for records fetched from CloudKit.")
+                completion(false)
                 return
             }
             
@@ -195,6 +206,7 @@ class PostController {
             
             self.followingPosts = recordsArray
             
+            completion(true)
         }
     }
 
