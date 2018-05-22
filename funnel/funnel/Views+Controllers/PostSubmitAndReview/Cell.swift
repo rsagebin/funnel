@@ -131,6 +131,7 @@ class CategoriesEditCreateViewController: UIViewController, UIPickerViewDelegate
                                    style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
                                     print("OK")
                                     var textField = alert.textFields?[1]
+                                    print("Dunno")
                                     textField?.text = self.mainLabel.text
                                     self.mainLabel.text = "\(self.categoryOneAddLabel.text!)/\(self.categoryTwoAddLabel.text!)"
             }
