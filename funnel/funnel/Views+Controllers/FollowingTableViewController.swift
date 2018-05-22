@@ -23,18 +23,30 @@ class FollowingTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Following" // Isn't reflecting on the bar
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1136: print("5, 5S, 5C, SE")
+            case 1334: print("6, 6S, 7, 8")
+            case 2208: print("6+, 6S+, 7+, 8+")
+            case 2436: print("X")
+            default: print("Unknown Device Height \(#function)")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tableView.reloadData()
+        
         guard let user = UserController.shared.loggedInUser else { return }
+        
         PostController.shared.fetchUserPosts(user: user) { (success) in
             DispatchQueue.main.async {
                 
                 if success {
-                    self.userPosts = PostController.shared.userPosts // Update to userPosts before push
-                    self.userFollowings = PostController.shared.followingPosts
+                    self.userPosts = PostController.shared.userPosts
                     self.tableView.reloadData()
                 }
                 
@@ -43,6 +55,20 @@ class FollowingTableViewController: UITableViewController {
                 }
             }
         }
+        
+//        PostController.shared.fetchFollowingPosts(user: user) { (success) in
+//            DispatchQueue.main.async {
+//                
+//                if success {
+//                    self.userFollowings = PostController.shared.followingPosts
+//                    self.tableView.reloadData()
+//                }
+//                
+//                if !success {
+//                    print("Could not fetch following posts")
+//                }
+//            }
+//        }
     }
     
     
@@ -67,8 +93,8 @@ class FollowingTableViewController: UITableViewController {
             sectionTitles.append("My Suggested Answers")
         }
         
-        let followingPosts = 0 // Change to 1 from 0 if user is following posts
-        if followingPosts > 0 {
+        let followings = userFollowings.count // Change to 1 from 0 if user is following posts
+        if followings > 0 {
             sectionCount += 1
             sectionTitles.append("Posts I'm Following")
         }
@@ -97,10 +123,10 @@ class FollowingTableViewController: UITableViewController {
         
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
-            case 1136: cellHeight = 115; print("5, 5S, 5C, SE")
-            case 1334: cellHeight = 122; print("6, 6S, 7, 8")
-            case 2208: cellHeight = 125; print("6+, 6S+, 7+, 8+")
-            case 2436: cellHeight = 122; print("X")
+            case 1136: cellHeight = 115
+            case 1334: cellHeight = 122
+            case 2208: cellHeight = 125
+            case 2436: cellHeight = 122
             default: print("Unknown Device Height \(#function)")
             }
         }
