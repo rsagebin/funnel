@@ -140,38 +140,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fOB-nZ-77m">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOB-nZ-77m">
                                 <rect key="frame" x="0.0" y="20" width="375" height="100"/>
                                 <subviews>
-                                    <pickerView autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XIA-aE-iXJ">
-                                        <rect key="frame" x="11" y="20" width="115" height="88"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="hvD-Yo-ImD" id="HaX-0d-E5Q"/>
-                                            <outlet property="delegate" destination="hvD-Yo-ImD" id="8dW-XQ-yqY"/>
-                                        </connections>
-                                    </pickerView>
-                                    <pickerView autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGa-Gw-4N1">
-                                        <rect key="frame" x="135" y="8" width="110" height="101"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="hvD-Yo-ImD" id="Qfo-Dw-Jco"/>
-                                            <outlet property="delegate" destination="hvD-Yo-ImD" id="izx-dI-VT1"/>
-                                        </connections>
-                                    </pickerView>
-                                    <pickerView autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ce-ZO-xSR">
-                                        <rect key="frame" x="244" y="20" width="122" height="88"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="hvD-Yo-ImD" id="P1h-em-lcE"/>
-                                            <outlet property="delegate" destination="hvD-Yo-ImD" id="WHz-9N-E9f"/>
-                                        </connections>
-                                    </pickerView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ILs-cf-5CR">
-                                        <rect key="frame" x="15" y="60" width="345.5" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="774-92-SZ4">
+                                        <rect key="frame" x="11" y="20" width="350" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qio-HF-bRV">
-                                                <rect key="frame" x="0.0" y="0.0" width="108.5" height="30"/>
+                                            <pickerView autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XIA-aE-iXJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="0pl-ew-msf"/>
+                                                    <constraint firstAttribute="width" constant="70" id="LHS-lH-0ik"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="hvD-Yo-ImD" id="HaX-0d-E5Q"/>
+                                                    <outlet property="delegate" destination="hvD-Yo-ImD" id="8dW-XQ-yqY"/>
+                                                </connections>
+                                            </pickerView>
+                                            <pickerView autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGa-Gw-4N1">
+                                                <rect key="frame" x="140" y="0.0" width="70" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="ADJ-Oe-adS"/>
+                                                    <constraint firstAttribute="width" constant="70" id="msB-MU-dCW"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="hvD-Yo-ImD" id="Qfo-Dw-Jco"/>
+                                                    <outlet property="delegate" destination="hvD-Yo-ImD" id="izx-dI-VT1"/>
+                                                </connections>
+                                            </pickerView>
+                                            <pickerView autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ce-ZO-xSR">
+                                                <rect key="frame" x="280" y="0.0" width="70" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="bI4-7a-iea"/>
+                                                    <constraint firstAttribute="height" constant="70" id="tjf-fy-CKM"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="hvD-Yo-ImD" id="P1h-em-lcE"/>
+                                                    <outlet property="delegate" destination="hvD-Yo-ImD" id="WHz-9N-E9f"/>
+                                                </connections>
+                                            </pickerView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ILs-cf-5CR">
+                                        <rect key="frame" x="15" y="60" width="227" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qio-HF-bRV">
+                                                <rect key="frame" x="0.0" y="0.0" width="108.5" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -180,18 +195,8 @@
                                                     <action selector="textFieldOnePressed:" destination="hvD-Yo-ImD" eventType="editingDidEnd" id="haR-mK-HyO"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sub-category..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dwR-PC-FoM">
-                                                <rect key="frame" x="118.5" y="0.0" width="108.5" height="30"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="textFieldTwoPressed:" destination="hvD-Yo-ImD" eventType="editingDidEnd" id="FhX-8r-FBM"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sub-category..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqu-sU-T8L">
-                                                <rect key="frame" x="237" y="0.0" width="108.5" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sub-category..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqu-sU-T8L">
+                                                <rect key="frame" x="118.5" y="0.0" width="108.5" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -202,12 +207,13 @@
                                             </textField>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="NQa-Og-4Dd"/>
+                                            <constraint firstAttribute="height" constant="60" id="lVe-gy-MmT"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ZtV-H7-4WH">
-                                        <rect key="frame" x="20" y="1" width="335" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ZtV-H7-4WH">
+                                        <rect key="frame" x="23" y="5" width="330" height="30"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="330" id="Kb3-Ig-q5Z"/>
                                             <constraint firstAttribute="height" constant="30" id="z9x-ym-0UA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -217,28 +223,66 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ILs-cf-5CR" secondAttribute="trailing" constant="10" id="LmZ-dR-FAs"/>
-                                    <constraint firstAttribute="bottom" secondItem="ILs-cf-5CR" secondAttribute="bottom" constant="20" id="RXk-Jx-P06"/>
-                                    <constraint firstItem="ILs-cf-5CR" firstAttribute="leading" secondItem="fOB-nZ-77m" secondAttribute="leading" constant="1510" id="g8P-ix-2pI"/>
+                                    <constraint firstAttribute="height" constant="100" id="8uc-rD-t0k"/>
+                                    <constraint firstItem="ZtV-H7-4WH" firstAttribute="top" secondItem="fOB-nZ-77m" secondAttribute="top" constant="5" id="SIn-U9-ild"/>
+                                    <constraint firstItem="ILs-cf-5CR" firstAttribute="top" secondItem="ZtV-H7-4WH" secondAttribute="bottom" constant="25" id="Wru-Hx-2P4"/>
+                                    <constraint firstItem="ILs-cf-5CR" firstAttribute="leading" secondItem="fOB-nZ-77m" secondAttribute="leading" constant="15" id="YUd-E2-O2x"/>
+                                    <constraint firstAttribute="trailing" secondItem="ILs-cf-5CR" secondAttribute="trailing" constant="133" id="cxV-Mr-RBf"/>
+                                    <constraint firstItem="ZtV-H7-4WH" firstAttribute="centerX" secondItem="fOB-nZ-77m" secondAttribute="centerX" id="fph-Iv-pYA"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FBd-1P-jqw">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FBd-1P-jqw">
                                 <rect key="frame" x="0.0" y="128" width="375" height="539"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6b-Qa-XSD">
+                                        <rect key="frame" x="164" y="89" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="addCategoryButtonTapped:" destination="hvD-Yo-ImD" eventType="touchUpInside" id="GiU-ad-BlL"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hbx-L1-q8V">
+                                        <rect key="frame" x="164" y="25" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0f-Nr-aGA">
+                                        <rect key="frame" x="301" y="25" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="530" id="hdl-4T-VBy"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FBd-1P-jqw" firstAttribute="bottom" secondItem="sQg-Do-dAX" secondAttribute="bottom" id="0q8-Dy-ziP"/>
+                            <constraint firstItem="FBd-1P-jqw" firstAttribute="leading" secondItem="sQg-Do-dAX" secondAttribute="leading" id="6lt-pH-otC"/>
+                            <constraint firstItem="fOB-nZ-77m" firstAttribute="leading" secondItem="sQg-Do-dAX" secondAttribute="leading" id="H3z-eh-eTV"/>
+                            <constraint firstItem="fOB-nZ-77m" firstAttribute="trailing" secondItem="sQg-Do-dAX" secondAttribute="trailing" id="I0M-2L-Nx1"/>
+                            <constraint firstItem="FBd-1P-jqw" firstAttribute="trailing" secondItem="sQg-Do-dAX" secondAttribute="trailing" id="KBO-Tr-xHp"/>
+                            <constraint firstItem="fOB-nZ-77m" firstAttribute="top" secondItem="sQg-Do-dAX" secondAttribute="top" id="RDx-yb-FDS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="sQg-Do-dAX"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jys-yT-wc0"/>
                     <connections>
+                        <outlet property="categoryOneAddLabel" destination="Hbx-L1-q8V" id="DZ5-XR-Zhi"/>
+                        <outlet property="categoryTwoAddLabel" destination="y0f-Nr-aGA" id="oja-YR-9E5"/>
                         <outlet property="mainLabel" destination="ZtV-H7-4WH" id="c4d-Lp-mJO"/>
                         <outlet property="pickerOne" destination="XIA-aE-iXJ" id="O4M-fV-fhd"/>
                         <outlet property="pickerThree" destination="2Ce-ZO-xSR" id="O7o-mX-wKx"/>
                         <outlet property="pickerTwo" destination="tGa-Gw-4N1" id="zCo-4i-2xl"/>
                         <outlet property="textFieldOne" destination="qio-HF-bRV" id="n63-HL-RUc"/>
                         <outlet property="textFieldThree" destination="kqu-sU-T8L" id="VNd-s2-mbZ"/>
-                        <outlet property="textFieldTwo" destination="dwR-PC-FoM" id="gvI-gp-ZAc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYW-6i-3kA" userLabel="First Responder" sceneMemberID="firstResponder"/>

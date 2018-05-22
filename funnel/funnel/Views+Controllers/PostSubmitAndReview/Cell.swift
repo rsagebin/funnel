@@ -15,12 +15,17 @@ class CategoriesEditCreateViewController: UIViewController, UIPickerViewDelegate
     @IBOutlet weak var pickerTwo: UIPickerView!
     @IBOutlet weak var pickerThree: UIPickerView!
     @IBOutlet weak var picture: UIImageView!
-    
     @IBOutlet weak var textFieldOne: UITextField!
     @IBOutlet weak var textFieldTwo: UITextField!
     @IBOutlet weak var textFieldThree: UITextField!
     
+    @IBOutlet weak var categoryOneAddLabel: UILabel!
+    @IBOutlet weak var categoryTwoAddLabel: UILabel!
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     var category = ["food", "health", "animals", "education", "transportation"]
     
@@ -31,7 +36,6 @@ class CategoriesEditCreateViewController: UIViewController, UIPickerViewDelegate
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var countRows : Int = category.count
@@ -78,26 +82,95 @@ class CategoriesEditCreateViewController: UIViewController, UIPickerViewDelegate
             
         else if pickerView == pickerThree {
             self.textFieldThree.text = self.subSubCategory[row]
-            self.mainLabel.text = "\(self.textFieldTwo.text!)/\(self.textFieldTwo.text!)/\(self.textFieldThree.text!)"
+//            self.mainLabel.text = "\(self.textFieldTwo.text!)/\(self.textFieldTwo.text!)/\(self.textFieldThree.text!)"
 //                        self.pickerThree.isHidden = true
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        createAlert(title: "Add Category", message: "Add your new category")
+//    }
+//
+//    func createAlert (title: String, message: String) {
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+//
+//        alert.addAction(UIAlertAction(title: "Add Category", style: UIAlertActionStyle.default, handler: { (action) in
+//            alert.dismiss(animated: true, completion: nil)
+//        }))
+//
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) in
+//            alert.dismiss(animated: true, completion: nil)
+//        }))
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
+    
     @IBAction func textFieldOnePressed(_ sender: Any) {
         self.pickerOne.didMoveToSuperview()
     }
     
-    @IBAction func textFieldTwoPressed(_ sender: Any) {
-        self.pickerTwo.isHidden = false
+    
+    
+   
+    
+    @IBAction func addCategoryButtonTapped(_ sender: Any) {
+        print("Button is responding")
+        
+        func newCategoryAlert() {
+            let alert = UIAlertController(title: "New Category",
+                                          message: "Add a new Category",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            let cancel = UIAlertAction(title: "Cancel",
+                                       style: UIAlertActionStyle.cancel,
+                                       handler: nil)
+            
+            alert.addAction(cancel)
+            
+            let OK = UIAlertAction(title: "OK",
+                                   style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
+                                    print("OK")
+                                    var textField = alert.textFields?[1]
+                                    print("Dunno")
+                                    textField?.text = self.mainLabel.text
+                                    self.mainLabel.text = "\(self.categoryOneAddLabel.text!)/\(self.categoryTwoAddLabel.text!)"
+            }
+            
+            alert.addAction(OK)
+            
+            alert.addTextField { (textField: UITextField) -> Void in
+                textField.placeholder = "UNKNOWN"
+            }
+            
+            alert.addTextField { (textField: UITextField) -> Void in
+                textField.placeholder = "UNKNOWN"
+            }
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
+    
+    @IBAction func textFieldTwoPressed(_ sender: Any) {
+//        let alert = UIAlertController(title: "New Category", message: "Add a new Category", preferredStyle: UIAlertControllerStyle.alert)
+//
+//        alert.addTextField { (textField) -> Void in
+//        }
+//
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+//            let textf = alert.textFields![0] as UITextField
+//            print(textf.text!)
+//        }))
+//
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) -> Void in
+//            self.dismiss(animated: true, completion: nil)
+//        }))
+//
+//        self.present(alert, animated: true, completion: nil)
+    }
     @IBAction func textFieldThreePressed(_ sender: Any) {
         self.pickerThree.isHidden = false
     }
-    
-    
-    
+
 }
