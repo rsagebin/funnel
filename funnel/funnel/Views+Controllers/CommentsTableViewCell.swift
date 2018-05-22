@@ -10,6 +10,7 @@ import UIKit
 
 class CommentsTableViewCell: UITableViewCell {
 
+    var user: User?
     
     var comment: Comment? {
         didSet {
@@ -25,6 +26,7 @@ class CommentsTableViewCell: UITableViewCell {
         
         guard let comment = comment else { return }
         self.commentLabel.text = comment.text
+        self.usernameLabel.text = user?.username
         
     }
 
