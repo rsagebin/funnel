@@ -59,25 +59,24 @@ class CommentController {
         
     }
     
-    func loadUserFor(comment: Comment) -> User? {
-
-        var fetchedUser: User?
+    func loadUserFor(comment: Comment, completion: @escaping (User?) -> Void) {
         
         let predicate = NSPredicate(format: "recordID == %@", comment.userReference)
         
         ckManager.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error fetching user for comment:\(error)")
+                completion(nil)
                 return
             }
             
             guard let record = records?.first else { return }
             
-            fetchedUser = User(cloudKitRecord: record)
+            let fetchedUser = User(cloudKitRecord: record)
+            
+            completion(fetchedUser)
 
         }
-
-        return fetchedUser
 
     }
     

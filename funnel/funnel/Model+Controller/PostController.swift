@@ -152,6 +152,10 @@ class PostController {
         }
     }
     
+    func removeFollowerFromPost(user: User, post: Post) {
+        
+    }
+    
     func addTagsTo(tags: [String], post: Post) {
         let postRecordID = post.ckRecordID ?? post.ckRecord.recordID
         let postReference = CKReference(recordID: postRecordID, action: .deleteSelf)
