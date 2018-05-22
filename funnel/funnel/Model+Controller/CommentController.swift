@@ -49,15 +49,18 @@ class CommentController {
             
             guard let commentsArray = records?.compactMap({Comment(cloudKitRecord: $0)}) else { return }
             comments = commentsArray
+            completion(comments)
         }
-        
-        completion(comments)
         
     }
     
 //    func commentsWithUsersFor(post: Post) -> [Comment]  {
 //
-//        var comments = loadCommentsFor(post: post)
+//        var commentsArray: [Comment]?
+//
+//        loadCommentsFor(post: post) { (comments) in
+//            commentsArray = comments
+//        }
 //
 //        var users: [User] = []
 //
@@ -75,7 +78,7 @@ class CommentController {
 //
 //        }
 //
-//        return comments
+//        return commentsArray
 //
 //    }
     
