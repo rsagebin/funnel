@@ -11,14 +11,20 @@ import UIKit
 class CommentsTableViewController: UITableViewController {
 
     var post: Post?
-    
+    var postComments: [Comment]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Comments"
-
-
+        guard let post = post else { return }
+        CommentController.shared.loadCommentsFor(post: post) { (comments) in
+            self.postComments = comments
+            print("Comments",self.postComments)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     lazy var containerView: UIView = {
@@ -41,13 +47,11 @@ class CommentsTableViewController: UITableViewController {
 
         NSLayoutConstraint(item: submitButton, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 10).isActive = true
-//        NSLayoutConstraint(item: submitButton, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: submitButton, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 0.3, constant: 0).isActive = true
 
 
         NSLayoutConstraint(item: self.commentTextField, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 12).isActive = true
         NSLayoutConstraint(item: self.commentTextField, attribute: .trailing, relatedBy: .equal, toItem: submitButton, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-//        NSLayoutConstraint(item: self.commentTextField, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: self.commentTextField, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 15).isActive = true
 
         return containerView
@@ -65,6 +69,8 @@ class CommentsTableViewController: UITableViewController {
         guard let comment = commentTextField.text , !comment.isEmpty else { return }
         guard let post = post else { return }
         CommentController.shared.addCommentTo(post: post, text: comment)
+        commentTextField.text = ""
+        resignFirstResponder()
     }
     
     override var inputAccessoryView: UIView? {
@@ -77,20 +83,22 @@ class CommentsTableViewController: UITableViewController {
         return true
     }
     
+    // MARK: - Table view data source
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        guard let post = post else { return 0 }
-        
-        return post.comments?.count ?? 0
+        return postComments?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! FeedTableViewCell
-        
-       
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentsTableViewCell
+        let comment = postComments?[indexPath.row]
+        cell.comment = comment
         
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
 
 }

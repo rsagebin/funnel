@@ -17,6 +17,7 @@ class User {
     private static let postsKey = "posts"
     private static let followingKey = "following"
     private static let commentsKey = "comments"
+    private static let commentRefsKey = "commentRefs"
     private static let isBannedKey = "isBanned"
     private static let blockedUsersKey = "blockedUsers"
     private static let appleUserRefKey = "appleUserRef"
@@ -28,6 +29,7 @@ class User {
     var posts: [Post]?
     var following: [Post]?
     var comments: [Comment]?
+    var commentRefs: [CKReference]
     var isBanned: Bool
     var blockedUsers: [CKReference]
     var ckRecordID: CKRecordID?
@@ -44,6 +46,7 @@ class User {
         record.setValue(username, forKey: User.usernameKey)
         record.setValue(name, forKey: User.nameKey)
         record.setValue(email, forKey: User.emailKey)
+        record.setValue(commentRefs, forKey: User.commentRefsKey)
         record.setValue(isBanned, forKey: User.isBannedKey)
         record.setValue(blockedUsers, forKey: User.blockedUsersKey)
         record.setValue(appleUserRef, forKey: User.appleUserRefKey)
@@ -59,6 +62,7 @@ class User {
         self.posts = []
         self.following = []
         self.comments = []
+        self.commentRefs = []
         self.isBanned = false
         self.blockedUsers = []
         self.appleUserRef = appleUserRef
@@ -71,6 +75,12 @@ class User {
             let email = cloudKitRecord[User.emailKey] as? String,
             let isBanned = cloudKitRecord[User.isBannedKey] as? Bool,
             let appleUserRef = cloudKitRecord[User.appleUserRefKey] as? CKReference else { return nil }
+
+        if let commentRefs = cloudKitRecord[User.commentRefsKey] as? [CKReference] {
+            self.commentRefs = commentRefs
+        } else {
+            self.commentRefs = []
+        }
         
         if let blockedUsers = cloudKitRecord[User.blockedUsersKey] as? [CKReference] {
             self.blockedUsers = blockedUsers

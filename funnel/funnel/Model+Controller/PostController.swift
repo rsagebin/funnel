@@ -225,8 +225,6 @@ class PostController {
         }
     }
     
-    
-    
     init() {    
 
     }
