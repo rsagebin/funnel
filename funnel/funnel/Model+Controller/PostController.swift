@@ -153,7 +153,15 @@ class PostController {
     }
     
     func removeFollowerFromPost(user: User, post: Post) {
-        
+        let reference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .none)
+        guard let index = post.followersRefs.index(of: reference) else { return }
+        post.followersRefs.remove(at: index)
+        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+            if let error = error {
+                print("Error remove follower from post: \(error)")
+                return
+            }
+        }
     }
     
     func addTagsTo(tags: [String], post: Post) {
