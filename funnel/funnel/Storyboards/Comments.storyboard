@@ -33,13 +33,13 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0L-bF-vaS">
-                                            <rect key="frame" x="101" y="18" width="58" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <rect key="frame" x="101" y="18" width="61.5" height="15"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDr-4D-JPG">
-                                            <rect key="frame" x="101" y="36" width="243" height="44"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDr-4D-JPG">
+                                            <rect key="frame" x="101" y="36" width="243" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                                         <constraint firstItem="d0L-bF-vaS" firstAttribute="top" secondItem="iJ6-fd-Apt" secondAttribute="topMargin" constant="7" id="TUc-Lv-Ejb"/>
                                         <constraint firstItem="d0L-bF-vaS" firstAttribute="leading" secondItem="0HK-pg-fVU" secondAttribute="trailing" constant="15" id="Y6M-NP-m6l"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="kDr-4D-JPG" secondAttribute="trailing" constant="15" id="ajN-62-k2l"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="kDr-4D-JPG" secondAttribute="bottom" constant="5" id="l6h-jY-qko"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kDr-4D-JPG" secondAttribute="bottom" constant="20" id="l6h-jY-qko"/>
                                         <constraint firstItem="0HK-pg-fVU" firstAttribute="leading" secondItem="iJ6-fd-Apt" secondAttribute="leadingMargin" constant="10" id="rVw-7C-FBr"/>
                                         <constraint firstItem="kDr-4D-JPG" firstAttribute="top" secondItem="d0L-bF-vaS" secondAttribute="bottom" constant="3" id="zzg-A5-S1k"/>
                                     </constraints>
