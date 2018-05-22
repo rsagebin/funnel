@@ -12,11 +12,13 @@ import CloudKit
 
 class CommentController {
     
+    var postComments: [Comment] = []
+    
     let ckManager = CloudKitManager()
     
     static let shared = CommentController()
     
-    func addCommentTo(post: Post, text: String) {
+    func addCommentTo(post: Post, text: String, completion: @escaping (Bool) -> Void) {
         guard let user = UserController.shared.loggedInUser else { return }
         
         let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
@@ -28,59 +30,54 @@ class CommentController {
         ckManager.save(records: [comment.ckRecord], perRecordCompletion: nil) { (_, error) in
             if let error = error {
                 print("Error saving comment to CloudKit: \(error)")
+                completion(false)
                 return
             }
+            
+            self.postComments.append(comment)
+            completion(true)
         }
         
     }
     
-    func loadCommentsFor(post: Post, completion: @escaping ([Comment]) -> Void) {
-        
-        var comments: [Comment] = []
+    func loadCommentsFor(post: Post, completion: @escaping (Bool) -> Void) {
         
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
         
-        ckManager.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+        ckManager.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error loading comments for post: \(error)")
-                completion([])
+                completion(false)
                 return
             }
             
             guard let commentsArray = records?.compactMap({Comment(cloudKitRecord: $0)}) else { return }
-            comments = commentsArray
-            completion(comments)
+            self.postComments = commentsArray
+            completion(true)
         }
         
     }
     
-//    func commentsWithUsersFor(post: Post) -> [Comment]  {
-//
-//        var commentsArray: [Comment]?
-//
-//        loadCommentsFor(post: post) { (comments) in
-//            commentsArray = comments
-//        }
-//
-//        var users: [User] = []
-//
-//        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
-//
-//        ckManager.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
-//            if let error = error {
-//                print("Error fetching users for comments:\(error)")
-//                return
-//            }
-//
-//            guard let usersArray = records?.compactMap({ $0 }) else { return }
-//
-//
-//
-//        }
-//
-//        return commentsArray
-//
-//    }
-    
+    func loadUserFor(comment: Comment, completion: @escaping (User?) -> Void) {
+        
+        let predicate = NSPredicate(format: "recordID == %@", comment.userReference)
+        
+        ckManager.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+            if let error = error {
+                print("Error fetching user for comment:\(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let record = records?.first else { return }
+            
+            let fetchedUser = User(cloudKitRecord: record)
+            
+            completion(fetchedUser)
+
+        }
+
+    }
     
 }

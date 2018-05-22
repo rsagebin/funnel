@@ -39,35 +39,37 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qJL-SM-EbI">
-                                                            <rect key="frame" x="136" y="320" width="150" height="25"/>
+                                                            <rect key="frame" x="156" y="320" width="130" height="25"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pR-hd-8hF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="exclamation"/>
+                                                                    <connections>
+                                                                        <action selector="postFollowingButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="Y62-bB-l2L"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-kN-ndN">
-                                                                    <rect key="frame" x="40" y="0.0" width="30" height="25"/>
+                                                                    <rect key="frame" x="35" y="0.0" width="25" height="25"/>
                                                                     <state key="normal" image="speech"/>
                                                                     <connections>
                                                                         <action selector="commentsButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="ekZ-kA-Ap3"/>
+                                                                        <action selector="postCommentButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="2Fj-8w-rbz"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0p7-NH-ynu">
-                                                                    <rect key="frame" x="80" y="0.0" width="30" height="25"/>
+                                                                    <rect key="frame" x="70" y="0.0" width="25" height="25"/>
                                                                     <state key="normal" image="branch"/>
+                                                                    <connections>
+                                                                        <action selector="postSuggestButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="Oiy-Wt-1u3"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soo-Mg-fHf">
-                                                                    <rect key="frame" x="120" y="0.0" width="30" height="25"/>
+                                                                    <rect key="frame" x="105" y="0.0" width="25" height="25"/>
                                                                     <state key="normal" image="approved.2"/>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCK-XG-RBF" userLabel="Follow Button">
-                                                            <rect key="frame" x="136" y="320" width="30" height="25"/>
-                                                            <connections>
-                                                                <action selector="postFollowButtonPressed:" destination="nA6-DJ-UNl" eventType="touchUpInside" id="2zF-Gk-Lby"/>
-                                                            </connections>
-                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="utO-wp-V4b">
                                                             <rect key="frame" x="26" y="45" width="270" height="270"/>
                                                             <constraints>
@@ -92,15 +94,11 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="bL8-dJ-WKN" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="3YL-XX-cIU"/>
-                                                        <constraint firstItem="mCK-XG-RBF" firstAttribute="centerX" secondItem="5pR-hd-8hF" secondAttribute="centerX" id="57O-NP-eKw"/>
                                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="top" secondItem="rhU-Ev-K2I" secondAttribute="top" constant="5" id="5B6-nO-GEc"/>
                                                         <constraint firstItem="oec-Z7-gqk" firstAttribute="top" secondItem="bL8-dJ-WKN" secondAttribute="bottom" constant="5" id="5nr-TB-xuO"/>
                                                         <constraint firstAttribute="trailing" secondItem="qJL-SM-EbI" secondAttribute="trailing" constant="37" id="9C1-i2-Qt9"/>
                                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="40" id="Ewk-Nj-eGR"/>
-                                                        <constraint firstItem="mCK-XG-RBF" firstAttribute="width" secondItem="5pR-hd-8hF" secondAttribute="width" id="FDs-J5-Wmn"/>
                                                         <constraint firstItem="qJL-SM-EbI" firstAttribute="top" secondItem="utO-wp-V4b" secondAttribute="bottom" constant="5" id="J8N-5z-tjX"/>
-                                                        <constraint firstItem="mCK-XG-RBF" firstAttribute="height" secondItem="5pR-hd-8hF" secondAttribute="height" id="NHA-Sy-tRm"/>
-                                                        <constraint firstItem="mCK-XG-RBF" firstAttribute="centerY" secondItem="5pR-hd-8hF" secondAttribute="centerY" id="QM6-th-AMF"/>
                                                         <constraint firstItem="oec-Z7-gqk" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="15" id="SEo-hl-FZo"/>
                                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="VF2-0n-0yJ"/>
                                                         <constraint firstItem="utO-wp-V4b" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="26" id="aDR-PF-flj"/>

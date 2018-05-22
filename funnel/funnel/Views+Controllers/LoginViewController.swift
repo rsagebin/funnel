@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
     
     func fetchUser() {
         UserController.shared.fetchCurrentUser { (success) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: { // Change back to 3
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(0), execute: { // Change back to 3
                 
                 // Show Signed In
                 if success {

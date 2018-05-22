@@ -24,6 +24,8 @@ class FeedTableViewCell: UITableViewCell {
         }
     }
     
+    var isFollowing = false
+    
     // MARK: - Outlets
     
     @IBOutlet weak var tagsTextView: UITextView!
@@ -44,6 +46,31 @@ class FeedTableViewCell: UITableViewCell {
         delegate?.didTapComment(post: post)
     }
     
+    @IBAction func postFollowingButtonTapped(_ sender: UIButton) {
+        
+        guard let user = UserController.shared.loggedInUser else { return }
+        guard let post = self.post else { return }
+        guard let buttonImage = exclamationButtonOutlet.imageView else { return }
+        
+        isFollowing = !isFollowing
+        
+        if isFollowing == true {
+            buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+            PostController.shared.addFollowerToPost(user: user, post: post)
+            
+        } else if isFollowing == false {
+            buttonImage.tintColor = UIColor.black
+//            PostController.shared.removeFollowerFromPost(user: user, post: post)
+        }
+    }
+    
+    @IBAction func postSuggestButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func postCommentButtonTapped(_ sender: UIButton) {
+        
+    }
     
     // MARK: - Other Functions
     

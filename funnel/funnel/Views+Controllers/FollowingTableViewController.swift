@@ -33,7 +33,8 @@ class FollowingTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 
                 if success {
-                    self.userPosts = PostController.shared.followingPosts // Update to userPosts before push
+                    self.userPosts = PostController.shared.userPosts // Update to userPosts before push
+                    self.userFollowings = PostController.shared.followingPosts
                     self.tableView.reloadData()
                 }
                 
@@ -153,7 +154,7 @@ class FollowingTableViewController: UITableViewController {
         let postDetailSB = UIStoryboard(name: "PostDetail", bundle: .main)
         let currentVC = postDetailSB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let selectedPost = PostController.shared.feedPosts[indexPath.row]
+        let selectedPost = PostController.shared.userPosts[indexPath.row]
         
         currentVC.post = selectedPost
         navigationController?.pushViewController(currentVC, animated: true)

@@ -84,10 +84,4 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
         vc.post = selectedPost
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-    // MARK: - Actions
-    @IBAction func postFollowButtonPressed(_ sender: UIButton) {
-        
-    }
 }
