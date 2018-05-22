@@ -12,6 +12,10 @@ protocol CommentsDelegate {
     func didTapComment(post: Post)
 }
 
+//protocol SuggestionDelegate {
+//    func postSuggestionButtonTapped(post: Post)
+//}
+
 class FeedTableViewCell: UITableViewCell {
 
     // MARK: - Properties
@@ -40,12 +44,6 @@ class FeedTableViewCell: UITableViewCell {
    
     // MARK: - Actions
     
-    @IBAction func commentsButtonTapped(_ sender: Any) {
-        print("Trying to show comments...")
-        guard let post = post else { return }
-        delegate?.didTapComment(post: post)
-    }
-    
     @IBAction func postFollowingButtonTapped(_ sender: UIButton) {
         
         guard let user = UserController.shared.loggedInUser else { return }
@@ -65,11 +63,14 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     @IBAction func postSuggestButtonTapped(_ sender: UIButton) {
-        
+//        guard let post = post else { return }
+//        delegate?.didTapComment(post: post)
     }
     
-    @IBAction func postCommentButtonTapped(_ sender: UIButton) {
-        
+    @IBAction func commentsButtonTapped(_ sender: Any) {
+        print("Trying to show comments...")
+        guard let post = post else { return }
+        delegate?.didTapComment(post: post)
     }
     
     // MARK: - Other Functions

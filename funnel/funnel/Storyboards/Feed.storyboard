@@ -7,6 +7,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,67 +28,71 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7R-x5-oLw">
-                                            <rect key="frame" x="26" y="21" width="326" height="458"/>
+                                            <rect key="frame" x="26" y="21" width="323" height="458"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhU-Ev-K2I">
-                                                    <rect key="frame" x="1" y="1" width="323" height="455"/>
+                                                    <rect key="frame" x="1" y="1" width="320" height="455"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories/sub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-Np-1m0">
-                                                            <rect key="frame" x="40" y="5" width="243" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories/sub" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-Np-1m0">
+                                                            <rect key="frame" x="16.5" y="5" width="288" height="21.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="22" id="gvc-D5-zZa"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qJL-SM-EbI">
-                                                            <rect key="frame" x="156" y="320" width="130" height="25"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="utO-wp-V4b">
+                                                            <rect key="frame" x="16.5" y="31.5" width="288" height="287.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="utO-wp-V4b" secondAttribute="height" multiplier="1:1" id="Yhk-3R-wJM"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="right" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qJL-SM-EbI">
+                                                            <rect key="frame" x="154.5" y="324" width="150" height="25"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pR-hd-8hF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
                                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="exclamation"/>
                                                                     <connections>
                                                                         <action selector="postFollowingButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="Y62-bB-l2L"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-kN-ndN">
-                                                                    <rect key="frame" x="35" y="0.0" width="25" height="25"/>
-                                                                    <state key="normal" image="speech"/>
-                                                                    <connections>
-                                                                        <action selector="commentsButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="ekZ-kA-Ap3"/>
-                                                                        <action selector="postCommentButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="2Fj-8w-rbz"/>
-                                                                    </connections>
-                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0p7-NH-ynu">
-                                                                    <rect key="frame" x="70" y="0.0" width="25" height="25"/>
+                                                                    <rect key="frame" x="40" y="0.0" width="30" height="25"/>
                                                                     <state key="normal" image="branch"/>
                                                                     <connections>
                                                                         <action selector="postSuggestButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="Oiy-Wt-1u3"/>
                                                                     </connections>
                                                                 </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-kN-ndN">
+                                                                    <rect key="frame" x="80" y="0.0" width="30" height="25"/>
+                                                                    <state key="normal" image="speech"/>
+                                                                    <connections>
+                                                                        <action selector="commentsButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="ekZ-kA-Ap3"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soo-Mg-fHf">
-                                                                    <rect key="frame" x="105" y="0.0" width="25" height="25"/>
+                                                                    <rect key="frame" x="120" y="0.0" width="30" height="25"/>
                                                                     <state key="normal" image="approved.2"/>
                                                                 </button>
                                                             </subviews>
-                                                        </stackView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="utO-wp-V4b">
-                                                            <rect key="frame" x="26" y="45" width="270" height="270"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="utO-wp-V4b" secondAttribute="height" multiplier="1:1" id="Yhk-3R-wJM"/>
-                                                                <constraint firstAttribute="height" constant="270" id="ghi-d0-x0i"/>
+                                                                <constraint firstAttribute="width" constant="150" id="Wvo-ZO-A22"/>
                                                             </constraints>
-                                                        </imageView>
+                                                        </stackView>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" scrollEnabled="NO" text="#Alien? #rock?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-dJ-WKN">
+                                                            <rect key="frame" x="16.5" y="357" width="288" height="33"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oec-Z7-gqk">
-                                                            <rect key="frame" x="15" y="391" width="293" height="59"/>
+                                                            <rect key="frame" x="16" y="394.5" width="288" height="50.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        </textView>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" scrollEnabled="NO" text="#Alien? #rock?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-dJ-WKN">
-                                                            <rect key="frame" x="15" y="353" width="293" height="33"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                     </subviews>
@@ -96,22 +101,18 @@
                                                         <constraint firstItem="bL8-dJ-WKN" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="3YL-XX-cIU"/>
                                                         <constraint firstItem="v3r-Np-1m0" firstAttribute="top" secondItem="rhU-Ev-K2I" secondAttribute="top" constant="5" id="5B6-nO-GEc"/>
                                                         <constraint firstItem="oec-Z7-gqk" firstAttribute="top" secondItem="bL8-dJ-WKN" secondAttribute="bottom" constant="5" id="5nr-TB-xuO"/>
-                                                        <constraint firstAttribute="trailing" secondItem="qJL-SM-EbI" secondAttribute="trailing" constant="37" id="9C1-i2-Qt9"/>
-                                                        <constraint firstItem="v3r-Np-1m0" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="40" id="Ewk-Nj-eGR"/>
+                                                        <constraint firstItem="v3r-Np-1m0" firstAttribute="width" secondItem="rhU-Ev-K2I" secondAttribute="width" multiplier="0.9" id="8pt-R4-ESz"/>
+                                                        <constraint firstItem="utO-wp-V4b" firstAttribute="top" secondItem="v3r-Np-1m0" secondAttribute="bottom" constant="5" id="I0P-Br-i8T"/>
                                                         <constraint firstItem="qJL-SM-EbI" firstAttribute="top" secondItem="utO-wp-V4b" secondAttribute="bottom" constant="5" id="J8N-5z-tjX"/>
-                                                        <constraint firstItem="oec-Z7-gqk" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="15" id="SEo-hl-FZo"/>
-                                                        <constraint firstItem="v3r-Np-1m0" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="VF2-0n-0yJ"/>
-                                                        <constraint firstItem="utO-wp-V4b" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="26" id="aDR-PF-flj"/>
-                                                        <constraint firstAttribute="trailing" secondItem="v3r-Np-1m0" secondAttribute="trailing" constant="40" id="d2Y-44-oml"/>
+                                                        <constraint firstItem="oec-Z7-gqk" firstAttribute="width" secondItem="rhU-Ev-K2I" secondAttribute="width" multiplier="0.9" id="TyR-xZ-Lvk"/>
+                                                        <constraint firstItem="utO-wp-V4b" firstAttribute="width" secondItem="rhU-Ev-K2I" secondAttribute="width" multiplier="0.9" id="V3d-2v-i9S"/>
+                                                        <constraint firstItem="bL8-dJ-WKN" firstAttribute="width" secondItem="rhU-Ev-K2I" secondAttribute="width" multiplier="0.9" id="XXE-dA-qG5"/>
+                                                        <constraint firstItem="qJL-SM-EbI" firstAttribute="trailing" secondItem="utO-wp-V4b" secondAttribute="trailing" id="cJZ-aF-jhJ"/>
                                                         <constraint firstItem="oec-Z7-gqk" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="e0F-Hv-kce"/>
-                                                        <constraint firstAttribute="trailing" secondItem="oec-Z7-gqk" secondAttribute="trailing" constant="15" id="jvg-pE-TnF"/>
-                                                        <constraint firstAttribute="trailing" secondItem="bL8-dJ-WKN" secondAttribute="trailing" constant="15" id="oxC-qb-uhA"/>
-                                                        <constraint firstItem="utO-wp-V4b" firstAttribute="top" secondItem="v3r-Np-1m0" secondAttribute="bottom" constant="19.5" id="rRp-Xh-aK1"/>
-                                                        <constraint firstItem="utO-wp-V4b" firstAttribute="top" secondItem="rhU-Ev-K2I" secondAttribute="top" constant="45" id="rry-Eo-a7F"/>
-                                                        <constraint firstItem="bL8-dJ-WKN" firstAttribute="leading" secondItem="rhU-Ev-K2I" secondAttribute="leading" constant="15" id="tKX-uj-Smd"/>
+                                                        <constraint firstItem="v3r-Np-1m0" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="nRc-IY-m92"/>
+                                                        <constraint firstItem="utO-wp-V4b" firstAttribute="centerX" secondItem="rhU-Ev-K2I" secondAttribute="centerX" id="tBC-fo-0xx"/>
                                                         <constraint firstItem="bL8-dJ-WKN" firstAttribute="top" secondItem="qJL-SM-EbI" secondAttribute="bottom" constant="8" id="tsV-lt-IdI"/>
-                                                        <constraint firstAttribute="bottom" secondItem="oec-Z7-gqk" secondAttribute="bottom" constant="5" id="vDb-mv-H77"/>
-                                                        <constraint firstItem="utO-wp-V4b" firstAttribute="centerX" secondItem="v3r-Np-1m0" secondAttribute="centerX" id="xKP-4p-31j"/>
+                                                        <constraint firstAttribute="bottom" secondItem="oec-Z7-gqk" secondAttribute="bottom" constant="10" id="vDb-mv-H77"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -163,4 +164,5 @@
         <image name="funnel" width="25" height="25"/>
         <image name="speech" width="25" height="25"/>
     </resources>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
