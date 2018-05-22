@@ -17,9 +17,14 @@ class CommentsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Comments"
-        self.postComments = CommentController.shared.loadCommentsFor(post: post!)
-        print("Post Comments:",postComments as Any)
-
+        guard let post = post else { return }
+        CommentController.shared.loadCommentsFor(post: post) { (comments) in
+            self.postComments = comments
+            print("Comments",self.postComments)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     lazy var containerView: UIView = {
@@ -81,14 +86,13 @@ class CommentsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(postComments?.count as Any)
         return postComments?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentsTableViewCell
-//        let comment = post?.comments![indexPath.row]
-//        cell.comment = comment
+        let comment = postComments?[indexPath.row]
+        cell.comment = comment
         
         return cell
     }
