@@ -10,11 +10,22 @@ import UIKit
 
 class CommentsTableViewCell: UITableViewCell {
 
+    
+    var comment: Comment? {
+        didSet {
+            updateViews()
+        }
+    }
 
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
-    
+    func updateViews() {
+        
+        guard let comment = comment else { return }
+        self.commentLabel.text = comment.text
+        
+    }
 
 }
