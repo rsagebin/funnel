@@ -27,8 +27,6 @@ class CommentController {
         
         let comment = Comment(post: post, text: text, user: user, postReference: postReference, userReference: userReference)
         
-        post.comments?.append(comment)
-        
         ckManager.save(records: [comment.ckRecord], perRecordCompletion: nil) { (_, error) in
             if let error = error {
                 print("Error saving comment to CloudKit: \(error)")
@@ -36,6 +34,7 @@ class CommentController {
                 return
             }
             
+            self.postComments.append(comment)
             completion(true)
         }
         
@@ -60,31 +59,26 @@ class CommentController {
         
     }
     
-//    func commentsWithUsersFor(post: Post) -> [Comment]  {
-//
-//        var commentsArray: [Comment]?
-//
-//        loadCommentsFor(post: post) { (comments) in
-//            commentsArray = comments
-//        }
-//
-//        var users: [User] = []
-//
-//        let predicate = NSPredicate(format: "commmentRefs CONTAINS %@", post.ckRecordID ?? post.ckRecord.recordID)
-//
-//        ckManager.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
-//            if let error = error {
-//                print("Error fetching users for comments:\(error)")
-//                return
-//            }
-//
-//            guard let usersArray = records?.compactMap({ $0 }) else { return }
-//
-//        }
-//
-//        return commentsArray
-//
-//    }
-    
+    func loadUserFor(comment: Comment) -> User? {
+
+        var fetchedUser: User?
+        
+        let predicate = NSPredicate(format: "recordID == %@", comment.userReference)
+        
+        ckManager.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+            if let error = error {
+                print("Error fetching user for comment:\(error)")
+                return
+            }
+            
+            guard let record = records?.first else { return }
+            
+            fetchedUser = User(cloudKitRecord: record)
+
+        }
+
+        return fetchedUser
+
+    }
     
 }
