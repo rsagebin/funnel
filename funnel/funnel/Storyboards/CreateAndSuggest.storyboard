@@ -182,11 +182,11 @@
                                             </pickerView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ILs-cf-5CR">
-                                        <rect key="frame" x="15" y="60" width="227" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ILs-cf-5CR">
+                                        <rect key="frame" x="15" y="60" width="340" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qio-HF-bRV">
-                                                <rect key="frame" x="0.0" y="0.0" width="108.5" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -195,8 +195,18 @@
                                                     <action selector="textFieldOnePressed:" destination="hvD-Yo-ImD" eventType="editingDidEnd" id="haR-mK-HyO"/>
                                                 </connections>
                                             </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mZX-eZ-nsH">
+                                                <rect key="frame" x="123.5" y="0.0" width="93" height="60"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldOnePressed:" destination="hvD-Yo-ImD" eventType="editingDidEnd" id="vqm-2L-V0c"/>
+                                                </connections>
+                                            </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sub-category..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqu-sU-T8L">
-                                                <rect key="frame" x="118.5" y="0.0" width="108.5" height="60"/>
+                                                <rect key="frame" x="246.5" y="0.0" width="93.5" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -227,7 +237,7 @@
                                     <constraint firstItem="ZtV-H7-4WH" firstAttribute="top" secondItem="fOB-nZ-77m" secondAttribute="top" constant="5" id="SIn-U9-ild"/>
                                     <constraint firstItem="ILs-cf-5CR" firstAttribute="top" secondItem="ZtV-H7-4WH" secondAttribute="bottom" constant="25" id="Wru-Hx-2P4"/>
                                     <constraint firstItem="ILs-cf-5CR" firstAttribute="leading" secondItem="fOB-nZ-77m" secondAttribute="leading" constant="15" id="YUd-E2-O2x"/>
-                                    <constraint firstAttribute="trailing" secondItem="ILs-cf-5CR" secondAttribute="trailing" constant="133" id="cxV-Mr-RBf"/>
+                                    <constraint firstAttribute="trailing" secondItem="ILs-cf-5CR" secondAttribute="trailing" constant="20" id="cxV-Mr-RBf"/>
                                     <constraint firstItem="ZtV-H7-4WH" firstAttribute="centerX" secondItem="fOB-nZ-77m" secondAttribute="centerX" id="fph-Iv-pYA"/>
                                 </constraints>
                             </view>
@@ -283,6 +293,7 @@
                         <outlet property="pickerTwo" destination="tGa-Gw-4N1" id="zCo-4i-2xl"/>
                         <outlet property="textFieldOne" destination="qio-HF-bRV" id="n63-HL-RUc"/>
                         <outlet property="textFieldThree" destination="kqu-sU-T8L" id="VNd-s2-mbZ"/>
+                        <outlet property="textFieldTwo" destination="mZX-eZ-nsH" id="h7L-9h-7Yd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYW-6i-3kA" userLabel="First Responder" sceneMemberID="firstResponder"/>
