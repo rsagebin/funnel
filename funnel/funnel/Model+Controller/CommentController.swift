@@ -34,7 +34,7 @@ class CommentController {
         
     }
     
-    func loadCommentsFor(post: Post) -> [Comment] {
+    func loadCommentsFor(post: Post, completion: @escaping ([Comment]) -> Void) {
         
         var comments: [Comment] = []
         
@@ -43,6 +43,7 @@ class CommentController {
         ckManager.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error loading comments for post: \(error)")
+                completion([])
                 return
             }
             
@@ -50,8 +51,33 @@ class CommentController {
             comments = commentsArray
         }
         
-        return comments
+        completion(comments)
+        
     }
+    
+//    func commentsWithUsersFor(post: Post) -> [Comment]  {
+//
+//        var comments = loadCommentsFor(post: post)
+//
+//        var users: [User] = []
+//
+//        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
+//
+//        ckManager.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+//            if let error = error {
+//                print("Error fetching users for comments:\(error)")
+//                return
+//            }
+//
+//            guard let usersArray = records?.compactMap({ $0 }) else { return }
+//
+//
+//
+//        }
+//
+//        return comments
+//
+//    }
     
     
 }
