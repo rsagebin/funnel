@@ -49,6 +49,11 @@ class CloudKitManager {
         publicDB.add(operation)
     }
     
+    // Delete a record
+    func delete(recordID: CKRecordID, completion: @escaping (CKRecordID?, Error?) -> Void) {
+        publicDB.delete(withRecordID: recordID, completionHandler: completion)
+    }
+    
     // Get user's Apple ID for object to reference
     func getUserRecordID(completion: @escaping (CKRecordID?, Error?) -> Void) {
         CKContainer.default().fetchUserRecordID(completionHandler: completion)
