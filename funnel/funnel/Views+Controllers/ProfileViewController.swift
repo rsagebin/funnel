@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var aboutLabel: UILabel!
+   
     
     // MARK: - Life Cycle
     
@@ -35,8 +35,7 @@ class ProfileViewController: UIViewController {
         emailLabel.layer.borderColor = UIColor.black.cgColor
         emailLabel.layer.borderWidth = 1.0
         
-        aboutLabel.layer.borderColor = UIColor.black.cgColor
-        aboutLabel.layer.borderWidth = 1.0
+        
         
         
     }

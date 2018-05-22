@@ -29,12 +29,14 @@ class CommentsTableViewCell: UITableViewCell {
     func updateViews() {
         guard let comment = comment else { return }
         self.commentLabel.text = comment.text
+//        self.layoutIfNeeded()
         
     }
 
     func updateUser() {
         guard let user = user  else { return }
          self.usernameLabel.text = user.username
+//        self.layoutIfNeeded()
 
     }
     
