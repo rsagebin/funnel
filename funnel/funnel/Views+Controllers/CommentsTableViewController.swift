@@ -12,7 +12,11 @@ class CommentsTableViewController: UITableViewController {
 
     var theRefreshControl: UIRefreshControl!
     
-    var post: Post?
+    var post: Post? {
+        didSet {
+            CommentController.shared.postComments.removeAll()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,15 +118,19 @@ class CommentsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentsTableViewCell
-        
+        cell.commentLabel.text = " "
         
         let comment = CommentController.shared.postComments[indexPath.row]
-        let user = CommentController.shared.loadUserFor(comment: comment)
-        print("User:",user)
-        cell.comment = comment
-        cell.user = user
+        
+        CommentController.shared.loadUserFor(comment: comment, completion: { (user) in
+            DispatchQueue.main.async {
+                cell.comment = comment
+                cell.user = user
+            }
+        })
         
         return cell
+        
     }
     
 

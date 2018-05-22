@@ -10,7 +10,11 @@ import UIKit
 
 class CommentsTableViewCell: UITableViewCell {
 
-    var user: User?
+    var user: User? {
+        didSet {
+            updateUser()
+        }
+    }
     
     var comment: Comment? {
         didSet {
@@ -23,11 +27,15 @@ class CommentsTableViewCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     
     func updateViews() {
-        
         guard let comment = comment else { return }
         self.commentLabel.text = comment.text
-        self.usernameLabel.text = user?.username
         
     }
 
+    func updateUser() {
+        guard let user = user  else { return }
+         self.usernameLabel.text = user.username
+
+    }
+    
 }

@@ -8,19 +8,13 @@
 
 import UIKit
 
-//protocol CommentsDelegate {
-//    func didTapComment()
-//}
-
 class PostDetailViewController: UIViewController {
 
     // MARK: - Properties
     
-//    var delegate: CommentsDelegate?
     var post: Post?
     
     // MARK: - Outlets
-    
     
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var postImageView: UIImageView!
@@ -61,7 +55,12 @@ class PostDetailViewController: UIViewController {
     
     @IBAction func commentsButtonTapped(_ sender: Any) {
         print("Trying to show comments")
-//        delegate?.didTapComment()
+        print(post?.description)
+        let commentsSB = UIStoryboard(name: "Comments", bundle: .main)
+        let commentsController = commentsSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController
+        commentsController.post = post
+        navigationController?.pushViewController(commentsController, animated: true)
+        
     }
     
     @IBAction func branchPostButtonTapped(_ sender: Any) {
