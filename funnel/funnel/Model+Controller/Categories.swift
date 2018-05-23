@@ -142,3 +142,7 @@ class Category3 {
         self.children = []
     }
 }
+
+protocol Category {
+    
+}
