@@ -40,8 +40,6 @@ class FollowingTableViewController: UITableViewController {
         
         fetchUserPosts()
         fetchFollowingPosts()
-        
-        self.tableView.reloadData()
     }
     
     
@@ -54,7 +52,7 @@ class FollowingTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         var sectionCount = 0
         
-        let posts = userPosts.count // Change to 1 from 0 if user has any posts
+        let posts = userPosts.count
         if posts > 0 {
             sectionCount += 1
             sectionTitles.append("My Posts")
@@ -66,7 +64,7 @@ class FollowingTableViewController: UITableViewController {
             sectionTitles.append("My Suggested Answers")
         }
         
-        let followings = userFollowings.count // Change to 1 from 0 if user is following posts
+        let followings = userFollowings.count
         if followings > 0 {
             sectionCount += 1
             sectionTitles.append("Posts I'm Following")
@@ -82,7 +80,7 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard sectionTitles.indices ~= section else { return nil }
+//        guard sectionTitles.indices ~= section else { return nil }
         return sectionTitles[section]
     }
     
@@ -117,12 +115,12 @@ class FollowingTableViewController: UITableViewController {
 //
 //        }
 //
-        if section == 2 { // User followings
+        if section == 1 { // User followings
             let followings = userFollowings.count
             return followings
         }
         
-        return 1
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -139,7 +137,7 @@ class FollowingTableViewController: UITableViewController {
 //        }
         
         
-        if indexPath.section == 2 {
+        if indexPath.section == 1 {
             let following = userFollowings[indexPath.row]
             cell.userFollowing = following
         }

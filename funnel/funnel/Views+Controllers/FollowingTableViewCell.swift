@@ -24,36 +24,37 @@ class FollowingTableViewCell: UITableViewCell {
     // MARK: - Properties
     var userPost: Post? {
         didSet {
-            updateViews()
+            if let post = userPost {
+                self.postSubmittedImage.image = post.image
+                self.postAcceptedSolutionIcon.isHidden = true // Call function when suggestions are there
+                self.postCategoryLabel.text = post.categoryAsString
+                self.postDescriptionLabel.text = post.description
+//                self.postHashTagsLabel.text =
+                self.postFollowingLabel.text = String(post.followersRefs.count)
+//            self.postSuggestionLabel.text =
+//            self.postCommentsLabel.text =
+            }
         }
     }
     
     var userSuggestion: Post? {
         didSet {
-            updateViews()
+            
         }
     }
     
     var userFollowing: Post? {
         didSet {
-            updateViews()
+            if let following = userFollowing {
+                postSubmittedImage.image = following.image
+//                postAcceptedSolutionIcon =
+                postCategoryLabel.text = following.categoryAsString
+                postDescriptionLabel.text = following.description
+//                postHashTagsLabel.text =
+                postFollowingLabel.text = String(following.followersRefs.count)
+//                postSuggestionLabel.text =
+//                postCommentsLabel.text =
+            }
         }
-    }
-    
-    
-    // MARK: - Methods
-    func updateViews() {
-        if let post = userPost {
-            self.postSubmittedImage.image = post.image
-            self.postAcceptedSolutionIcon.isHidden = true
-            self.postCategoryLabel.text = post.categoryAsString
-            self.postDescriptionLabel.text = post.description
-            self.postHashTagsLabel.text = ""
-            self.postFollowingLabel.text = String(post.followersRefs.count)
-//            self.postSuggestionLabel.text = post
-//            self.postCommentsLabel.text = "\(post.comments?.count)" ?? "\(0)"
-        }
-        
-        // Post solution unhide accepted soulution
     }
 }
