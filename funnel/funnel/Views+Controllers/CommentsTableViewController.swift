@@ -120,16 +120,15 @@ class CommentsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentsTableViewCell
         
-    
         let comment = CommentController.shared.postComments[indexPath.row]
+        cell.comment = comment
         
         CommentController.shared.loadUserFor(comment: comment, completion: { (user) in
             DispatchQueue.main.async {
-                cell.comment = comment
                 cell.user = user
-                cell.layoutSubviews()
             }
         })
         
@@ -138,6 +137,7 @@ class CommentsTableViewController: UITableViewController {
     }
     
     
+ 
 // prepare for reuse (uitableviewcell) -> remove old data
     
     // caching data already downloaded from the web (user avatar) *maybe do this part later
