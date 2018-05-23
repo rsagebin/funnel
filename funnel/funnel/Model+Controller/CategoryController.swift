@@ -23,7 +23,8 @@ class CategoryController {
                                       Category1(title: "outdoors"),
                                       Category1(title: "personal"),
                                       Category1(title: "science"),
-                                      Category1(title: "lifestyle")
+                                      Category1(title: "lifestyle"),
+                                      Category1(title: "unknown")
                                     ]
     
     var category2Categories: [Category2] = []
