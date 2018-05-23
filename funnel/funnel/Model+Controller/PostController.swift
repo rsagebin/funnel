@@ -27,14 +27,11 @@ class PostController {
     var userPosts = [Post]()
     
     
-    func createPost(description: String, image: UIImage, category: String) -> Post? {
+    func createPost(description: String, image: UIImage, category1: Category1?, category2: Category2?, category3: Category3?) -> Post? {
         
         var newPost: Post?
         
-        // TODO: Look into a more efficient way to get record ID without having to create a new CK record every time.
-        
         // Create CKAsset from image
-        
         // Write image to disk as a temprary file in order to create CKAsset
         let imageAsJpeg = UIImageJPEGRepresentation(image, 2.0)
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
@@ -51,7 +48,31 @@ class PostController {
         guard let user = UserController.shared.loggedInUser else { return nil }
         
         let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
-        let post = Post(user: user, description: description, imageAsCKAsset: asset, category: category, creatorRef: creatorReference)
+        
+        var categoryAsString = ""
+        
+        var category1Ref: CKReference?
+        var category2Ref: CKReference?
+        var category3Ref: CKReference?
+        
+        if let category1 = category1 {
+            category1Ref = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
+            categoryAsString += category1.title
+        }
+        
+        if let category2 = category2 {
+            category2Ref = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
+            categoryAsString += "\\" + "\(category2.title)"
+        }
+        
+        if let category3 = category3 {
+            category3Ref = CKReference(recordID: category3.ckRecordID ?? category3.ckRecord.recordID, action: .none)
+            categoryAsString += "\\" + "\(category3.title)"
+        }
+        
+        let post = Post(user: user, description: description, imageAsCKAsset: asset, creatorRef: creatorReference, category1Ref: category1Ref, category2Ref: category2Ref, category3Ref: category3Ref)
+        
+        post.categoryAsString = categoryAsString
         
         newPost = post
         
@@ -73,7 +94,7 @@ class PostController {
         }
         
         return newPost
-        
+
     }
     
     func delete(post: Post) {
