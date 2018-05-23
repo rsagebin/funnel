@@ -29,37 +29,19 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var pickerTwo: UIPickerView!
     @IBOutlet weak var pickerThree: UIPickerView!
     
-    
-    @IBOutlet weak var imageViewOutlet: UIImageView!
-    @IBOutlet weak var tagTextView: UITextView!
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var tagsTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var createAndSuggestButtonOutlet: UIButton!
+    @IBOutlet weak var createOrSuggestOutlet: UIButton!
+    
     
     // MARK: - Actions
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
-    
-        guard let image = imageViewOutlet.image, let description = descriptionTextView.text, let category = mainCategoryLabel.text else { return }
-        
-        PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil)
-        
-        
-//        guard let topCategory = topCategory.text, let mediumCategory = mediumCategory.text, let bottomCategory = bottomCategory.text else { return }
-//
-//        if mediumCategory == "" && bottomCategory == "" {
-//            self.category = topCategory
-//        } else if bottomCategory == "" {
-//            self.category = "\(topCategory)/\(mediumCategory)"
-//        } else {
-//            self.category = "\(topCategory)/\(mediumCategory)/\(bottomCategory)"
-//        }
-    
-//        let newPost = MockPost(description: description, image: image, category: self.category)
-        
-//        PostController.shared.mockFeedPosts.append(newPost)
-        
-//        PostController.shared.createPost(description: description, image: image, category: category)
+        guard let image = postImageView.image, let description = descriptionTextView.text, let categoryAsString = mainCategoryLabel.text, let tags = tagsTextView.text else { return }
+
+        PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil, tagString: tags)
         
         navigationController?.popToRootViewController(animated: true)
     }
@@ -76,6 +58,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         setButtonTitle()
         setBorders()
     }
+    
+    // MARK: - Category
     
     @IBAction func newCategoryButtonTapped(_ sender: Any) {
         newCategoryAlert()
@@ -118,14 +102,13 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         self.present(alert, animated: true, completion: nil)
     }
     
-    
     // MARK: - Other functions
     
     func setBorders() {
         
-        tagTextView.layer.borderColor = UIColor.lightGray.cgColor
-        tagTextView.layer.borderWidth = 1.0
-        
+        tagsTextView.layer.borderColor = UIColor.lightGray.cgColor
+        tagsTextView.layer.borderWidth = 1.0
+
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0
     }
@@ -133,16 +116,23 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     func setButtonTitle() {
         
         if post != nil {
-            self.createAndSuggestButtonOutlet.setTitle("Suggest change", for: .normal)
+            self.createOrSuggestOutlet.setTitle("Suggest change", for: .normal)
         } else {
-            self.createAndSuggestButtonOutlet.setTitle("Create new post", for: .normal)
+            self.createOrSuggestOutlet.setTitle("Create new post", for: .normal)
         }
     }
     
     func updateViews() {
         guard let post = post else { return }
 //        self.category = post.category
-        self.imageViewOutlet.image = post.image
+        
+        TagController.shared.fetchTagsFor(post: post) { (tags) in
+            DispatchQueue.main.async {
+                 self.tagsTextView.text = tags
+            }
+        }
+      
+        self.postImageView.image = post.image
         self.descriptionTextView.text = post.description
     }
     
@@ -178,24 +168,19 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
                 self.present(self.picker,animated: true,completion: nil)
                 
             } else {
-                noCamera()
+                // no comera
+                
+                let alertVC = UIAlertController(
+                    title: "No Camera",
+                    message: "Sorry, this device has no camera",
+                    preferredStyle: .alert)
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style:.default,
+                    handler: nil)
+                alertVC.addAction(okAction)
+                self.present(alertVC, animated: true, completion: nil)
             }
-        }
-        
-        func noCamera(){
-            let alertVC = UIAlertController(
-                title: "No Camera",
-                message: "Sorry, this device has no camera",
-                preferredStyle: .alert)
-            let okAction = UIAlertAction(
-                title: "OK",
-                style:.default,
-                handler: nil)
-            alertVC.addAction(okAction)
-            present(
-                alertVC,
-                animated: true,
-                completion: nil)
         }
         
         let goToLibrary = UIAlertAction(title: "Photo Library", style: .default) { (_) in
@@ -220,8 +205,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     {
 
         guard let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
-        imageViewOutlet.contentMode = .scaleAspectFit
-        imageViewOutlet.image = chosenImage
+        postImageView.contentMode = .scaleAspectFit
+        postImageView.image = chosenImage
         dismiss(animated:true, completion: nil)
     }
     
@@ -230,7 +215,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     }
 }
 
-// MARK: - Categories Picker Methods
+    // MARK: - Categories Picker Methods
+
 extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -250,6 +236,7 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerOne {
             let labelOne = "\(category[row].title)"
+            
             return labelOne
         }
             

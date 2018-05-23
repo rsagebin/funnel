@@ -54,12 +54,19 @@ class RevisedPostController {
     }
     
     func deleteRevisedPost(revisedPost: RevisedPost) {
-        
+        ckManager.delete(recordID: revisedPost.ckRecordID ?? revisedPost.ckRecord.recordID) { (recordID, error) in
+            if let error = error {
+                print("Error deleting revised post: \(error)")
+                return
+            }
+        }
     }
     
-    func acceptRevisedPost(revisedPost: RevisedPost, for post: Post) {
-        
-    }
+//    func acceptRevisedPost(revisedPost: RevisedPost, for post: Post) {
+//        post.description = revisedPost.description
+//        
+//
+//    }
     
     
 }

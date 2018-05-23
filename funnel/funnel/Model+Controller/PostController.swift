@@ -17,19 +17,12 @@ class PostController {
     
     static let shared = PostController()
     
-    // Possibly use NSPredicate in CKManager to specific time frame, etc. Or implement infinite scroll.
-    
-    // No touchy - mock data
-    var mockFeedPosts: [MockPost] = []
-    
     var feedPosts = [Post]()
     var followingPosts = [Post]()
     var userPosts = [Post]()
     
-    
-    func createPost(description: String, image: UIImage, category1: Category1?, category2: Category2?, category3: Category3?) -> Post? {
-        
-        var newPost: Post?
+
+    func createPost(description: String, image: UIImage, category1: Category1?, category2: Category2?, category3: Category3?, tagString: String) {
         
         // Create CKAsset from image
         // Write image to disk as a temprary file in order to create CKAsset
@@ -40,12 +33,12 @@ class PostController {
             try imageAsJpeg?.write(to: url)
         } catch {
             print("Couldn't write temporary image to file: \(error)")
-            return nil
+            return
         }
         
         let asset = CKAsset(fileURL: url)
         
-        guard let user = UserController.shared.loggedInUser else { return nil }
+        guard let user = UserController.shared.loggedInUser else { return }
         
         let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
         
@@ -74,8 +67,6 @@ class PostController {
         
         post.categoryAsString = categoryAsString
         
-        newPost = post
-        
         self.feedPosts.insert(post, at: 0)
         
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (record, error) in
@@ -93,7 +84,7 @@ class PostController {
             }
         }
         
-        return newPost
+        TagController.shared.saveTagsOnPost(post: post, tagString: tagString)
 
     }
     
@@ -182,26 +173,6 @@ class PostController {
         }
     }
     
-    func addTagsTo(tags: [String], post: Post) {
-        let postRecordID = post.ckRecordID ?? post.ckRecord.recordID
-        let postReference = CKReference(recordID: postRecordID, action: .deleteSelf)
-        var tagsRecordArray: [CKRecord] = []
-        
-        
-        for tag in tags {
-            let tag = Tag(text: tag, postReference: postReference)
-//            post.tags.append(tag)
-            tagsRecordArray.append(tag.ckRecord)
-        }
-        
-        ckManager.save(records: tagsRecordArray, perRecordCompletion: nil) { (records, error) in
-            if let error = error {
-                print("Error saving tags to CloudKit: \(error)")
-                return
-            }
-        }
-        
-    }
     
     func fetchFollowingPosts(user: User, completion: @escaping (Bool) -> Void) {
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID

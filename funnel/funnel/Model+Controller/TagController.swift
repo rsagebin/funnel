@@ -15,43 +15,63 @@ class TagController {
     
     static let shared = TagController()
     
-//    func parseTagString(string: String) -> [Tag] {
-//        
-//    }
-    
-    
-    func createTagOn(post: Post, text: String) {
+    func saveTagsOnPost(post: Post, tagString: String) {
+        
+        let textSeparatedBySpaces = tagString.components(separatedBy: " ")
+        let tagsAsStrings = textSeparatedBySpaces.filter { (word) -> Bool in
+            return word.hasPrefix("#")
+        }
         
         let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
         
-        let tag = Tag(text: text, postReference: postReference)
-        
-        ckManager.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
-            if let error = error {
-                print("Error saving tag to CloudKit: \(error)")
-                return
+        for string in tagsAsStrings {
+            let tag = Tag(text: string, postReference: postReference)
+            
+            ckManager.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
+                if let error = error {
+                    print("Error saving tag to CloudKit: \(error)")
+                    return
+                }
             }
         }
-        
     }
     
-    func fetchTagsFor(post: Post) -> [Tag] {
-        var tags: [Tag] = []
+    
+    func fetchTagsFor(post: Post, completion: @escaping ([Tag]?) -> Void) {
         
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
         
         ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error loading tags for post: \(error)")
+                completion(nil)
                 return
             }
             
             guard let tagsArray = records?.compactMap({Tag(cloudKitRecord: $0)}) else { return }
-            tags = tagsArray
+            completion(tagsArray)
         }
         
-        return tags
     }
     
+    func fetchTagsFor(post: Post, completion: @escaping (String?) -> Void) {
+        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
+        
+        ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+            if let error = error {
+                print("Error loading tags for post: \(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let tagsArray = records?.compactMap({Tag(cloudKitRecord: $0)}) else { return }
+            
+            let tagsAsStringArray = tagsArray.compactMap({ $0.text })
+            
+            let tagsAsString = tagsAsStringArray.joined(separator: " ")
+            
+            completion(tagsAsString)
+        }
+    }
     
 }
