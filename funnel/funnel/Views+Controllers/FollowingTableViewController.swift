@@ -38,37 +38,10 @@ class FollowingTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        fetchUserPosts()
+        fetchFollowingPosts()
+        
         self.tableView.reloadData()
-        
-        guard let user = UserController.shared.loggedInUser else { return }
-        
-        PostController.shared.fetchUserPosts(user: user) { (success) in
-            DispatchQueue.main.async {
-                
-                if success {
-                    self.userPosts = PostController.shared.userPosts
-                    self.tableView.reloadData()
-                }
-                
-                if !success {
-                    print("Could not fetch user posts")
-                }
-            }
-        }
-        
-        PostController.shared.fetchFollowingPosts(user: user) { (success) in
-            DispatchQueue.main.async {
-                
-                if success {
-                    self.userFollowings = PostController.shared.followingPosts
-                    self.tableView.reloadData()
-                }
-                
-                if !success {
-                    print("Could not fetch following posts")
-                }
-            }
-        }
     }
     
     
@@ -184,5 +157,43 @@ class FollowingTableViewController: UITableViewController {
         
         currentVC.post = selectedPost
         navigationController?.pushViewController(currentVC, animated: true)
+    }
+    
+    func fetchUserPosts() {
+        
+        guard let user = UserController.shared.loggedInUser else { return }
+        
+        PostController.shared.fetchUserPosts(user: user) { (success) in
+            DispatchQueue.main.async {
+                
+                if success {
+                    self.userPosts = PostController.shared.userPosts
+                    self.tableView.reloadData()
+                }
+                
+                if !success {
+                    print("Could not fetch user posts")
+                }
+            }
+        }
+    }
+    
+    func fetchFollowingPosts() {
+        
+        guard let user = UserController.shared.loggedInUser else { return }
+        
+        PostController.shared.fetchFollowingPosts(user: user) { (success) in
+            DispatchQueue.main.async {
+                
+                if success {
+                    self.userFollowings = PostController.shared.followingPosts
+                    self.tableView.reloadData()
+                }
+                
+                if !success {
+                    print("Could not fetch following posts")
+                }
+            }
+        }
     }
 }
