@@ -39,7 +39,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
-    
         guard let image = postImageView.image, let description = descriptionTextView.text, let categoryAsString = mainCategoryLabel.text, let tags = tagsTextView.text else { return }
 
         PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil, tagString: tags)
@@ -59,6 +58,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         setButtonTitle()
         setBorders()
     }
+    
+    // MARK: - Category
     
     @IBAction func newCategoryButtonTapped(_ sender: Any) {
         newCategoryAlert()
@@ -100,7 +101,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         
         self.present(alert, animated: true, completion: nil)
     }
-    
     
     // MARK: - Other functions
     
@@ -168,24 +168,19 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
                 self.present(self.picker,animated: true,completion: nil)
                 
             } else {
-                noCamera()
+                // no comera
+                
+                let alertVC = UIAlertController(
+                    title: "No Camera",
+                    message: "Sorry, this device has no camera",
+                    preferredStyle: .alert)
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style:.default,
+                    handler: nil)
+                alertVC.addAction(okAction)
+                self.present(alertVC, animated: true, completion: nil)
             }
-        }
-        
-        func noCamera(){
-            let alertVC = UIAlertController(
-                title: "No Camera",
-                message: "Sorry, this device has no camera",
-                preferredStyle: .alert)
-            let okAction = UIAlertAction(
-                title: "OK",
-                style:.default,
-                handler: nil)
-            alertVC.addAction(okAction)
-            present(
-                alertVC,
-                animated: true,
-                completion: nil)
         }
         
         let goToLibrary = UIAlertAction(title: "Photo Library", style: .default) { (_) in
@@ -241,6 +236,7 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerOne {
             let labelOne = "\(category[row].title)"
+            
             return labelOne
         }
             

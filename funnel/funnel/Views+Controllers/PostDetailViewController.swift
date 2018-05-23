@@ -81,6 +81,12 @@ class PostDetailViewController: UIViewController {
 //        postSuggestCountLabel.text =
         postCommentCountLabel.text = String(comments)
         
+        TagController.shared.fetchTagsFor(post: post) { (tags) in
+            DispatchQueue.main.async {
+                self.tagsTextView.text = tags
+            }
+        }
+        
     }
   
     // MARK: - Actions
