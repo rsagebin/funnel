@@ -56,5 +56,22 @@ class TagController {
         
     }
     
+    func fetchTagsFor(post: Post, completion: @escaping (String?) -> Void) {
+        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
+        
+        ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+            if let error = error {
+                print("Error loading tags for post: \(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let tagsArray = records?.compactMap({Tag(cloudKitRecord: $0)}) else { return }
+            
+            let tagsAsString = tagsArray.compactMap({ "\($0.text) " }).first
+            
+            completion(tagsAsString)
+        }
+    }
     
 }

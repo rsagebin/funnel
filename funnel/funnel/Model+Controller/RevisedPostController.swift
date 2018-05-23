@@ -62,9 +62,11 @@ class RevisedPostController {
         }
     }
     
-    func acceptRevisedPost(revisedPost: RevisedPost, for post: Post) {
-        
-    }
+//    func acceptRevisedPost(revisedPost: RevisedPost, for post: Post) {
+//        post.description = revisedPost.description
+//        
+//
+//    }
     
     
 }

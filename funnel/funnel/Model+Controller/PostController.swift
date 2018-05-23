@@ -17,11 +17,6 @@ class PostController {
     
     static let shared = PostController()
     
-    // Possibly use NSPredicate in CKManager to specific time frame, etc. Or implement infinite scroll.
-    
-    // No touchy - mock data
-    var mockFeedPosts: [MockPost] = []
-    
     var feedPosts = [Post]()
     var followingPosts = [Post]()
     var userPosts = [Post]()
@@ -178,26 +173,6 @@ class PostController {
         }
     }
     
-    func addTagsTo(tags: [String], post: Post) {
-        let postRecordID = post.ckRecordID ?? post.ckRecord.recordID
-        let postReference = CKReference(recordID: postRecordID, action: .deleteSelf)
-        var tagsRecordArray: [CKRecord] = []
-        
-        
-        for tag in tags {
-            let tag = Tag(text: tag, postReference: postReference)
-//            post.tags.append(tag)
-            tagsRecordArray.append(tag.ckRecord)
-        }
-        
-        ckManager.save(records: tagsRecordArray, perRecordCompletion: nil) { (records, error) in
-            if let error = error {
-                print("Error saving tags to CloudKit: \(error)")
-                return
-            }
-        }
-        
-    }
     
     func fetchFollowingPosts(user: User, completion: @escaping (Bool) -> Void) {
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
