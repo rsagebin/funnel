@@ -150,7 +150,7 @@ class PostController {
     }
     
     func removeFollowerFromPost(user: User, post: Post) {
-        let reference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .none)
+        let reference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .none)
         guard let index = post.followersRefs.index(of: reference) else { return }
         post.followersRefs.remove(at: index)
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
