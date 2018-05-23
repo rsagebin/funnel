@@ -15,7 +15,11 @@ class RevisedPost {
     private static let category1RefKey = "category1Ref"
     private static let category2RefKey = "category2Ref"
     private static let category3RefKey = "category3Ref"
+    private static let categoryAsStringKey = "categoryAsString"
     private static let followersRefsKey = "followersRefs"
+    private static let imageAsCKAssetKey = "imageAsCKAsset"
+    private static let creatorRefKey = "creatorRef"
+    
 
     let description: String
 
@@ -27,6 +31,8 @@ class RevisedPost {
     var category1Ref: CKReference?
     var category2Ref: CKReference?
     var category3Ref: CKReference?
+    
+    var categoryAsString = ""
 
     let creatorRef: CKReference
     
@@ -54,10 +60,36 @@ class RevisedPost {
         if let category3Ref = category3Ref {
             record.setValue(category3Ref, forKey: RevisedPost.category3RefKey)
         }
+        
+        record.setValue(description, forKey: RevisedPost.descriptionKey)
+        record.setValue(categoryAsString, forKey: RevisedPost.categoryAsStringKey)
 
         return record
     }
 
+    
+    // Create Failable initializer
+    
+//    init?(cloudKitRecord: CKRecord) {
+//        guard let description = cloudKitRecord[RevisedPost.descriptionKey] as? String,
+//            let imageAsCKAsset = cloudKitRecord[RevisedPost.imageAsCKAssetKey] as? CKAsset,
+//            let creatorRef = cloudKitRecord[RevisedPost.creatorRefKey] as? CKReference,
+//            let categoryAsString = cloudKitRecord[RevisedPost.categoryAsStringKey] as? String
+//            else { return nil }
+//
+//        if let category1Ref = cloudKitRecord[RevisedPost.category1RefKey] as? CKReference {
+//            self.category1Ref = category1Ref
+//        }
+//
+//        if let category2Ref = cloudKitRecord[RevisedPost.category2RefKey] as? CKReference {
+//            self.category2Ref = category2Ref
+//        }
+//
+//        if let category3Ref = cloudKitRecord[RevisedPost.category3RefKey] as? CKReference {
+//            self.category3Ref = category3Ref
+//        }
+//    }
+//
     init(post: Post, description: String, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?) {
         self.description = description
         self.creatorRef = post.creatorRef
@@ -65,6 +97,7 @@ class RevisedPost {
         self.category1Ref = category1Ref
         self.category2Ref = category2Ref
         self.category3Ref = category3Ref
+        
     }
 
 }
