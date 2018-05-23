@@ -86,7 +86,7 @@ class FeedTableViewCell: UITableViewCell {
             let comments = CommentController.shared.postComments.count
             
             self.postApprovedImage.isHidden = true
-            self.categoriesLabel.text = post.category
+            self.categoriesLabel.text = post.categoryAsString
             self.descriptionTextView.text = post.description
             self.postImageView.image = post.image
             self.postFollowingCountLabel.text = String(post.followersRefs.count)

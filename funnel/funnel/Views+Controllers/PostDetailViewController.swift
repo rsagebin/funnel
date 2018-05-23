@@ -75,7 +75,7 @@ class PostDetailViewController: UIViewController {
         guard let post = post else { return }
         let comments = CommentController.shared.postComments.count
         descriptionTextView.text = post.description
-        categoryLabel.text = post.category
+        categoryLabel.text = post.categoryAsString
         postImageView.image = post.image
         postFollowingCountLabel.text = String(post.followersRefs.count)
 //        postSuggestCountLabel.text =

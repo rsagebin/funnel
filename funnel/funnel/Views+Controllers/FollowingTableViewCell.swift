@@ -46,7 +46,7 @@ class FollowingTableViewCell: UITableViewCell {
         if let post = userPost {
             self.postSubmittedImage.image = post.image
             self.postAcceptedSolutionIcon.isHidden = true
-            self.postCategoryLabel.text = post.category
+            self.postCategoryLabel.text = post.categoryAsString
             self.postDescriptionLabel.text = post.description
             self.postHashTagsLabel.text = ""
             self.postFollowingLabel.text = String(post.followersRefs.count)
