@@ -58,13 +58,26 @@ class FeedTableViewCell: UITableViewCell {
         
         if isFollowing == true {
             buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+            checkUserRef()
             PostController.shared.addFollowerToPost(user: user, post: post)
 
         } else if isFollowing == false {
             buttonImage.tintColor = UIColor.black
+            checkUserRef()
             PostController.shared.removeFollowerFromPost(user: user, post: post)
         }
         updateViews()
+    }
+    
+    func checkUserRef() {
+        guard let userRef = UserController.shared.loggedInUser?.appleUserRef else { return }
+        guard let followersRefs = post?.followersRefs else { return }
+        
+        for refNumber in followersRefs {
+            if refNumber == userRef {
+                print(refNumber)
+            }
+        }
     }
     
     @IBAction func postSuggestButtonTapped(_ sender: UIButton) {
