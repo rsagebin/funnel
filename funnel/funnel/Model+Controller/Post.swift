@@ -16,7 +16,7 @@ class Post {
     private static let descriptionKey = "description"
     private static let imageKey = "image"
     private static let imageAsCKAssetKey = "imageAsCKAsset"
-    private static let categoryKey = "category"
+    private static let categoryAsStringKey = "categoryAsString"
     private static let tagsKey = "tags"
     private static let commentsKey = "comments"
     private static let isAnsweredKey = "isAnswered"
@@ -32,7 +32,6 @@ class Post {
     let description: String
     let image: UIImage?
     let imageAsCKAsset: CKAsset
-    var category: String
     var tags: [Tag]?
     var comments: [Comment]?
     var isAnswered: Bool
@@ -42,6 +41,8 @@ class Post {
     var category1Ref: CKReference?
     var category2Ref: CKReference?
     var category3Ref: CKReference?
+    
+    var categoryAsString: String = ""
     
     var followersRefs: [CKReference]
     let creatorRef: CKReference
@@ -59,10 +60,10 @@ class Post {
         record.setValue(creatorRef, forKey: Post.creatorRefKey)
         record.setValue(description, forKey: Post.descriptionKey)
         record.setValue(imageAsCKAsset, forKey: Post.imageAsCKAssetKey)
-        record.setValue(category, forKey: Post.categoryKey)
         record.setValue(isAnswered, forKey: Post.isAnsweredKey)
         record.setValue(numberOfFlags, forKey: Post.numberOfFlagsKey)
         record.setValue(isBanned, forKey: Post.isBannedKey)
+        record.setValue(categoryAsString, forKey: Post.categoryAsStringKey)
         
         if let category1Ref = category1Ref {
             record.setValue(category1Ref, forKey: Post.category1RefKey)
@@ -81,18 +82,16 @@ class Post {
         return record
     }
     
-    func createCategory() -> String {
-        return ""
-    }
-    
-    init(user: User, description: String, imageAsCKAsset: CKAsset, category: String, creatorRef: CKReference) {
+    init(user: User, description: String, imageAsCKAsset: CKAsset, creatorRef: CKReference, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?) {
         self.user = user
         self.description = description
         self.image = UIImage(ckAsset: imageAsCKAsset)
         self.imageAsCKAsset = imageAsCKAsset
-        self.category = category
         self.comments = []
         self.tags = []
+        self.category1Ref = category1Ref
+        self.category2Ref = category2Ref
+        self.category3Ref = category3Ref
         self.numberOfFlags = 0
         self.isBanned = false
         self.isAnswered = false
@@ -103,11 +102,11 @@ class Post {
     init?(cloudKitRecord: CKRecord) {
             guard let description = cloudKitRecord[Post.descriptionKey] as? String,
             let imageAsCKAsset = cloudKitRecord[Post.imageAsCKAssetKey] as? CKAsset,
-            let category = cloudKitRecord[Post.categoryKey] as? String,
             let isAnswered = cloudKitRecord[Post.isAnsweredKey] as? Bool,
             let numberOfFlags = cloudKitRecord[Post.numberOfFlagsKey] as? Int,
             let isBanned = cloudKitRecord[Post.isBannedKey] as? Bool,
-            let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference
+            let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference,
+            let categoryAsString = cloudKitRecord[Post.categoryAsStringKey] as? String
                 else { return nil }
     
         if let followersRefs = cloudKitRecord[Post.followersRefsKey] as? [CKReference] {
@@ -131,11 +130,11 @@ class Post {
         self.description = description
         self.imageAsCKAsset = imageAsCKAsset
         self.image = UIImage(ckAsset: imageAsCKAsset)
-        self.category = category
         self.isAnswered = isAnswered
         self.numberOfFlags = numberOfFlags
         self.isBanned = isBanned
         self.creatorRef = creatorRef
+        self.categoryAsString = categoryAsString
         
         self.ckRecordID = cloudKitRecord.recordID
         
