@@ -30,19 +30,15 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var pickerThree: UIPickerView!
     
     
-    @IBOutlet weak var imageViewOutlet: UIImageView!
-    @IBOutlet weak var tagTextView: UITextView!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var createAndSuggestButtonOutlet: UIButton!
     
     // MARK: - Actions
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
     
-        guard let image = imageViewOutlet.image, let description = descriptionTextView.text, let category = mainCategoryLabel.text else { return }
-        
-        PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil)
+//        guard let image = imageViewOutlet.image, let description = descriptionTextView.text, let category = mainCategoryLabel.text else { return }
+//
+//        PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil)
         
         
 //        guard let topCategory = topCategory.text, let mediumCategory = mediumCategory.text, let bottomCategory = bottomCategory.text else { return }
@@ -123,27 +119,27 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     func setBorders() {
         
-        tagTextView.layer.borderColor = UIColor.lightGray.cgColor
-        tagTextView.layer.borderWidth = 1.0
-        
-        descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
-        descriptionTextView.layer.borderWidth = 1.0
+//        tagTextView.layer.borderColor = UIColor.lightGray.cgColor
+//        tagTextView.layer.borderWidth = 1.0
+//
+//        descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
+//        descriptionTextView.layer.borderWidth = 1.0
     }
     
     func setButtonTitle() {
         
-        if post != nil {
-            self.createAndSuggestButtonOutlet.setTitle("Suggest change", for: .normal)
-        } else {
-            self.createAndSuggestButtonOutlet.setTitle("Create new post", for: .normal)
-        }
+//        if post != nil {
+//            self.createAndSuggestButtonOutlet.setTitle("Suggest change", for: .normal)
+//        } else {
+//            self.createAndSuggestButtonOutlet.setTitle("Create new post", for: .normal)
+//        }
     }
     
     func updateViews() {
         guard let post = post else { return }
 //        self.category = post.category
-        self.imageViewOutlet.image = post.image
-        self.descriptionTextView.text = post.description
+//        self.imageViewOutlet.image = post.image
+//        self.descriptionTextView.text = post.description
     }
     
     func createCameraButton() {
@@ -220,8 +216,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     {
 
         guard let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
-        imageViewOutlet.contentMode = .scaleAspectFit
-        imageViewOutlet.image = chosenImage
+//        imageViewOutlet.contentMode = .scaleAspectFit
+//        imageViewOutlet.image = chosenImage
         dismiss(animated:true, completion: nil)
     }
     
@@ -230,7 +226,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     }
 }
 
-// MARK: - Categories Picker Methods
+    // MARK: - Categories Picker Methods
+
 extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
