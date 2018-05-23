@@ -39,8 +39,12 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
-//        guard let image = imageViewOutlet.image, let description = descriptionTextView.text else { return }
-
+    
+        guard let image = imageViewOutlet.image, let description = descriptionTextView.text, let category = mainCategoryLabel.text else { return }
+        
+        PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil)
+        
+        
 //        guard let topCategory = topCategory.text, let mediumCategory = mediumCategory.text, let bottomCategory = bottomCategory.text else { return }
 //
 //        if mediumCategory == "" && bottomCategory == "" {

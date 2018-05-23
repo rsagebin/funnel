@@ -239,20 +239,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-Lm-5TH">
-                                        <rect key="frame" x="5" y="428" width="365" height="133"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" scrollEnabled="NO" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-Lm-5TH">
+                                        <rect key="frame" x="5" y="428" width="365" height="33"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Vers les docks où le poids et l'ennui 
-Me courbent le dos 
-Ils arrivent le ventre alourdi  Emmenez-moi au bout de la terre 
-Emmenez-moi au pays des merveilles 
-Il me semble que la misère 
-Serait moins pénible au soleil</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8o-3S-mCH">
-                                        <rect key="frame" x="100" y="571" width="175" height="30"/>
+                                        <rect key="frame" x="100" y="471" width="175" height="30"/>
                                         <state key="normal" title="Submit Revision"/>
                                         <connections>
                                             <action selector="createOrSuggestPostButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="JJs-SO-VtK"/>
