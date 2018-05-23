@@ -15,8 +15,7 @@ class TagController {
     
     static let shared = TagController()
     
-    func createTagsOnPostFromString(post: Post, tagString: String) {
-        var tags: [Tag] = []
+    func saveTagsOnPost(post: Post, tagString: String) {
         
         let textSeparatedBySpaces = tagString.components(separatedBy: " ")
         let tagsAsStrings = textSeparatedBySpaces.filter { (word) -> Bool in
@@ -27,7 +26,6 @@ class TagController {
         
         for string in tagsAsStrings {
             let tag = Tag(text: string, postReference: postReference)
-            tags.append(tag)
             
             ckManager.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
                 if let error = error {
@@ -68,7 +66,9 @@ class TagController {
             
             guard let tagsArray = records?.compactMap({Tag(cloudKitRecord: $0)}) else { return }
             
-            let tagsAsString = tagsArray.compactMap({ "\($0.text) " }).first
+            let tagsAsStringArray = tagsArray.compactMap({ $0.text })
+            
+            let tagsAsString = tagsAsStringArray.joined(separator: " ")
             
             completion(tagsAsString)
         }

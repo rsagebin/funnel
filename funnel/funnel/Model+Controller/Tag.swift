@@ -38,7 +38,7 @@ class Tag {
     }
     
     init?(cloudKitRecord: CKRecord) {
-        guard let text = cloudKitRecord[Tag.typeKey] as? String,
+        guard let text = cloudKitRecord[Tag.textKey] as? String,
             let postReference = cloudKitRecord[Tag.postReferenceKey] as? CKReference else { return nil }
         
         self.text = text

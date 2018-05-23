@@ -84,7 +84,7 @@ class PostController {
             }
         }
         
-        TagController.shared.createTagsOnPostFromString(post: post, tagString: tagString)
+        TagController.shared.saveTagsOnPost(post: post, tagString: tagString)
 
     }
     
