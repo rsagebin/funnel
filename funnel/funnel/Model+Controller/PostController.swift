@@ -122,6 +122,54 @@ class PostController {
     }
     
     
+    func fetchPostsFor(category1: Category1, completion: @escaping ([Post]?) -> Void) {
+        let predicate = NSPredicate(format: "category1Ref == %@", category1.ckRecordID ?? category1.ckRecord.recordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+            if let error = error {
+                print("Error fetching posts for category 1: \(error)")
+                completion(nil)
+                return
+            }
+            
+            let posts = records?.compactMap({ Post(cloudKitRecord: $0) })
+            
+            completion(posts)
+        }
+    }
+    
+    func fetchPostsFor(category2: Category2, completion: @escaping ([Post]?) -> Void) {
+        let predicate = NSPredicate(format: "category2Ref == %@", category2.ckRecordID ?? category2.ckRecord.recordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+            if let error = error {
+                print("Error fetching posts for category 2: \(error)")
+                completion(nil)
+                return
+            }
+            
+            let posts = records?.compactMap({ Post(cloudKitRecord: $0) })
+            
+            completion(posts)
+        }
+    }
+    
+    func fetchPostsFor(category3: Category3, completion: @escaping ([Post]?) -> Void) {
+        let predicate = NSPredicate(format: "category3Ref == %@", category3.ckRecordID ?? category3.ckRecord.recordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+            if let error = error {
+                print("Error fetching posts for category 3: \(error)")
+                completion(nil)
+                return
+            }
+            
+            let posts = records?.compactMap({ Post(cloudKitRecord: $0) })
+            
+            completion(posts)
+        }
+    }
+    
     func addCategories(to post: Post, category1: Category1? = nil, category2: Category2? = nil, category3: Category3? = nil) {
         if let category1 = category1 {
             let reference = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
