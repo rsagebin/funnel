@@ -246,6 +246,9 @@
                                                 <state key="normal">
                                                     <color key="titleColor" red="1" green="0.87928292149999998" blue="0.63976345800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="createOrSuggestPostButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="bIP-Wz-UfN"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -288,10 +291,14 @@
                         <viewLayoutGuide key="safeArea" id="YQz-yd-njm"/>
                     </view>
                     <connections>
+                        <outlet property="createOrSuggestOutlet" destination="A8o-3S-mCH" id="mwO-4c-gSC"/>
+                        <outlet property="descriptionTextView" destination="fZH-Lm-5TH" id="NbP-Th-hqY"/>
                         <outlet property="mainCategoryLabel" destination="dgI-Cg-h3b" id="ncQ-b8-u8k"/>
                         <outlet property="pickerOne" destination="BCq-ou-fPA" id="pOP-qy-ELe"/>
                         <outlet property="pickerThree" destination="5cn-s6-0Ce" id="HB7-b1-b67"/>
                         <outlet property="pickerTwo" destination="obO-ZQ-36n" id="Rla-4j-XxT"/>
+                        <outlet property="postImageView" destination="1qq-fs-oln" id="tfT-Fd-fhy"/>
+                        <outlet property="tagsTextView" destination="exf-Zg-Y8S" id="9Kk-YY-hvt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLf-7t-dEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
