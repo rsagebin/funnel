@@ -15,10 +15,10 @@ class TagController {
     
     static let shared = TagController()
     
-    func createTagsOnPostFromString(post: Post, string: String) {
+    func createTagsOnPostFromString(post: Post, tagString: String) {
         var tags: [Tag] = []
         
-        let textSeparatedBySpaces = string.components(separatedBy: " ")
+        let textSeparatedBySpaces = tagString.components(separatedBy: " ")
         let tagsAsStrings = textSeparatedBySpaces.filter { (word) -> Bool in
             return word.hasPrefix("#")
         }

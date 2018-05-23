@@ -48,6 +48,8 @@ class Comment {
         self.userReference = userReference
         self.text = text
         
+        self.ckRecordID = cloudKitRecord.recordID
+        
     }
     
     init(post: Post, text: String, user: User, postReference: CKReference, userReference: CKReference) {
