@@ -15,42 +15,45 @@ class TagController {
     
     static let shared = TagController()
     
-//    func parseTagString(string: String) -> [Tag] {
-//        
-//    }
-    
-    
-    func createTagOn(post: Post, text: String) {
+    func createTagsOnPostFromString(post: Post, string: String) {
+        var tags: [Tag] = []
+        
+        let textSeparatedBySpaces = string.components(separatedBy: " ")
+        let tagsAsStrings = textSeparatedBySpaces.filter { (word) -> Bool in
+            return word.hasPrefix("#")
+        }
         
         let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
         
-        let tag = Tag(text: text, postReference: postReference)
-        
-        ckManager.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
-            if let error = error {
-                print("Error saving tag to CloudKit: \(error)")
-                return
+        for string in tagsAsStrings {
+            let tag = Tag(text: string, postReference: postReference)
+            tags.append(tag)
+            
+            ckManager.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
+                if let error = error {
+                    print("Error saving tag to CloudKit: \(error)")
+                    return
+                }
             }
         }
-        
     }
     
-    func fetchTagsFor(post: Post) -> [Tag] {
-        var tags: [Tag] = []
+    
+    func fetchTagsFor(post: Post, completion: @escaping ([Tag]?) -> Void) {
         
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
         
         ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error loading tags for post: \(error)")
+                completion(nil)
                 return
             }
             
             guard let tagsArray = records?.compactMap({Tag(cloudKitRecord: $0)}) else { return }
-            tags = tagsArray
+            completion(tagsArray)
         }
         
-        return tags
     }
     
     
