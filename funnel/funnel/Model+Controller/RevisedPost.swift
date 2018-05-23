@@ -70,26 +70,26 @@ class RevisedPost {
     
     // Create Failable initializer
     
-    init?(cloudKitRecord: CKRecord) {
-        guard let description = cloudKitRecord[RevisedPost.descriptionKey] as? String,
-            let imageAsCKAsset = cloudKitRecord[RevisedPost.imageAsCKAssetKey] as? CKAsset,
-            let creatorRef = cloudKitRecord[RevisedPost.creatorRefKey] as? CKReference,
-            let categoryAsString = cloudKitRecord[RevisedPost.categoryAsStringKey] as? String
-            else { return nil }
-        
-        if let category1Ref = cloudKitRecord[RevisedPost.category1RefKey] as? CKReference {
-            self.category1Ref = category1Ref
-        }
-        
-        if let category2Ref = cloudKitRecord[RevisedPost.category2RefKey] as? CKReference {
-            self.category2Ref = category2Ref
-        }
-        
-        if let category3Ref = cloudKitRecord[RevisedPost.category3RefKey] as? CKReference {
-            self.category3Ref = category3Ref
-        }
-    }
-    
+//    init?(cloudKitRecord: CKRecord) {
+//        guard let description = cloudKitRecord[RevisedPost.descriptionKey] as? String,
+//            let imageAsCKAsset = cloudKitRecord[RevisedPost.imageAsCKAssetKey] as? CKAsset,
+//            let creatorRef = cloudKitRecord[RevisedPost.creatorRefKey] as? CKReference,
+//            let categoryAsString = cloudKitRecord[RevisedPost.categoryAsStringKey] as? String
+//            else { return nil }
+//
+//        if let category1Ref = cloudKitRecord[RevisedPost.category1RefKey] as? CKReference {
+//            self.category1Ref = category1Ref
+//        }
+//
+//        if let category2Ref = cloudKitRecord[RevisedPost.category2RefKey] as? CKReference {
+//            self.category2Ref = category2Ref
+//        }
+//
+//        if let category3Ref = cloudKitRecord[RevisedPost.category3RefKey] as? CKReference {
+//            self.category3Ref = category3Ref
+//        }
+//    }
+//
     init(post: Post, description: String, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?) {
         self.description = description
         self.creatorRef = post.creatorRef
