@@ -55,10 +55,10 @@ class FeedTableViewCell: UITableViewCell {
         if isFollowing == true {
             buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
             PostController.shared.addFollowerToPost(user: user, post: post)
-            
+
         } else if isFollowing == false {
             buttonImage.tintColor = UIColor.black
-//            PostController.shared.removeFollowerFromPost(user: user, post: post)
+            PostController.shared.removeFollowerFromPost(user: user, post: post)
         }
     }
     
@@ -77,6 +77,8 @@ class FeedTableViewCell: UITableViewCell {
     
     func updateViews() {
         if let post = post {
+            guard let user = UserController.shared.loggedInUser else { return }
+            
             self.categoriesLabel.text = post.category
             self.descriptionTextView.text = post.description
             self.postImageView.image = post.image

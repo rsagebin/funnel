@@ -56,19 +56,19 @@ class FollowingTableViewController: UITableViewController {
             }
         }
         
-//        PostController.shared.fetchFollowingPosts(user: user) { (success) in
-//            DispatchQueue.main.async {
-//                
-//                if success {
-//                    self.userFollowings = PostController.shared.followingPosts
-//                    self.tableView.reloadData()
-//                }
-//                
-//                if !success {
-//                    print("Could not fetch following posts")
-//                }
-//            }
-//        }
+        PostController.shared.fetchFollowingPosts(user: user) { (success) in
+            DispatchQueue.main.async {
+                
+                if success {
+                    self.userFollowings = PostController.shared.followingPosts
+                    self.tableView.reloadData()
+                }
+                
+                if !success {
+                    print("Could not fetch following posts")
+                }
+            }
+        }
     }
     
     
