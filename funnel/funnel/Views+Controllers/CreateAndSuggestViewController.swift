@@ -125,6 +125,13 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     func updateViews() {
         guard let post = post else { return }
 //        self.category = post.category
+        
+        TagController.shared.fetchTagsFor(post: post) { (tags) in
+            DispatchQueue.main.async {
+                 self.tagsTextView.text = tags
+            }
+        }
+      
         self.postImageView.image = post.image
         self.descriptionTextView.text = post.description
     }
