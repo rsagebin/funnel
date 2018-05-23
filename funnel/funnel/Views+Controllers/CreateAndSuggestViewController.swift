@@ -40,9 +40,9 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
     
-        guard let image = postImageView.image, let description = descriptionTextView.text, let category = mainCategoryLabel.text else { return }
+        guard let image = postImageView.image, let description = descriptionTextView.text, let categoryAsString = mainCategoryLabel.text, let tags = tagsTextView.text else { return }
 
-        PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil)
+        PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil, tagString: tags)
         
         navigationController?.popToRootViewController(animated: true)
     }
