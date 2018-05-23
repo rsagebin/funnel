@@ -15,6 +15,11 @@ class TagController {
     
     static let shared = TagController()
     
+//    func parseTagString(string: String) -> [Tag] {
+//        
+//    }
+    
+    
     func createTagOn(post: Post, text: String) {
         
         let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
