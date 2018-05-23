@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="2482" y="-248"/>
         </scene>
-        <!--Categories-->
+        <!--CategoriesTable-->
         <scene sceneID="ZY6-CF-VIb">
             <objects>
-                <viewControllerPlaceholder storyboardName="Categories" id="Rj8-Ht-IZZ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="CategoriesTable" id="Rj8-Ht-IZZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Categories" id="Egj-u0-rai"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YV5-yJ-Pw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -112,5 +112,5 @@
             <point key="canvasLocation" x="2542" y="-88"/>
         </scene>
     </scenes>
-    <color key="tintColor" name="Color"/>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

@@ -18,7 +18,6 @@ class CategoriesEditCreateViewController: UIViewController, UIPickerViewDelegate
     @IBOutlet weak var textFieldOne: UITextField!
     @IBOutlet weak var textFieldTwo: UITextField!
     @IBOutlet weak var textFieldThree: UITextField!
-    
     @IBOutlet weak var categoryOneAddLabel: UILabel!
     @IBOutlet weak var categoryTwoAddLabel: UILabel!
     
