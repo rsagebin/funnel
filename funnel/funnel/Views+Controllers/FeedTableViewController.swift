@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController, CommentsDelegate {
+class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ CommentsDelegate {
     
     // MARK: - Life Cycle
    
@@ -18,6 +18,8 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
         PostController.shared.fetchFeedPosts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
+        
+        
     }
     
     @objc func reloadFeedView() {
@@ -28,17 +30,14 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
-        tableView.reloadData()
+        self.tableView.reloadData()
+        
     }
     
     
     // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -63,8 +62,15 @@ class FeedTableViewController: UITableViewController, CommentsDelegate {
     
     // MARK: - Delegate functions
     
+//    func postSuggestionButtonTapped(post: Post) {
+//        let submitAndReviewSB = UIStoryboard(name: "SubmitAndReview", bundle: .main)
+//        let submitAndReviewVC = submitAndReviewSB.instantiateViewController(withIdentifier: "PostAndSubmitSB") as! CreateAndSuggestViewController
+//        submitAndReviewVC.post = post
+//        navigationController?.pushViewController(submitAndReviewVC, animated: true)
+//    }
+    
     func didTapComment(post: Post) {
-        print("Massaeg coming from FeedController")
+        print("Message coming from FeedController")
         print(post.description)
         let commentsSB = UIStoryboard(name: "Comments", bundle: .main)
         let commentsController = commentsSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController

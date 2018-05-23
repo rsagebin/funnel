@@ -22,13 +22,23 @@ class CommentsTableViewCell: UITableViewCell {
         }
     }
 
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        
+//    }
+    
+
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
     func updateViews() {
         guard let comment = comment else { return }
-        self.commentLabel.text = comment.text
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.commentLabel.text = comment.text
+//        }
+    
+//        self.layoutIfNeeded()
         
     }
 
@@ -36,6 +46,9 @@ class CommentsTableViewCell: UITableViewCell {
         guard let user = user  else { return }
          self.usernameLabel.text = user.username
 
+
     }
     
+    
+
 }

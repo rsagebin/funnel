@@ -27,14 +27,11 @@ class PostController {
     var userPosts = [Post]()
     
     
-    func createPost(description: String, image: UIImage, category: String) -> Post? {
+    func createPost(description: String, image: UIImage, category1: Category1?, category2: Category2?, category3: Category3?) -> Post? {
         
         var newPost: Post?
         
-        // TODO: Look into a more efficient way to get record ID without having to create a new CK record every time.
-        
         // Create CKAsset from image
-        
         // Write image to disk as a temprary file in order to create CKAsset
         let imageAsJpeg = UIImageJPEGRepresentation(image, 2.0)
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
@@ -51,7 +48,31 @@ class PostController {
         guard let user = UserController.shared.loggedInUser else { return nil }
         
         let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
-        let post = Post(user: user, description: description, imageAsCKAsset: asset, category: category, creatorRef: creatorReference)
+        
+        var categoryAsString = ""
+        
+        var category1Ref: CKReference?
+        var category2Ref: CKReference?
+        var category3Ref: CKReference?
+        
+        if let category1 = category1 {
+            category1Ref = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
+            categoryAsString += category1.title
+        }
+        
+        if let category2 = category2 {
+            category2Ref = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
+            categoryAsString += "\\" + "\(category2.title)"
+        }
+        
+        if let category3 = category3 {
+            category3Ref = CKReference(recordID: category3.ckRecordID ?? category3.ckRecord.recordID, action: .none)
+            categoryAsString += "\\" + "\(category3.title)"
+        }
+        
+        let post = Post(user: user, description: description, imageAsCKAsset: asset, creatorRef: creatorReference, category1Ref: category1Ref, category2Ref: category2Ref, category3Ref: category3Ref)
+        
+        post.categoryAsString = categoryAsString
         
         newPost = post
         
@@ -72,15 +93,19 @@ class PostController {
             }
         }
         
-        fetchFollowingPosts(user: user)
-        
         return newPost
-        
+
     }
     
+    func delete(post: Post) {
+        ckManager.delete(recordID: post.ckRecordID ?? post.ckRecord.recordID) { (recordID, error) in
+            if let error = error {
+                print("Error deleting record from CloudKit: \(error)")
+            }
+        }
+    }
     
     func fetchFeedPosts() {
-        
         self.feedPosts = []
         
         let predicate = NSPredicate(value: true)
@@ -118,13 +143,6 @@ class PostController {
                 return
             }
             
-//            for category in CategoryController.shared.topCategories {
-//                if category2.parentRef != category.ckRecordID ?? category.ckRecord.recordID {
-//                    print("Category 2 is not contained within a category 1")
-//                    return
-//                }
-//            }
-            
             let reference = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
             post.category2Ref = reference
         }
@@ -153,7 +171,7 @@ class PostController {
     }
     
     func removeFollowerFromPost(user: User, post: Post) {
-        let reference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .none)
+        let reference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .none)
         guard let index = post.followersRefs.index(of: reference) else { return }
         post.followersRefs.remove(at: index)
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
@@ -185,7 +203,7 @@ class PostController {
         
     }
     
-    func fetchFollowingPosts(user: User) {
+    func fetchFollowingPosts(user: User, completion: @escaping (Bool) -> Void) {
         let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
         let userReference = CKReference(recordID: userRecordID, action: .deleteSelf)
         
@@ -195,11 +213,13 @@ class PostController {
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
+                completion(false)
                 return
             }
             
             guard let records = records else {
                 print("Found nil for records fetched from CloudKit.")
+                completion(false)
                 return
             }
             
@@ -207,6 +227,7 @@ class PostController {
             
             self.followingPosts = recordsArray
             
+            completion(true)
         }
     }
 

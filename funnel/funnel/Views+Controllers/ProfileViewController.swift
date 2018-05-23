@@ -9,46 +9,58 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
     // MARK: - Outlets
     
-    
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var aboutLabel: UILabel!
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userUsername: UILabel!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userEmail: UILabel!
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-      setUpBorders()
+        
+        updateView()
+        setUpBorders()
     }
 
+    // MARK: - Actions
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Are you sure you want to delete your account?", message: "All your data will be lost", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        
+        let deleteAction = UIAlertAction(title: "Delete Account", style: .destructive, handler: nil)
+        alert.addAction(deleteAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Other Functions
     
     func setUpBorders() {
     
-        usernameLabel.layer.borderColor = UIColor.black.cgColor
-        usernameLabel.layer.borderWidth = 1.0
+        userUsername.layer.borderColor = UIColor.black.cgColor
+        userUsername.layer.borderWidth = 1.0
+
+        userEmail.layer.borderColor = UIColor.black.cgColor
+        userEmail.layer.borderWidth = 1.0
         
-        emailLabel.layer.borderColor = UIColor.black.cgColor
-        emailLabel.layer.borderWidth = 1.0
-        
-        aboutLabel.layer.borderColor = UIColor.black.cgColor
-        aboutLabel.layer.borderWidth = 1.0
-        
-        
+        userName.layer.borderColor = UIColor.black.cgColor
+        userName.layer.borderWidth = 1.0
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func updateView() {
+        
+        guard let user = UserController.shared.loggedInUser else { return }
+        
+        userUsername.text = " \(user.username)"
+        userName.text = " \(user.name)"
+        userEmail.text = " \(user.email)"
     }
-    */
-
 }

@@ -21,6 +21,9 @@ class CommentsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
+        
         navigationItem.title = "Comments"
         guard let post = post else { return }
         CommentController.shared.loadCommentsFor(post: post) { (success) in
@@ -115,16 +118,16 @@ class CommentsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return CommentController.shared.postComments.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentsTableViewCell
-        cell.commentLabel.text = " "
         
         let comment = CommentController.shared.postComments[indexPath.row]
+        cell.comment = comment
         
         CommentController.shared.loadUserFor(comment: comment, completion: { (user) in
             DispatchQueue.main.async {
-                cell.comment = comment
                 cell.user = user
             }
         })
@@ -133,7 +136,13 @@ class CommentsTableViewController: UITableViewController {
         
     }
     
-
+    
+ 
+// prepare for reuse (uitableviewcell) -> remove old data
+    
+    // caching data already downloaded from the web (user avatar) *maybe do this part later
+    
+    // once the comment gets added to the label, making a call to 'resize' the cell
 
 
 }

@@ -58,7 +58,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentLabel" destination="kDr-4D-JPG" id="bd9-vh-oIw"/>
-                                    <outlet property="userImageView" destination="0HK-pg-fVU" id="Kol-xf-Dg1"/>
+                                    <outlet property="userImageView" destination="0HK-pg-fVU" id="6dQ-3D-4yf"/>
                                     <outlet property="usernameLabel" destination="d0L-bF-vaS" id="RvT-pD-dOb"/>
                                 </connections>
                             </tableViewCell>
