@@ -141,7 +141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaC-H8-gsP" userLabel="CategoryView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="140"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category/Subcategory/SubsubCategory" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgI-Cg-h3b">
                                         <rect key="frame" x="40" y="20" width="295" height="30"/>
@@ -224,9 +224,13 @@
                                     <constraint firstItem="NhA-GK-JEP" firstAttribute="centerY" secondItem="OaC-H8-gsP" secondAttribute="centerY" constant="10" id="ia4-k1-zHT"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFy-k9-wCE">
-                                <rect key="frame" x="0.0" y="140" width="375" height="527"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sFy-k9-wCE">
+                                <rect key="frame" x="0.0" y="240" width="375" height="427"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvo-i7-NC7">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="385"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_photo" translatesAutoresizingMaskIntoConstraints="NO" id="1qq-fs-oln">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                         <constraints>
@@ -259,10 +263,14 @@
                                     <constraint firstItem="A8o-3S-mCH" firstAttribute="leading" secondItem="sFy-k9-wCE" secondAttribute="leading" constant="100" id="8iI-lM-w84"/>
                                     <constraint firstItem="1qq-fs-oln" firstAttribute="leading" secondItem="sFy-k9-wCE" secondAttribute="leading" id="AlT-FY-kn3"/>
                                     <constraint firstItem="fZH-Lm-5TH" firstAttribute="leading" secondItem="sFy-k9-wCE" secondAttribute="leading" constant="5" id="AsI-84-XPC"/>
+                                    <constraint firstItem="qvo-i7-NC7" firstAttribute="leading" secondItem="sFy-k9-wCE" secondAttribute="leading" id="Epg-93-J6Y"/>
+                                    <constraint firstItem="qvo-i7-NC7" firstAttribute="top" secondItem="sFy-k9-wCE" secondAttribute="top" id="FYo-Af-e4I"/>
                                     <constraint firstItem="exf-Zg-Y8S" firstAttribute="top" secondItem="1qq-fs-oln" secondAttribute="bottom" constant="10" id="HnW-JV-Fam"/>
                                     <constraint firstAttribute="bottom" secondItem="1qq-fs-oln" secondAttribute="bottom" constant="152" id="Leg-Oe-sax"/>
+                                    <constraint firstItem="exf-Zg-Y8S" firstAttribute="top" secondItem="qvo-i7-NC7" secondAttribute="bottom" id="PQX-h0-iwq"/>
                                     <constraint firstAttribute="trailing" secondItem="exf-Zg-Y8S" secondAttribute="trailing" constant="5" id="Wkr-38-YG2"/>
                                     <constraint firstAttribute="trailing" secondItem="fZH-Lm-5TH" secondAttribute="trailing" constant="5" id="XjL-xk-3KG"/>
+                                    <constraint firstAttribute="trailing" secondItem="qvo-i7-NC7" secondAttribute="trailing" id="Z7K-hr-yJL"/>
                                     <constraint firstAttribute="trailing" secondItem="1qq-fs-oln" secondAttribute="trailing" id="cOf-RK-hJk"/>
                                     <constraint firstItem="1qq-fs-oln" firstAttribute="centerX" secondItem="sFy-k9-wCE" secondAttribute="centerX" id="ecF-H6-nEv"/>
                                     <constraint firstItem="fZH-Lm-5TH" firstAttribute="top" secondItem="exf-Zg-Y8S" secondAttribute="bottom" constant="10" id="fhV-os-EPy"/>
@@ -275,11 +283,11 @@
                         <constraints>
                             <constraint firstItem="sFy-k9-wCE" firstAttribute="trailing" secondItem="YQz-yd-njm" secondAttribute="trailing" id="0nt-8E-LvV"/>
                             <constraint firstItem="sFy-k9-wCE" firstAttribute="leading" secondItem="YQz-yd-njm" secondAttribute="leading" id="7Ek-nj-JV8"/>
-                            <constraint firstItem="sFy-k9-wCE" firstAttribute="bottom" secondItem="YQz-yd-njm" secondAttribute="bottom" id="BWW-wb-Nez"/>
+                            <constraint firstItem="sFy-k9-wCE" firstAttribute="bottom" secondItem="YQz-yd-njm" secondAttribute="bottom" priority="500" id="BWW-wb-Nez"/>
                             <constraint firstItem="OaC-H8-gsP" firstAttribute="leading" secondItem="YQz-yd-njm" secondAttribute="leading" id="KH8-H2-lo8"/>
                             <constraint firstItem="OaC-H8-gsP" firstAttribute="trailing" secondItem="YQz-yd-njm" secondAttribute="trailing" id="hyS-8X-ugU"/>
                             <constraint firstItem="sFy-k9-wCE" firstAttribute="top" secondItem="OaC-H8-gsP" secondAttribute="bottom" id="tbm-KP-eGc"/>
-                            <constraint firstItem="OaC-H8-gsP" firstAttribute="top" secondItem="BxG-i6-gRG" secondAttribute="top" id="wb1-e0-yku"/>
+                            <constraint firstItem="OaC-H8-gsP" firstAttribute="top" secondItem="BxG-i6-gRG" secondAttribute="top" constant="100" id="wb1-e0-yku"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YQz-yd-njm"/>
                     </view>
