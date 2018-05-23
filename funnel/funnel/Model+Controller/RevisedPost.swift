@@ -98,6 +98,8 @@ class RevisedPost {
         self.categoryAsString = categoryAsString
         self.postReference = postReference
         
+        self.ckRecordID = cloudKitRecord.recordID
+        
     }
 
     init(post: Post, description: String, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?) {

@@ -43,6 +43,8 @@ class Tag {
         
         self.text = text
         self.postReference = postReference
+        
+        self.ckRecordID = cloudKitRecord.recordID
     }
     
 }
