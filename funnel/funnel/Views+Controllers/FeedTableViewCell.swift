@@ -36,11 +36,15 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
-    @IBOutlet weak var exclamationButtonOutlet: UIButton!
+    @IBOutlet weak var postApprovedImage: UIImageView!
+    @IBOutlet weak var postFollowingCountLabel: UILabel!
+    @IBOutlet weak var postFollowingButton: UIButton!
+    @IBOutlet weak var postSuggestionCountLabel: UILabel!
+    @IBOutlet weak var postSuggestionButton: UIButton!
+    @IBOutlet weak var postCommentsCountLabel: UILabel!
     @IBOutlet weak var commentsButtonOutlet: UIButton!
     
-    @IBOutlet weak var branchButtonOutlet: UIButton!
-    @IBOutlet weak var aprovedButtonOutlet: UIButton!
+    
    
     // MARK: - Actions
     
@@ -48,7 +52,7 @@ class FeedTableViewCell: UITableViewCell {
         
         guard let user = UserController.shared.loggedInUser else { return }
         guard let post = self.post else { return }
-        guard let buttonImage = exclamationButtonOutlet.imageView else { return }
+        guard let buttonImage = postFollowingButton.imageView else { return }
         
         isFollowing = !isFollowing
         
@@ -60,6 +64,7 @@ class FeedTableViewCell: UITableViewCell {
             buttonImage.tintColor = UIColor.black
             PostController.shared.removeFollowerFromPost(user: user, post: post)
         }
+        updateViews()
     }
     
     @IBAction func postSuggestButtonTapped(_ sender: UIButton) {
@@ -78,10 +83,17 @@ class FeedTableViewCell: UITableViewCell {
     func updateViews() {
         if let post = post {
             guard let user = UserController.shared.loggedInUser else { return }
+            let comments = CommentController.shared.postComments.count
             
+            self.postApprovedImage.isHidden = true
             self.categoriesLabel.text = post.category
             self.descriptionTextView.text = post.description
             self.postImageView.image = post.image
+            self.postFollowingCountLabel.text = String(post.followersRefs.count)
+//            self.postSuggestionCountLabel.text =
+//            self.postCommentsCountLabel.text =
         }
     }
+    
+    
 }

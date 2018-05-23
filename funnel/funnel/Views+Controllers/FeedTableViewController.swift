@@ -18,6 +18,8 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
         PostController.shared.fetchFeedPosts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
+        
+        
     }
     
     @objc func reloadFeedView() {
@@ -28,9 +30,10 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
-        tableView.reloadData()
+        self.tableView.reloadData()
+        
     }
     
     
