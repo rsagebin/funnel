@@ -78,46 +78,33 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="vEc-x8-sMB">
-                                        <rect key="frame" x="40" y="505" width="261" height="39"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="gkF-Fu-9cE">
+                                        <rect key="frame" x="40" y="514" width="261" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egx-0s-bJY">
-                                                <rect key="frame" x="0.0" y="0.0" width="115.5" height="39"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv3-QT-612">
+                                                <rect key="frame" x="0.0" y="0.0" width="261" height="30"/>
                                                 <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Log Out">
+                                                <state key="normal" title="Delete Account">
                                                     <color key="titleColor" red="1" green="0.87928292149999998" blue="0.63976345800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bl-4x-mpD">
-                                                <rect key="frame" x="145.5" y="0.0" width="115.5" height="39"/>
-                                                <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Delete">
-                                                    <color key="titleColor" red="1" green="0.87928292149999998" blue="0.63976345800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
+                                                <connections>
+                                                    <action selector="deleteButtonTapped:" destination="OIP-DY-fk0" eventType="touchUpInside" id="Z55-dF-5Rj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="egx-0s-bJY" secondAttribute="bottom" id="868-Ey-202"/>
-                                            <constraint firstItem="egx-0s-bJY" firstAttribute="leading" secondItem="vEc-x8-sMB" secondAttribute="leading" id="H5m-X5-M56"/>
-                                            <constraint firstItem="7Bl-4x-mpD" firstAttribute="top" secondItem="vEc-x8-sMB" secondAttribute="top" id="Q2b-gW-5eZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="7Bl-4x-mpD" secondAttribute="bottom" id="R6M-ZV-gGF"/>
-                                            <constraint firstAttribute="trailing" secondItem="7Bl-4x-mpD" secondAttribute="trailing" id="U1u-YG-cIg"/>
-                                            <constraint firstItem="egx-0s-bJY" firstAttribute="top" secondItem="vEc-x8-sMB" secondAttribute="top" id="nTy-eT-AC8"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="KAH-OZ-BVj" secondAttribute="trailing" constant="40" id="GSs-og-8De"/>
                                     <constraint firstItem="KAH-OZ-BVj" firstAttribute="top" secondItem="Oz3-5l-3eR" secondAttribute="bottom" constant="30" id="JuR-7U-TT6"/>
-                                    <constraint firstItem="vEc-x8-sMB" firstAttribute="top" secondItem="KAH-OZ-BVj" secondAttribute="bottom" constant="100" id="MnK-wd-6c7"/>
+                                    <constraint firstAttribute="bottom" secondItem="gkF-Fu-9cE" secondAttribute="bottom" constant="20" id="MxO-Fg-Gbj"/>
+                                    <constraint firstAttribute="trailing" secondItem="gkF-Fu-9cE" secondAttribute="trailing" constant="40" id="Q3F-hW-A6r"/>
                                     <constraint firstItem="Oz3-5l-3eR" firstAttribute="top" secondItem="Y3h-JE-wjP" secondAttribute="top" constant="20" id="RDM-bh-bBE"/>
-                                    <constraint firstItem="vEc-x8-sMB" firstAttribute="leading" secondItem="Y3h-JE-wjP" secondAttribute="leading" constant="40" id="Rao-ad-ABd"/>
                                     <constraint firstItem="KAH-OZ-BVj" firstAttribute="leading" secondItem="Y3h-JE-wjP" secondAttribute="leading" constant="40" id="Z3P-W6-QB2"/>
-                                    <constraint firstAttribute="bottom" secondItem="vEc-x8-sMB" secondAttribute="bottom" constant="20" id="bdW-CI-mUo"/>
+                                    <constraint firstItem="gkF-Fu-9cE" firstAttribute="leading" secondItem="Y3h-JE-wjP" secondAttribute="leading" constant="40" id="dbl-Lh-5iv"/>
                                     <constraint firstItem="KAH-OZ-BVj" firstAttribute="centerX" secondItem="Y3h-JE-wjP" secondAttribute="centerX" id="lpe-wI-FKS"/>
                                     <constraint firstItem="Oz3-5l-3eR" firstAttribute="centerX" secondItem="Y3h-JE-wjP" secondAttribute="centerX" id="osQ-q8-wdS"/>
-                                    <constraint firstAttribute="trailing" secondItem="vEc-x8-sMB" secondAttribute="trailing" constant="40" id="umB-1L-vYF"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -134,12 +121,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Trd-Ot-PBs"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="Uir-9M-6Bw"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="user" id="Uir-9M-6Bw"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="aboutLabel" destination="4Ff-Cq-3qf" id="cAm-x2-WmL"/>
-                        <outlet property="emailLabel" destination="Xd4-nm-cMU" id="o3M-ca-MnT"/>
-                        <outlet property="usernameLabel" destination="NBX-cm-gyr" id="Zco-jK-bPm"/>
+                        <outlet property="userEmail" destination="4Ff-Cq-3qf" id="t7s-9O-lE9"/>
+                        <outlet property="userImageView" destination="Oz3-5l-3eR" id="Wle-zu-7N9"/>
+                        <outlet property="userName" destination="Xd4-nm-cMU" id="0wb-Yn-nSG"/>
+                        <outlet property="userUsername" destination="NBX-cm-gyr" id="Otv-y0-CZu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wPi-70-t6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,5 +137,6 @@
     </scenes>
     <resources>
         <image name="bowie.tesla1" width="300" height="300"/>
+        <image name="user" width="25" height="25"/>
     </resources>
 </document>
