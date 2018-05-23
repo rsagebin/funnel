@@ -44,7 +44,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="right" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qJL-SM-EbI">
-                                                            <rect key="frame" x="16" y="324" width="288" height="28.5"/>
+                                                            <rect key="frame" x="16" y="327.5" width="288" height="28.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(999)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTq-Sz-dhl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="49.5" height="28.5"/>
@@ -98,13 +98,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" scrollEnabled="NO" text="#Alien? #rock?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bL8-dJ-WKN">
-                                                            <rect key="frame" x="16.5" y="360.5" width="288" height="33"/>
+                                                            <rect key="frame" x="16.5" y="364" width="288" height="33"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oec-Z7-gqk">
-                                                            <rect key="frame" x="16" y="398" width="288" height="47"/>
+                                                            <rect key="frame" x="16" y="401.5" width="288" height="43.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -128,13 +128,13 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="utO-wp-V4b">
-                                                    <rect key="frame" x="17" y="32" width="288" height="287.5"/>
+                                                    <rect key="frame" x="15.5" y="32" width="291" height="291"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="utO-wp-V4b" secondAttribute="height" multiplier="1:1" id="Yhk-3R-wJM"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="approved1" translatesAutoresizingMaskIntoConstraints="NO" id="TkN-bi-wzQ">
-                                                    <rect key="frame" x="245" y="32" width="60" height="60"/>
+                                                    <rect key="frame" x="246.5" y="32" width="60" height="60"/>
                                                     <color key="tintColor" name="Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="TkN-bi-wzQ" secondAttribute="height" multiplier="1:1" id="Kuq-Yq-fib"/>
@@ -150,7 +150,7 @@
                                                 <constraint firstItem="rhU-Ev-K2I" firstAttribute="centerX" secondItem="t7R-x5-oLw" secondAttribute="centerX" constant="-1" id="LGi-2p-Vkk"/>
                                                 <constraint firstItem="qJL-SM-EbI" firstAttribute="top" secondItem="utO-wp-V4b" secondAttribute="bottom" constant="5" id="Ocn-Ow-czf"/>
                                                 <constraint firstItem="TkN-bi-wzQ" firstAttribute="top" secondItem="utO-wp-V4b" secondAttribute="top" id="Ybg-ZE-59m"/>
-                                                <constraint firstItem="utO-wp-V4b" firstAttribute="width" secondItem="t7R-x5-oLw" secondAttribute="width" multiplier="0.9" constant="-2.6999999999999886" id="YoP-af-bK3"/>
+                                                <constraint firstItem="utO-wp-V4b" firstAttribute="width" secondItem="t7R-x5-oLw" secondAttribute="width" multiplier="0.9" id="YoP-af-bK3"/>
                                                 <constraint firstAttribute="height" secondItem="rhU-Ev-K2I" secondAttribute="height" constant="3" id="dWQ-JY-95c"/>
                                                 <constraint firstItem="utO-wp-V4b" firstAttribute="top" secondItem="v3r-Np-1m0" secondAttribute="bottom" constant="5" id="iOi-qJ-Ifx"/>
                                                 <constraint firstItem="utO-wp-V4b" firstAttribute="centerX" secondItem="t7R-x5-oLw" secondAttribute="centerX" id="wZJ-MH-sYY"/>
