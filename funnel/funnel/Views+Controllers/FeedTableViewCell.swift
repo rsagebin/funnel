@@ -24,7 +24,7 @@ class FeedTableViewCell: UITableViewCell {
     
     var post: Post? {
         didSet {
-            checkUserRef()
+            checkIfUserIsFollowing()
             
             updateViews()
         }
@@ -46,7 +46,18 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var postCommentsCountLabel: UILabel!
     @IBOutlet weak var commentsButtonOutlet: UIButton!
     
-    
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//
+//        guard let buttonImage = postFollowingButton.imageView else { return }
+//
+//        if isFollowing == true {
+//            buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+//        } else {
+//            buttonImage.tintColor = UIColor.black
+//        }
+//
+//    }
    
     // MARK: - Actions
     @IBAction func postFollowingButtonTapped(_ sender: UIButton) {
@@ -65,7 +76,8 @@ class FeedTableViewCell: UITableViewCell {
         updateViews()
     }
     
-    func checkUserRef() {
+    func checkIfUserIsFollowing() {
+        isFollowing = false
         guard let userID = UserController.shared.loggedInUser else { return }
         let userRef = CKReference(recordID: userID.ckRecordID ?? userID.ckRecord.recordID, action: .none)
         guard let followersRefs = post?.followersRefs else { return }
@@ -73,6 +85,7 @@ class FeedTableViewCell: UITableViewCell {
         for refNumber in followersRefs {
             if refNumber == userRef {
                 isFollowing = true
+                return
             }
         }
     }
@@ -100,6 +113,10 @@ class FeedTableViewCell: UITableViewCell {
             self.postFollowingCountLabel.text = String(post.followersRefs.count)
 //            self.postSuggestionCountLabel.text =
 //            self.postCommentsCountLabel.text = String(comments.count)
+            
+//            if postFollowingCountLabel.text == String(0) {
+//                buttonImage.tintColor = UIColor.black
+//            }
             
             if isFollowing == true {
                 buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
