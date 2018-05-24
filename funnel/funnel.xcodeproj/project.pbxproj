@@ -47,7 +47,7 @@
 		D0D6ACE020AF8C5D00BE5660 /* RevisedPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */; };
 		F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */; };
 		F450270220B35B1F00D0EC45 /* CategoriesTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450270120B35B1F00D0EC45 /* CategoriesTable.storyboard */; };
-		F450270420B35BAF00D0EC45 /* BrowseCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450270320B35BAF00D0EC45 /* BrowseCategoriesViewController.swift */; };
+		F450270420B35BAF00D0EC45 /* BlankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450270320B35BAF00D0EC45 /* BlankViewController.swift */; };
 		F4CD67F320AC9BAE003E7F3E /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */; };
 		F4CD67F520AC9BBE003E7F3E /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */; };
 		F4CD67F720AC9C0C003E7F3E /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F620AC9C0C003E7F3E /* PostDetailViewController.swift */; };
@@ -97,7 +97,7 @@
 		D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisedPostController.swift; sourceTree = "<group>"; };
 		F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewController.swift; sourceTree = "<group>"; };
 		F450270120B35B1F00D0EC45 /* CategoriesTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoriesTable.storyboard; sourceTree = "<group>"; };
-		F450270320B35BAF00D0EC45 /* BrowseCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCategoriesViewController.swift; sourceTree = "<group>"; };
+		F450270320B35BAF00D0EC45 /* BlankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankViewController.swift; sourceTree = "<group>"; };
 		F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		F4CD67F620AC9C0C003E7F3E /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 				D040DC8F20AB314100EB284F /* ProfileViewController.swift */,
 				D00A724120ADDDE900FBB2C8 /* CommentsTableViewController.swift */,
 				CB2DA40320B38EDD00727CC6 /* CommentsTableViewCell.swift */,
-				F450270320B35BAF00D0EC45 /* BrowseCategoriesViewController.swift */,
+				F450270320B35BAF00D0EC45 /* BlankViewController.swift */,
 			);
 			path = "Views+Controllers";
 			sourceTree = "<group>";
@@ -338,7 +338,7 @@
 				D00A724020ADDA2D00FBB2C8 /* CategoryController.swift in Sources */,
 				3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */,
 				D00A724A20AE2CAF00FBB2C8 /* TagController.swift in Sources */,
-				F450270420B35BAF00D0EC45 /* BrowseCategoriesViewController.swift in Sources */,
+				F450270420B35BAF00D0EC45 /* BlankViewController.swift in Sources */,
 				D040DC8C20AB30E100EB284F /* Cell.swift in Sources */,
 				D040DC8520AB301B00EB284F /* UserController.swift in Sources */,
 				D040DC8620AB301B00EB284F /* Categories.swift in Sources */,
