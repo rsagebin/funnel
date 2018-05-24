@@ -62,11 +62,21 @@ class RevisedPostController {
         }
     }
     
-//    func acceptRevisedPost(revisedPost: RevisedPost, for post: Post) {
-//        post.description = revisedPost.description
-//        
-//
-//    }
-    
+    func acceptRevisedPost(revisedPost: RevisedPost, for post: Post, completion: @escaping (Bool) -> Void) {
+        post.description = revisedPost.description
+        post.category1Ref = revisedPost.category1Ref
+        post.tags = revisedPost.tags
+        post.isAnswered = true
+        
+        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+            if let error = error {
+                print("Error saving revised post to CloudKit: \(error)")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
+    }
     
 }
