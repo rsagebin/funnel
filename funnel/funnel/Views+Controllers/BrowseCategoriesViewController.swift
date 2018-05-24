@@ -21,6 +21,12 @@ class BrowseCategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        CategoryController.shared.loadTopLevelCategories { (success) in
+            DispatchQueue.main.async {
+                self.category = CategoryController.shared.topCategories
+                self.pickerOne.reloadAllComponents()
+            }
+        }
         
     }
     
@@ -31,10 +37,11 @@ class BrowseCategoriesViewController: UIViewController {
     let subSubCategory = CategoryController.shared.category3Categories
 
     var selectedCategory: Category1?
+
     
     // MARK: - Actions
     @IBAction func searchCategoryTapped(_ sender: Any) {
-        PostController.shared.fetchPostsFor(category1: CategoryController.shared.topCategories[4]) { (success) in
+        PostController.shared.fetchPostsFor(category1: selectedCategory!) { (success) in
             if success {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -66,6 +73,11 @@ class BrowseCategoriesViewController: UIViewController {
     @IBAction func swipeGestureToAppearCategories(_ sender: Any) {
         categoryView.isHidden = false
     }
+    @IBAction func findCategoryButtonTapped(_ sender: Any) {
+                categoryView.isHidden = false
+    }
+    
+    
 }
 
 extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -84,10 +96,6 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
         }
         return countRows
     }
-    
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        <#code#>
-//    }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerOne {
@@ -168,7 +176,16 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
     }
 }
 
-extension BrowseCategoriesViewController: UISearchBarDelegate {
-    
-    
-}
+//extension BrowseCategoriesViewController: UISearchBarDelegate {
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        categoryView.isHidden = false
+//    }
+
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//
+//        let searchTerm = searchBar.text
+//        TagController.shared.fetchTagsFor(post: Post) { (searchTerm) in
+//            var stringTerm = searchTerm
+//        }
+//    }
+//}
