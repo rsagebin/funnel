@@ -15,7 +15,6 @@ class FollowingTableViewController: UITableViewController {
     var userPosts = [Post]()
     var userSuggestions = [Post]()
     var userFollowings = [Post]()
-//    let userContent = [[self.userPosts], [self.userSuggestions], [self.userFollowings]]
     
 
     // MARK: - Lifecycle
@@ -56,35 +55,51 @@ class FollowingTableViewController: UITableViewController {
         if posts > 0 {
             sectionCount += 1
             sectionTitles.append("My Posts")
+            
+            if sectionTitles == ["My Posts","My Posts"] { // Patch to remove duplicate refactor later
+                sectionTitles.remove(at: 0)
+            }
         }
         
         let submittedAnswers = 0 // Change to 1 from 0 if user has any suggested answers
         if submittedAnswers > 0 {
             sectionCount += 1
             sectionTitles.append("My Suggested Answers")
+            
+            if sectionTitles == ["My Suggested Answers","My Suggested Answers"] { // Patch to remove duplicate refactor later
+                sectionTitles.remove(at: 0)
+            }
         }
         
         let followings = userFollowings.count
         if followings > 0 {
             sectionCount += 1
             sectionTitles.append("Posts I'm Following")
+            
+            if sectionTitles == ["Posts I'm Following","Posts I'm Following"] { // Patch to remove duplicate refactor later
+                sectionTitles.remove(at: 0)
+            }
         }
         
         let commentedOn = 0 // Change to 1 if user has any comments // Maybe impliment later on
         if commentedOn > 0 {
             sectionCount += 1
             sectionTitles.append("Posts I have commented on")
+            
+            if sectionTitles == ["Posts I have commented on","Posts I have commented on"] { // Patch to remove duplicate refactor later
+                sectionTitles.remove(at: 0)
+            }
         }
         
         return sectionCount
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        guard sectionTitles.indices ~= section else { return nil }
+        guard sectionTitles.indices ~= section else { return nil }
         return sectionTitles[section]
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        <#code#>
 //    }
     
