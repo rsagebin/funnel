@@ -53,11 +53,6 @@ class PostController {
         
         if let category1 = category1 {
             category1Ref = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
-            ckManager.save(records: [category1.ckRecord], perRecordCompletion: nil) { (records, error) in
-                if let error = error {
-                    print("Error saving category: \(error)")
-                }
-            }
             categoryAsString += category1.title
         }
         
