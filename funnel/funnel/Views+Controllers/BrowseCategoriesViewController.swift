@@ -146,8 +146,8 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
         cell.post = post
         cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
         cell.descriptionTextView.layer.borderWidth = 1.0
-        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
-        cell.tagsTextView.layer.borderWidth = 1.0
+//        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
+//        cell.tagsTextView.layer.borderWidth = 1.0
         
         cell.delegate = self
         
