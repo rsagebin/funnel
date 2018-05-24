@@ -41,8 +41,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var createOrSuggestOutlet: UIButton!
     
-    @IBOutlet weak var newSubCategory1: UIButton!
-    @IBOutlet weak var newSubCategory2: UIButton!
+    @IBOutlet weak var newCategory2: UIButton!
+    @IBOutlet weak var newCategory3: UIButton!
     
     // MARK: - Actions
     
@@ -50,7 +50,13 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         
         guard let description = descriptionTextView.text, let image = postImageView.image, let tags = tagsTextView.text else { return }
 
-        PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: tags)
+        if post != nil {
+            guard let post = post else { return }
+            RevisedPostController.shared.createRevisedPost(for: post, description: description, category1: category1Selected, category2: nil, category3: nil, tagsAsString: tags)
+        } else {
+            PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: tags)
+        }
+        
         
         navigationController?.popToRootViewController(animated: true)
     }
@@ -72,46 +78,46 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     // MARK: - Category
     
-//    @IBAction func newCategoryButtonTapped(_ sender: Any) {
-//        newCategoryAlert()
-//        newSubCategory1.setTitle("Change", for: .normal)
-//        newSubCategory2.isHidden = false
-//    }
-//
-//    @IBAction func newSubCategory2ButtonTapped(_ sender: Any) {
-//        newCategoryAlert()
-//        newSubCategory2.setTitle("Change", for: .normal)
-//    }
-//
-//    func newCategoryAlert() {
-//        let alert = UIAlertController(title: "New Category",
-//                                      message: "Add a new Category",
-//                                      preferredStyle: UIAlertControllerStyle.alert)
-//
-//        let cancelAction = UIAlertAction(title: "Cancel",
-//                                   style: UIAlertActionStyle.cancel,
-//                                   handler: nil)
-//
-//        alert.addAction(cancelAction)
-//
-//        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
-//
-//            guard let category2Name = alert.textFields?.first?.text else { return }
-//            guard let category1Selected = self.category1Selected else { return }
-//
-//            let newCategory2 = Category2(title: category2Name, parent: category1Selected)
-//            CategoryController.shared.category2Categories.append(newCategory2)
-//
-//        }
-//
-//        alert.addAction(createAction)
-//
-//        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
-//            alertTextFieldOne.placeholder = "Sub-category..."
-//        }
-//
-//        self.present(alert, animated: true, completion: nil)
-//    }
+    @IBAction func newCategory2ButtonTapped(_ sender: Any) {
+        newCategoryAlert()
+        newCategory3.isHidden = false
+    }
+
+    @IBAction func newSubCategory3ButtonTapped(_ sender: Any) {
+        newCategoryAlert()
+    }
+
+    func newCategoryAlert() {
+        let alert = UIAlertController(title: "New Category",
+                                      message: "Add a new Category",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                   style: UIAlertActionStyle.cancel,
+                                   handler: nil)
+
+        alert.addAction(cancelAction)
+
+        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
+
+            guard let category2Name = alert.textFields?.first?.text else { return }
+            guard let category1Selected = self.category1Selected else { return }
+
+            let newCategory2 = Category2(title: category2Name, parent: category1Selected)
+            
+            CategoryController.shared.category2Categories.append(newCategory2)
+            CategoryController.shared.addCategory2(to: category1Selected, categoryName: newCategory2.title)
+
+        }
+
+        alert.addAction(createAction)
+
+        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
+            alertTextFieldOne.placeholder = "name..."
+        }
+
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // MARK: - Other functions
     
@@ -280,7 +286,7 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
 
         else if pickerView == pickerTwo {
             category2Selected = category2[row]
-            mainCategoryLabel.text = "\(category1[row].title )/\(category2[row].title)"
+            mainCategoryLabel.text = "\(category1Selected?.title  ?? "")/\(category2[row].title)"
         }
 
         else if pickerView == pickerThree {

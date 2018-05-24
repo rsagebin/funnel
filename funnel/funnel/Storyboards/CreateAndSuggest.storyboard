@@ -195,7 +195,7 @@
                                                             <color key="titleColor" red="1" green="0.87928292149999998" blue="0.63976345800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="newCategoryButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="2Ec-Oy-GBa"/>
+                                                            <action selector="newCategory2ButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="gwV-R4-vmD"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcJ-Yg-TQK">
@@ -209,7 +209,7 @@
                                                             <color key="titleColor" red="1" green="0.87928292149999998" blue="0.63976345800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="newSubCategory2ButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="Brj-rA-Wz3"/>
+                                                            <action selector="newSubCategory3ButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="o1R-gM-SEB"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -298,8 +298,8 @@
                         <outlet property="createOrSuggestOutlet" destination="A8o-3S-mCH" id="mwO-4c-gSC"/>
                         <outlet property="descriptionTextView" destination="fZH-Lm-5TH" id="NbP-Th-hqY"/>
                         <outlet property="mainCategoryLabel" destination="dgI-Cg-h3b" id="ncQ-b8-u8k"/>
-                        <outlet property="newSubCategory1" destination="f0E-kj-40i" id="BoR-uP-LNR"/>
-                        <outlet property="newSubCategory2" destination="tcJ-Yg-TQK" id="Qju-Zn-5GF"/>
+                        <outlet property="newCategory2" destination="f0E-kj-40i" id="fDz-k7-hnC"/>
+                        <outlet property="newCategory3" destination="tcJ-Yg-TQK" id="Mkg-1h-SM8"/>
                         <outlet property="pickerOne" destination="BCq-ou-fPA" id="pOP-qy-ELe"/>
                         <outlet property="pickerThree" destination="5cn-s6-0Ce" id="HB7-b1-b67"/>
                         <outlet property="pickerTwo" destination="obO-ZQ-36n" id="Rla-4j-XxT"/>
