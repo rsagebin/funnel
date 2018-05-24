@@ -29,7 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.registerForRemoteNotifications()
         return true
+        
+        
+        
     }
+    
+    
     
 //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 //        UserController.shared.subscribribeToMessages()
