@@ -31,7 +31,6 @@
 		D040DC8520AB301B00EB284F /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC7F20AB301B00EB284F /* UserController.swift */; };
 		D040DC8620AB301B00EB284F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8020AB301B00EB284F /* Categories.swift */; };
 		D040DC8820AB305000EB284F /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8720AB305000EB284F /* FeedTableViewController.swift */; };
-		D040DC8A20AB306400EB284F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8920AB306400EB284F /* CategoriesViewController.swift */; };
 		D040DC8C20AB30E100EB284F /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8B20AB30E100EB284F /* Cell.swift */; };
 		D040DC8E20AB30F100EB284F /* GifAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8D20AB30F100EB284F /* GifAnimationExtension.swift */; };
 		D040DC9020AB314100EB284F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040DC8F20AB314100EB284F /* ProfileViewController.swift */; };
@@ -47,9 +46,8 @@
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
 		D0D6ACE020AF8C5D00BE5660 /* RevisedPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */; };
 		F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */; };
-		F450270020B3594700D0EC45 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45026FF20B3594700D0EC45 /* CategoriesTableViewController.swift */; };
 		F450270220B35B1F00D0EC45 /* CategoriesTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450270120B35B1F00D0EC45 /* CategoriesTable.storyboard */; };
-		F450270420B35BAF00D0EC45 /* BlankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450270320B35BAF00D0EC45 /* BlankViewController.swift */; };
+		F450270420B35BAF00D0EC45 /* BrowseCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450270320B35BAF00D0EC45 /* BrowseCategoriesViewController.swift */; };
 		F4CD67F320AC9BAE003E7F3E /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */; };
 		F4CD67F520AC9BBE003E7F3E /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */; };
 		F4CD67F720AC9C0C003E7F3E /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD67F620AC9C0C003E7F3E /* PostDetailViewController.swift */; };
@@ -82,7 +80,6 @@
 		D040DC7F20AB301B00EB284F /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		D040DC8020AB301B00EB284F /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		D040DC8720AB305000EB284F /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
-		D040DC8920AB306400EB284F /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		D040DC8B20AB30E100EB284F /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		D040DC8D20AB30F100EB284F /* GifAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifAnimationExtension.swift; sourceTree = "<group>"; };
 		D040DC8F20AB314100EB284F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -99,9 +96,8 @@
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
 		D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisedPostController.swift; sourceTree = "<group>"; };
 		F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewController.swift; sourceTree = "<group>"; };
-		F45026FF20B3594700D0EC45 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 		F450270120B35B1F00D0EC45 /* CategoriesTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoriesTable.storyboard; sourceTree = "<group>"; };
-		F450270320B35BAF00D0EC45 /* BlankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankViewController.swift; sourceTree = "<group>"; };
+		F450270320B35BAF00D0EC45 /* BrowseCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCategoriesViewController.swift; sourceTree = "<group>"; };
 		F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		F4CD67F620AC9C0C003E7F3E /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
@@ -206,14 +202,12 @@
 				F4CD67F620AC9C0C003E7F3E /* PostDetailViewController.swift */,
 				D040DC8720AB305000EB284F /* FeedTableViewController.swift */,
 				F4CD67F220AC9BAE003E7F3E /* FeedTableViewCell.swift */,
-				D040DC8920AB306400EB284F /* CategoriesViewController.swift */,
-				F45026FF20B3594700D0EC45 /* CategoriesTableViewController.swift */,
 				F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */,
 				F4CD67F420AC9BBE003E7F3E /* FollowingTableViewCell.swift */,
 				D040DC8F20AB314100EB284F /* ProfileViewController.swift */,
 				D00A724120ADDDE900FBB2C8 /* CommentsTableViewController.swift */,
 				CB2DA40320B38EDD00727CC6 /* CommentsTableViewCell.swift */,
-				F450270320B35BAF00D0EC45 /* BlankViewController.swift */,
+				F450270320B35BAF00D0EC45 /* BrowseCategoriesViewController.swift */,
 			);
 			path = "Views+Controllers";
 			sourceTree = "<group>";
@@ -235,12 +229,12 @@
 				D040DC8020AB301B00EB284F /* Categories.swift */,
 				D040DC7C20AB301B00EB284F /* Comment.swift */,
 				D040DC7E20AB301B00EB284F /* RevisedPost.swift */,
-				D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */,
 				D040DC7F20AB301B00EB284F /* UserController.swift */,
 				D040DC7D20AB301B00EB284F /* PostController.swift */,
-				D05F243D20ACD32C00D625E9 /* CommentController.swift */,
 				D00A724920AE2CAF00FBB2C8 /* TagController.swift */,
 				D00A723F20ADDA2D00FBB2C8 /* CategoryController.swift */,
+				D05F243D20ACD32C00D625E9 /* CommentController.swift */,
+				D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */,
 				D00A724520AE001500FBB2C8 /* MockModels.swift */,
 			);
 			path = "Model+Controller";
@@ -339,13 +333,12 @@
 				D040DC8420AB301B00EB284F /* RevisedPost.swift in Sources */,
 				D05F243E20ACD32C00D625E9 /* CommentController.swift in Sources */,
 				F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */,
-				F450270020B3594700D0EC45 /* CategoriesTableViewController.swift in Sources */,
 				D00A724220ADDDE900FBB2C8 /* CommentsTableViewController.swift in Sources */,
 				F4CD67F720AC9C0C003E7F3E /* PostDetailViewController.swift in Sources */,
 				D00A724020ADDA2D00FBB2C8 /* CategoryController.swift in Sources */,
 				3A453EE620A9E8EF000CA14F /* AppDelegate.swift in Sources */,
 				D00A724A20AE2CAF00FBB2C8 /* TagController.swift in Sources */,
-				F450270420B35BAF00D0EC45 /* BlankViewController.swift in Sources */,
+				F450270420B35BAF00D0EC45 /* BrowseCategoriesViewController.swift in Sources */,
 				D040DC8C20AB30E100EB284F /* Cell.swift in Sources */,
 				D040DC8520AB301B00EB284F /* UserController.swift in Sources */,
 				D040DC8620AB301B00EB284F /* Categories.swift in Sources */,
@@ -366,7 +359,6 @@
 				D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */,
 				D00A724620AE001500FBB2C8 /* MockModels.swift in Sources */,
 				D0D6ACE020AF8C5D00BE5660 /* RevisedPostController.swift in Sources */,
-				D040DC8A20AB306400EB284F /* CategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

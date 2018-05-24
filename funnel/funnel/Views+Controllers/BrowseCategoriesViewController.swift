@@ -1,5 +1,5 @@
 //
-//  CategoriesTable.swift
+//  BrowseCategoriesViewController.swift
 //  funnel
 //
 //  Created by Alec Osborne on 5/21/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesTable: UIViewController {
+class BrowseCategoriesViewController: UIViewController {
 
     
     // MARK: - Outlets
@@ -47,7 +47,7 @@ class CategoriesTable: UIViewController {
     let subSubCategory = CategoryController.shared.category3Categories
 }
 
-extension CategoriesTable: UIPickerViewDataSource, UIPickerViewDelegate {
+extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -88,7 +88,7 @@ extension CategoriesTable: UIPickerViewDataSource, UIPickerViewDelegate {
 
 
 
-extension CategoriesTable: UITableViewDelegate, UITableViewDataSource, CommentsDelegate {
+extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSource, CommentsDelegate {
     
     @objc func reloadFeedView() {
         DispatchQueue.main.async {
@@ -144,7 +144,7 @@ extension CategoriesTable: UITableViewDelegate, UITableViewDataSource, CommentsD
     }
 }
 
-extension CategoriesTable: UISearchBarDelegate {
+extension BrowseCategoriesViewController: UISearchBarDelegate {
     
     
 }
