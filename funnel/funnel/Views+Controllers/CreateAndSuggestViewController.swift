@@ -16,11 +16,13 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     var post: Post?
     
-    var category = CategoryController.shared.topCategories
+    var topCategory = CategoryController.shared.topCategories
     
-    let subCategory = CategoryController.shared.category2Categories
+    var categorySelected: Category1?
     
-    let subSubCategory = CategoryController.shared.category3Categories
+//    let subCategory = CategoryController.shared.category2Categories
+//
+//    let subSubCategory = CategoryController.shared.category3Categories
 
     // MARK: - Outlets
     
@@ -34,14 +36,16 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var createOrSuggestOutlet: UIButton!
     
+    @IBOutlet weak var newSubCategory1: UIButton!
+    @IBOutlet weak var newSubCategory2: UIButton!
     
     // MARK: - Actions
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
-        guard let image = postImageView.image, let description = descriptionTextView.text, let categoryAsString = mainCategoryLabel.text, let tags = tagsTextView.text else { return }
+        guard let description = descriptionTextView.text, let image = postImageView.image, let tags = tagsTextView.text else { return }
 
-        PostController.shared.createPost(description: description, image: image, category1: nil, category2: nil, category3: nil, tagString: tags)
+        PostController.shared.createPost(description: description, image: image, category1: categorySelected, category2: nil, category3: nil, tagString: tags)
         
         navigationController?.popToRootViewController(animated: true)
     }
@@ -52,6 +56,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         super.viewDidLoad()
 
         picker.delegate = self
+//        newSubCategory2.isHidden = true
+        
         
         createCameraButton()
         updateViews()
@@ -61,46 +67,44 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     // MARK: - Category
     
-    @IBAction func newCategoryButtonTapped(_ sender: Any) {
-        newCategoryAlert()
-    }
+//    @IBAction func newCategoryButtonTapped(_ sender: Any) {
+//        newCategoryAlert()
+//        newSubCategory1.setTitle("Change", for: .normal)
+//        newSubCategory2.isHidden = false
+//    }
+//
+//    @IBAction func newSubCategory2ButtonTapped(_ sender: Any) {
+//        newCategoryAlert()
+//        newSubCategory2.setTitle("Change", for: .normal)
+//    }
     
-    func newCategoryAlert() {
-        let alert = UIAlertController(title: "New Category",
-                                      message: "Add a new Category",
-                                      preferredStyle: UIAlertControllerStyle.alert)
-        let cancel = UIAlertAction(title: "Cancel",
-                                   style: UIAlertActionStyle.cancel,
-                                   handler: nil)
-        
-        alert.addAction(cancel)
-        
-        let OK = UIAlertAction(title: "OK",
-                               style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
-                                print("OK")
-                                let categoryTextField = alert.textFields?[0]
-                                let textField2 = alert.textFields?[1]
-//                                self.categoryOneAddLabel.text = categoryTextField?.text!
-//                                self.categoryTwoAddLabel.text = textField2?.text!
-                                //                                categoryTextField?.text = self.mainLabel.text
-                                
-                                self.mainCategoryLabel.text = "\(alert.textFields?[0].text ?? " ")/\(alert.textFields?[1].text ?? " ")"
-                                
-                                CategoryController.shared.addCategory2(to: self.category.first!, categoryName: categoryTextField!.text!)
-        }
-        
-        alert.addAction(OK)
-        
-        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
-            alertTextFieldOne.placeholder = "Category One"
-        }
-        
-        alert.addTextField { (alertTextFieldTwo: UITextField) -> Void in
-            alertTextFieldTwo.placeholder = "Category Two"
-        }
-        
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func newCategoryAlert() {
+//        let alert = UIAlertController(title: "New Category",
+//                                      message: "Add a new Category",
+//                                      preferredStyle: UIAlertControllerStyle.alert)
+//        let cancel = UIAlertAction(title: "Cancel",
+//                                   style: UIAlertActionStyle.cancel,
+//                                   handler: nil)
+//
+//        alert.addAction(cancel)
+//
+//        let OK = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
+//
+//            let categoryTextField = alert.textFields?.first
+//
+//            self.mainCategoryLabel.text = "\(self.mainCategoryLabel.text ?? " ")/\(alert.textFields?[0].text ?? " ")"
+//
+//            CategoryController.shared.addCategory2(to: self.category.first!, categoryName: (categoryTextField?.text!)!)
+//        }
+//
+//        alert.addAction(OK)
+//
+//        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
+//            alertTextFieldOne.placeholder = "Sub-category..."
+//        }
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     // MARK: - Other functions
     
@@ -111,6 +115,10 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
 
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0
+        
+        mainCategoryLabel.layer.borderColor = UIColor.lightGray.cgColor
+        mainCategoryLabel.layer.borderWidth = 1.0
+        
     }
     
     func setButtonTitle() {
@@ -223,53 +231,57 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var countRows : Int = category.count
-        if pickerView == pickerTwo {
-            countRows = self.subCategory.count
-        }
-        else if pickerView == pickerThree {
-            countRows = self.subSubCategory.count
-        }
-        return countRows
+//        var countRows : Int = topCategory.count
+//        if pickerView == pickerTwo {
+//            countRows = self.subCategory.count
+//        }
+//        else if pickerView == pickerThree {
+//            countRows = self.subSubCategory.count
+//        }
+        return topCategory.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == pickerOne {
-            let labelOne = "\(category[row].title)"
-            
-            return labelOne
-        }
-            
-        else if pickerView == pickerTwo {
-            let labelTwo = subCategory[row].title
-            return labelTwo
-        }
-            
-        else if pickerView == pickerThree {
-            let labelThree = subSubCategory[row].title
-            return labelThree
-        }
-        return ""
+//        if pickerView == pickerOne {
+//            let labelOne = "\(topCategory[row].title)"
+//
+//            return labelOne
+//        }
+//
+//        else if pickerView == pickerTwo {
+//            let labelTwo = subCategory[row].title
+//            return labelTwo
+//        }
+//
+//        else if pickerView == pickerThree {
+//            let labelThree = subSubCategory[row].title
+//            return labelThree
+//        }
+        return topCategory[row].title
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        if pickerView == pickerOne {
-            self.mainCategoryLabel.text = "\(self.category[row].title)"
-//            self.mainLabel.text = "\(self.textFieldOne.text ?? " ")"
-            //                        self.pickerOne.isHidden = true
-        }
-            
-        else if pickerView == pickerTwo {
-//            self.textFieldTwo.text = self.subCategory[row].title
-            self.mainCategoryLabel.text = "\(self.category[row].title )/\(self.subCategory[row].title)"
-            //                        self.pickerTwo.isHidden = true
-        }
-            
-        else if pickerView == pickerThree {
-//            self.textFieldThree.text = self.subSubCategory[row].title
-            self.mainCategoryLabel.text = "\(self.category[row].title)/\(self.subCategory[row].title)/\(self.subSubCategory[row].title)"
-            //                        self.pickerThree.isHidden = true
-        }
+        categorySelected = topCategory[row]
+        print("Category1:",topCategory[row].title)
+        mainCategoryLabel.text = topCategory[row].title
+        
+//        if pickerView == pickerOne {
+//            self.mainCategoryLabel.text = "\(self.topCategory[row].title)"
+////            self.mainLabel.text = "\(self.textFieldOne.text ?? " ")"
+//            //                        self.pickerOne.isHidden = true
+//        }
+//
+//        else if pickerView == pickerTwo {
+////            self.textFieldTwo.text = self.subCategory[row].title
+//            self.mainCategoryLabel.text = "\(self.topCategory[row].title )/\(self.subCategory[row].title)"
+//            //                        self.pickerTwo.isHidden = true
+//        }
+//
+//        else if pickerView == pickerThree {
+////            self.textFieldThree.text = self.subSubCategory[row].title
+//            self.mainCategoryLabel.text = "\(self.topCategory[row].title)/\(self.subCategory[row].title)/\(self.subSubCategory[row].title)"
+//            //                        self.pickerThree.isHidden = true
+//        }
     }
 }
