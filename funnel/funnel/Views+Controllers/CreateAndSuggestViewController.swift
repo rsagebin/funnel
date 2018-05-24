@@ -16,13 +16,18 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     var post: Post?
     
-    var topCategory = CategoryController.shared.topCategories
+    var category1 = CategoryController.shared.topCategories
     
-    var categorySelected: Category1?
+    let category2 = CategoryController.shared.category2Categories
     
-//    let subCategory = CategoryController.shared.category2Categories
-//
-//    let subSubCategory = CategoryController.shared.category3Categories
+    let category3 = CategoryController.shared.category3Categories
+    
+    var category1Selected: Category1?
+    
+    var category2Selected: Category2?
+    
+    var category3Selected: Category3?
+    
 
     // MARK: - Outlets
     
@@ -45,7 +50,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         
         guard let description = descriptionTextView.text, let image = postImageView.image, let tags = tagsTextView.text else { return }
 
-        PostController.shared.createPost(description: description, image: image, category1: categorySelected, category2: nil, category3: nil, tagString: tags)
+        PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: tags)
         
         navigationController?.popToRootViewController(animated: true)
     }
@@ -231,19 +236,22 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        var countRows : Int = topCategory.count
-//        if pickerView == pickerTwo {
-//            countRows = self.subCategory.count
-//        }
-//        else if pickerView == pickerThree {
-//            countRows = self.subSubCategory.count
-//        }
-        return topCategory.count
+        
+        var numberOfRows = category1.count
+        
+        if pickerView == pickerTwo {
+            numberOfRows = category2.count
+        }
+        else if pickerView == pickerThree {
+            numberOfRows = category3.count
+        }
+        
+        return numberOfRows
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 //        if pickerView == pickerOne {
-//            let labelOne = "\(topCategory[row].title)"
+//            let labelOne = "\(category1[row].title)"
 //
 //            return labelOne
 //        }
@@ -257,14 +265,15 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
 //            let labelThree = subSubCategory[row].title
 //            return labelThree
 //        }
-        return topCategory[row].title
+//
+        return category1[row].title
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        categorySelected = topCategory[row]
-        print("Category1:",topCategory[row].title)
-        mainCategoryLabel.text = topCategory[row].title
+        category1Selected = category1[row]
+        print("Category1:",category1[row].title)
+        mainCategoryLabel.text = category1[row].title
         
 //        if pickerView == pickerOne {
 //            self.mainCategoryLabel.text = "\(self.topCategory[row].title)"
