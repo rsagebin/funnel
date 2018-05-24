@@ -34,7 +34,10 @@ class FeedTableViewCell: UITableViewCell {
 
     
     // MARK: - Outlets
-    @IBOutlet weak var tagsTextView: UITextView!
+    
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var frontView: UIView!
+    
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
@@ -104,6 +107,10 @@ class FeedTableViewCell: UITableViewCell {
     // MARK: - Other Functions
     func updateViews() {
         if let post = post {
+            
+            backView.layer.cornerRadius = 5
+            frontView.layer.cornerRadius = 3
+            
             guard let buttonImage = postFollowingButton.imageView else { return }
             
             self.postApprovedImage.isHidden = true

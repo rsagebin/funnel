@@ -10,10 +10,13 @@ import UIKit
 
 class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ CommentsDelegate {
     
+    
+    
     // MARK: - Life Cycle
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         PostController.shared.fetchFeedPosts()
         
@@ -49,11 +52,11 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
         
         let post = PostController.shared.feedPosts[indexPath.row]
         cell.post = post
-        cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
-        cell.descriptionTextView.layer.borderWidth = 1.0
-        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
-        cell.tagsTextView.layer.borderWidth = 1.0
-        
+//        cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
+//        cell.descriptionTextView.layer.borderWidth = 1.0
+//        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
+//        cell.tagsTextView.layer.borderWidth = 1.0
+        cell.descriptionTextView.isEditable = false
         cell.delegate = self
         
         return cell
