@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class PostDetailViewController: UIViewController {
 
@@ -36,16 +37,14 @@ class PostDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if categoryLabel.text == "" {
-            categoryLabel.isHidden = true
-        }
-        
+        createButton()
         postApprovedImage.isHidden = true
         
         updateViews()
         
         guard let post = self.post else { return }
+        
+        checkIfUserCreatedPost()
         
         CommentController.shared.loadCommentsFor(post: post) { (success) in
             
@@ -54,6 +53,7 @@ class PostDetailViewController: UIViewController {
                     
                     self.comments = CommentController.shared.postComments
                     self.updateViews()
+                    self.checkIfUserCreatedPost()
                 }
             }
         }
@@ -86,6 +86,28 @@ class PostDetailViewController: UIViewController {
                 self.tagsTextView.text = tags
             }
         }
+    }
+    
+    func checkIfUserCreatedPost() {
+        guard let post = post else { return }
+        guard let user = UserController.shared.loggedInUser?.appleUserRef else { return }
+        let postCreator = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .none)
+        
+        if user == postCreator {
+            // Not working
+        }
+    }
+    
+    func createButton() {
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deletePost))
+        deleteButton.tintColor = UIColor.red
+        self.navigationItem.rightBarButtonItem = deleteButton
+    }
+    
+    @objc func deletePost() {
+        guard let post = post else { return }
+        PostController.shared.delete(post: post)
+        NotificationCenter.default.post(name: Notification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
         
     }
   
@@ -125,6 +147,5 @@ class PostDetailViewController: UIViewController {
         let commentsController = commentsSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController
         commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
-        
     }
 }
