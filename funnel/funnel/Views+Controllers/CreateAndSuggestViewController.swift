@@ -16,13 +16,18 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     var post: Post?
     
-    var topCategory = CategoryController.shared.topCategories
+    var category1 = CategoryController.shared.topCategories
     
-    var categorySelected: Category1?
+    let category2 = CategoryController.shared.category2Categories
     
-//    let subCategory = CategoryController.shared.category2Categories
-//
-//    let subSubCategory = CategoryController.shared.category3Categories
+    let category3 = CategoryController.shared.category3Categories
+    
+    var category1Selected: Category1?
+    
+    var category2Selected: Category2?
+    
+    var category3Selected: Category3?
+    
 
     // MARK: - Outlets
     
@@ -45,7 +50,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         
         guard let description = descriptionTextView.text, let image = postImageView.image, let tags = tagsTextView.text else { return }
 
-        PostController.shared.createPost(description: description, image: image, category1: categorySelected, category2: nil, category3: nil, tagString: tags)
+        PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: tags)
         
         navigationController?.popToRootViewController(animated: true)
     }
@@ -77,27 +82,29 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
 //        newCategoryAlert()
 //        newSubCategory2.setTitle("Change", for: .normal)
 //    }
-    
+//
 //    func newCategoryAlert() {
 //        let alert = UIAlertController(title: "New Category",
 //                                      message: "Add a new Category",
 //                                      preferredStyle: UIAlertControllerStyle.alert)
-//        let cancel = UIAlertAction(title: "Cancel",
+//
+//        let cancelAction = UIAlertAction(title: "Cancel",
 //                                   style: UIAlertActionStyle.cancel,
 //                                   handler: nil)
 //
-//        alert.addAction(cancel)
+//        alert.addAction(cancelAction)
 //
-//        let OK = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
+//        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
 //
-//            let categoryTextField = alert.textFields?.first
+//            guard let category2Name = alert.textFields?.first?.text else { return }
+//            guard let category1Selected = self.category1Selected else { return }
 //
-//            self.mainCategoryLabel.text = "\(self.mainCategoryLabel.text ?? " ")/\(alert.textFields?[0].text ?? " ")"
+//            let newCategory2 = Category2(title: category2Name, parent: category1Selected)
+//            CategoryController.shared.category2Categories.append(newCategory2)
 //
-//            CategoryController.shared.addCategory2(to: self.category.first!, categoryName: (categoryTextField?.text!)!)
 //        }
 //
-//        alert.addAction(OK)
+//        alert.addAction(createAction)
 //
 //        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
 //            alertTextFieldOne.placeholder = "Sub-category..."
@@ -231,57 +238,54 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        var countRows : Int = topCategory.count
-//        if pickerView == pickerTwo {
-//            countRows = self.subCategory.count
-//        }
-//        else if pickerView == pickerThree {
-//            countRows = self.subSubCategory.count
-//        }
-        return topCategory.count
+        
+        var numberOfRows = category1.count
+        
+        if pickerView == pickerTwo {
+            numberOfRows = category2.count
+        }
+        else if pickerView == pickerThree {
+            numberOfRows = category3.count
+        }
+        
+        return numberOfRows
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        if pickerView == pickerOne {
-//            let labelOne = "\(topCategory[row].title)"
-//
-//            return labelOne
-//        }
-//
-//        else if pickerView == pickerTwo {
-//            let labelTwo = subCategory[row].title
-//            return labelTwo
-//        }
-//
-//        else if pickerView == pickerThree {
-//            let labelThree = subSubCategory[row].title
-//            return labelThree
-//        }
-        return topCategory[row].title
+        
+        var categoryName = ""
+        
+        if pickerView == pickerOne {
+            categoryName = category1[row].title
+        }
+
+        else if pickerView == pickerTwo {
+            categoryName = category2[row].title
+        }
+
+        else if pickerView == pickerThree {
+            categoryName = category3[row].title
+        }
+
+        return categoryName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        categorySelected = topCategory[row]
-        print("Category1:",topCategory[row].title)
-        mainCategoryLabel.text = topCategory[row].title
-        
-//        if pickerView == pickerOne {
-//            self.mainCategoryLabel.text = "\(self.topCategory[row].title)"
-////            self.mainLabel.text = "\(self.textFieldOne.text ?? " ")"
-//            //                        self.pickerOne.isHidden = true
-//        }
-//
-//        else if pickerView == pickerTwo {
-////            self.textFieldTwo.text = self.subCategory[row].title
-//            self.mainCategoryLabel.text = "\(self.topCategory[row].title )/\(self.subCategory[row].title)"
-//            //                        self.pickerTwo.isHidden = true
-//        }
-//
-//        else if pickerView == pickerThree {
-////            self.textFieldThree.text = self.subSubCategory[row].title
-//            self.mainCategoryLabel.text = "\(self.topCategory[row].title)/\(self.subCategory[row].title)/\(self.subSubCategory[row].title)"
-//            //                        self.pickerThree.isHidden = true
-//        }
+        if pickerView == pickerOne {
+            category1Selected = category1[row]
+            mainCategoryLabel.text = category1[row].title
+            print("Category1:",category1[row].title)
+        }
+
+        else if pickerView == pickerTwo {
+            category2Selected = category2[row]
+            mainCategoryLabel.text = "\(category1[row].title )/\(category2[row].title)"
+        }
+
+        else if pickerView == pickerThree {
+            category3Selected = category3[row]
+            mainCategoryLabel.text = "\(category1[row].title)/\(category2[row].title)/\(category3[row].title)"
+        }
     }
 }
