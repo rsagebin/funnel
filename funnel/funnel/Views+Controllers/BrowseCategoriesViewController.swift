@@ -1,5 +1,5 @@
 //
-//  CategoriesTable.swift
+//  BrowseCategoriesViewController.swift
 //  funnel
 //
 //  Created by Alec Osborne on 5/21/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesTable: UIViewController {
+class BrowseCategoriesViewController: UIViewController {
 
     
     // MARK: - Outlets
@@ -24,12 +24,22 @@ class CategoriesTable: UIViewController {
         
     }
 
+    var selectedCategory: Category1?
     
     // MARK: - Actions
     @IBAction func searchCategoryTapped(_ sender: Any) {
         PostController.shared.fetchFeedPosts()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
+        
+        
+        
+        PostController.shared.fetchPostsFor(category1: selectedCategory!) { (posts) in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
         // mainCategoryLabel.text used to call search
         // searchBarSearchTerm is used to call search
         // Search results will populate the TV cells and the category view will become hidden
@@ -47,7 +57,7 @@ class CategoriesTable: UIViewController {
     let subSubCategory = CategoryController.shared.category3Categories
 }
 
-extension CategoriesTable: UIPickerViewDataSource, UIPickerViewDelegate {
+extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -64,10 +74,15 @@ extension CategoriesTable: UIPickerViewDataSource, UIPickerViewDelegate {
         return countRows
     }
     
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        <#code#>
+//    }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerOne {
             let labelOne = "\(category[row].title)"
             self.mainCategoryLabel.text = "\(category[row].title)"
+            self.selectedCategory = category[row]
             return labelOne
         }
             
@@ -88,7 +103,7 @@ extension CategoriesTable: UIPickerViewDataSource, UIPickerViewDelegate {
 
 
 
-extension CategoriesTable: UITableViewDelegate, UITableViewDataSource, CommentsDelegate {
+extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSource, CommentsDelegate {
     
     @objc func reloadFeedView() {
         DispatchQueue.main.async {
@@ -144,7 +159,7 @@ extension CategoriesTable: UITableViewDelegate, UITableViewDataSource, CommentsD
     }
 }
 
-extension CategoriesTable: UISearchBarDelegate {
+extension BrowseCategoriesViewController: UISearchBarDelegate {
     
     
 }

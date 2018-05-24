@@ -21,6 +21,9 @@ class PostController {
     var followingPosts = [Post]()
     var userPosts = [Post]()
     
+    var category1Posts = [Post]()
+    var category2Posts = [Post]()
+    var category3Posts = [Post]()
 
     func createPost(description: String, image: UIImage, category1: Category1?, category2: Category2?, category3: Category3?, tagString: String) {
         
@@ -50,6 +53,11 @@ class PostController {
         
         if let category1 = category1 {
             category1Ref = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
+            ckManager.save(records: [category1.ckRecord], perRecordCompletion: nil) { (records, error) in
+                if let error = error {
+                    print("Error saving category: \(error)")
+                }
+            }
             categoryAsString += category1.title
         }
         
@@ -122,51 +130,66 @@ class PostController {
     }
     
     
-    func fetchPostsFor(category1: Category1, completion: @escaping ([Post]?) -> Void) {
+    func fetchPostsFor(category1: Category1, completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(format: "category1Ref == %@", category1.ckRecordID ?? category1.ckRecord.recordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts for category 1: \(error)")
-                completion(nil)
+                completion(false)
                 return
             }
             
-            let posts = records?.compactMap({ Post(cloudKitRecord: $0) })
+            guard let posts = records?.compactMap({ Post(cloudKitRecord: $0) }) else {
+                completion(false)
+                return
+            }
             
-            completion(posts)
+            self.category1Posts = posts
+            
+            completion(true)
         }
     }
     
-    func fetchPostsFor(category2: Category2, completion: @escaping ([Post]?) -> Void) {
+    func fetchPostsFor(category2: Category2, completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(format: "category2Ref == %@", category2.ckRecordID ?? category2.ckRecord.recordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts for category 2: \(error)")
-                completion(nil)
+                completion(false)
                 return
             }
             
-            let posts = records?.compactMap({ Post(cloudKitRecord: $0) })
+            guard let posts = records?.compactMap({ Post(cloudKitRecord: $0) }) else {
+                completion(false)
+                return
+            }
             
-            completion(posts)
+            self.category2Posts = posts
+            
+            completion(true)
         }
     }
     
-    func fetchPostsFor(category3: Category3, completion: @escaping ([Post]?) -> Void) {
+    func fetchPostsFor(category3: Category3, completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(format: "category3Ref == %@", category3.ckRecordID ?? category3.ckRecord.recordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts for category 3: \(error)")
-                completion(nil)
+                completion(false)
                 return
             }
             
-            let posts = records?.compactMap({ Post(cloudKitRecord: $0) })
+            guard let posts = records?.compactMap({ Post(cloudKitRecord: $0) }) else {
+                completion(false)
+                return
+            }
             
-            completion(posts)
+            self.category3Posts = posts
+            
+            completion(true)
         }
     }
     

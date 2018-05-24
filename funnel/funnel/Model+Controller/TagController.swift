@@ -36,6 +36,27 @@ class TagController {
         }
     }
     
+    func saveTagsOnRevisedPost(post: RevisedPost, tagString: String) {
+        
+        let textSeparatedBySpaces = tagString.components(separatedBy: " ")
+        let tagsAsStrings = textSeparatedBySpaces.filter { (word) -> Bool in
+            return word.hasPrefix("#")
+        }
+        
+        let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        
+        for string in tagsAsStrings {
+            let tag = Tag(text: string, postReference: postReference)
+            
+            ckManager.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
+                if let error = error {
+                    print("Error saving tag to CloudKit: \(error)")
+                    return
+                }
+            }
+        }
+    }
+    
     
     func fetchTagsFor(post: Post, completion: @escaping ([Tag]?) -> Void) {
         

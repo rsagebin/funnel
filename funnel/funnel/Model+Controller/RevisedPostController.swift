@@ -18,7 +18,7 @@ class RevisedPostController {
     var revisedPostsToApprove: [RevisedPost] = []
     var revisedPostsUserCreated: [RevisedPost] = []
     
-    func createRevisedPost(for post: Post, description: String, category1: Category1?, category2: Category2?, category3: Category3?) {
+    func createRevisedPost(for post: Post, description: String, category1: Category1?, category2: Category2?, category3: Category3?, tagsAsString: String) {
         
         var categoryAsString = ""
         
@@ -51,6 +51,8 @@ class RevisedPostController {
             }
         }
         
+        TagController.shared.saveTagsOnRevisedPost(post: revisedPost, tagString: tagsAsString)
+        
     }
     
     func deleteRevisedPost(revisedPost: RevisedPost) {
@@ -62,11 +64,20 @@ class RevisedPostController {
         }
     }
     
-//    func acceptRevisedPost(revisedPost: RevisedPost, for post: Post) {
-//        post.description = revisedPost.description
-//        
-//
-//    }
-    
+    func acceptRevisedPost(revisedPost: RevisedPost, for post: Post, completion: @escaping (Bool) -> Void) {
+        post.description = revisedPost.description
+        post.category1Ref = revisedPost.category1Ref
+        post.isAnswered = true
+        
+        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+            if let error = error {
+                print("Error saving revised post to CloudKit: \(error)")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
+    }
     
 }

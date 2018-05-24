@@ -29,7 +29,7 @@ class Post {
     private static let category3RefKey = "category3Ref"
     
     var user: User?
-    let description: String
+    var description: String
     let image: UIImage?
     let imageAsCKAsset: CKAsset
     var tags: [Tag]?
