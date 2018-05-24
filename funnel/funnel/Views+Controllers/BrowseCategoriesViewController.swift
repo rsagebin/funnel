@@ -23,38 +23,49 @@ class BrowseCategoriesViewController: UIViewController {
         super.viewDidLoad()
         
     }
-
-    var selectedCategory: Category1?
-    
-    // MARK: - Actions
-    @IBAction func searchCategoryTapped(_ sender: Any) {
-        PostController.shared.fetchFeedPosts()
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
-        
-        
-        
-        PostController.shared.fetchPostsFor(category1: selectedCategory!) { (posts) in
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        
-        // mainCategoryLabel.text used to call search
-        // searchBarSearchTerm is used to call search
-        // Search results will populate the TV cells and the category view will become hidden
-//        categoryView.isHidden = true
-    }
-    
-    @IBAction func swipeGestureToAppearCategories(_ sender: Any) {
-        categoryView.isHidden = false
-    }
     
     var category = CategoryController.shared.topCategories
     
     let subCategory = CategoryController.shared.category2Categories
     
     let subSubCategory = CategoryController.shared.category3Categories
+
+    var selectedCategory: Category1?
+    
+    // MARK: - Actions
+    @IBAction func searchCategoryTapped(_ sender: Any) {
+        PostController.shared.fetchPostsFor(category1: CategoryController.shared.topCategories[4]) { (success) in
+            if success {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.categoryView.isHidden = true
+                }
+            } else {
+            print("Category one fetch failed in the View Controller")
+            }
+        }
+        
+//        func viewWillAppear(_ animated: Bool) {
+//            super.viewWillAppear(animated)
+//            categoryView?.isHidden = true
+//            tableView?.topAnchor.constraint(equalTo: true, constant: 100.0)
+//        }
+//        func viewDidAppear(_ animated: Bool) {
+//            super.viewDidAppear(animated)
+//            UIView.animate(withDuration: 0.1) {
+//                self.categoryView.alpha = 0.6
+//            }
+//        }
+        
+//        func viewDidDisappear(_ animated: Bool) {
+//            super.viewDidDisappear(animated)
+//            categoryView?.isHidden = false
+//        }
+    }
+    
+    @IBAction func swipeGestureToAppearCategories(_ sender: Any) {
+        categoryView.isHidden = false
+    }
 }
 
 extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -101,8 +112,6 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
     }
 }
 
-
-
 extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSource, CommentsDelegate {
     
     @objc func reloadFeedView() {
@@ -119,13 +128,13 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
 
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return PostController.shared.feedPosts.count
+        return PostController.shared.category1Posts.count
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! FeedTableViewCell
         
-        let post = PostController.shared.feedPosts[indexPath.row]
+        let post = PostController.shared.category1Posts[indexPath.row]
         cell.post = post
         cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
         cell.descriptionTextView.layer.borderWidth = 1.0
