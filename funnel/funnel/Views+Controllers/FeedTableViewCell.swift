@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 protocol CommentsDelegate {
     func didTapComment(post: Post)
@@ -19,19 +20,20 @@ protocol CommentsDelegate {
 class FeedTableViewCell: UITableViewCell {
 
     // MARK: - Properties
-    
     var delegate: CommentsDelegate?
     
     var post: Post? {
         didSet {
+            checkUserRef()
+            
             updateViews()
         }
     }
     
     var isFollowing = false
+
     
     // MARK: - Outlets
-    
     @IBOutlet weak var tagsTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var categoriesLabel: UILabel!
@@ -47,35 +49,30 @@ class FeedTableViewCell: UITableViewCell {
     
    
     // MARK: - Actions
-    
     @IBAction func postFollowingButtonTapped(_ sender: UIButton) {
         
         guard let user = UserController.shared.loggedInUser else { return }
         guard let post = self.post else { return }
-        guard let buttonImage = postFollowingButton.imageView else { return }
         
         isFollowing = !isFollowing
         
         if isFollowing == true {
-            buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
-            checkUserRef()
             PostController.shared.addFollowerToPost(user: user, post: post)
 
         } else if isFollowing == false {
-            buttonImage.tintColor = UIColor.black
-            checkUserRef()
             PostController.shared.removeFollowerFromPost(user: user, post: post)
         }
         updateViews()
     }
     
     func checkUserRef() {
-        guard let userRef = UserController.shared.loggedInUser?.appleUserRef else { return }
+        guard let userID = UserController.shared.loggedInUser else { return }
+        let userRef = CKReference(recordID: userID.ckRecordID ?? userID.ckRecord.recordID, action: .none)
         guard let followersRefs = post?.followersRefs else { return }
         
         for refNumber in followersRefs {
             if refNumber == userRef {
-                print(refNumber)
+                isFollowing = true
             }
         }
     }
@@ -92,11 +89,9 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     // MARK: - Other Functions
-    
     func updateViews() {
         if let post = post {
-            guard let user = UserController.shared.loggedInUser else { return }
-            let comments = CommentController.shared.postComments.count
+            guard let buttonImage = postFollowingButton.imageView else { return }
             
             self.postApprovedImage.isHidden = true
             self.categoriesLabel.text = post.categoryAsString
@@ -104,7 +99,13 @@ class FeedTableViewCell: UITableViewCell {
             self.postImageView.image = post.image
             self.postFollowingCountLabel.text = String(post.followersRefs.count)
 //            self.postSuggestionCountLabel.text =
-//            self.postCommentsCountLabel.text =
+//            self.postCommentsCountLabel.text = String(comments.count)
+            
+            if isFollowing == true {
+                buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+            } else {
+                buttonImage.tintColor = UIColor.black
+            }
         }
     }
     
