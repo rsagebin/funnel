@@ -90,7 +90,7 @@ class LoginViewController: UIViewController {
                     self.funnelTitleView.isHidden = false
                     self.userSignUpView.isHidden = false
                     self.userSignedInView.isHidden = true
-                    self.checkIfBanned()
+//                    self.checkIfBanned()
                 }
             })
         }
