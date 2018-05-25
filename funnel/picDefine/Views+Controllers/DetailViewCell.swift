@@ -1,5 +1,5 @@
 //
-//  FeedTableViewCell.swift
+//  DetailViewCell.swift
 //  funnel
 //
 //  Created by Alec Osborne on 5/16/18.
@@ -17,7 +17,7 @@ protocol SuggestionDelegate {
     func postSuggestionButtonTapped(post: Post)
 }
 
-class FeedTableViewCell: UITableViewCell {
+class DetailViewCell: UITableViewCell {
 
     // MARK: - Properties
     var commentsDelegate: CommentsDelegate?

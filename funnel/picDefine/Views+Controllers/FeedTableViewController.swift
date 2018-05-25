@@ -74,7 +74,7 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! FeedTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! DetailViewCell
         
         let post = PostController.shared.feedPosts[indexPath.row]
         cell.post = post

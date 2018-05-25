@@ -135,7 +135,7 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! FeedTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! DetailViewCell
         
         let post = PostController.shared.category1Posts[indexPath.row]
         cell.post = post
