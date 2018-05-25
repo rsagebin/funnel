@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ CommentsDelegate {
+class DetailCell: UITableViewController, /*SuggestionDelegate,*/ CommentsDelegate {
     
     
     
@@ -26,8 +26,6 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
         PostController.shared.fetchFeedPosts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
-        
-        
     }
     
     @objc func reloadFeedView() {
@@ -53,7 +51,7 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! FeedTableViewCell
+        let cell = Bundle.main.loadNibNamed("DetailCell", owner: self, options: nil)?.first as! FeedTableViewCell
         
         let post = PostController.shared.feedPosts[indexPath.row]
         cell.post = post
@@ -67,6 +65,9 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 430
+    }
     
     // MARK: - Delegate functions
     
