@@ -46,16 +46,10 @@ class Post {
     
     var followersRefs: [CKReference]
     let creatorRef: CKReference
-    var ckRecordID: CKRecordID?
+    var ckRecordID: CKRecordID
     
     var ckRecord: CKRecord {
-        let record: CKRecord
-        if let ckRecordID = ckRecordID {
-            record = CKRecord(recordType: Post.typeKey, recordID: ckRecordID)
-        } else {
-            record = CKRecord(recordType: Post.typeKey)
-            self.ckRecordID = record.recordID
-        }
+        let record = CKRecord(recordType: Post.typeKey, recordID: self.ckRecordID)
         
         record.setValue(creatorRef, forKey: Post.creatorRefKey)
         record.setValue(description, forKey: Post.descriptionKey)
@@ -97,6 +91,9 @@ class Post {
         self.isAnswered = false
         self.creatorRef = creatorRef
         self.followersRefs = []
+        
+        self.ckRecordID = CKRecordID(recordName: UUID().uuidString)
+        
     }
     
     init?(cloudKitRecord: CKRecord) {
@@ -138,5 +135,11 @@ class Post {
         
         self.ckRecordID = cloudKitRecord.recordID
         
+    }
+}
+
+extension Post: Equatable {
+    static func ==(lhs: Post, rhs: Post) -> Bool {
+        return lhs.ckRecordID == rhs.ckRecordID
     }
 }

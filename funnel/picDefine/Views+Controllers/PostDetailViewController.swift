@@ -91,7 +91,7 @@ class PostDetailViewController: UIViewController {
     func checkIfUserCreatedPost() {
         guard let post = post else { return }
         guard let user = UserController.shared.loggedInUser?.appleUserRef else { return }
-        let postCreator = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .none)
+        let postCreator = CKReference(recordID: post.ckRecordID, action: .none)
         
         if user == postCreator {
             // Not working

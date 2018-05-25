@@ -110,7 +110,7 @@ class RevisedPost {
         self.category2Ref = category2Ref
         self.category3Ref = category3Ref
         
-        let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        let postReference = CKReference(recordID: post.ckRecordID, action: .deleteSelf)
         self.postReference = postReference
         
     }

@@ -43,7 +43,7 @@ class PostController {
         
         guard let user = UserController.shared.loggedInUser else { return }
         
-        let creatorReference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .deleteSelf)
+        let creatorReference = CKReference(recordID: user.ckRecordID, action: .deleteSelf)
         
         var categoryAsString = ""
         
@@ -92,7 +92,15 @@ class PostController {
     }
     
     func delete(post: Post) {
-        ckManager.delete(recordID: post.ckRecordID ?? post.ckRecord.recordID) { (recordID, error) in
+        if let index = PostController.shared.feedPosts.index(of: post) {
+            PostController.shared.feedPosts.remove(at: index)
+        }
+        
+        if let index = PostController.shared.followingPosts.index(of: post) {
+            PostController.shared.followingPosts.remove(at: index)
+        }
+        
+        ckManager.delete(recordID: post.ckRecordID) { (recordID, error) in
             if let error = error {
                 print("Error deleting record from CloudKit: \(error)")
             }
@@ -216,7 +224,7 @@ class PostController {
     }
     
     func addFollowerToPost(user: User, post: Post) {
-        let reference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .none)
+        let reference = CKReference(recordID: user.ckRecordID, action: .none)
         post.followersRefs.append(reference)
         
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
@@ -228,7 +236,7 @@ class PostController {
     }
     
     func removeFollowerFromPost(user: User, post: Post) {
-        let reference = CKReference(recordID: user.ckRecordID ?? user.ckRecord.recordID, action: .none)
+        let reference = CKReference(recordID: user.ckRecordID, action: .none)
         guard let index = post.followersRefs.index(of: reference) else { return }
         post.followersRefs.remove(at: index)
         ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
@@ -241,7 +249,7 @@ class PostController {
     
     
     func fetchFollowingPosts(user: User, completion: @escaping (Bool) -> Void) {
-        let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
+        let userRecordID = user.ckRecordID
         let userReference = CKReference(recordID: userRecordID, action: .deleteSelf)
         
         let predicate = NSPredicate(format: "followersRefs CONTAINS %@", userReference)
@@ -269,7 +277,7 @@ class PostController {
     }
 
     func fetchUserPosts(user: User, completion: @escaping (Bool) -> Void) {
-        let userRecordID = user.ckRecordID ?? user.ckRecord.recordID
+        let userRecordID = user.ckRecordID
         
         let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
