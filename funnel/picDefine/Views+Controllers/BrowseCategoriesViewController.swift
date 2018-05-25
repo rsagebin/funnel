@@ -9,17 +9,22 @@
 import UIKit
 
 class BrowseCategoriesViewController: UIViewController {
-
+    
     // MARK: - Outlets
     @IBOutlet weak var pickerOne: UIPickerView!
-//    @IBOutlet weak var pickerTwo: UIPickerView!
-//    @IBOutlet weak var pickerThree: UIPickerView!
+    //    @IBOutlet weak var pickerTwo: UIPickerView!
+    //    @IBOutlet weak var pickerThree: UIPickerView!
     @IBOutlet weak var mainCategoryLabel: UILabel!
     @IBOutlet weak var categoryView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
+        leftSwipe.direction = .left
+        view.addGestureRecognizer(leftSwipe)
+        
         let nib = UINib.init(nibName: "DetailCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "DetailCell")
         // EXPLANATION: "red label" at the top is hidden to avoid redundancy
@@ -33,41 +38,74 @@ class BrowseCategoriesViewController: UIViewController {
                 }
             }
         }
+        
+        
+    }
+    @objc func handleSwipes(sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .left) {
+            newCategoryAlert()
+            print("left swipe")
+        }
+        
+    }
+    func newCategoryAlert() {
+        let alert = UIAlertController(title: "This above all else:",
+                                      message: "to thine own self be...",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        
+        let cancelAction = UIAlertAction(title: "True",
+                                         style: UIAlertActionStyle.cancel,
+                                         handler: nil)
+        
+        alert.addAction(cancelAction)
+        
+        let createAction = UIAlertAction(title: "Squirrel!", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
+            
+        }
+        
+        alert.addAction(createAction)
+        
+        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
+            alertTextFieldOne.placeholder = "I like waffles..."
+        }
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     // EXPLANATION: instance of the categories
     var category = CategoryController.shared.topCategories
     
-//    let subCategory = CategoryController.shared.category2Categories
-//
-//    let subSubCategory = CategoryController.shared.category3Categories
-
+    //    let subCategory = CategoryController.shared.category2Categories
+    //
+    //    let subSubCategory = CategoryController.shared.category3Categories
+    
     // EXPLANATION: reference to the picker's selected category as selected array (not a string)
     var selectedCategory: Category1?
-
+    
     
     // MARK: - Actions
     @IBAction func searchCategoryTapped(_ sender: Any) {
         PostController.shared.fetchPostsFor(category1: selectedCategory!) { (success) in
             if success {
-            DispatchQueue.main.async {
-                // EXPLANATION: the table view below is reloaded and then the mainLabel(red) appears above while the "Category Find" cell becomes hidden.
-                self.tableView.reloadData()
-                self.mainCategoryLabel.isHidden = false
-                self.categoryView.isHidden = true
+                DispatchQueue.main.async {
+                    // EXPLANATION: the table view below is reloaded and then the mainLabel(red) appears above while the "Category Find" cell becomes hidden.
+                    self.tableView.reloadData()
+                    self.mainCategoryLabel.isHidden = false
+                    self.categoryView.isHidden = true
                 }
             } else {
-            print("Category one fetch failed in the View Controller")
+                print("Category one fetch failed in the View Controller")
             }
         }
     }
     
     // EXPLANATION: Top button "Find Category" will reanimate the "find" cell and drop the TVC below it.
     @IBAction func findCategoryButtonTapped(_ sender: Any) {
-                categoryView.isHidden = false
+        categoryView.isHidden = false
         self.mainCategoryLabel.isHidden = true
     }
 }
+
 
 // MARK: - Picker extension
 extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -79,12 +117,12 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
         let countRows : Int = category.count
         
         // EXPLANATION: Picker Two and Three methods not currently implemented
-//        if pickerView == pickerTwo {
-//            countRows = self.subCategory.count
-//        }
-//        else if pickerView == pickerThree {
-//            countRows = self.subSubCategory.count
-//        }
+        //        if pickerView == pickerTwo {
+        //            countRows = self.subCategory.count
+        //        }
+        //        else if pickerView == pickerThree {
+        //            countRows = self.subSubCategory.count
+        //        }
         return countRows
     }
     
@@ -99,17 +137,17 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
         }
         
         // EXPLANATION: More methods set for Picker Two and Picker Three
-//        else if pickerView == pickerTwo {
-//            let labelTwo = subCategory[row].title
-//            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subCategory[row].title)"
-//            return labelTwo
-//        }
-//
-//        else if pickerView == pickerThree {
-//            let labelThree = subSubCategory[row].title
-//            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subSubCategory[row].title)"
-//            return labelThree
-//        }
+        //        else if pickerView == pickerTwo {
+        //            let labelTwo = subCategory[row].title
+        //            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subCategory[row].title)"
+        //            return labelTwo
+        //        }
+        //
+        //        else if pickerView == pickerThree {
+        //            let labelThree = subSubCategory[row].title
+        //            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subSubCategory[row].title)"
+        //            return labelThree
+        //        }
         return ""
     }
 }
@@ -120,17 +158,17 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
     @objc func reloadFeedView() {
         DispatchQueue.main.async {
             // EXPLANATION: tableView being reloaded is only functioning within the View Controller because it's being referenced as an outlet.
-        self.tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
-
-
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return PostController.shared.category1Posts.count
     }
     
@@ -139,10 +177,10 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
         
         let post = PostController.shared.category1Posts[indexPath.row]
         cell.post = post
-//        cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
-//        cell.descriptionTextView.layer.borderWidth = 1.0
-//        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
-//        cell.tagsTextView.layer.borderWidth = 1.0
+        //        cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
+        //        cell.descriptionTextView.layer.borderWidth = 1.0
+        //        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
+        //        cell.tagsTextView.layer.borderWidth = 1.0
         
         cell.commentsDelegate = self
         
