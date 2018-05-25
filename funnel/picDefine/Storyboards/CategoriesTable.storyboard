@@ -28,23 +28,37 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJc-vO-jnW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgV-6k-Hza">
-                                                <rect key="frame" x="117.5" y="0.0" width="140" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="XKk-AT-bjk"/>
-                                                    <constraint firstAttribute="width" constant="140" id="hIC-9z-5hk"/>
-                                                </constraints>
-                                                <state key="normal" title="Find Category"/>
-                                                <connections>
-                                                    <action selector="findCategoryButtonTapped:" destination="ddl-jv-GTw" eventType="touchUpInside" id="cBg-iX-XgH"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="ioP-UP-NUm">
+                                                <rect key="frame" x="-3" y="0.0" width="380" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgV-6k-Hza">
+                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="XKk-AT-bjk"/>
+                                                            <constraint firstAttribute="width" constant="140" id="hIC-9z-5hk"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Find Category"/>
+                                                        <connections>
+                                                            <action selector="findCategoryButtonTapped:" destination="ddl-jv-GTw" eventType="touchUpInside" id="cBg-iX-XgH"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UBn-ak-o86">
+                                                        <rect key="frame" x="200" y="3" width="180" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="180" id="xro-Lk-xGm"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
+                                                        <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="zgV-6k-Hza" firstAttribute="centerX" secondItem="KJc-vO-jnW" secondAttribute="centerX" id="3An-xx-fZn"/>
                                             <constraint firstAttribute="height" constant="30" id="5CB-iu-tJ1"/>
-                                            <constraint firstItem="zgV-6k-Hza" firstAttribute="centerY" secondItem="KJc-vO-jnW" secondAttribute="centerY" id="jf7-Dd-ljp"/>
+                                            <constraint firstItem="ioP-UP-NUm" firstAttribute="centerY" secondItem="KJc-vO-jnW" secondAttribute="centerY" id="6wb-XD-hU6"/>
+                                            <constraint firstItem="ioP-UP-NUm" firstAttribute="centerX" secondItem="KJc-vO-jnW" secondAttribute="centerX" id="qdW-z3-o54"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-96-S5g">
@@ -59,50 +73,21 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hzf-ls-lh1">
-                                                <rect key="frame" x="2.5" y="40" width="370" height="80"/>
+                                                <rect key="frame" x="37.5" y="30" width="300" height="100"/>
                                                 <subviews>
                                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqC-3a-RwJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="80"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="80" id="SJZ-7x-QQ5"/>
-                                                            <constraint firstAttribute="width" constant="120" id="ll9-i8-xSV"/>
+                                                            <constraint firstAttribute="height" constant="100" id="SJZ-7x-QQ5"/>
+                                                            <constraint firstAttribute="width" constant="300" id="ll9-i8-xSV"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="dataSource" destination="ddl-jv-GTw" id="tFq-bk-D5V"/>
                                                             <outlet property="delegate" destination="ddl-jv-GTw" id="c3p-g0-pJO"/>
                                                         </connections>
                                                     </pickerView>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoX-Td-Ihg">
-                                                        <rect key="frame" x="125" y="0.0" width="120" height="80"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="120" id="AjL-2B-cVk"/>
-                                                            <constraint firstAttribute="height" constant="80" id="DP1-ud-ufd"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="ddl-jv-GTw" id="l81-4k-z33"/>
-                                                            <outlet property="delegate" destination="ddl-jv-GTw" id="YfD-JH-A93"/>
-                                                        </connections>
-                                                    </pickerView>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qVC-6V-LVG">
-                                                        <rect key="frame" x="250" y="0.0" width="120" height="80"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="80" id="7mW-Uo-3f0"/>
-                                                            <constraint firstAttribute="width" constant="120" id="N7s-aI-Wg7"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="ddl-jv-GTw" id="aKT-eF-ufv"/>
-                                                            <outlet property="delegate" destination="ddl-jv-GTw" id="ihM-mQ-C8N"/>
-                                                        </connections>
-                                                    </pickerView>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UBn-ak-o86">
-                                                <rect key="frame" x="50" y="8" width="275" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
-                                                <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -315,8 +300,6 @@
                         <outlet property="categoryView" destination="QF2-96-S5g" id="HFg-sq-6YX"/>
                         <outlet property="mainCategoryLabel" destination="UBn-ak-o86" id="r9S-4c-sdQ"/>
                         <outlet property="pickerOne" destination="dqC-3a-RwJ" id="bVr-k4-NOj"/>
-                        <outlet property="pickerThree" destination="qVC-6V-LVG" id="FYs-13-PyJ"/>
-                        <outlet property="pickerTwo" destination="qoX-Td-Ihg" id="oCo-nI-Vt3"/>
                         <outlet property="tableView" destination="B7K-d5-wat" id="f40-6m-JXw"/>
                     </connections>
                 </viewController>
