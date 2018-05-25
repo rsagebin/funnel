@@ -38,12 +38,12 @@
             </objects>
             <point key="canvasLocation" x="1897" y="-692"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--picDefine-->
         <scene sceneID="nTQ-m5-GAk">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="c0o-Rb-SrI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="5rY-mq-f7k">
+                    <navigationItem key="navigationItem" title="picDefine" id="5rY-mq-f7k">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="P97-V2-bOl">
                             <connections>
                                 <segue destination="cxd-mD-p8D" kind="show" id="rkQ-9w-0kP"/>

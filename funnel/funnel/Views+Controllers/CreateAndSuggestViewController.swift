@@ -161,7 +161,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         
         let button: UIButton = UIButton(type: UIButtonType.custom)
         
-        button.setImage(#imageLiteral(resourceName: "camera"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "screenshot-100"), for: .normal)
         button.addTarget(self, action: #selector(showCameraOrLibrary), for: .touchUpInside)
         let navButton = UIBarButtonItem(customView: button)
         self.navigationItem.rightBarButtonItem = navButton

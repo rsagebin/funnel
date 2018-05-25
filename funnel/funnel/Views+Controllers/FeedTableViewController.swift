@@ -17,7 +17,12 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        navigationController?.navigationBar.barTintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.font : UIFont(name: "Arial", size: 20) as Any,
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+        ]
         PostController.shared.fetchFeedPosts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
