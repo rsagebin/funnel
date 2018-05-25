@@ -148,7 +148,7 @@
 		3A453ED920A9E8EF000CA14F = {
 			isa = PBXGroup;
 			children = (
-				3A453EE420A9E8EF000CA14F /* funnel */,
+				3A453EE420A9E8EF000CA14F /* picDefine */,
 				3A453EE320A9E8EF000CA14F /* Products */,
 				D0B85C5F20AA0828006411AA /* Frameworks */,
 			);
@@ -162,7 +162,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3A453EE420A9E8EF000CA14F /* funnel */ = {
+		3A453EE420A9E8EF000CA14F /* picDefine */ = {
 			isa = PBXGroup;
 			children = (
 				D0B85C5E20AA080A006411AA /* funnel.entitlements */,
@@ -173,7 +173,7 @@
 				3A30762F20A9FED900CE4FF7 /* Storyboards */,
 				3A30762E20A9FEC300CE4FF7 /* Resources */,
 			);
-			path = funnel;
+			path = picDefine;
 			sourceTree = "<group>";
 		};
 		D040DC9320AB31A100EB284F /* PostSubmitAndReview */ = {
