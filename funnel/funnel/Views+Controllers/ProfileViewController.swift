@@ -12,6 +12,9 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Outlets
     
+    
+    @IBOutlet weak var backOfImageView: UIView!
+    
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userUsername: UILabel!
     @IBOutlet weak var userName: UILabel!
@@ -21,6 +24,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        backOfImageView.layer.cornerRadius = backOfImageView.frame.size.width / 2
+        
+        userImageView.layer.cornerRadius = userImageView.frame.size.width / 2
+        userImageView.clipsToBounds = true
+        userImageView.layer.borderWidth = 5.0
+        userImageView.layer.borderColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1).cgColor
         
         updateView()
         setUpBorders()

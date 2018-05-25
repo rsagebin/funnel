@@ -40,7 +40,7 @@
                                                                 <constraint firstAttribute="height" constant="22" id="gvc-D5-zZa"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="ArialHebrew" family="Arial Hebrew" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" name="Color"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="right" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="qJL-SM-EbI">
@@ -49,7 +49,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(999)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTq-Sz-dhl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="206.5" height="20"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" name="Color"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pR-hd-8hF">
@@ -58,7 +58,7 @@
                                                                         <constraint firstAttribute="width" secondItem="5pR-hd-8hF" secondAttribute="height" multiplier="1:1" id="jnm-wM-gEI"/>
                                                                     </constraints>
                                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <state key="normal" image="exclamation"/>
+                                                                    <state key="normal" image="notification-100"/>
                                                                     <connections>
                                                                         <action selector="postFollowingButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="Y62-bB-l2L"/>
                                                                     </connections>
@@ -70,7 +70,7 @@
                                                                         <constraint firstAttribute="width" secondItem="0p7-NH-ynu" secondAttribute="height" multiplier="1:1" id="qy3-b1-Vhl"/>
                                                                         <constraint firstAttribute="width" constant="20" id="we7-7V-Rzq"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="branch"/>
+                                                                    <state key="normal" image="merge-git-100"/>
                                                                     <connections>
                                                                         <action selector="postSuggestButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="Oiy-Wt-1u3"/>
                                                                     </connections>
@@ -80,7 +80,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="Neu-kN-ndN" secondAttribute="height" multiplier="1:1" id="GI4-di-1OF"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="speech"/>
+                                                                    <state key="normal" image="topic-100"/>
                                                                     <connections>
                                                                         <action selector="commentsButtonTapped:" destination="85b-br-CUL" eventType="touchUpInside" id="ekZ-kA-Ap3"/>
                                                                     </connections>
@@ -91,6 +91,7 @@
                                                             <rect key="frame" x="16" y="352.5" width="287.5" height="86.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                                                            <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
@@ -174,10 +175,13 @@
     </scenes>
     <resources>
         <image name="approved1" width="25" height="25"/>
-        <image name="branch" width="25" height="25"/>
-        <image name="exclamation" width="25" height="25"/>
         <image name="funnel" width="25" height="25"/>
-        <image name="speech" width="25" height="25"/>
+        <image name="merge-git-100" width="48" height="60"/>
+        <image name="notification-100" width="57" height="66"/>
+        <image name="topic-100" width="20" height="20"/>
+        <namedColor name="Color">
+            <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color">
             <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
