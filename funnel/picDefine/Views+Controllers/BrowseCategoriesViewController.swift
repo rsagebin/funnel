@@ -13,14 +13,15 @@ class BrowseCategoriesViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var pickerOne: UIPickerView!
-    @IBOutlet weak var pickerTwo: UIPickerView!
-    @IBOutlet weak var pickerThree: UIPickerView!
+//    @IBOutlet weak var pickerTwo: UIPickerView!
+//    @IBOutlet weak var pickerThree: UIPickerView!
     @IBOutlet weak var mainCategoryLabel: UILabel!
     @IBOutlet weak var categoryView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mainCategoryLabel.isHidden = true
         if CategoryController.shared.topCategories.isEmpty {
             CategoryController.shared.loadTopLevelCategories { (success) in
                 DispatchQueue.main.async {
@@ -46,6 +47,7 @@ class BrowseCategoriesViewController: UIViewController {
             if success {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.mainCategoryLabel.isHidden = false
                 self.categoryView.isHidden = true
                 }
             } else {
@@ -71,14 +73,11 @@ class BrowseCategoriesViewController: UIViewController {
 //        }
     }
     
-    @IBAction func swipeGestureToAppearCategories(_ sender: Any) {
-        categoryView.isHidden = false
-    }
+
     @IBAction func findCategoryButtonTapped(_ sender: Any) {
                 categoryView.isHidden = false
+        self.mainCategoryLabel.isHidden = true
     }
-    
-    
 }
 
 extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -88,13 +87,13 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var countRows : Int = category.count
-        if pickerView == pickerTwo {
-            countRows = self.subCategory.count
-        }
-        else if pickerView == pickerThree {
-            countRows = self.subSubCategory.count
-        }
+        let countRows : Int = category.count
+//        if pickerView == pickerTwo {
+//            countRows = self.subCategory.count
+//        }
+//        else if pickerView == pickerThree {
+//            countRows = self.subSubCategory.count
+//        }
         return countRows
     }
     
@@ -106,17 +105,17 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
             return labelOne
         }
             
-        else if pickerView == pickerTwo {
-            let labelTwo = subCategory[row].title
-            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subCategory[row].title)"
-            return labelTwo
-        }
-            
-        else if pickerView == pickerThree {
-            let labelThree = subSubCategory[row].title
-            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subSubCategory[row].title)"
-            return labelThree
-        }
+//        else if pickerView == pickerTwo {
+//            let labelTwo = subCategory[row].title
+//            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subCategory[row].title)"
+//            return labelTwo
+//        }
+//
+//        else if pickerView == pickerThree {
+//            let labelThree = subSubCategory[row].title
+//            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subSubCategory[row].title)"
+//            return labelThree
+//        }
         return ""
     }
 }
