@@ -144,7 +144,7 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
 //        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
 //        cell.tagsTextView.layer.borderWidth = 1.0
         
-        cell.delegate = self
+        cell.commentsDelegate = self
         
         return cell
     }

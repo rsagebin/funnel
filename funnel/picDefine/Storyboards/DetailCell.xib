@@ -56,7 +56,7 @@
                                                 </constraints>
                                                 <state key="normal" image="notification-100"/>
                                                 <connections>
-                                                    <action selector="postFollowingButtonTapped:" destination="gGw-TG-uay" eventType="touchUpInside" id="UWb-3u-dZe"/>
+                                                    <action selector="postFollowingButtonTapped:" destination="gGw-TG-uay" eventType="touchUpInside" id="NrM-XN-MHs"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLe-Ju-GGR">
@@ -67,7 +67,7 @@
                                                 </constraints>
                                                 <state key="normal" image="merge-git-100"/>
                                                 <connections>
-                                                    <action selector="postSuggestButtonTapped:" destination="gGw-TG-uay" eventType="touchUpInside" id="h5c-Sq-eoG"/>
+                                                    <action selector="postSuggestButtonTapped:" destination="gGw-TG-uay" eventType="touchUpInside" id="YzT-8c-EMy"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEh-UG-1qM">
@@ -78,7 +78,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button" image="topic-100"/>
                                                 <connections>
-                                                    <action selector="commentsButtonTapped:" destination="gGw-TG-uay" eventType="touchUpInside" id="40e-ZV-bmh"/>
+                                                    <action selector="commentsButtonTapped:" destination="gGw-TG-uay" eventType="touchUpInside" id="5YK-lm-VrO"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -138,16 +138,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="backView" destination="fTt-by-3o7" id="PrJ-aV-7n0"/>
-                <outlet property="categoriesLabel" destination="uDG-25-vMF" id="MiV-FG-Cu3"/>
-                <outlet property="commentsButtonOutlet" destination="mEh-UG-1qM" id="kGF-Qs-DWV"/>
-                <outlet property="descriptionTextView" destination="hzU-TO-BsW" id="Qwt-eV-y3y"/>
-                <outlet property="frontView" destination="8OU-Bl-RpS" id="VYT-ga-Ehk"/>
-                <outlet property="postApprovedImage" destination="dB7-tR-9o9" id="EsT-eL-qMl"/>
-                <outlet property="postFollowingButton" destination="1bh-4A-hIB" id="asa-0X-Fbw"/>
-                <outlet property="postFollowingCountLabel" destination="sMh-pr-dKX" id="M8O-DJ-071"/>
-                <outlet property="postImageView" destination="mNn-wi-NUM" id="1lc-x7-lxo"/>
-                <outlet property="postSuggestionButton" destination="tLe-Ju-GGR" id="piI-xI-aVy"/>
+                <outlet property="backView" destination="fTt-by-3o7" id="sI2-En-7V6"/>
+                <outlet property="categoriesLabel" destination="uDG-25-vMF" id="zpv-cR-R5A"/>
+                <outlet property="commentsButtonOutlet" destination="mEh-UG-1qM" id="WdQ-Tj-taF"/>
+                <outlet property="descriptionTextView" destination="hzU-TO-BsW" id="7CX-w3-jrC"/>
+                <outlet property="frontView" destination="8OU-Bl-RpS" id="lhZ-Sj-qc7"/>
+                <outlet property="postApprovedImage" destination="dB7-tR-9o9" id="Azw-e7-8u3"/>
+                <outlet property="postFollowingButton" destination="1bh-4A-hIB" id="p0N-Mt-uBr"/>
+                <outlet property="postFollowingCountLabel" destination="sMh-pr-dKX" id="w1u-J4-jYi"/>
+                <outlet property="postImageView" destination="mNn-wi-NUM" id="dph-al-RYM"/>
+                <outlet property="postSuggestionButton" destination="tLe-Ju-GGR" id="vy8-vx-srj"/>
             </connections>
             <point key="canvasLocation" x="-19" y="-32"/>
         </tableViewCell>

@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     // MARK: - Properties
     var picker = UIImagePickerController()
@@ -66,9 +66,26 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        descriptionTextView.delegate = self
+        descriptionTextView.text = "Add Description..."
+        descriptionTextView.textColor = UIColor.lightGray
+        
+        tagsTextView.delegate = self
+        tagsTextView.text = "Add #tags..."
+        tagsTextView.textColor = UIColor.lightGray
+        
         picker.delegate = self
 //        newSubCategory2.isHidden = true
         
+        
+        if CategoryController.shared.topCategories.isEmpty {
+            CategoryController.shared.loadTopLevelCategories { (success) in
+                DispatchQueue.main.async {
+                    self.category1 = CategoryController.shared.topCategories
+                    self.pickerOne.reloadAllComponents()
+                }
+            }
+        }
         
         createCameraButton()
         updateViews()
@@ -78,48 +95,73 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     // MARK: - Category
     
-    @IBAction func newCategory2ButtonTapped(_ sender: Any) {
-        newCategoryAlert()
-        newCategory3.isHidden = false
-    }
+//    @IBAction func newCategory2ButtonTapped(_ sender: Any) {
+//        newCategoryAlert()
+//        newCategory3.isHidden = false
+//    }
+//
+//    @IBAction func newSubCategory3ButtonTapped(_ sender: Any) {
+//        newCategoryAlert()
+//    }
 
-    @IBAction func newSubCategory3ButtonTapped(_ sender: Any) {
-        newCategoryAlert()
-    }
-
-    func newCategoryAlert() {
-        let alert = UIAlertController(title: "New Category",
-                                      message: "Add a new Category",
-                                      preferredStyle: UIAlertControllerStyle.alert)
-
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                   style: UIAlertActionStyle.cancel,
-                                   handler: nil)
-
-        alert.addAction(cancelAction)
-
-        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
-
-            guard let category2Name = alert.textFields?.first?.text else { return }
-            guard let category1Selected = self.category1Selected else { return }
-
-            let newCategory2 = Category2(title: category2Name, parent: category1Selected)
-            
-            CategoryController.shared.category2Categories.append(newCategory2)
-            CategoryController.shared.addCategory2(to: category1Selected, categoryName: newCategory2.title)
-
-        }
-
-        alert.addAction(createAction)
-
-        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
-            alertTextFieldOne.placeholder = "name..."
-        }
-
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func newCategoryAlert() {
+//        let alert = UIAlertController(title: "New Category",
+//                                      message: "Add a new Category",
+//                                      preferredStyle: UIAlertControllerStyle.alert)
+//
+//        let cancelAction = UIAlertAction(title: "Cancel",
+//                                   style: UIAlertActionStyle.cancel,
+//                                   handler: nil)
+//
+//        alert.addAction(cancelAction)
+//
+//        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
+//
+//            guard let category2Name = alert.textFields?.first?.text else { return }
+//            guard let category1Selected = self.category1Selected else { return }
+//
+//            let newCategory2 = Category2(title: category2Name, parent: category1Selected)
+//
+//            CategoryController.shared.category2Categories.append(newCategory2)
+//            CategoryController.shared.addCategory2(to: category1Selected, categoryName: newCategory2.title)
+//
+//        }
+//
+//        alert.addAction(createAction)
+//
+//        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
+//            alertTextFieldOne.placeholder = "name..."
+//        }
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     // MARK: - Other functions
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if descriptionTextView.textColor == UIColor.lightGray {
+            descriptionTextView.text = nil
+            descriptionTextView.textColor = UIColor.black
+        }
+        
+        if tagsTextView.textColor == UIColor.lightGray {
+            tagsTextView.text = nil
+            tagsTextView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if descriptionTextView.text.isEmpty {
+            descriptionTextView.text = "Add Description..."
+            descriptionTextView.textColor = UIColor.lightGray
+        }
+        
+        if tagsTextView.text.isEmpty {
+            tagsTextView.text = "Add #tags..."
+            tagsTextView.textColor = UIColor.lightGray
+        }
+        
+    }
     
     func setBorders() {
         
@@ -145,8 +187,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     func updateViews() {
         guard let post = post else { return }
-//        self.category = post.category
-        
+
         TagController.shared.fetchTagsFor(post: post) { (tags) in
             DispatchQueue.main.async {
                  self.tagsTextView.text = tags
