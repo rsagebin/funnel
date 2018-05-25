@@ -91,6 +91,10 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         updateViews()
         setButtonTitle()
         setBorders()
+        
+        // Notifications to move view up or down when the keyboard it shown or hidden.
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     // MARK: - Category
@@ -210,6 +214,24 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     @objc func showCameraOrLibrary() {
         showActionSheet()
+    }
+    
+    
+    // Code to move the view up when the keyboard is shown
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    // Code to move the view down when the keyboard is hidden
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
     }
     
     func showActionSheet() {
