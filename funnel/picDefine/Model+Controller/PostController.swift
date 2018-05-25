@@ -52,17 +52,17 @@ class PostController {
         var category3Ref: CKReference?
         
         if let category1 = category1 {
-            category1Ref = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
+            category1Ref = CKReference(recordID: category1.ckRecordID, action: .none)
             categoryAsString += category1.title
         }
         
         if let category2 = category2 {
-            category2Ref = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
+            category2Ref = CKReference(recordID: category2.ckRecordID, action: .none)
             categoryAsString += "\\" + "\(category2.title)"
         }
         
         if let category3 = category3 {
-            category3Ref = CKReference(recordID: category3.ckRecordID ?? category3.ckRecord.recordID, action: .none)
+            category3Ref = CKReference(recordID: category3.ckRecordID, action: .none)
             categoryAsString += "\\" + "\(category3.title)"
         }
         
@@ -110,7 +110,10 @@ class PostController {
     func fetchFeedPosts() {
         self.feedPosts = []
         
-        let predicate = NSPredicate(value: true)
+        guard let loggedInUser = UserController.shared.loggedInUser else { return }
+        
+        let predicate = NSPredicate(format: "NOT (creatorRef IN %@)", loggedInUser.blockedUsers)
+
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
@@ -134,7 +137,7 @@ class PostController {
     
     
     func fetchPostsFor(category1: Category1, completion: @escaping (Bool) -> Void) {
-        let predicate = NSPredicate(format: "category1Ref == %@", category1.ckRecordID ?? category1.ckRecord.recordID)
+        let predicate = NSPredicate(format: "category1Ref == %@", category1.ckRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
@@ -155,7 +158,7 @@ class PostController {
     }
     
     func fetchPostsFor(category2: Category2, completion: @escaping (Bool) -> Void) {
-        let predicate = NSPredicate(format: "category2Ref == %@", category2.ckRecordID ?? category2.ckRecord.recordID)
+        let predicate = NSPredicate(format: "category2Ref == %@", category2.ckRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
@@ -176,7 +179,7 @@ class PostController {
     }
     
     func fetchPostsFor(category3: Category3, completion: @escaping (Bool) -> Void) {
-        let predicate = NSPredicate(format: "category3Ref == %@", category3.ckRecordID ?? category3.ckRecord.recordID)
+        let predicate = NSPredicate(format: "category3Ref == %@", category3.ckRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
@@ -198,7 +201,7 @@ class PostController {
     
     func addCategories(to post: Post, category1: Category1? = nil, category2: Category2? = nil, category3: Category3? = nil) {
         if let category1 = category1 {
-            let reference = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
+            let reference = CKReference(recordID: category1.ckRecordID, action: .none)
             post.category1Ref = reference
         }
         
@@ -208,7 +211,7 @@ class PostController {
                 return
             }
             
-            let reference = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
+            let reference = CKReference(recordID: category2.ckRecordID, action: .none)
             post.category2Ref = reference
         }
         
@@ -217,7 +220,7 @@ class PostController {
                 print("Must have a category 2 before adding category 3.")
                 return
             }
-            let reference = CKReference(recordID: category3.ckRecordID ?? category3.ckRecord.recordID, action: .none)
+            let reference = CKReference(recordID: category3.ckRecordID, action: .none)
             post.category3Ref = reference
         }
         
@@ -276,6 +279,20 @@ class PostController {
         }
     }
 
+    func flag(post: Post) {
+        post.numberOfFlags += 1
+        
+        if post.numberOfFlags > 3 {
+            self.delete(post: post)
+        } else {
+            ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+                if let error = error {
+                    print("Error saving post after adding flag: \(error)")
+                }
+            }
+        }
+    }
+    
     func fetchUserPosts(user: User, completion: @escaping (Bool) -> Void) {
         let userRecordID = user.ckRecordID
         
