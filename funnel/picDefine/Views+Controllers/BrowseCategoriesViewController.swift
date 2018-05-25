@@ -21,13 +21,14 @@ class BrowseCategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CategoryController.shared.loadTopLevelCategories { (success) in
-            DispatchQueue.main.async {
-                self.category = CategoryController.shared.topCategories
-                self.pickerOne.reloadAllComponents()
+        if CategoryController.shared.topCategories.isEmpty {
+            CategoryController.shared.loadTopLevelCategories { (success) in
+                DispatchQueue.main.async {
+                    self.category = CategoryController.shared.topCategories
+                    self.pickerOne.reloadAllComponents()
+                }
             }
         }
-        
     }
     
     var category = CategoryController.shared.topCategories
