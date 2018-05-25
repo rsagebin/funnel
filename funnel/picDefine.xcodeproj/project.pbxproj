@@ -283,7 +283,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3A453EDD20A9E8EF000CA14F /* Build configuration list for PBXProject "funnel" */;
+			buildConfigurationList = 3A453EDD20A9E8EF000CA14F /* Build configuration list for PBXProject "picDefine" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -511,7 +511,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = TEST.18A.sagebin.funnel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.picDefine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -531,7 +531,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = TEST.18A.sagebin.funnel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.picDefine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -541,7 +541,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A453EDD20A9E8EF000CA14F /* Build configuration list for PBXProject "funnel" */ = {
+		3A453EDD20A9E8EF000CA14F /* Build configuration list for PBXProject "picDefine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A453EF220A9E8F1000CA14F /* Debug */,
