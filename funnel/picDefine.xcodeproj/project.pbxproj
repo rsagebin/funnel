@@ -55,7 +55,7 @@
 
 /* Begin PBXFileReference section */
 		3A0131B620AA4B5C0097E4A8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3A453EE220A9E8EF000CA14F /* funnel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = funnel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A453EE220A9E8EF000CA14F /* picDefine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = picDefine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A453EE520A9E8EF000CA14F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A453EEA20A9E8EF000CA14F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A453EEC20A9E8F1000CA14F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 		3A453EE320A9E8EF000CA14F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A453EE220A9E8EF000CA14F /* funnel.app */,
+				3A453EE220A9E8EF000CA14F /* picDefine.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -243,9 +243,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A453EE120A9E8EF000CA14F /* funnel */ = {
+		3A453EE120A9E8EF000CA14F /* picDefine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A453EF420A9E8F1000CA14F /* Build configuration list for PBXNativeTarget "funnel" */;
+			buildConfigurationList = 3A453EF420A9E8F1000CA14F /* Build configuration list for PBXNativeTarget "picDefine" */;
 			buildPhases = (
 				3A453EDE20A9E8EF000CA14F /* Sources */,
 				3A453EDF20A9E8EF000CA14F /* Frameworks */,
@@ -255,9 +255,9 @@
 			);
 			dependencies = (
 			);
-			name = funnel;
+			name = picDefine;
 			productName = funnel;
-			productReference = 3A453EE220A9E8EF000CA14F /* funnel.app */;
+			productReference = 3A453EE220A9E8EF000CA14F /* picDefine.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -296,7 +296,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3A453EE120A9E8EF000CA14F /* funnel */,
+				3A453EE120A9E8EF000CA14F /* picDefine */,
 			);
 		};
 /* End PBXProject section */
@@ -550,7 +550,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3A453EF420A9E8F1000CA14F /* Build configuration list for PBXNativeTarget "funnel" */ = {
+		3A453EF420A9E8F1000CA14F /* Build configuration list for PBXNativeTarget "picDefine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A453EF520A9E8F1000CA14F /* Debug */,
