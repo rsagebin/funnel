@@ -15,7 +15,7 @@
         <!--Login View Controller-->
         <scene sceneID="r7g-85-9cX">
             <objects>
-                <viewController storyboardIdentifier="LoginSB" id="qaQ-oX-pVw" customClass="LoginViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginSB" id="qaQ-oX-pVw" customClass="LoginViewController" customModule="picDefine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WO7-pS-ahW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,7 +26,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24Z-0q-3Nw" userLabel="Initial View">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="funnel" translatesAutoresizingMaskIntoConstraints="NO" id="rBV-FY-mR0">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rBV-FY-mR0">
                                         <rect key="frame" x="149.5" y="95" width="75" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="75" id="42S-Kn-nhf"/>
@@ -66,7 +66,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Df-FN-GNl" userLabel="Funnel Title View">
                                 <rect key="frame" x="0.0" y="20" width="375" height="75"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Funnel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNB-wF-I47">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="picDefine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNB-wF-I47">
                                         <rect key="frame" x="0.5" y="25" width="375" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="s5T-C0-FuX"/>
@@ -225,7 +225,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Authenticate">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="authenticateButtonTapped:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="2t8-if-faj"/>
@@ -239,7 +239,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Show Loading">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="LoadButtonPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="2Gx-Ab-MOX"/>
@@ -253,7 +253,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Show Sign Up">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="SignUpPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="4PQ-0x-Re8"/>
@@ -267,7 +267,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Show Sign In">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.046545039429999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="SignInPressed:" destination="qaQ-oX-pVw" eventType="touchUpInside" id="DaD-f5-La6"/>
@@ -336,7 +336,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="funnel" width="25" height="25"/>
         <namedColor name="Color">
             <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

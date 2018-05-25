@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ddl-jv-GTw">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Categories-->
         <scene sceneID="G0B-t5-juM">
             <objects>
                 <viewController id="ddl-jv-GTw" customClass="BrowseCategoriesViewController" customModule="picDefine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vrA-8S-xru">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BbD-XM-Ezx">
-                                <rect key="frame" x="0.0" y="30" width="600" height="570"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJc-vO-jnW">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="ioP-UP-NUm">
-                                                <rect key="frame" x="109.5" y="0.0" width="380" height="30"/>
+                                                <rect key="frame" x="-3" y="0.0" width="380" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgV-6k-Hza">
                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
@@ -54,7 +57,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-96-S5g">
-                                        <rect key="frame" x="0.0" y="30" width="600" height="160"/>
+                                        <rect key="frame" x="0.0" y="30" width="375" height="160"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCY-x1-NBa">
                                                 <rect key="frame" x="110" y="130" width="155" height="30"/>
@@ -65,7 +68,7 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hzf-ls-lh1">
-                                                <rect key="frame" x="150" y="30" width="300" height="100"/>
+                                                <rect key="frame" x="37.5" y="30" width="300" height="100"/>
                                                 <subviews>
                                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqC-3a-RwJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
@@ -89,14 +92,14 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B7K-d5-wat">
-                                        <rect key="frame" x="0.0" y="190" width="600" height="380"/>
+                                        <rect key="frame" x="0.0" y="190" width="375" height="447"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="500" id="iaF-br-9LA" customClass="DetailViewCell" customModule="picDefine" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="600" height="500"/>
+                                                <rect key="frame" x="0.0" y="28" width="375" height="500"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iaF-br-9LA" id="BaV-1G-Nz4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="499.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="499.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -127,7 +130,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yaZ-At-ru4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="LUi-Oa-e93"/>
+                    <tabBarItem key="tabBarItem" title="Categories" image="categories" id="LUi-Oa-e93"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="categoryView" destination="QF2-96-S5g" id="HFg-sq-6YX"/>
@@ -141,4 +144,7 @@
             <point key="canvasLocation" x="-385" y="-204"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="categories" width="25" height="25"/>
+    </resources>
 </document>
