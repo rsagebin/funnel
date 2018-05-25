@@ -14,6 +14,7 @@
 		3A453EF020A9E8F1000CA14F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A453EEE20A9E8F1000CA14F /* LaunchScreen.storyboard */; };
 		3AB33B2220AB78C500ACD6CD /* Snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB33B2120AB78C500ACD6CD /* Snippets.swift */; };
 		3AB33B4320ACBFC700ACD6CD /* comments in Resources */ = {isa = PBXBuildFile; fileRef = 3AB33B4220ACBFC700ACD6CD /* comments */; };
+		3AC1004220B85C2F00EFDDDA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC1004120B85C2F00EFDDDA /* CloudKit.framework */; };
 		CB06B3A920B31EE7009A1211 /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB06B3A820B31EE7009A1211 /* Comments.storyboard */; };
 		CB2DA40420B38EDD00727CC6 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2DA40320B38EDD00727CC6 /* CommentsTableViewCell.swift */; };
 		CB54654720B35FC9001B025C /* CreateAndSuggest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB54654620B35FC9001B025C /* CreateAndSuggest.storyboard */; };
@@ -42,7 +43,6 @@
 		D05F243B20ACA2A500D625E9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243420ACA2A400D625E9 /* Profile.storyboard */; };
 		D05F243C20ACA2A500D625E9 /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05F243520ACA2A400D625E9 /* PostDetail.storyboard */; };
 		D05F243E20ACD32C00D625E9 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F243D20ACD32C00D625E9 /* CommentController.swift */; };
-		D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B85C6020AA0828006411AA /* CloudKit.framework */; };
 		D0B85C6420AA08DE006411AA /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B85C6320AA08DE006411AA /* CKManager.swift */; };
 		D0D6ACE020AF8C5D00BE5660 /* RevisedPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */; };
 		F44C416D20AA0AD0004DEF19 /* FollowingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */; };
@@ -63,6 +63,8 @@
 		3A453EF120A9E8F1000CA14F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AB33B2120AB78C500ACD6CD /* Snippets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snippets.swift; sourceTree = "<group>"; };
 		3AB33B4220ACBFC700ACD6CD /* comments */ = {isa = PBXFileReference; lastKnownFileType = text; path = comments; sourceTree = "<group>"; };
+		3AC1004020B85BF900EFDDDA /* picDefine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = picDefine.entitlements; sourceTree = "<group>"; };
+		3AC1004120B85C2F00EFDDDA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		CB06B3A820B31EE7009A1211 /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
 		CB2DA40320B38EDD00727CC6 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		CB54654620B35FC9001B025C /* CreateAndSuggest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAndSuggest.storyboard; sourceTree = "<group>"; };
@@ -91,8 +93,6 @@
 		D05F243420ACA2A400D625E9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D05F243520ACA2A400D625E9 /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
 		D05F243D20ACD32C00D625E9 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
-		D0B85C5E20AA080A006411AA /* funnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = funnel.entitlements; sourceTree = "<group>"; };
-		D0B85C6020AA0828006411AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D0B85C6320AA08DE006411AA /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
 		D0D6ACDF20AF8C5D00BE5660 /* RevisedPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisedPostController.swift; sourceTree = "<group>"; };
 		F44C416C20AA0AD0004DEF19 /* FollowingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewController.swift; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0B85C6120AA0828006411AA /* CloudKit.framework in Frameworks */,
+				3AC1004220B85C2F00EFDDDA /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +165,7 @@
 		3A453EE420A9E8EF000CA14F /* picDefine */ = {
 			isa = PBXGroup;
 			children = (
-				D0B85C5E20AA080A006411AA /* funnel.entitlements */,
+				3AC1004020B85BF900EFDDDA /* picDefine.entitlements */,
 				3A453EE520A9E8EF000CA14F /* AppDelegate.swift */,
 				D0B85C5B20AA07C8006411AA /* CloudKit */,
 				D0B85C6220AA085E006411AA /* Model+Controller */,
@@ -215,7 +215,7 @@
 		D0B85C5F20AA0828006411AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D0B85C6020AA0828006411AA /* CloudKit.framework */,
+				3AC1004120B85C2F00EFDDDA /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -273,6 +273,9 @@
 					3A453EE120A9E8EF000CA14F = {
 						CreatedOnToolsVersion = 9.3;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -502,16 +505,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = funnel/funnel.entitlements;
+				CODE_SIGN_ENTITLEMENTS = picDefine/picDefine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z72V7S4H73;
-				INFOPLIST_FILE = "$(SRCROOT)/funnel/Resources/Info.plist";
+				DEVELOPMENT_TEAM = L4BVN9TPVT;
+				INFOPLIST_FILE = "$(SRCROOT)/picDefine/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.picDefine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dvMtn.picDefine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -522,16 +525,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = funnel/funnel.entitlements;
+				CODE_SIGN_ENTITLEMENTS = picDefine/picDefine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z72V7S4H73;
-				INFOPLIST_FILE = "$(SRCROOT)/funnel/Resources/Info.plist";
+				DEVELOPMENT_TEAM = L4BVN9TPVT;
+				INFOPLIST_FILE = "$(SRCROOT)/picDefine/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.picDefine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dvMtn.picDefine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
