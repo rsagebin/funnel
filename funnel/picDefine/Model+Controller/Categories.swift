@@ -17,15 +17,9 @@ class Category1 {
     let title: String
     var children: [Category2]?
     
-    var ckRecordID: CKRecordID?
+    var ckRecordID: CKRecordID
     var ckRecord: CKRecord {
-        let record: CKRecord
-        if let ckRecordID = ckRecordID {
-            record = CKRecord(recordType: Category1.typeKey, recordID: ckRecordID)
-        } else {
-            record = CKRecord(recordType: Category1.typeKey)
-            self.ckRecordID = record.recordID
-        }
+        let record = CKRecord(recordType: Category1.typeKey, recordID: self.ckRecordID)
         
         record.setValue(title, forKey: Category1.titleKey)
         
@@ -44,6 +38,7 @@ class Category1 {
     init(title: String) {
         self.title = title
         self.children = []
+        self.ckRecordID = CKRecordID(recordName: UUID().uuidString)
     }
 }
 
@@ -58,15 +53,9 @@ class Category2 {
     var children: [Category3]?
     
     var parentRef: CKReference
-    var ckRecordID: CKRecordID?
+    var ckRecordID: CKRecordID
     var ckRecord: CKRecord {
-        let record: CKRecord
-        if let ckRecordID = ckRecordID {
-            record = CKRecord(recordType: Category2.typeKey, recordID: ckRecordID)
-        } else {
-            record = CKRecord(recordType: Category2.typeKey)
-            self.ckRecordID = record.recordID
-        }
+        let record = CKRecord(recordType: Category2.typeKey, recordID: self.ckRecordID)
         
         record.setValue(title, forKey: Category2.titleKey)
         record.setValue(parentRef, forKey: Category2.parentRefKey)
@@ -89,9 +78,11 @@ class Category2 {
         self.title = title
         self.parent = parent
         
-        let reference = CKReference(recordID: parent.ckRecordID ?? parent.ckRecord.recordID, action: .deleteSelf)
+        let reference = CKReference(recordID: parent.ckRecordID, action: .deleteSelf)
         self.parentRef = reference
         self.children = []
+        
+        self.ckRecordID = CKRecordID(recordName: UUID().uuidString)
     }
 }
 
@@ -106,15 +97,9 @@ class Category3 {
     var children: [String]?
     
     var parentRef: CKReference
-    var ckRecordID: CKRecordID?
+    var ckRecordID: CKRecordID
     var ckRecord: CKRecord {
-        let record: CKRecord
-        if let ckRecordID = ckRecordID {
-            record = CKRecord(recordType: Category3.typeKey, recordID: ckRecordID)
-        } else {
-            record = CKRecord(recordType: Category3.typeKey)
-            self.ckRecordID = record.recordID
-        }
+        let record = CKRecord(recordType: Category3.typeKey, recordID: self.ckRecordID)
         
         record.setValue(title, forKey: Category3.titleKey)
         record.setValue(parentRef, forKey: Category3.parentRefKey)
@@ -137,12 +122,10 @@ class Category3 {
         self.title = title
         self.parent = parent
         
-        let reference = CKReference(recordID: parent.ckRecordID ?? parent.ckRecord.recordID, action: .deleteSelf)
+        let reference = CKReference(recordID: parent.ckRecordID, action: .deleteSelf)
         self.parentRef = reference
         self.children = []
+        
+        self.ckRecordID = CKRecordID(recordName: UUID().uuidString)
     }
-}
-
-protocol Category {
-    
 }

@@ -82,7 +82,7 @@ class FeedTableViewCell: UITableViewCell {
     func checkIfUserIsFollowing() {
         isFollowing = false
         guard let userID = UserController.shared.loggedInUser else { return }
-        let userRef = CKReference(recordID: userID.ckRecordID ?? userID.ckRecord.recordID, action: .none)
+        let userRef = CKReference(recordID: userID.ckRecordID, action: .none)
         guard let followersRefs = post?.followersRefs else { return }
         
         for refNumber in followersRefs {

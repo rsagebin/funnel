@@ -43,7 +43,7 @@ class TagController {
             return word.hasPrefix("#")
         }
         
-        let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        let postReference = CKReference(recordID: post.ckRecordID, action: .deleteSelf)
         
         for string in tagsAsStrings {
             let tag = Tag(text: string, postReference: postReference)
