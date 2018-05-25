@@ -15,6 +15,7 @@
 		3AB33B2220AB78C500ACD6CD /* Snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB33B2120AB78C500ACD6CD /* Snippets.swift */; };
 		3AB33B4320ACBFC700ACD6CD /* comments in Resources */ = {isa = PBXBuildFile; fileRef = 3AB33B4220ACBFC700ACD6CD /* comments */; };
 		3AC1004220B85C2F00EFDDDA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC1004120B85C2F00EFDDDA /* CloudKit.framework */; };
+		3AE3A1E720B86A0C00316346 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE3A1E620B86A0C00316346 /* DetailCell.xib */; };
 		CB06B3A920B31EE7009A1211 /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB06B3A820B31EE7009A1211 /* Comments.storyboard */; };
 		CB2DA40420B38EDD00727CC6 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2DA40320B38EDD00727CC6 /* CommentsTableViewCell.swift */; };
 		CB54654720B35FC9001B025C /* CreateAndSuggest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB54654620B35FC9001B025C /* CreateAndSuggest.storyboard */; };
@@ -65,6 +66,7 @@
 		3AB33B4220ACBFC700ACD6CD /* comments */ = {isa = PBXFileReference; lastKnownFileType = text; path = comments; sourceTree = "<group>"; };
 		3AC1004020B85BF900EFDDDA /* picDefine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = picDefine.entitlements; sourceTree = "<group>"; };
 		3AC1004120B85C2F00EFDDDA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		3AE3A1E620B86A0C00316346 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		CB06B3A820B31EE7009A1211 /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
 		CB2DA40320B38EDD00727CC6 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		CB54654620B35FC9001B025C /* CreateAndSuggest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAndSuggest.storyboard; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				D05F243420ACA2A400D625E9 /* Profile.storyboard */,
 				D00A724320ADDDFB00FBB2C8 /* BlankStoryboard.storyboard */,
 				CB06B3A820B31EE7009A1211 /* Comments.storyboard */,
+				3AE3A1E620B86A0C00316346 /* DetailCell.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				D05F243C20ACA2A500D625E9 /* PostDetail.storyboard in Resources */,
 				3A453EEB20A9E8EF000CA14F /* Main.storyboard in Resources */,
 				CB06B3A920B31EE7009A1211 /* Comments.storyboard in Resources */,
+				3AE3A1E720B86A0C00316346 /* DetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
