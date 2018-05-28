@@ -77,6 +77,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
                     self.pickerOne.reloadAllComponents()
                 }
             }
+        } else {
+            self.category1 = CategoryController.shared.topCategories
         }
         
         createCameraButton()
