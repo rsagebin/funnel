@@ -56,7 +56,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
             PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: "")
         }
         
-        
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -65,16 +64,11 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        
         descriptionTextView.delegate = self
         descriptionTextView.text = "Add Description..."
         descriptionTextView.textColor = UIColor.lightGray
         
-        
         picker.delegate = self
-//        newSubCategory2.isHidden = true
-        
         
         if CategoryController.shared.topCategories.isEmpty {
             CategoryController.shared.loadTopLevelCategories { (success) in
@@ -113,17 +107,14 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         doneToolbar.items = items
         
         descriptionTextView.inputAccessoryView = doneToolbar
-       
-        
     }
     
     @objc func doneButtonAction() {
         
         descriptionTextView .resignFirstResponder()
-        
     }
     
-    // MARK: - Category
+    // MARK: - Add Category
     
 //    @IBAction func newCategory2ButtonTapped(_ sender: Any) {
 //        newCategoryAlert()
@@ -170,14 +161,10 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
-    
-        
         if descriptionTextView.textColor == UIColor.lightGray {
             descriptionTextView.text = nil
             descriptionTextView.textColor = UIColor.black
         }
-        
-       
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -185,19 +172,15 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
             descriptionTextView.text = "Add Description..."
             descriptionTextView.textColor = UIColor.lightGray
         }
-        
-        
     }
     
     func setBorders() {
-        
         
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0
         
         mainCategoryLabel.layer.borderColor = UIColor.lightGray.cgColor
         mainCategoryLabel.layer.borderWidth = 1.0
-        
     }
     
     func setButtonTitle() {
@@ -228,7 +211,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @objc func showCameraOrLibrary() {
         showActionSheet()
     }
-    
     
 //    // Code to move the view up when the keyboard is shown
 //    @objc func keyboardWillShow(notification: NSNotification) {

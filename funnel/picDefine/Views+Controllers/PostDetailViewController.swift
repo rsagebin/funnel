@@ -31,7 +31,6 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var branchButtonOutlet: UIButton!
     @IBOutlet weak var postCommentCountLabel: UILabel!
     
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -53,7 +52,7 @@ class PostDetailViewController: UIViewController {
         postImageView.image = post.image
         postFollowingCountLabel.text = String(post.followersRefs.count)
         postCommentCountLabel.text = String(comments)
-//        postSuggestCountLabel.text = 
+//        postSuggestCountLabel.text =
     }
     
     func createButton() {
@@ -84,9 +83,7 @@ class PostDetailViewController: UIViewController {
                 
                 if ifFlagged {
                     let alert = UIAlertController(title: "You already flagged this post.", message: nil, preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                        self.navigationController?.popViewController(animated: true)
-                    })
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
                 }
@@ -99,8 +96,6 @@ class PostDetailViewController: UIViewController {
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
                 }
-                
-                
             })
         }
         
@@ -185,7 +180,7 @@ class PostDetailViewController: UIViewController {
     
     @IBAction func commentsButtonTapped(_ sender: Any) {
         print("Trying to show comments")
-        print(post?.description)
+        print(post?.description as Any)
         let commentsSB = UIStoryboard(name: "Comments", bundle: .main)
         let commentsController = commentsSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController
         commentsController.post = post
