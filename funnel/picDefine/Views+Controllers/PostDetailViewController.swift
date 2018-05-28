@@ -83,9 +83,23 @@ class PostDetailViewController: UIViewController {
     }
     
     func createButton() {
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(createDeleteAlert))
-        deleteButton.tintColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = deleteButton
+        
+        if UserController.shared.loggedInUser?.ckRecordID == self.post?.creatorRef.recordID {
+            
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(createDeleteAlert))
+            deleteButton.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem = deleteButton
+            
+        } else {
+            
+            let optionButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(createBlockAlert))
+            optionButton.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem = optionButton
+        }
+    }
+    
+    @objc func createBlockAlert() {
+    
     }
     
     @objc func createDeleteAlert() {
