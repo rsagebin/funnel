@@ -24,6 +24,9 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
         tableView.addSubview(theRefreshControl)
         
+        // create add post button
+//        createAddPostButton()
+        
         // set navigationBar detail
         navigationController?.navigationBar.barTintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.white
@@ -64,6 +67,24 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         tableView.reloadData()
         theRefreshControl.endRefreshing()
     }
+    
+//    func createAddPostButton() {
+//
+//        let button: UIButton = UIButton(type: UIButtonType.custom)
+//
+//        button.setImage(#imageLiteral(resourceName: "camera"), for: .normal)
+//        button.addTarget(self, action: #selector(takeToCAndSView), for: .touchUpInside)
+//        let navButton = UIBarButtonItem(customView: button)
+//        self.navigationItem.rightBarButtonItem = navButton
+//        print("button created")
+//    }
+    
+//    @objc func takeToCAndSView() {
+//        
+//        let submitAndReviewSB = UIStoryboard(name: "CreateAndSuggest", bundle: .main)
+//        let submitAndReviewVC = submitAndReviewSB.instantiateViewController(withIdentifier: "CreateAndSuggestSB") as! CreateAndSuggestViewController
+//        navigationController?.pushViewController(submitAndReviewVC, animated: true)
+//    }
     
     // MARK: - Table view data source
 

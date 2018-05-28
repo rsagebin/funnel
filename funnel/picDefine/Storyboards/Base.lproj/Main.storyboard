@@ -45,9 +45,9 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="c0o-Rb-SrI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="picDefine" id="5rY-mq-f7k">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="P97-V2-bOl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9K3-Hb-Ghf">
                             <connections>
-                                <segue destination="cxd-mD-p8D" kind="show" id="rkQ-9w-0kP"/>
+                                <segue destination="cxd-mD-p8D" kind="show" id="ouq-qr-p7X"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
