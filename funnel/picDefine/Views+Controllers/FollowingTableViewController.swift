@@ -12,8 +12,9 @@ class FollowingTableViewController: UITableViewController {
 
     // MARK: - Properties
     var sectionTitles: [String] = []
+//    var refreshControl: UIRefreshControl!
     var userPosts = [Post]()
-    var userSuggestions = [Post]()
+    var userSuggestions = [RevisedPost]()
     var userFollowings = [Post]()
     
 
@@ -22,6 +23,7 @@ class FollowingTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Following" // Isn't reflecting on the bar
+//        createRefreshControl()
         
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
@@ -212,6 +214,31 @@ class FollowingTableViewController: UITableViewController {
         
         guard let user = UserController.shared.loggedInUser else { return }
         
-//        PostController.shared.fetch
+        RevisedPostController.shared.fetchRevisedPostsToApprove(originalPostCreator: user) { (success) in
+            DispatchQueue.main.async {
+                
+                if success {
+                    self.userSuggestions = RevisedPostController.shared.revisedPostsToApprove
+                    self.tableView.reloadData()
+                }
+                
+                if !success {
+                    print("Could not fetch suggested posts")
+                }
+            }
+        }
     }
+    
+//    func createRefreshControl() {
+//        refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
+//        tableView.addSubview(refreshControl)
+//    }
+//    
+//    @objc func didPullForRefresh() {
+//        self.fetchUserPosts()
+//        self.fetchFollowingPosts()
+//        self.fetchSuggestionPosts()
+//        refreshControl.endRefreshing()
+//    }
 }
