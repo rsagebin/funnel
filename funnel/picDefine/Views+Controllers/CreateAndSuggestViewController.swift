@@ -37,7 +37,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var pickerThree: UIPickerView!
     
     @IBOutlet weak var postImageView: UIImageView!
-    @IBOutlet weak var tagsTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var createOrSuggestOutlet: UIButton!
     
@@ -48,13 +47,13 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
-        guard let description = descriptionTextView.text, let image = postImageView.image, let tags = tagsTextView.text else { return }
+        guard let description = descriptionTextView.text, let image = postImageView.image else { return }
 
         if post != nil {
             guard let post = post else { return }
-            RevisedPostController.shared.createRevisedPost(for: post, description: description, category1: category1Selected, category2: nil, category3: nil, tagsAsString: tags)
+            RevisedPostController.shared.createRevisedPost(for: post, description: description, category1: category1Selected, category2: nil, category3: nil, tagsAsString: "")
         } else {
-            PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: tags)
+            PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: "")
         }
         
         
@@ -66,13 +65,12 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        
         descriptionTextView.delegate = self
         descriptionTextView.text = "Add Description..."
         descriptionTextView.textColor = UIColor.lightGray
         
-        tagsTextView.delegate = self
-        tagsTextView.text = "Add #tags..."
-        tagsTextView.textColor = UIColor.lightGray
         
         picker.delegate = self
 //        newSubCategory2.isHidden = true
@@ -139,15 +137,15 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     // MARK: - Other functions
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
+    
+        
         if descriptionTextView.textColor == UIColor.lightGray {
             descriptionTextView.text = nil
             descriptionTextView.textColor = UIColor.black
         }
         
-        if tagsTextView.textColor == UIColor.lightGray {
-            tagsTextView.text = nil
-            tagsTextView.textColor = UIColor.black
-        }
+       
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -156,18 +154,12 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
             descriptionTextView.textColor = UIColor.lightGray
         }
         
-        if tagsTextView.text.isEmpty {
-            tagsTextView.text = "Add #tags..."
-            tagsTextView.textColor = UIColor.lightGray
-        }
         
     }
     
     func setBorders() {
         
-        tagsTextView.layer.borderColor = UIColor.lightGray.cgColor
-        tagsTextView.layer.borderWidth = 1.0
-
+        
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0
         
@@ -187,13 +179,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     func updateViews() {
         guard let post = post else { return }
-
-        TagController.shared.fetchTagsFor(post: post) { (tags) in
-            DispatchQueue.main.async {
-                 self.tagsTextView.text = tags
-            }
-        }
-      
         self.postImageView.image = post.image
         self.descriptionTextView.text = post.description
     }

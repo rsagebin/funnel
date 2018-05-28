@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -36,28 +39,33 @@
                                             <constraint firstAttribute="width" secondItem="mNn-wi-NUM" secondAttribute="height" multiplier="1:1" id="Ru2-22-q5Z"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="right" verticalCompressionResistancePriority="751" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="jQc-0f-PZj">
+                                    <stackView opaque="NO" contentMode="right" verticalCompressionResistancePriority="751" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jQc-0f-PZj">
                                         <rect key="frame" x="30" y="284" width="250" height="20"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(999)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMh-pr-dKX">
-                                                <rect key="frame" x="0.0" y="0.0" width="169" height="20"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <color key="textColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bh-4A-hIB">
-                                                <rect key="frame" x="176" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="Jfr-Pg-gJp"/>
-                                                    <constraint firstAttribute="height" constant="20" id="Zyk-0I-GGq"/>
-                                                </constraints>
-                                                <state key="normal" image="notification-100"/>
-                                                <connections>
-                                                    <action selector="postFollowingButtonTapped:" destination="gGw-TG-uay" eventType="touchUpInside" id="NrM-XN-MHs"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="35F-Dy-nL9">
+                                                <rect key="frame" x="0.0" y="0.0" width="190" height="20"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(999)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMh-pr-dKX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="168" height="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bh-4A-hIB">
+                                                        <rect key="frame" x="170" y="0.0" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="Jfr-Pg-gJp"/>
+                                                            <constraint firstAttribute="height" constant="20" id="Zyk-0I-GGq"/>
+                                                        </constraints>
+                                                        <state key="normal" image="notification-100"/>
+                                                        <connections>
+                                                            <action selector="postFollowingButtonTapped:" destination="gGw-TG-uay" eventType="touchUpInside" id="NrM-XN-MHs"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLe-Ju-GGR">
-                                                <rect key="frame" x="203" y="0.0" width="20" height="20"/>
+                                                <rect key="frame" x="200" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="Duc-Nc-43N"/>
                                                     <constraint firstAttribute="height" constant="20" id="o73-Ns-ZZc"/>
@@ -150,8 +158,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="merge-git-100" width="48" height="60"/>
-        <image name="notification-100" width="57" height="66"/>
+        <image name="merge-git-100" width="16" height="20"/>
+        <image name="notification-100" width="19" height="22"/>
         <image name="topic-100" width="20" height="20"/>
     </resources>
 </document>

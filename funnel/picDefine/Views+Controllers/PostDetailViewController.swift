@@ -19,12 +19,11 @@ class PostDetailViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var postApprovedImage: UIImageView!
-    
-    @IBOutlet weak var tagsTextView: UITextView!
     
     @IBOutlet weak var postFollowingCountLabel: UILabel!
     @IBOutlet weak var postFollowingButton: UIButton!
@@ -59,33 +58,18 @@ class PostDetailViewController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        descriptionTextView.layer.borderColor = UIColor.black.cgColor
-        descriptionTextView.layer.borderWidth = 1.0
-        tagsTextView.layer.borderColor = UIColor.black.cgColor
-        tagsTextView.layer.borderWidth = 1.0
-    }
-    
     // MARK: - Other functions
     
     func updateViews() {
         
         guard let post = post else { return }
         let comments = CommentController.shared.postComments.count
-        descriptionTextView.text = post.description
+        descriptionLabel.text = post.description
         categoryLabel.text = post.categoryAsString
         postImageView.image = post.image
         postFollowingCountLabel.text = String(post.followersRefs.count)
 //        postSuggestCountLabel.text =
         postCommentCountLabel.text = String(comments)
-        
-        TagController.shared.fetchTagsFor(post: post) { (tags) in
-            DispatchQueue.main.async {
-                self.tagsTextView.text = tags
-            }
-        }
     }
     
     func checkIfUserCreatedPost() {
@@ -99,16 +83,31 @@ class PostDetailViewController: UIViewController {
     }
     
     func createButton() {
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deletePost))
-        deleteButton.tintColor = UIColor.red
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(createDeleteAlert))
+        deleteButton.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItem = deleteButton
     }
     
-    @objc func deletePost() {
+    @objc func createDeleteAlert() {
+        
+        let alert = UIAlertController(title: "Delete Post", message: "Are you sure you want to delete this post?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+            self.deletePost()
+        }
+        alert.addAction(deleteAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func deletePost() {
         guard let post = post else { return }
         PostController.shared.delete(post: post)
         NotificationCenter.default.post(name: Notification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
-        
+        navigationController?.popViewController(animated: true)
     }
   
     // MARK: - Actions
