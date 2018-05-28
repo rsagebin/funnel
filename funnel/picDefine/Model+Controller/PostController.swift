@@ -29,7 +29,7 @@ class PostController {
         
         // Create CKAsset from image
         // Write image to disk as a temprary file in order to create CKAsset
-        let imageAsJpeg = UIImageJPEGRepresentation(image, 2.0)
+        let imageAsJpeg = UIImageJPEGRepresentation(image, 0.5)
         let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
     
         do {
