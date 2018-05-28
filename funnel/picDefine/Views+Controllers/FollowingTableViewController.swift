@@ -14,8 +14,8 @@ class FollowingTableViewController: UITableViewController {
     var sectionTitles: [String] = []
 //    var refreshControl: UIRefreshControl!
     var userPosts = [Post]()
-    var userSuggestions = [RevisedPost]()
     var userFollowings = [Post]()
+    var userSuggestions = [RevisedPost]()
     
 
     // MARK: - Lifecycle
@@ -41,6 +41,7 @@ class FollowingTableViewController: UITableViewController {
         
         fetchUserPosts()
         fetchFollowingPosts()
+        fetchSuggestionPosts()
     }
     
     
@@ -73,8 +74,8 @@ class FollowingTableViewController: UITableViewController {
             }
         }
         
-        let submittedAnswers = 0 // Change to 1 from 0 if user has any suggested answers
-        if submittedAnswers > 0 {
+        let suggestions = userSuggestions.count // Change to 1 from 0 if user has any suggested answers
+        if suggestions > 0 {
             sectionCount += 1
             sectionTitles.append("My Suggested Answers")
             
@@ -134,7 +135,8 @@ class FollowingTableViewController: UITableViewController {
         }
         
         if section == 2 { // User submissions
-            
+            let suggestions = userSuggestions.count
+            return suggestions
         }
         
         return 0
@@ -153,9 +155,9 @@ class FollowingTableViewController: UITableViewController {
             cell.userFollowing = following
         }
         
-//        let suggestions = PostController.shared
         if indexPath.section == 2 {
-//            cell.userSuggestion =
+            let suggestion = userFollowings[indexPath.row]
+            cell.userSuggestion = suggestion
         }
         
         return cell
