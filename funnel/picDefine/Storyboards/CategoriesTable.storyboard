@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EjA-Zp-MIX">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BbD-XM-Ezx">
                                 <rect key="frame" x="0.0" y="30" width="375" height="637"/>
                                 <subviews>
@@ -49,7 +52,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5CB-iu-tJ1"/>
                                             <constraint firstItem="ioP-UP-NUm" firstAttribute="centerY" secondItem="KJc-vO-jnW" secondAttribute="centerY" id="6wb-XD-hU6"/>
@@ -84,7 +87,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="hzf-ls-lh1" firstAttribute="centerY" secondItem="QF2-96-S5g" secondAttribute="centerY" id="gX5-dd-NS1"/>
                                             <constraint firstAttribute="height" constant="160" id="svG-dh-wlL"/>
@@ -93,7 +96,7 @@
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B7K-d5-wat">
                                         <rect key="frame" x="0.0" y="190" width="375" height="447"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="500" id="iaF-br-9LA" customClass="DetailViewCell" customModule="picDefine" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="500"/>
@@ -101,7 +104,9 @@
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iaF-br-9LA" id="BaV-1G-Nz4">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="499.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -125,7 +130,11 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="BbD-XM-Ezx" secondAttribute="bottom" id="E5d-fJ-SLr"/>
                             <constraint firstItem="BbD-XM-Ezx" firstAttribute="top" secondItem="yaZ-At-ru4" secondAttribute="top" constant="10" id="F0B-B8-BFS"/>
+                            <constraint firstItem="EjA-Zp-MIX" firstAttribute="leading" secondItem="yaZ-At-ru4" secondAttribute="leading" id="MYs-xj-pwU"/>
                             <constraint firstItem="BbD-XM-Ezx" firstAttribute="leading" secondItem="yaZ-At-ru4" secondAttribute="leading" id="S7C-c5-vtD"/>
+                            <constraint firstItem="yaZ-At-ru4" firstAttribute="trailing" secondItem="EjA-Zp-MIX" secondAttribute="trailing" id="UMc-Of-s9g"/>
+                            <constraint firstItem="yaZ-At-ru4" firstAttribute="bottom" secondItem="EjA-Zp-MIX" secondAttribute="bottom" id="Z0I-iQ-4mb"/>
+                            <constraint firstItem="EjA-Zp-MIX" firstAttribute="top" secondItem="yaZ-At-ru4" secondAttribute="top" id="eE5-RE-dTo"/>
                             <constraint firstItem="BbD-XM-Ezx" firstAttribute="trailing" secondItem="yaZ-At-ru4" secondAttribute="trailing" id="rCy-Ef-W89"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yaZ-At-ru4"/>
@@ -133,6 +142,7 @@
                     <tabBarItem key="tabBarItem" title="Categories" image="categories" id="LUi-Oa-e93"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backgroundImage" destination="EjA-Zp-MIX" id="sbm-dx-OwC"/>
                         <outlet property="categoryView" destination="QF2-96-S5g" id="HFg-sq-6YX"/>
                         <outlet property="mainCategoryLabel" destination="UBn-ak-o86" id="r9S-4c-sdQ"/>
                         <outlet property="pickerOne" destination="dqC-3a-RwJ" id="bVr-k4-NOj"/>
