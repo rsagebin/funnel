@@ -19,12 +19,11 @@ class PostDetailViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var postApprovedImage: UIImageView!
-    
-    @IBOutlet weak var tagsTextView: UITextView!
     
     @IBOutlet weak var postFollowingCountLabel: UILabel!
     @IBOutlet weak var postFollowingButton: UIButton!
@@ -59,39 +58,24 @@ class PostDetailViewController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        descriptionTextView.layer.borderColor = UIColor.black.cgColor
-        descriptionTextView.layer.borderWidth = 1.0
-        tagsTextView.layer.borderColor = UIColor.black.cgColor
-        tagsTextView.layer.borderWidth = 1.0
-    }
-    
     // MARK: - Other functions
     
     func updateViews() {
         
         guard let post = post else { return }
         let comments = CommentController.shared.postComments.count
-        descriptionTextView.text = post.description
+        descriptionLabel.text = post.description
         categoryLabel.text = post.categoryAsString
         postImageView.image = post.image
         postFollowingCountLabel.text = String(post.followersRefs.count)
 //        postSuggestCountLabel.text =
         postCommentCountLabel.text = String(comments)
-        
-        TagController.shared.fetchTagsFor(post: post) { (tags) in
-            DispatchQueue.main.async {
-                self.tagsTextView.text = tags
-            }
-        }
     }
     
     func checkIfUserCreatedPost() {
         guard let post = post else { return }
         guard let user = UserController.shared.loggedInUser?.appleUserRef else { return }
-        let postCreator = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .none)
+        let postCreator = CKReference(recordID: post.ckRecordID, action: .none)
         
         if user == postCreator {
             // Not working
@@ -99,16 +83,45 @@ class PostDetailViewController: UIViewController {
     }
     
     func createButton() {
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deletePost))
-        deleteButton.tintColor = UIColor.red
-        self.navigationItem.rightBarButtonItem = deleteButton
+        
+        if UserController.shared.loggedInUser?.ckRecordID == self.post?.creatorRef.recordID {
+            
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(createDeleteAlert))
+            deleteButton.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem = deleteButton
+            
+        } else {
+            
+            let optionButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(createBlockAlert))
+            optionButton.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem = optionButton
+        }
     }
     
-    @objc func deletePost() {
+    @objc func createBlockAlert() {
+    
+    }
+    
+    @objc func createDeleteAlert() {
+        
+        let alert = UIAlertController(title: "Delete Post", message: "Are you sure you want to delete this post?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+            self.deletePost()
+        }
+        alert.addAction(deleteAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func deletePost() {
         guard let post = post else { return }
         PostController.shared.delete(post: post)
         NotificationCenter.default.post(name: Notification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
-        
+        navigationController?.popViewController(animated: true)
     }
   
     // MARK: - Actions
@@ -135,7 +148,7 @@ class PostDetailViewController: UIViewController {
     @IBAction func branchPostButtonTapped(_ sender: Any) {
         print("button is working")
         let mySB = UIStoryboard(name: "CreateAndSuggest", bundle: .main)
-        let vc = mySB.instantiateViewController(withIdentifier: "PostAndSubmitSB") as! CreateAndSuggestViewController
+        let vc = mySB.instantiateViewController(withIdentifier: "CreateAndSuggestSB") as! CreateAndSuggestViewController
         vc.post = self.post
         navigationController?.pushViewController(vc, animated: true)
     }

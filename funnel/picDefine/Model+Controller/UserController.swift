@@ -115,4 +115,19 @@ class UserController {
         return user
     }
     
+    func block(user: User) {
+        let reference = CKReference(recordID: user.ckRecordID, action: .none)
+        
+        guard let loggedInUser = UserController.shared.loggedInUser else { return }
+        
+        loggedInUser.blockedUsers.append(reference)
+        
+        ckManager.save(records: [loggedInUser.ckRecord], perRecordCompletion: nil) { (records, error) in
+            if let error = error {
+                print("Error saving user after adding a blocked user: \(error)")
+                return
+            }
+        }
+    }
+    
 }

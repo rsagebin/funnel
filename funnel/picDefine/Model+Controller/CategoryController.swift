@@ -67,7 +67,7 @@ class CategoryController {
     
     func addCategory2(to category1: Category1, categoryName: String) {
         let category = Category2(title: categoryName, parent: category1)
-        let parentRef = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .deleteSelf)
+        let parentRef = CKReference(recordID: category1.ckRecordID, action: .deleteSelf)
         category.parentRef = parentRef
         ckManager.save(records: [category.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
@@ -79,7 +79,7 @@ class CategoryController {
     
     func addCategory3(to category2: Category2, categoryName: String) {
         let category = Category3(title: categoryName, parent: category2)
-        let parentRef = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .deleteSelf)
+        let parentRef = CKReference(recordID: category2.ckRecordID, action: .deleteSelf)
         category.parentRef = parentRef
         ckManager.save(records: [category.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
@@ -99,7 +99,7 @@ class CategoryController {
         var category2array: [Category2] = []
         
         for category in self.category2Categories {
-            if category.parentRef == category1.ckRecordID ?? category1.ckRecord.recordID {
+            if category.parentRef == category1.ckRecordID {
                 category2array.append(category)
             }
         }
@@ -112,7 +112,7 @@ class CategoryController {
         var category3array: [Category3] = []
         
         for category in self.category3Categories {
-            if category.parentRef == category2.ckRecordID ?? category2.ckRecord.recordID {
+            if category.parentRef == category2.ckRecordID {
                 category3array.append(category)
             }
         }

@@ -22,7 +22,7 @@ class TagController {
             return word.hasPrefix("#")
         }
         
-        let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        let postReference = CKReference(recordID: post.ckRecordID, action: .deleteSelf)
         
         for string in tagsAsStrings {
             let tag = Tag(text: string, postReference: postReference)
@@ -43,7 +43,7 @@ class TagController {
             return word.hasPrefix("#")
         }
         
-        let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        let postReference = CKReference(recordID: post.ckRecordID, action: .deleteSelf)
         
         for string in tagsAsStrings {
             let tag = Tag(text: string, postReference: postReference)
@@ -60,7 +60,7 @@ class TagController {
     
     func fetchTagsFor(post: Post, completion: @escaping ([Tag]?) -> Void) {
         
-        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
+        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
         
         ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
@@ -76,7 +76,7 @@ class TagController {
     }
     
     func fetchTagsFor(post: Post, completion: @escaping (String?) -> Void) {
-        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
+        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
         
         ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {

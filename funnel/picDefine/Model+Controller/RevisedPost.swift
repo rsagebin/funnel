@@ -41,16 +41,10 @@ class RevisedPost {
     
     var followersRefs: [CKReference]?
 
-    var ckRecordID: CKRecordID?
+    var ckRecordID: CKRecordID
 
     var ckRecord: CKRecord {
-        let record: CKRecord
-        if let ckRecordID = ckRecordID {
-            record = CKRecord(recordType: RevisedPost.typeKey, recordID: ckRecordID)
-        } else {
-            record = CKRecord(recordType: RevisedPost.typeKey)
-            self.ckRecordID = record.recordID
-        }
+        let record = CKRecord(recordType: RevisedPost.typeKey, recordID: self.ckRecordID)
 
         if let category1Ref = category1Ref {
             record.setValue(category1Ref, forKey: RevisedPost.category1RefKey)
@@ -110,9 +104,17 @@ class RevisedPost {
         self.category2Ref = category2Ref
         self.category3Ref = category3Ref
         
-        let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        let postReference = CKReference(recordID: post.ckRecordID, action: .deleteSelf)
         self.postReference = postReference
+        
+        self.ckRecordID = CKRecordID(recordName: UUID().uuidString)
         
     }
 
+}
+
+extension RevisedPost: Equatable {
+    static func ==(lhs: RevisedPost, rhs: RevisedPost) -> Bool {
+        return lhs.ckRecordID == rhs.ckRecordID
+    }
 }

@@ -32,16 +32,10 @@ class User {
     var commentRefs: [CKReference]
     var isBanned: Bool
     var blockedUsers: [CKReference]
-    var ckRecordID: CKRecordID?
+    var ckRecordID: CKRecordID
     var appleUserRef: CKReference?
     var ckRecord: CKRecord {
-        let record: CKRecord
-        if let ckRecordID = ckRecordID {
-            record = CKRecord(recordType: User.typeKey, recordID: ckRecordID)
-        } else {
-            record = CKRecord(recordType: User.typeKey)
-            self.ckRecordID = record.recordID
-        }
+        let record = CKRecord(recordType: User.typeKey, recordID: self.ckRecordID)
         
         record.setValue(username, forKey: User.usernameKey)
         record.setValue(name, forKey: User.nameKey)

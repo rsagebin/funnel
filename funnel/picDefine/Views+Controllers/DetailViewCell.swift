@@ -1,5 +1,5 @@
 //
-//  FeedTableViewCell.swift
+//  DetailViewCell.swift
 //  funnel
 //
 //  Created by Alec Osborne on 5/16/18.
@@ -13,14 +13,16 @@ protocol CommentsDelegate {
     func didTapComment(post: Post)
 }
 
-//protocol SuggestionDelegate {
-//    func postSuggestionButtonTapped(post: Post)
-//}
+protocol SuggestionDelegate {
+    func postSuggestionButtonTapped(post: Post)
+}
 
-class FeedTableViewCell: UITableViewCell {
+class DetailViewCell: UITableViewCell {
 
     // MARK: - Properties
-    var delegate: CommentsDelegate?
+    var commentsDelegate: CommentsDelegate?
+    
+    var suggestDelegate: SuggestionDelegate?
     
     var post: Post? {
         didSet {
@@ -49,19 +51,6 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var postCommentsCountLabel: UILabel!
     @IBOutlet weak var commentsButtonOutlet: UIButton!
     
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//
-//        guard let buttonImage = postFollowingButton.imageView else { return }
-//
-//        if isFollowing == true {
-//            buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
-//        } else {
-//            buttonImage.tintColor = UIColor.black
-//        }
-//
-//    }
-   
     // MARK: - Actions
     @IBAction func postFollowingButtonTapped(_ sender: UIButton) {
         
@@ -82,7 +71,7 @@ class FeedTableViewCell: UITableViewCell {
     func checkIfUserIsFollowing() {
         isFollowing = false
         guard let userID = UserController.shared.loggedInUser else { return }
-        let userRef = CKReference(recordID: userID.ckRecordID ?? userID.ckRecord.recordID, action: .none)
+        let userRef = CKReference(recordID: userID.ckRecordID, action: .none)
         guard let followersRefs = post?.followersRefs else { return }
         
         for refNumber in followersRefs {
@@ -94,14 +83,15 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     @IBAction func postSuggestButtonTapped(_ sender: UIButton) {
-//        guard let post = post else { return }
-//        delegate?.didTapComment(post: post)
+        guard let post = post else { return }
+        suggestDelegate?.postSuggestionButtonTapped(post: post)
+        print("suggestionButton tapped")
     }
     
     @IBAction func commentsButtonTapped(_ sender: Any) {
         print("Trying to show comments...")
         guard let post = post else { return }
-        delegate?.didTapComment(post: post)
+        commentsDelegate?.didTapComment(post: post)
     }
     
     // MARK: - Other Functions
@@ -132,6 +122,7 @@ class FeedTableViewCell: UITableViewCell {
             }
         }
     }
+    
     
     
 }

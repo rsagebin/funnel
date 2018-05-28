@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     // MARK: - Properties
     var picker = UIImagePickerController()
@@ -37,7 +37,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var pickerThree: UIPickerView!
     
     @IBOutlet weak var postImageView: UIImageView!
-    @IBOutlet weak var tagsTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var createOrSuggestOutlet: UIButton!
     
@@ -48,13 +47,13 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
-        guard let description = descriptionTextView.text, let image = postImageView.image, let tags = tagsTextView.text else { return }
+        guard let description = descriptionTextView.text, let image = postImageView.image else { return }
 
         if post != nil {
             guard let post = post else { return }
-            RevisedPostController.shared.createRevisedPost(for: post, description: description, category1: category1Selected, category2: nil, category3: nil, tagsAsString: tags)
+            RevisedPostController.shared.createRevisedPost(for: post, description: description, category1: category1Selected, category2: nil, category3: nil, tagsAsString: "")
         } else {
-            PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: tags)
+            PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: "")
         }
         
         
@@ -66,66 +65,133 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        
+        descriptionTextView.delegate = self
+        descriptionTextView.text = "Add Description..."
+        descriptionTextView.textColor = UIColor.lightGray
+        
+        
         picker.delegate = self
 //        newSubCategory2.isHidden = true
         
+        
+        if CategoryController.shared.topCategories.isEmpty {
+            CategoryController.shared.loadTopLevelCategories { (success) in
+                DispatchQueue.main.async {
+                    self.category1 = CategoryController.shared.topCategories
+                    self.pickerOne.reloadAllComponents()
+                }
+            }
+        }
         
         createCameraButton()
         updateViews()
         setButtonTitle()
         setBorders()
+        
+//        // Notifications to move view up or down when the keyboard it shown or hidden.
+//        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        addDoneButtonOnKeyboard()
+    }
+    
+    // MARK: - Tool Bar
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        doneToolbar.barStyle = UIBarStyle.default
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(CreateAndSuggestViewController.doneButtonAction))
+        done.tintColor = UIColor.black
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        
+        descriptionTextView.inputAccessoryView = doneToolbar
+       
+        
+    }
+    
+    @objc func doneButtonAction() {
+        
+        descriptionTextView .resignFirstResponder()
+        
     }
     
     // MARK: - Category
     
-    @IBAction func newCategory2ButtonTapped(_ sender: Any) {
-        newCategoryAlert()
-        newCategory3.isHidden = false
-    }
+//    @IBAction func newCategory2ButtonTapped(_ sender: Any) {
+//        newCategoryAlert()
+//        newCategory3.isHidden = false
+//    }
+//
+//    @IBAction func newSubCategory3ButtonTapped(_ sender: Any) {
+//        newCategoryAlert()
+//    }
 
-    @IBAction func newSubCategory3ButtonTapped(_ sender: Any) {
-        newCategoryAlert()
-    }
-
-    func newCategoryAlert() {
-        let alert = UIAlertController(title: "New Category",
-                                      message: "Add a new Category",
-                                      preferredStyle: UIAlertControllerStyle.alert)
-
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                   style: UIAlertActionStyle.cancel,
-                                   handler: nil)
-
-        alert.addAction(cancelAction)
-
-        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
-
-            guard let category2Name = alert.textFields?.first?.text else { return }
-            guard let category1Selected = self.category1Selected else { return }
-
-            let newCategory2 = Category2(title: category2Name, parent: category1Selected)
-            
-            CategoryController.shared.category2Categories.append(newCategory2)
-            CategoryController.shared.addCategory2(to: category1Selected, categoryName: newCategory2.title)
-
-        }
-
-        alert.addAction(createAction)
-
-        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
-            alertTextFieldOne.placeholder = "name..."
-        }
-
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func newCategoryAlert() {
+//        let alert = UIAlertController(title: "New Category",
+//                                      message: "Add a new Category",
+//                                      preferredStyle: UIAlertControllerStyle.alert)
+//
+//        let cancelAction = UIAlertAction(title: "Cancel",
+//                                   style: UIAlertActionStyle.cancel,
+//                                   handler: nil)
+//
+//        alert.addAction(cancelAction)
+//
+//        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
+//
+//            guard let category2Name = alert.textFields?.first?.text else { return }
+//            guard let category1Selected = self.category1Selected else { return }
+//
+//            let newCategory2 = Category2(title: category2Name, parent: category1Selected)
+//
+//            CategoryController.shared.category2Categories.append(newCategory2)
+//            CategoryController.shared.addCategory2(to: category1Selected, categoryName: newCategory2.title)
+//
+//        }
+//
+//        alert.addAction(createAction)
+//
+//        alert.addTextField { (alertTextFieldOne: UITextField) -> Void in
+//            alertTextFieldOne.placeholder = "name..."
+//        }
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     // MARK: - Other functions
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+    
+        
+        if descriptionTextView.textColor == UIColor.lightGray {
+            descriptionTextView.text = nil
+            descriptionTextView.textColor = UIColor.black
+        }
+        
+       
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if descriptionTextView.text.isEmpty {
+            descriptionTextView.text = "Add Description..."
+            descriptionTextView.textColor = UIColor.lightGray
+        }
+        
+        
+    }
+    
     func setBorders() {
         
-        tagsTextView.layer.borderColor = UIColor.lightGray.cgColor
-        tagsTextView.layer.borderWidth = 1.0
-
+        
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0
         
@@ -145,14 +211,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     func updateViews() {
         guard let post = post else { return }
-//        self.category = post.category
-        
-        TagController.shared.fetchTagsFor(post: post) { (tags) in
-            DispatchQueue.main.async {
-                 self.tagsTextView.text = tags
-            }
-        }
-      
         self.postImageView.image = post.image
         self.descriptionTextView.text = post.description
     }
@@ -170,6 +228,24 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @objc func showCameraOrLibrary() {
         showActionSheet()
     }
+    
+    
+//    // Code to move the view up when the keyboard is shown
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y == 0{
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+//    // Code to move the view down when the keyboard is hidden
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 0{
+//                self.view.frame.origin.y += keyboardSize.height
+//            }
+//        }
+//    }
     
     func showActionSheet() {
         

@@ -8,26 +8,38 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ CommentsDelegate {
+class FeedTableViewController: UITableViewController, SuggestionDelegate, CommentsDelegate {
     
+    // MARK: - Properties
     
-    
+    var theRefreshControl: UIRefreshControl!
+
     // MARK: - Life Cycle
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // create refresh control
+        theRefreshControl = UIRefreshControl()
+        theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
+        tableView.addSubview(theRefreshControl)
+        
+        // set navigationBar detail
         navigationController?.navigationBar.barTintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.font : UIFont(name: "Arial", size: 20) as Any,
             NSAttributedStringKey.foregroundColor : UIColor.white,
         ]
+        
+        // fetch posts
         PostController.shared.fetchFeedPosts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
         
-        
+        // set cells
+        let nib = UINib.init(nibName: "DetailCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "DetailCell")
     }
     
     @objc func reloadFeedView() {
@@ -41,9 +53,17 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
         super.viewWillAppear(animated)
         
         self.tableView.reloadData()
-        
     }
     
+    
+    // MARK: - Other Functions
+    
+    @objc func didPullForRefresh() {
+        
+        PostController.shared.fetchFeedPosts()
+        tableView.reloadData()
+        theRefreshControl.endRefreshing()
+    }
     
     // MARK: - Table view data source
 
@@ -53,29 +73,30 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! FeedTableViewCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! DetailViewCell
         
         let post = PostController.shared.feedPosts[indexPath.row]
         cell.post = post
-//        cell.descriptionTextView.layer.borderColor = UIColor.black.cgColor
-//        cell.descriptionTextView.layer.borderWidth = 1.0
-//        cell.tagsTextView.layer.borderColor = UIColor.black.cgColor
-//        cell.tagsTextView.layer.borderWidth = 1.0
         cell.descriptionTextView.isEditable = false
-        cell.delegate = self
+        cell.commentsDelegate = self
+        cell.suggestDelegate = self
         
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 430
+    }
     
     // MARK: - Delegate functions
     
-//    func postSuggestionButtonTapped(post: Post) {
-//        let submitAndReviewSB = UIStoryboard(name: "SubmitAndReview", bundle: .main)
-//        let submitAndReviewVC = submitAndReviewSB.instantiateViewController(withIdentifier: "PostAndSubmitSB") as! CreateAndSuggestViewController
-//        submitAndReviewVC.post = post
-//        navigationController?.pushViewController(submitAndReviewVC, animated: true)
-//    }
+    func postSuggestionButtonTapped(post: Post) {
+        let submitAndReviewSB = UIStoryboard(name: "CreateAndSuggest", bundle: .main)
+        let submitAndReviewVC = submitAndReviewSB.instantiateViewController(withIdentifier: "CreateAndSuggestSB") as! CreateAndSuggestViewController
+        submitAndReviewVC.post = post
+        navigationController?.pushViewController(submitAndReviewVC, animated: true)
+    }
     
     func didTapComment(post: Post) {
         print("Message coming from FeedController")
@@ -98,4 +119,6 @@ class FeedTableViewController: UITableViewController, /*SuggestionDelegate,*/ Co
         vc.post = selectedPost
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+
 }

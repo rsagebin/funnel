@@ -21,9 +21,9 @@ class CommentController {
     func addCommentTo(post: Post, text: String, completion: @escaping (Bool) -> Void) {
         guard let user = UserController.shared.loggedInUser else { return }
         
-        let postReference = CKReference(recordID: post.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        let postReference = CKReference(recordID: post.ckRecordID, action: .deleteSelf)
         
-        let userReference = CKReference(recordID: user.ckRecordID ?? post.ckRecord.recordID, action: .deleteSelf)
+        let userReference = CKReference(recordID: user.ckRecordID, action: .deleteSelf)
         
         let comment = Comment(post: post, text: text, user: user, postReference: postReference, userReference: userReference)
         
@@ -42,7 +42,7 @@ class CommentController {
     
     func loadCommentsFor(post: Post, completion: @escaping (Bool) -> Void) {
         
-        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID ?? post.ckRecord.recordID)
+        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
         
         ckManager.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in

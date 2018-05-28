@@ -27,17 +27,17 @@ class RevisedPostController {
         var category3Ref: CKReference?
         
         if let category1 = category1 {
-            category1Ref = CKReference(recordID: category1.ckRecordID ?? category1.ckRecord.recordID, action: .none)
+            category1Ref = CKReference(recordID: category1.ckRecordID, action: .none)
             categoryAsString += category1.title
         }
         
         if let category2 = category2 {
-            category2Ref = CKReference(recordID: category2.ckRecordID ?? category2.ckRecord.recordID, action: .none)
+            category2Ref = CKReference(recordID: category2.ckRecordID, action: .none)
             categoryAsString += "\\" + "\(category2.title)"
         }
         
         if let category3 = category3 {
-            category3Ref = CKReference(recordID: category3.ckRecordID ?? category3.ckRecord.recordID, action: .none)
+            category3Ref = CKReference(recordID: category3.ckRecordID, action: .none)
             categoryAsString += "\\" + "\(category3.title)"
         }
 
@@ -56,7 +56,15 @@ class RevisedPostController {
     }
     
     func deleteRevisedPost(revisedPost: RevisedPost) {
-        ckManager.delete(recordID: revisedPost.ckRecordID ?? revisedPost.ckRecord.recordID) { (recordID, error) in
+        if let index = RevisedPostController.shared.revisedPostsToApprove.index(of: revisedPost) {
+            RevisedPostController.shared.revisedPostsToApprove.remove(at: index)
+        }
+        
+        if let index = RevisedPostController.shared.revisedPostsUserCreated.index(of: revisedPost) {
+            RevisedPostController.shared.revisedPostsUserCreated.remove(at: index)
+        }
+        
+        ckManager.delete(recordID: revisedPost.ckRecordID) { (recordID, error) in
             if let error = error {
                 print("Error deleting revised post: \(error)")
                 return
@@ -75,6 +83,8 @@ class RevisedPostController {
                 completion(false)
                 return
             }
+            
+            self.deleteRevisedPost(revisedPost: revisedPost)
             
             completion(true)
         }
