@@ -38,16 +38,15 @@ class BrowseCategoriesViewController: UIViewController {
                 }
             }
         }
-        
-        
     }
+    
     @objc func handleSwipes(sender: UISwipeGestureRecognizer) {
         if (sender.direction == .left) {
             newCategoryAlert()
             print("left swipe")
         }
-        
     }
+    
     func newCategoryAlert() {
         let alert = UIAlertController(title: "This above all else:",
                                       message: "to thine own self be...",
@@ -60,7 +59,6 @@ class BrowseCategoriesViewController: UIViewController {
         alert.addAction(cancelAction)
         
         let createAction = UIAlertAction(title: "Squirrel!", style: UIAlertActionStyle.default) { (action: UIAlertAction) -> Void in
-            
         }
         
         alert.addAction(createAction)
@@ -74,14 +72,11 @@ class BrowseCategoriesViewController: UIViewController {
     
     // EXPLANATION: instance of the categories
     var category = CategoryController.shared.topCategories
-    
     //    let subCategory = CategoryController.shared.category2Categories
-    //
     //    let subSubCategory = CategoryController.shared.category3Categories
     
     // EXPLANATION: reference to the picker's selected category as selected array (not a string)
     var selectedCategory: Category1?
-    
     
     // MARK: - Actions
     @IBAction func searchCategoryTapped(_ sender: Any) {
@@ -166,7 +161,6 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return PostController.shared.category1Posts.count
