@@ -21,10 +21,11 @@ class CommentsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44
+//        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = 44
         
         navigationItem.title = "Comments"
+        
         guard let post = post else { return }
         CommentController.shared.loadCommentsFor(post: post) { (success) in
             if success {
