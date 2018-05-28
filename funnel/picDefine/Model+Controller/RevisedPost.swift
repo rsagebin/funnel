@@ -25,7 +25,6 @@ class RevisedPost {
     let description: String
 
     var image: UIImage?
-    let imageAsCKAsset: CKAsset
     
     var tags: [Tag]?
     
@@ -68,7 +67,6 @@ class RevisedPost {
 
     init?(cloudKitRecord: CKRecord) {
         guard let description = cloudKitRecord[RevisedPost.descriptionKey] as? String,
-            let imageAsCKAsset = cloudKitRecord[RevisedPost.imageAsCKAssetKey] as? CKAsset,
             let creatorRef = cloudKitRecord[RevisedPost.creatorRefKey] as? CKReference,
             let categoryAsString = cloudKitRecord[RevisedPost.categoryAsStringKey] as? String,
             let postReference = cloudKitRecord[RevisedPost.postReferenceKey] as? CKReference
@@ -87,7 +85,6 @@ class RevisedPost {
         }
         
         self.description = description
-        self.imageAsCKAsset = imageAsCKAsset
         self.creatorRef = creatorRef
         self.categoryAsString = categoryAsString
         self.postReference = postReference
@@ -99,7 +96,6 @@ class RevisedPost {
     init(post: Post, description: String, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?) {
         self.description = description
         self.creatorRef = post.creatorRef
-        self.imageAsCKAsset = post.imageAsCKAsset
         self.category1Ref = category1Ref
         self.category2Ref = category2Ref
         self.category3Ref = category3Ref

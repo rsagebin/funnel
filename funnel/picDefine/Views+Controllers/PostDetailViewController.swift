@@ -79,10 +79,29 @@ class PostDetailViewController: UIViewController {
         let flagImage = UIAlertAction(title: "Flag Post", style: .destructive) { (_) in
             // flag post
             
-//            guard let post = self.post else { return }
-//            PostController.shared.flag(post: post)
-//            self.navigationController?.popViewController(animated: true)
-            
+            guard let post = self.post else { return }
+            PostController.shared.flag(post: post, completion: { (success, ifFlagged) in
+                
+                if ifFlagged {
+                    let alert = UIAlertController(title: "You already flagged this post.", message: nil, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+                if success {
+                    let alert = UIAlertController(title: "You successfully flagged this post.", message: nil, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+                
+            })
         }
         
         let blockUser = UIAlertAction(title: "Block User", style: .destructive) { (_) in
