@@ -61,22 +61,22 @@ class FollowingTableViewController: UITableViewController {
             }
         }
         
-        let submittedAnswers = 0 // Change to 1 from 0 if user has any suggested answers
-        if submittedAnswers > 0 {
-            sectionCount += 1
-            sectionTitles.append("My Suggested Answers")
-            
-            if sectionTitles == ["My Suggested Answers","My Suggested Answers"] { // Patch to remove duplicate refactor later
-                sectionTitles.remove(at: 0)
-            }
-        }
-        
         let followings = userFollowings.count
         if followings > 0 {
             sectionCount += 1
             sectionTitles.append("Posts I'm Following")
             
             if sectionTitles == ["Posts I'm Following","Posts I'm Following"] { // Patch to remove duplicate refactor later
+                sectionTitles.remove(at: 0)
+            }
+        }
+        
+        let submittedAnswers = 0 // Change to 1 from 0 if user has any suggested answers
+        if submittedAnswers > 0 {
+            sectionCount += 1
+            sectionTitles.append("My Suggested Answers")
+            
+            if sectionTitles == ["My Suggested Answers","My Suggested Answers"] { // Patch to remove duplicate refactor later
                 sectionTitles.remove(at: 0)
             }
         }
@@ -125,14 +125,14 @@ class FollowingTableViewController: UITableViewController {
             let posts = userPosts.count
             return posts
         }
-        
-//        if section == 1 { // User submissions
-//
-//        }
-//
+
         if section == 1 { // User followings
             let followings = userFollowings.count
             return followings
+        }
+        
+        if section == 2 { // User submissions
+            
         }
         
         return 0
@@ -146,17 +146,15 @@ class FollowingTableViewController: UITableViewController {
             cell.userPost = post
         }
         
-//        let suggestions = PostController.shared
-//        if indexPath.section == 1 {
-//            cell.userSuggestion =
-//        }
-        
-        
         if indexPath.section == 1 {
             let following = userFollowings[indexPath.row]
             cell.userFollowing = following
         }
         
+//        let suggestions = PostController.shared
+        if indexPath.section == 2 {
+//            cell.userSuggestion =
+        }
         
         return cell
     }
@@ -208,5 +206,12 @@ class FollowingTableViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    func fetchSuggestionPosts() {
+        
+        guard let user = UserController.shared.loggedInUser else { return }
+        
+//        PostController.shared.fetch
     }
 }
