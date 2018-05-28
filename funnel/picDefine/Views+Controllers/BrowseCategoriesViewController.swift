@@ -30,13 +30,17 @@ class BrowseCategoriesViewController: UIViewController {
         // EXPLANATION: "red label" at the top is hidden to avoid redundancy
         self.mainCategoryLabel.isHidden = true
         // Initial check to get the top level categories from CK and reloading the picker with the given array
-//        if CategoryController.shared.topCategories.isEmpty {
+        
+        if CategoryController.shared.topCategories.isEmpty {
             CategoryController.shared.loadTopLevelCategories { (success) in
                 DispatchQueue.main.async {
                     self.category = CategoryController.shared.topCategories
                     self.pickerOne.reloadAllComponents()
-//                }
+                }
             }
+        }
+        else {
+            self.category = CategoryController.shared.topCategories
         }
     }
     
@@ -85,8 +89,8 @@ class BrowseCategoriesViewController: UIViewController {
                 DispatchQueue.main.async {
                     // EXPLANATION: the table view below is reloaded and then the mainLabel(red) appears above while the "Category Find" cell becomes hidden.
                     self.tableView.reloadData()
-                    self.mainCategoryLabel.isHidden = false
                     self.categoryView.isHidden = true
+                    self.mainCategoryLabel.isHidden = false
                 }
             } else {
                 print("Category one fetch failed in the View Controller")
@@ -123,13 +127,13 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
     
     // EXPLANATION: Functions necessary to conform to the picker method along with string interpolation from the selected category to be shown
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == pickerOne {
-            let labelOne = "\(category[row].title)"
-            self.mainCategoryLabel.text = "\(category[row].title)"
-            self.selectedCategory = category[row]
-            // EXPLANATION: labelOne is the selected category array object set as a string
-            return labelOne
-        }
+//        if pickerView == pickerOne {
+//            let labelOne = "\(category[row].title)"
+//            self.mainCategoryLabel.text = "\(category[row].title)"
+//            self.selectedCategory = category[row]
+//            // EXPLANATION: labelOne is the selected category array object set as a string
+//            return labelOne
+//        }
         
         // EXPLANATION: More methods set for Picker Two and Picker Three
         //        else if pickerView == pickerTwo {
@@ -143,7 +147,11 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
         //            mainCategoryLabel.text = "\(mainCategoryLabel.text!)/\(subSubCategory[row].title)"
         //            return labelThree
         //        }
-        return ""
+        return category[row].title
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.mainCategoryLabel.text = category[row].title
+        self.selectedCategory = category[row]
     }
 }
 
