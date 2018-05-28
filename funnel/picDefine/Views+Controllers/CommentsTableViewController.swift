@@ -46,8 +46,8 @@ class CommentsTableViewController: UITableViewController {
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
         
         
-        containerView.addSubview(self.commentTextField)
-        self.commentTextField.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(self.commentTextView)
+        self.commentTextView.translatesAutoresizingMaskIntoConstraints = false
 
         let submitButton = UIButton(type: .system)
         submitButton.setTitle("Send", for: .normal)
@@ -62,22 +62,26 @@ class CommentsTableViewController: UITableViewController {
         NSLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 10).isActive = true
         NSLayoutConstraint(item: submitButton, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 0.3, constant: 0).isActive = true
 
-        NSLayoutConstraint(item: self.commentTextField, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 12).isActive = true
-        NSLayoutConstraint(item: self.commentTextField, attribute: .trailing, relatedBy: .equal, toItem: submitButton, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self.commentTextField, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 15).isActive = true
-
+        NSLayoutConstraint(item: self.commentTextView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 12).isActive = true
+        NSLayoutConstraint(item: self.commentTextView, attribute: .trailing, relatedBy: .equal, toItem: submitButton, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: self.commentTextView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 5).isActive = true
+//        NSLayoutConstraint(item: self.commentTextView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: -15).isActive = true
+        
+        
         return containerView
     }()
     
-    let commentTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter Comment..."
-        return textField
+    let commentTextView: UITextView = {
+        let textView = UITextView()
+        textView.isEditable = true
+        textView.isSelectable = true
+        textView.isScrollEnabled = false
+        return textView
     }()
     
     @objc func handleSubmit() {
-        print("Inserting Comment:", commentTextField.text ?? "")
-        guard let comment = commentTextField.text , !comment.isEmpty else { return }
+        print("Inserting Comment:", commentTextView.text ?? "")
+        guard let comment = commentTextView.text , !comment.isEmpty else { return }
         guard let post = post else { return }
         CommentController.shared.addCommentTo(post: post, text: comment) { (success) in
             if success {
@@ -86,8 +90,8 @@ class CommentsTableViewController: UITableViewController {
                 }
             }
         }
-        commentTextField.text = ""
-        commentTextField.resignFirstResponder()
+        commentTextView.text = ""
+        commentTextView.resignFirstResponder()
     }
     
     override var inputAccessoryView: UIView? {
