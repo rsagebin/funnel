@@ -45,7 +45,9 @@ class RevisedPostController {
         
         let reference = CKReference(recordID: loggedInUser.ckRecordID, action: .none)
         
-        let revisedPost = RevisedPost(post: post, description: description, revisedPostCreatorRef: reference, category1Ref: category1Ref, category2Ref: category2Ref, category3Ref: category3Ref)
+        let imageAsset = CKAsset(fileURL: post.imageAsCKAsset.fileURL)
+        
+        let revisedPost = RevisedPost(post: post, description: description, revisedPostCreatorRef: reference, category1Ref: category1Ref, category2Ref: category2Ref, category3Ref: category3Ref, imageCKAsset: imageAsset)
         
         revisedPost.categoryAsString = categoryAsString
         
@@ -59,7 +61,7 @@ class RevisedPostController {
         
     }
     
-    func deleteRevisedPost(revisedPost: RevisedPost) {
+    func deleteRevisedPost(revisedPost: RevisedPost, completion: @escaping (Bool)-> Void) {
         if let index = RevisedPostController.shared.revisedPostsToApprove.index(of: revisedPost) {
             RevisedPostController.shared.revisedPostsToApprove.remove(at: index)
         }
@@ -71,8 +73,11 @@ class RevisedPostController {
         ckManager.delete(recordID: revisedPost.ckRecordID) { (recordID, error) in
             if let error = error {
                 print("Error deleting revised post: \(error)")
+                completion(false)
                 return
             }
+            
+            completion(true)
         }
     }
     
@@ -88,12 +93,19 @@ class RevisedPostController {
                 return
             }
             
-            self.deleteRevisedPost(revisedPost: revisedPost)
+            self.deleteRevisedPost(revisedPost: revisedPost, completion: { (success) in
+                if !success {
+                    print("Error deleting revised post after being accepted.")
+                }
+            })
             
             completion(true)
         }
     }
     
+    func declineRevisedPost(revisedPost: RevisedPost, completion: @escaping (Bool) -> Void) {
+        self.deleteRevisedPost(revisedPost: revisedPost, completion: completion)
+    }
     
     func fetchNumberOfSuggestionsFor(post: Post, completion: @escaping (Int) -> Void) {
         var suggestionsArray: [RevisedPost] = []
@@ -116,6 +128,23 @@ class RevisedPostController {
             suggestionsArray = recordsArray
             
             completion(suggestionsArray.count)
+        }
+    }
+    
+    func fetchPostForRevisedPost(revisedPost: RevisedPost, completion: @escaping (Post?) -> Void) {
+        let predicate = NSPredicate(format: "recordID", revisedPost.postReference)
+        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+            if let error = error {
+                print("Error fetching post for revised post: \(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let records = records?.first else { return }
+            
+            let post = Post(cloudKitRecord: records)
+            
+            completion(post)
         }
     }
     

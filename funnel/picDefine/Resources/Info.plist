@@ -26,6 +26,11 @@
 	<string>Access Camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access Photo Library</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Raleway-Medium.ttf</string>
+		<string>Raleway-Regular.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array/>
 	<key>UILaunchStoryboardName</key>

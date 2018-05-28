@@ -28,7 +28,7 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         navigationController?.navigationBar.barTintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font : UIFont(name: "Arial", size: 20) as Any,
+            NSAttributedStringKey.font : UIFont(name: "Raleway", size: 20) as Any,
             NSAttributedStringKey.foregroundColor : UIColor.white,
         ]
         
