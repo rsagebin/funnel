@@ -4,7 +4,7 @@
 //
 //  Created by Drew Carver on 5/15/18.
 //  Copyright © 2018 Rodrigo Sagebin. All rights reserved.
-//
+// GIF image used with creative commons permission from: https://www.streamerclips.com/gifs/meteorology/enchantedclearcutdove
 
 import Foundation
 import ImageIO
