@@ -26,6 +26,7 @@ class RevisedPost {
     let description: String
 
     var image: UIImage?
+    let imageAsCKAsset: CKAsset
     
     var tags: [Tag]?
     
@@ -65,6 +66,7 @@ class RevisedPost {
         record.setValue(creatorRef, forKey: RevisedPost.creatorRefKey)
         record.setValue(postReference, forKey: RevisedPost.postReferenceKey)
         record.setValue(revisedPostCreatorRef, forKey: RevisedPost.revisedPostCreatorRefKey)
+        record.setValue(imageAsCKAsset, forKey: RevisedPost.imageAsCKAssetKey)
 
         return record
     }
@@ -74,6 +76,7 @@ class RevisedPost {
             let creatorRef = cloudKitRecord[RevisedPost.creatorRefKey] as? CKReference,
             let revisedPostCreatorRef = cloudKitRecord[RevisedPost.revisedPostCreatorRefKey] as? CKReference,
             let categoryAsString = cloudKitRecord[RevisedPost.categoryAsStringKey] as? String,
+            let imageCKAsset = cloudKitRecord[RevisedPost.imageAsCKAssetKey] as? CKAsset,
             let postReference = cloudKitRecord[RevisedPost.postReferenceKey] as? CKReference
             else { return nil }
 
@@ -94,17 +97,20 @@ class RevisedPost {
         self.categoryAsString = categoryAsString
         self.postReference = postReference
         self.revisedPostCreatorRef = revisedPostCreatorRef
+        self.imageAsCKAsset = imageCKAsset
+        self.image = UIImage(ckAsset: imageCKAsset)
         
         self.ckRecordID = cloudKitRecord.recordID
         
     }
 
-    init(post: Post, description: String, revisedPostCreatorRef: CKReference, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?) {
+    init(post: Post, description: String, revisedPostCreatorRef: CKReference, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?, imageCKAsset: CKAsset) {
         self.description = description
         self.creatorRef = post.creatorRef
         self.category1Ref = category1Ref
         self.category2Ref = category2Ref
         self.category3Ref = category3Ref
+        self.imageAsCKAsset = imageCKAsset
         
         let postReference = CKReference(recordID: post.ckRecordID, action: .deleteSelf)
         self.postReference = postReference

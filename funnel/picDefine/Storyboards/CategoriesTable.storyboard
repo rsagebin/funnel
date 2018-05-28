@@ -130,7 +130,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yaZ-At-ru4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Categories" image="categories" id="LUi-Oa-e93"/>
+                    <tabBarItem key="tabBarItem" title="Categories" image="categories-1" selectedImage="categories-2" id="LUi-Oa-e93"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="categoryView" destination="QF2-96-S5g" id="HFg-sq-6YX"/>
@@ -145,6 +145,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="categories" width="25" height="25"/>
+        <image name="categories-1" width="25" height="25"/>
+        <image name="categories-2" width="25" height="25"/>
     </resources>
 </document>
