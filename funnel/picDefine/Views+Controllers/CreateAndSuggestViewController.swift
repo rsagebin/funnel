@@ -90,9 +90,37 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         setButtonTitle()
         setBorders()
         
-        // Notifications to move view up or down when the keyboard it shown or hidden.
-        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//        // Notifications to move view up or down when the keyboard it shown or hidden.
+//        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        addDoneButtonOnKeyboard()
+    }
+    
+    // MARK: - Tool Bar
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        doneToolbar.barStyle = UIBarStyle.default
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(CreateAndSuggestViewController.doneButtonAction))
+        done.tintColor = UIColor.black
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        
+        descriptionTextView.inputAccessoryView = doneToolbar
+       
+        
+    }
+    
+    @objc func doneButtonAction() {
+        
+        descriptionTextView .resignFirstResponder()
+        
     }
     
     // MARK: - Category
@@ -202,22 +230,22 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     }
     
     
-    // Code to move the view up when the keyboard is shown
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    // Code to move the view down when the keyboard is hidden
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
+//    // Code to move the view up when the keyboard is shown
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y == 0{
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+//    // Code to move the view down when the keyboard is hidden
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 0{
+//                self.view.frame.origin.y += keyboardSize.height
+//            }
+//        }
+//    }
     
     func showActionSheet() {
         
