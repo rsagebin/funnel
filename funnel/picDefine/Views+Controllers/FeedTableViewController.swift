@@ -85,9 +85,9 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 430
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 430
+//    }
     
     // MARK: - Delegate functions
     

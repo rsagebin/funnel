@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentsTableViewController: UITableViewController {
+class CommentsTableViewController: UITableViewController, UITextViewDelegate {
 
     var theRefreshControl: UIRefreshControl!
     
@@ -21,8 +21,9 @@ class CommentsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 44
+        commentTextView.delegate = self
+        commentTextView.text = "   Enter comment..."
+        commentTextView.textColor = UIColor.lightGray
         
         navigationItem.title = "Comments"
         
@@ -42,42 +43,62 @@ class CommentsTableViewController: UITableViewController {
     
     lazy var containerView: UIView = {
         let containerView = UIView()
-        containerView.backgroundColor = .lightGray
+        containerView.backgroundColor = .white
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
-        
+        containerView.layer.borderColor = UIColor.black.cgColor
+        containerView.layer.borderWidth = 0.5
         
         containerView.addSubview(self.commentTextView)
         self.commentTextView.translatesAutoresizingMaskIntoConstraints = false
 
         let submitButton = UIButton(type: .system)
         submitButton.setTitle("Send", for: .normal)
-        submitButton.setTitleColor(.black, for: .normal)
-        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        submitButton.setTitleColor(UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1), for: .normal)
+        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
         containerView.addSubview(submitButton)
         submitButton.translatesAutoresizingMaskIntoConstraints = false
 
-
         NSLayoutConstraint(item: submitButton, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 10).isActive = true
+        NSLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 5).isActive = true
         NSLayoutConstraint(item: submitButton, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 0.3, constant: 0).isActive = true
 
         NSLayoutConstraint(item: self.commentTextView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 12).isActive = true
         NSLayoutConstraint(item: self.commentTextView, attribute: .trailing, relatedBy: .equal, toItem: submitButton, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self.commentTextView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 5).isActive = true
-//        NSLayoutConstraint(item: self.commentTextView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: -15).isActive = true
-        
+        NSLayoutConstraint(item: self.commentTextView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 10).isActive = true
+        NSLayoutConstraint(item: self.commentTextView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: -10).isActive = true
         
         return containerView
     }()
+    
+    // MARK: - Comments Text View
     
     let commentTextView: UITextView = {
         let textView = UITextView()
         textView.isEditable = true
         textView.isSelectable = true
-        textView.isScrollEnabled = false
+        textView.isScrollEnabled = true
         return textView
     }()
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        commentTextView.resignFirstResponder()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if commentTextView.textColor == UIColor.lightGray {
+            commentTextView.text = nil
+            commentTextView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if commentTextView.text.isEmpty {
+            commentTextView.text = "   Enter comment..."
+            commentTextView.textColor = UIColor.lightGray
+        }
+    }
     
     @objc func handleSubmit() {
         print("Inserting Comment:", commentTextView.text ?? "")
@@ -104,6 +125,8 @@ class CommentsTableViewController: UITableViewController {
         return true
     }
     
+    // MARK: - Refresh comments
+    
     @objc func didPullForRefresh() {
         
         guard let post = post else { return }
@@ -115,7 +138,6 @@ class CommentsTableViewController: UITableViewController {
                 }
             }
         }
-        
     }
     
     // MARK: - Table view data source
@@ -138,16 +160,5 @@ class CommentsTableViewController: UITableViewController {
         })
         
         return cell
-        
     }
-    
-    
- 
-// prepare for reuse (uitableviewcell) -> remove old data
-    
-    // caching data already downloaded from the web (user avatar) *maybe do this part later
-    
-    // once the comment gets added to the label, making a call to 'resize' the cell
-
-
 }
