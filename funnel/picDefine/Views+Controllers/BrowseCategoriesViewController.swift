@@ -30,12 +30,12 @@ class BrowseCategoriesViewController: UIViewController {
         // EXPLANATION: "red label" at the top is hidden to avoid redundancy
         self.mainCategoryLabel.isHidden = true
         // Initial check to get the top level categories from CK and reloading the picker with the given array
-        if CategoryController.shared.topCategories.isEmpty {
+//        if CategoryController.shared.topCategories.isEmpty {
             CategoryController.shared.loadTopLevelCategories { (success) in
                 DispatchQueue.main.async {
                     self.category = CategoryController.shared.topCategories
                     self.pickerOne.reloadAllComponents()
-                }
+//                }
             }
         }
     }
