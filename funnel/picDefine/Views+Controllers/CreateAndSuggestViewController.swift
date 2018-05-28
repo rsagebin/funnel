@@ -16,6 +16,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     var post: Post?
     
+    var revisedPost: RevisedPost?
+    
     var category1 = CategoryController.shared.topCategories
     
     let category2 = CategoryController.shared.category2Categories
@@ -39,11 +41,27 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var createOrSuggestOutlet: UIButton!
+    @IBOutlet weak var declineButton: UIButton!
+    @IBOutlet weak var acceptButton: UIButton!
     
     @IBOutlet weak var newCategory2: UIButton!
     @IBOutlet weak var newCategory3: UIButton!
     
     // MARK: - Actions
+    
+    @IBAction func acceptButtonTapped(_ sender: Any) {
+        
+        guard let resivedPost = revisedPost, let post = post else { return }
+        
+        RevisedPostController.shared.acceptRevisedPost(revisedPost: resivedPost, for: post) { (success) in
+            if success {
+                
+            }
+        }
+    }
+    
+    @IBAction func declineButtonTapped(_ sender: Any) {
+    }
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
@@ -68,6 +86,9 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         descriptionTextView.text = "Add Description..."
         descriptionTextView.textColor = UIColor.lightGray
         
+        self.acceptButton.isHidden = true
+        self.declineButton.isHidden = true
+        
         picker.delegate = self
         
         if CategoryController.shared.topCategories.isEmpty {
@@ -81,6 +102,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
             self.category1 = CategoryController.shared.topCategories
         }
         
+        showTheRightButtons()
         createCameraButton()
         updateViews()
         setButtonTitle()
@@ -183,6 +205,15 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         
         mainCategoryLabel.layer.borderColor = UIColor.lightGray.cgColor
         mainCategoryLabel.layer.borderWidth = 1.0
+    }
+    
+    func showTheRightButtons() {
+        
+        if revisedPost != nil {
+            self.createOrSuggestOutlet.isHidden = true
+            self.acceptButton.isHidden = false
+            self.declineButton.isHidden = false
+        }
     }
     
     func setButtonTitle() {
