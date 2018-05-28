@@ -58,5 +58,18 @@ class CloudKitManager {
     func getUserRecordID(completion: @escaping (CKRecordID?, Error?) -> Void) {
         CKContainer.default().fetchUserRecordID(completionHandler: completion)
     }
+    
+    func subscribeTo(_ recordType: String, completion: @escaping ((CKSubscription?, Error?) -> Void)) {
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: recordType, predicate: predicate, options: [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
+        
+        let notificationInfo = CKNotificationInfo()
+        notificationInfo.alertBody = "New Notification"
+        notificationInfo.soundName = "default"
+        notificationInfo.shouldBadge = true
+        subscription.notificationInfo = notificationInfo
+        
+        publicDB.save(subscription, completionHandler: completion)
+    }
 
 }
