@@ -11,12 +11,17 @@ import UIKit
 class FollowingTableViewController: UITableViewController {
 
     // MARK: - Properties
-    var sectionTitles: [String] = ["My Posts", "Posts I'm Following", "My Suggested Posts"]
+    var sectionTitles: [String] = ["My Posts", "Posts I'm Following", "Posts to Revise", "My Suggested Posts"]
 //    var refreshControl: UIRefreshControl!
     var userPosts = [Post]()
     var userFollowings = [Post]()
+    var communitySuggestions = [RevisedPost]()
     var userSuggestions = [RevisedPost]()
     
+    var allPosts: [[Any]] {
+        return [userPosts, userFollowings, communitySuggestions, userSuggestions]
+    }
+//    var revisedPost: RevisedPost? move back to PostDetail
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -41,7 +46,8 @@ class FollowingTableViewController: UITableViewController {
         
         fetchUserPosts()
         fetchFollowingPosts()
-        fetchSuggestionPosts()
+        fetchUserSuggestionPosts()
+        fetchSuggestionsToApprove()
     }
     
     
@@ -62,7 +68,11 @@ class FollowingTableViewController: UITableViewController {
             sectionCount += 1
         }
         
-        if sectionTitles[2] == "My Suggested Posts" && userSuggestions.count > 0 {
+        if sectionTitles[2] == "Posts to Revise" && communitySuggestions.count > 0 {
+            sectionCount += 1
+        }
+        
+        if sectionTitles[3] == "My Suggested Posts" && userSuggestions.count > 0 {
             sectionCount += 1
         }
         
@@ -106,7 +116,12 @@ class FollowingTableViewController: UITableViewController {
             return followings
         }
         
-        if section == 2 { // User submissions
+        if section == 2 { // Community submissions
+            let suggestions = communitySuggestions.count
+            return suggestions
+        }
+        
+        if section == 3 { // User submissions
             let suggestions = userSuggestions.count
             return suggestions
         }
@@ -120,16 +135,25 @@ class FollowingTableViewController: UITableViewController {
         if indexPath.section == 0 {
             let post = userPosts[indexPath.row]
             cell.userPost = post
+            return cell
         }
         
         if indexPath.section == 1 {
             let following = userFollowings[indexPath.row]
             cell.userFollowing = following
+            return cell
         }
         
         if indexPath.section == 2 {
+            let suggestion = communitySuggestions[indexPath.row]
+            cell.communitySuggestion = suggestion
+            return cell
+        }
+        
+        if indexPath.section == 3 {
             let suggestion = userSuggestions[indexPath.row]
             cell.userSuggestion = suggestion
+            return cell
         }
         
         return cell
@@ -140,9 +164,15 @@ class FollowingTableViewController: UITableViewController {
         let postDetailSB = UIStoryboard(name: "PostDetail", bundle: .main)
         let currentVC = postDetailSB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let selectedPost = PostController.shared.userPosts[indexPath.row]
         
-        currentVC.post = selectedPost
+        let selectedPost = self.allPosts[indexPath.section][indexPath.row]
+        if let selectedPost = selectedPost as? Post {
+            currentVC.post = selectedPost
+        }
+        
+        if let selectedPost = selectedPost as? RevisedPost {
+//            currentVC.revisedPost = selectedPost
+        }
         navigationController?.pushViewController(currentVC, animated: true)
     }
     
@@ -192,7 +222,7 @@ class FollowingTableViewController: UITableViewController {
         }
     }
     
-    func fetchSuggestionPosts() {
+    func fetchSuggestionsToApprove() {
         
         startNetworkActivity()
         
@@ -202,13 +232,35 @@ class FollowingTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 
                 if success {
-                    self.userSuggestions = RevisedPostController.shared.revisedPostsToApprove
+                    self.communitySuggestions = RevisedPostController.shared.revisedPostsToApprove
                     self.endNetworkActivity()
                     self.tableView.reloadData()
                 }
                 
                 if !success {
-                    print("Could not fetch suggested posts")
+                    print("Could not fetch community suggested posts")
+                }
+            }
+        }
+    }
+    
+    func fetchUserSuggestionPosts() {
+        
+        startNetworkActivity()
+        
+        guard let user = UserController.shared.loggedInUser else { return }
+        
+        RevisedPostController.shared.fetchRevisedPostsUserCreated(revisedPostCreator: user) { (success) in
+            DispatchQueue.main.async {
+                
+                if success {
+                    self.userSuggestions = RevisedPostController.shared.revisedPostsUserCreated
+                    self.endNetworkActivity()
+                    self.tableView.reloadData()
+                }
+                
+                if !success {
+                    print("Could not fetch user suggested posts")
                     self.endNetworkActivity()
                 }
             }

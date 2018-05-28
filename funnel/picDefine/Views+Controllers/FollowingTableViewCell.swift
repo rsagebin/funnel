@@ -59,6 +59,22 @@ class FollowingTableViewCell: UITableViewCell {
         }
     }
     
+    var communitySuggestion: RevisedPost? {
+        didSet {
+            let comments = CommentController.shared.postComments.count
+            if let suggestion = communitySuggestion {
+                postSubmittedImage.image = suggestion.image
+                postAcceptedSolutionIcon.isHidden = true
+                postCategoryLabel.text = suggestion.categoryAsString
+                postDescriptionLabel.text = suggestion.description
+                postFollowingLabel.isHidden = true
+                postFollowingButton.isHidden = true
+                postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count)
+                postCommentsLabel.text = String(comments)
+            }
+        }
+    }
+    
     var userSuggestion: RevisedPost? {
         didSet {
             checkUserRef()
@@ -68,11 +84,24 @@ class FollowingTableViewCell: UITableViewCell {
                 postAcceptedSolutionIcon.isHidden = true
                 postCategoryLabel.text = suggestion.categoryAsString
                 postDescriptionLabel.text = suggestion.description
-                postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
+                postFollowingLabel.isHidden = true
+                postFollowingButton.isHidden = true
+                postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsUserCreated.count) // Refactor if possible
                 postCommentsLabel.text = String(comments)
             }
         }
     }
+    
+//    var suggestionCount Int
+    
+//    func fetchSuggestionCount() {
+//
+//        PostController.shared.
+//
+//        RevisedPostController.shared.fetchNumberOfSuggestionsFor(post: <#T##Post#>) { (count) in
+//            <#code#>
+//        }
+//    }
     
     var isFollowing = false
     
