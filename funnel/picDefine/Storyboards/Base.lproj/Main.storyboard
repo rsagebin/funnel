@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,7 +13,7 @@
         <scene sceneID="ReE-za-wTT">
             <objects>
                 <viewControllerPlaceholder storyboardName="Feed" id="7Dx-76-p9Z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="KYL-Ln-D8r"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="feed-1" id="KYL-Ln-D8r"/>
                     <navigationItem key="navigationItem" id="qBn-LI-O4z"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozT-TD-byD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -53,6 +54,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nla-IJ-wpl">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="selectedImageTintColor" name="Color"/>
                     </tabBar>
                     <connections>
                         <segue destination="7Dx-76-p9Z" kind="relationship" relationship="viewControllers" id="ezT-V3-N0b"/>
@@ -79,7 +81,7 @@
         <scene sceneID="jXy-SJ-KlG">
             <objects>
                 <viewControllerPlaceholder storyboardName="Profile" id="bve-hw-fRZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="MMO-ik-NQI"/>
+                    <tabBarItem key="tabBarItem" title="Profile" selectedImage="profile-2" id="MMO-ik-NQI"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uni-RH-Kxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -112,5 +114,12 @@
             <point key="canvasLocation" x="2542" y="-88"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="feed-1" width="25" height="25"/>
+        <image name="profile-2" width="50" height="50"/>
+        <namedColor name="Color">
+            <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

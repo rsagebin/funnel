@@ -19,6 +19,7 @@ class RevisedPost {
     private static let followersRefsKey = "followersRefs"
     private static let imageAsCKAssetKey = "imageAsCKAsset"
     private static let creatorRefKey = "creatorRef"
+    private static let revisedPostCreatorRefKey = "revisedPostCreatorRef"
     private static let postReferenceKey = "postReference"
     
 
@@ -35,6 +36,8 @@ class RevisedPost {
     var categoryAsString = ""
 
     let creatorRef: CKReference
+    
+    let revisedPostCreatorRef: CKReference
     
     let postReference: CKReference
     
@@ -61,6 +64,7 @@ class RevisedPost {
         record.setValue(categoryAsString, forKey: RevisedPost.categoryAsStringKey)
         record.setValue(creatorRef, forKey: RevisedPost.creatorRefKey)
         record.setValue(postReference, forKey: RevisedPost.postReferenceKey)
+        record.setValue(revisedPostCreatorRef, forKey: RevisedPost.revisedPostCreatorRefKey)
 
         return record
     }
@@ -68,6 +72,7 @@ class RevisedPost {
     init?(cloudKitRecord: CKRecord) {
         guard let description = cloudKitRecord[RevisedPost.descriptionKey] as? String,
             let creatorRef = cloudKitRecord[RevisedPost.creatorRefKey] as? CKReference,
+            let revisedPostCreatorRef = cloudKitRecord[RevisedPost.revisedPostCreatorRefKey] as? CKReference,
             let categoryAsString = cloudKitRecord[RevisedPost.categoryAsStringKey] as? String,
             let postReference = cloudKitRecord[RevisedPost.postReferenceKey] as? CKReference
             else { return nil }
@@ -88,12 +93,13 @@ class RevisedPost {
         self.creatorRef = creatorRef
         self.categoryAsString = categoryAsString
         self.postReference = postReference
+        self.revisedPostCreatorRef = revisedPostCreatorRef
         
         self.ckRecordID = cloudKitRecord.recordID
         
     }
 
-    init(post: Post, description: String, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?) {
+    init(post: Post, description: String, revisedPostCreatorRef: CKReference, category1Ref: CKReference?, category2Ref: CKReference?, category3Ref: CKReference?) {
         self.description = description
         self.creatorRef = post.creatorRef
         self.category1Ref = category1Ref
@@ -102,6 +108,8 @@ class RevisedPost {
         
         let postReference = CKReference(recordID: post.ckRecordID, action: .deleteSelf)
         self.postReference = postReference
+        
+        self.revisedPostCreatorRef = revisedPostCreatorRef
         
         self.ckRecordID = CKRecordID(recordName: UUID().uuidString)
         

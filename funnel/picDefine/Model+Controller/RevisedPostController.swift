@@ -41,7 +41,11 @@ class RevisedPostController {
             categoryAsString += "\\" + "\(category3.title)"
         }
 
-        let revisedPost = RevisedPost(post: post, description: description, category1Ref: category1Ref, category2Ref: category2Ref, category3Ref: category3Ref)
+        guard let loggedInUser = UserController.shared.loggedInUser else { return }
+        
+        let reference = CKReference(recordID: loggedInUser.ckRecordID, action: .none)
+        
+        let revisedPost = RevisedPost(post: post, description: description, revisedPostCreatorRef: reference, category1Ref: category1Ref, category2Ref: category2Ref, category3Ref: category3Ref)
         
         revisedPost.categoryAsString = categoryAsString
         
@@ -90,6 +94,31 @@ class RevisedPostController {
         }
     }
     
+    
+    func fetchNumberOfSuggestionsFor(post: Post, completion: @escaping (Int) -> Void) {
+        var suggestionsArray: [RevisedPost] = []
+        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
+        ckManager.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+            if let error = error {
+                print("Error fetching count of suggestings for post: \(error)")
+                completion(0)
+                return
+            }
+            
+            guard let records = records else {
+                print("Found nil for records fetched from CloudKit.")
+                completion(0)
+                return
+            }
+            
+            let recordsArray = records.compactMap( {RevisedPost(cloudKitRecord: $0) })
+            
+            suggestionsArray = recordsArray
+            
+            completion(suggestionsArray.count)
+        }
+    }
+    
     func fetchRevisedPostsToApprove(originalPostCreator user: User, completion: @escaping (Bool) -> Void) {
         let userRecordID = user.ckRecordID
         
@@ -98,7 +127,7 @@ class RevisedPostController {
         
         ckManager.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
-                print("Error fetching posts from CloudKit: \(error.localizedDescription)")
+                print("Error fetching revised posts from CloudKit: \(error.localizedDescription)")
                 completion(false)
                 return
             }
@@ -112,6 +141,33 @@ class RevisedPostController {
             let recordsArray = records.compactMap( {RevisedPost(cloudKitRecord: $0) })
             
             self.revisedPostsToApprove = recordsArray
+            
+            completion(true)
+        }
+    }
+    
+    func fetchRevisedPostsUserCreated(revisedPostCreator user: User, completion: @escaping (Bool) -> Void) {
+        let userRecordID = user.ckRecordID
+        
+        let predicate = NSPredicate(format: "revisedPostCreatorRef == %@", userRecordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        
+        ckManager.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+            if let error = error {
+                print("Error fetching revised posts from CloudKit: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            
+            guard let records = records else {
+                print("Found nil for records fetched from CloudKit.")
+                completion(false)
+                return
+            }
+            
+            let recordsArray = records.compactMap( {RevisedPost(cloudKitRecord: $0) })
+            
+            self.revisedPostsUserCreated = recordsArray
             
             completion(true)
         }
