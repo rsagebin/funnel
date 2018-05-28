@@ -92,14 +92,37 @@ class PostDetailViewController: UIViewController {
             
         } else {
             
-            let optionButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(createBlockAlert))
+            let optionButton = UIBarButtonItem(image: #imageLiteral(resourceName: "more-96"), style: .plain, target: self, action: #selector(createBlockAlert))
             optionButton.tintColor = UIColor.white
             self.navigationItem.rightBarButtonItem = optionButton
         }
     }
     
     @objc func createBlockAlert() {
-    
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let flagImage = UIAlertAction(title: "Flag Post", style: .destructive) { (_) in
+            // flag post
+            
+            guard let post = self.post else { return }
+            PostController.shared.flag(post: post)
+            
+        }
+        
+        let blockUser = UIAlertAction(title: "Block User", style: .destructive) { (_) in
+            // block user
+            
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(flagImage)
+        alert.addAction(blockUser)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+        
     }
     
     @objc func createDeleteAlert() {
