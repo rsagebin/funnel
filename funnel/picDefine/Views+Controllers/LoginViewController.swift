@@ -41,7 +41,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkIfSignedIntoICloud() // This needs to work better than this
+        
+        checkIfSignedIntoICloud()
     }
     
     
@@ -293,9 +294,18 @@ class LoginViewController: UIViewController {
     func couldNotFetchUser() {
         let alertcontroller = UIAlertController(title: "User Error", message: "Could not create user, please check your network connection and try again", preferredStyle: .alert)
         
-        let alertDismiss = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let dismissButton = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        let settingsButton = UIAlertAction(title: "Settings", style: .default) { (_) in
+            
+            guard let settingsURL = URL(string: "App-Prefs:root") else { return }
+            
+            if UIApplication.shared.canOpenURL(settingsURL) {
+                UIApplication.shared.open(settingsURL, completionHandler: nil)
+            }
+        }
         
-        alertcontroller.addAction(alertDismiss)
+        alertcontroller.addAction(dismissButton)
+        alertcontroller.addAction(settingsButton)
         present(alertcontroller, animated: true)
     }
     
@@ -327,6 +337,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
     
     // MARK: - ToolBar
     func addDoneButtonOnKeyboard() {
