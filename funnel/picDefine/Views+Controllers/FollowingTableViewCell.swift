@@ -91,6 +91,10 @@ class FollowingTableViewCell: UITableViewCell {
     
     @IBAction func postCommentsButtonTapped(_ sender: UIButton) {
         
+//        let commentsSB = UIStoryboard(name: "Comments", bundle: .main)
+//        let commentsVC = commentsSB.instantiateViewController(withIdentifier: "CommentsSB") as! CommentsTableViewController
+//        commentsVC.post = userPost
+//        navigationController?.pushViewController(commentsVC, animated: true) Needs to be moved to the TableVC
     }
     
     // MARK: - Methods

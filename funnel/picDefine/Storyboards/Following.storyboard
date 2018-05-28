@@ -13,13 +13,13 @@
         <!--Following-->
         <scene sceneID="204-cw-ben">
             <objects>
-                <tableViewController id="v7E-42-9Zo" customClass="FollowingTableViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="v7E-42-9Zo" customClass="FollowingTableViewController" customModule="picDefine" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7yf-V8-Goj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="122" id="Hlz-pP-dk0" customClass="FollowingTableViewCell" customModule="funnel" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="122" id="Hlz-pP-dk0" customClass="FollowingTableViewCell" customModule="picDefine" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hlz-pP-dk0" id="YSu-hM-IOP">
@@ -37,7 +37,7 @@
                                                     <rect key="frame" x="6.3333333333333357" y="3.6666666666666643" width="102.33333333333331" height="103.33333333333334"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bowie.tesla1" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-0E-5Ng">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picDefine" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-0E-5Ng">
                                                     <rect key="frame" x="6.3333333333333357" y="4" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Ueh-0E-5Ng" secondAttribute="height" multiplier="1:1" id="oit-Ri-T2P"/>
@@ -57,7 +57,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHV-Cj-dxf" userLabel="Post Details View">
                                                     <rect key="frame" x="112.66666666666667" y="4" width="249.66666666666663" height="100"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="public figures/actors (Category)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mPf-8s-6NE" userLabel="Category Label">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="\(Category)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mPf-8s-6NE" userLabel="Category Label">
                                                             <rect key="frame" x="4.6666666666666714" y="4.6666666666666661" width="241.33333333333331" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="yYM-yi-bzn"/>
@@ -66,7 +66,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm not sure who this is! I know I've seen him in a movie, I'm trying to rememeber the movie! (Description)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRz-Sl-6bg" userLabel="Description Label">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Description)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRz-Sl-6bg" userLabel="Description Label">
                                                             <rect key="frame" x="4.6666666666666714" y="26.666666666666664" width="241.33333333333331" height="24.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="Qj7-PS-0w1"/>
@@ -75,7 +75,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#WhatMovieAreTheyIn #NicelyDressed (#Hashtag)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIY-dE-kaC" userLabel="#Hashtags">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIY-dE-kaC" userLabel="#Hashtags">
                                                             <rect key="frame" x="5" y="55" width="241.66666666666666" height="12.666666666666671"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="12" id="aMa-Ix-1mE"/>
@@ -90,7 +90,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58t-yi-x4l">
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="20"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(999)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loj-ns-BBD">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loj-ns-BBD">
                                                                             <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="40" id="NR4-k4-84H"/>
@@ -153,7 +153,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnI-Mv-CCL">
                                                                     <rect key="frame" x="181.66666666666669" y="0.0" width="60" height="20"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(999)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-qR-C7e">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-qR-C7e">
                                                                             <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="40" id="JXO-hT-zel"/>
@@ -265,9 +265,9 @@
     </scenes>
     <resources>
         <image name="approved1" width="25" height="25"/>
-        <image name="bowie.tesla1" width="300" height="300"/>
         <image name="branch" width="25" height="25"/>
         <image name="exclamation" width="25" height="25"/>
+        <image name="picDefine" width="166" height="166"/>
         <image name="speech" width="25" height="25"/>
         <image name="userFolder.1" width="25" height="25"/>
         <image name="userFolder.2" width="25" height="25"/>
