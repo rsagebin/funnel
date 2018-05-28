@@ -90,4 +90,31 @@ class RevisedPostController {
         }
     }
     
+    func fetchRevisedPostsToApprove(originalPostCreator user: User, completion: @escaping (Bool) -> Void) {
+        let userRecordID = user.ckRecordID
+        
+        let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        
+        ckManager.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+            if let error = error {
+                print("Error fetching posts from CloudKit: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            
+            guard let records = records else {
+                print("Found nil for records fetched from CloudKit.")
+                completion(false)
+                return
+            }
+            
+            let recordsArray = records.compactMap( {RevisedPost(cloudKitRecord: $0) })
+            
+            self.revisedPostsToApprove = recordsArray
+            
+            completion(true)
+        }
+    }
+    
 }
