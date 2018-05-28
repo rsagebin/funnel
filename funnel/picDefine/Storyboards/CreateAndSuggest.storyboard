@@ -132,7 +132,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvo-i7-NC7">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="680"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="662"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaC-H8-gsP" userLabel="CategoryView">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
@@ -182,20 +182,14 @@
                                                     <constraint firstAttribute="width" secondItem="1qq-fs-oln" secondAttribute="height" multiplier="1:1" id="GiB-09-dbe"/>
                                                 </constraints>
                                             </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="752" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="exf-Zg-Y8S">
-                                                <rect key="frame" x="15" y="540" width="345" height="33"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-Lm-5TH">
-                                                <rect key="frame" x="15" y="583" width="345" height="33"/>
+                                                <rect key="frame" x="15" y="555" width="345" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8o-3S-mCH">
-                                                <rect key="frame" x="15" y="636" width="345" height="34"/>
+                                                <rect key="frame" x="15" y="618" width="345" height="34"/>
                                                 <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal">
@@ -209,19 +203,16 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="1qq-fs-oln" firstAttribute="top" secondItem="OaC-H8-gsP" secondAttribute="bottom" id="9vV-lH-BSx"/>
-                                            <constraint firstItem="exf-Zg-Y8S" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" constant="15" id="CFA-3H-UiT"/>
                                             <constraint firstItem="OaC-H8-gsP" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" id="Eyl-o0-jM9"/>
-                                            <constraint firstItem="fZH-Lm-5TH" firstAttribute="top" secondItem="exf-Zg-Y8S" secondAttribute="bottom" constant="10" id="LX5-yp-3tc"/>
+                                            <constraint firstItem="fZH-Lm-5TH" firstAttribute="top" secondItem="1qq-fs-oln" secondAttribute="bottom" constant="20" id="Iez-o3-ytO"/>
                                             <constraint firstItem="1qq-fs-oln" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" id="PKU-pt-tbU"/>
-                                            <constraint firstAttribute="trailing" secondItem="exf-Zg-Y8S" secondAttribute="trailing" constant="15" id="ShZ-1k-VWX"/>
-                                            <constraint firstItem="A8o-3S-mCH" firstAttribute="top" secondItem="fZH-Lm-5TH" secondAttribute="bottom" constant="20" id="UZ3-zU-dVE"/>
+                                            <constraint firstItem="A8o-3S-mCH" firstAttribute="top" secondItem="fZH-Lm-5TH" secondAttribute="bottom" constant="30" id="UZ3-zU-dVE"/>
                                             <constraint firstAttribute="bottom" secondItem="A8o-3S-mCH" secondAttribute="bottom" constant="10" id="VAj-Yy-CcB"/>
                                             <constraint firstAttribute="trailing" secondItem="OaC-H8-gsP" secondAttribute="trailing" id="dWJ-VA-8Jt"/>
                                             <constraint firstAttribute="trailing" secondItem="fZH-Lm-5TH" secondAttribute="trailing" constant="15" id="eOh-9G-e5I"/>
                                             <constraint firstItem="fZH-Lm-5TH" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" constant="15" id="gB4-0G-jbu"/>
                                             <constraint firstAttribute="trailing" secondItem="1qq-fs-oln" secondAttribute="trailing" id="gRX-U9-YIc"/>
                                             <constraint firstItem="A8o-3S-mCH" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" constant="15" id="iUO-FX-nUX"/>
-                                            <constraint firstItem="exf-Zg-Y8S" firstAttribute="top" secondItem="1qq-fs-oln" secondAttribute="bottom" constant="5" id="jEh-zu-3NW"/>
                                             <constraint firstAttribute="trailing" secondItem="A8o-3S-mCH" secondAttribute="trailing" constant="15" id="lRZ-yF-joW"/>
                                             <constraint firstItem="OaC-H8-gsP" firstAttribute="top" secondItem="qvo-i7-NC7" secondAttribute="top" id="pk2-sG-H4Y"/>
                                         </constraints>
@@ -251,7 +242,6 @@
                         <outlet property="mainCategoryLabel" destination="dgI-Cg-h3b" id="ncQ-b8-u8k"/>
                         <outlet property="pickerOne" destination="BCq-ou-fPA" id="pOP-qy-ELe"/>
                         <outlet property="postImageView" destination="1qq-fs-oln" id="tfT-Fd-fhy"/>
-                        <outlet property="tagsTextView" destination="exf-Zg-Y8S" id="9Kk-YY-hvt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLf-7t-dEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
