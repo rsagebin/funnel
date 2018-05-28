@@ -38,6 +38,35 @@ class LoginViewController: UIViewController {
         self.userSignedInView.isHidden = true
         
         fetchUser()
+        addDoneButtonOnKeyboard()
+    }
+    
+    // MARK: - ToolBar
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        doneToolbar.barStyle = UIBarStyle.default
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(LoginViewController.doneButtonAction))
+        done.tintColor = UIColor.black
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        
+        userUsernameTextField.inputAccessoryView = doneToolbar
+        userNameTextField.inputAccessoryView = doneToolbar
+        userEmailAddressTextField.inputAccessoryView = doneToolbar
+        
+    }
+    
+    @objc func doneButtonAction() {
+        
+        userUsernameTextField.resignFirstResponder()
+        userNameTextField.resignFirstResponder()
+        userEmailAddressTextField.resignFirstResponder()
     }
     
     // MARK: - Methods
