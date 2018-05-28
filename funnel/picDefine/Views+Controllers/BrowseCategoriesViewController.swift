@@ -17,9 +17,11 @@ class BrowseCategoriesViewController: UIViewController {
     @IBOutlet weak var mainCategoryLabel: UILabel!
     @IBOutlet weak var categoryView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        backgroundImage.loadGif(asset: "interstellar")
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         leftSwipe.direction = .left
