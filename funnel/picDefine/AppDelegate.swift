@@ -29,10 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.registerForRemoteNotifications()
         return true
-        
-        
-        
     }
+    
+    // ****ADD TO POST CONTROLLER
+//    func subscribeToPushNotifications(completion: @escaping ((CKSubscription?, Error?) -> Void)) {
+//        ckManager.subscribeTo(CloudKitKeys.type, completion: completion)
+//    }
+    //****
     
 //    func applicationDidFinishLaunching(_ application: UIApplication) {
 //
@@ -45,16 +48,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 //        UserController.shared.subscribribeToMessages()
+////        PostController.shared.followingPosts()
 //    }
     
-//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-//        print("Error registering for remote notifications: \(error.localizedDescription)")
-//    }
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Error registering for remote notifications: \(error.localizedDescription)")
+    }
     
 //    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 //        UserController.shared.fetchAllMessages { (_) in
 //        NotificationCenter.default.post(name: self.messageNotification, object: self)
-//
-//    }
 
-}
+    }
+//    }
+//}
