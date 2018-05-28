@@ -282,9 +282,9 @@ class PostController {
     func flag(post: Post, completion: @escaping (Bool, Bool) -> Void) {
         
         // Only increment if user hasn't already flagged the post
-        guard let currentUser = UserController.shared.loggedInUser else { return }
+        guard let currentUserRef = UserController.shared.loggedInUser else { return }
         
-        let reference = CKReference(recordID: currentUser.ckRecordID, action: .none)
+        let reference = CKReference(recordID: currentUserRef.ckRecordID, action: .none)
         
         if post.flaggingUsersRefs.contains(reference) {
             return completion(false, true)
@@ -295,6 +295,7 @@ class PostController {
         if post.numberOfFlags > 2 {
             self.delete(post: post)
         } else {
+            post.flaggingUsersRefs.append(reference)
             ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
                 if let error = error {
                     print("Error saving post after adding flag: \(error)")
@@ -332,6 +333,12 @@ class PostController {
             completion(true)
         }
     }
+    
+
+    func subscribeToPushNotifications(completion: @escaping ((CKSubscription?, Error?) -> Void)) {
+        ckManager.subscribeTo(CloudKitKeys.type, completion: completion)
+    }
+
     
     init() {    
 

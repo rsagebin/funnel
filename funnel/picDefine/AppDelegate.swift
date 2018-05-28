@@ -31,20 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    // ****ADD TO POST CONTROLLER
-//    func subscribeToPushNotifications(completion: @escaping ((CKSubscription?, Error?) -> Void)) {
-//        ckManager.subscribeTo(CloudKitKeys.type, completion: completion)
-//    }
-    //****
-    
-//    func applicationDidFinishLaunching(_ application: UIApplication) {
-//
-//        let navigationBarAppearace = UINavigationBar.appearance()
-//
-//        navigationBarAppearace.tintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
-//
-//    }
-    
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        
+        let navigationBarAppearace = UINavigationBar.appearance()
+        
+        navigationBarAppearace.tintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
+        
+    }
     
 //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 //        UserController.shared.subscribribeToMessages()
