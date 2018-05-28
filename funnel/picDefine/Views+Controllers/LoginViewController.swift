@@ -232,10 +232,13 @@ class LoginViewController: UIViewController {
     }
     
     func checkIfSignedIntoICloud() { // Not working properly
+        startNetworkActivity()
         if FileManager.default.ubiquityIdentityToken != nil {
             print("User signed into iCloud")
+            self.endNetworkActivity()
         } else {
             print("User not signed into iCloud")
+            self.endNetworkActivity()
             let alertController = UIAlertController(title: "Not Signed into iCloud", message: "You need to be signed into iCloud in order to use the app", preferredStyle: .alert)
             let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) in
@@ -254,7 +257,8 @@ class LoginViewController: UIViewController {
 
     func checkIfBanned() {
         // Change back to initial
-
+        
+        startNetworkActivity()
         guard let user = UserController.shared.loggedInUser else { return }
         if user.isBanned == true {
 
@@ -265,14 +269,26 @@ class LoginViewController: UIViewController {
             alertController.addAction(dismissAction)
             present(alertController, animated: true)
         }
+        self.endNetworkActivity()
+    }
+    
+    func startNetworkActivity() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func endNetworkActivity() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
     func fetchUser() {
+        self.startNetworkActivity()
+        
         UserController.shared.fetchCurrentUser { (success) in
             DispatchQueue.main.async {
 
                 // Show Signed In
                 if success {
+                    self.endNetworkActivity()
                     self.showSignedIn()
                     print("User fetched successfully")
 
@@ -284,6 +300,7 @@ class LoginViewController: UIViewController {
                 // Show Sign Up
                 if !success {
                     print("Not able to fetch user")
+                    self.endNetworkActivity()
                     self.setupSignUpView()
 //                    self.checkIfBanned()
                 }
@@ -319,10 +336,13 @@ class LoginViewController: UIViewController {
                 let email = userEmailAddressTextField.text, !email.isEmpty
                 else { return }
             
+            startNetworkActivity()
+            
             UserController.shared.createNewUserWith(username: username, name: name, email: email) { (success) in
                 
                 // Segue to Main
                 if success {
+                    self.endNetworkActivity()
                     self.showSignedIn()
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {

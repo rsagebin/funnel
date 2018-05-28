@@ -11,7 +11,7 @@ import UIKit
 class FollowingTableViewController: UITableViewController {
 
     // MARK: - Properties
-    var sectionTitles: [String] = []
+    var sectionTitles: [String] = ["My Posts", "Posts I'm Following", "My Suggested Posts"]
 //    var refreshControl: UIRefreshControl!
     var userPosts = [Post]()
     var userFollowings = [Post]()
@@ -54,44 +54,16 @@ class FollowingTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         var sectionCount = 0
         
-        let posts = userPosts.count
-        if posts > 0 {
+        if sectionTitles[0] == "My Posts" && userPosts.count > 0 {
             sectionCount += 1
-            sectionTitles.append("My Posts")
-            
-            if sectionTitles == ["My Posts","My Posts"] { // Patch to remove duplicate refactor later
-                sectionTitles.remove(at: 0)
-            }
         }
         
-        let followings = userFollowings.count
-        if followings > 0 {
+        if sectionTitles[1] == "Posts I'm Following" && userFollowings.count > 0 {
             sectionCount += 1
-            sectionTitles.append("Posts I'm Following")
-            
-            if sectionTitles == ["Posts I'm Following","Posts I'm Following"] { // Patch to remove duplicate refactor later
-                sectionTitles.remove(at: 0)
-            }
         }
         
-        let suggestions = userSuggestions.count // Change to 1 from 0 if user has any suggested answers
-        if suggestions > 0 {
+        if sectionTitles[2] == "My Suggested Posts" && userSuggestions.count > 0 {
             sectionCount += 1
-            sectionTitles.append("My Suggested Answers")
-            
-            if sectionTitles == ["My Suggested Answers","My Suggested Answers"] { // Patch to remove duplicate refactor later
-                sectionTitles.remove(at: 0)
-            }
-        }
-        
-        let commentedOn = 0 // Change to 1 if user has any comments // Maybe impliment later on
-        if commentedOn > 0 {
-            sectionCount += 1
-            sectionTitles.append("Posts I have commented on")
-            
-            if sectionTitles == ["Posts I have commented on","Posts I have commented on"] { // Patch to remove duplicate refactor later
-                sectionTitles.remove(at: 0)
-            }
         }
         
         return sectionCount
@@ -156,7 +128,7 @@ class FollowingTableViewController: UITableViewController {
         }
         
         if indexPath.section == 2 {
-            let suggestion = userFollowings[indexPath.row]
+            let suggestion = userSuggestions[indexPath.row]
             cell.userSuggestion = suggestion
         }
         
@@ -176,6 +148,8 @@ class FollowingTableViewController: UITableViewController {
     
     func fetchUserPosts() {
         
+        startNetworkActivity()
+        
         guard let user = UserController.shared.loggedInUser else { return }
         
         PostController.shared.fetchUserPosts(user: user) { (success) in
@@ -183,17 +157,21 @@ class FollowingTableViewController: UITableViewController {
                 
                 if success {
                     self.userPosts = PostController.shared.userPosts
+                    self.endNetworkActivity()
                     self.tableView.reloadData()
                 }
                 
                 if !success {
                     print("Could not fetch user posts")
+                    self.endNetworkActivity()
                 }
             }
         }
     }
     
     func fetchFollowingPosts() {
+        
+        startNetworkActivity()
         
         guard let user = UserController.shared.loggedInUser else { return }
         
@@ -202,17 +180,21 @@ class FollowingTableViewController: UITableViewController {
                 
                 if success {
                     self.userFollowings = PostController.shared.followingPosts
+                    self.endNetworkActivity()
                     self.tableView.reloadData()
                 }
                 
                 if !success {
                     print("Could not fetch following posts")
+                    self.endNetworkActivity()
                 }
             }
         }
     }
     
     func fetchSuggestionPosts() {
+        
+        startNetworkActivity()
         
         guard let user = UserController.shared.loggedInUser else { return }
         
@@ -221,14 +203,24 @@ class FollowingTableViewController: UITableViewController {
                 
                 if success {
                     self.userSuggestions = RevisedPostController.shared.revisedPostsToApprove
+                    self.endNetworkActivity()
                     self.tableView.reloadData()
                 }
                 
                 if !success {
                     print("Could not fetch suggested posts")
+                    self.endNetworkActivity()
                 }
             }
         }
+    }
+    
+    func startNetworkActivity() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func endNetworkActivity() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
 //    func createRefreshControl() {
