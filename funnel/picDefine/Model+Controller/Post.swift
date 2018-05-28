@@ -21,6 +21,7 @@ class Post {
     private static let commentsKey = "comments"
     private static let isAnsweredKey = "isAnswered"
     private static let numberOfFlagsKey = "numberOfFlags"
+    private static let flaggingUsersRefsKey = "flaggingUsersRefs"
     private static let isBannedKey = "isBanned"
     private static let creatorRefKey = "creatorRef"
     private static let followersRefsKey = "followersRefs"
@@ -35,7 +36,9 @@ class Post {
     var tags: [Tag]?
     var comments: [Comment]?
     var isAnswered: Bool
+    
     var numberOfFlags: Int
+    var flaggingUsersRefs: [CKReference]
     var isBanned: Bool
     
     var category1Ref: CKReference?
@@ -56,6 +59,7 @@ class Post {
         record.setValue(imageAsCKAsset, forKey: Post.imageAsCKAssetKey)
         record.setValue(isAnswered, forKey: Post.isAnsweredKey)
         record.setValue(numberOfFlags, forKey: Post.numberOfFlagsKey)
+        record.setValue(flaggingUsersRefs, forKey: Post.flaggingUsersRefsKey)
         record.setValue(isBanned, forKey: Post.isBannedKey)
         record.setValue(categoryAsString, forKey: Post.categoryAsStringKey)
         
@@ -87,6 +91,7 @@ class Post {
         self.category2Ref = category2Ref
         self.category3Ref = category3Ref
         self.numberOfFlags = 0
+        self.flaggingUsersRefs = []
         self.isBanned = false
         self.isAnswered = false
         self.creatorRef = creatorRef
@@ -101,6 +106,7 @@ class Post {
             let imageAsCKAsset = cloudKitRecord[Post.imageAsCKAssetKey] as? CKAsset,
             let isAnswered = cloudKitRecord[Post.isAnsweredKey] as? Bool,
             let numberOfFlags = cloudKitRecord[Post.numberOfFlagsKey] as? Int,
+            let flaggingUsersRefs = cloudKitRecord[Post.flaggingUsersRefsKey] as? [CKReference],
             let isBanned = cloudKitRecord[Post.isBannedKey] as? Bool,
             let creatorRef = cloudKitRecord[Post.creatorRefKey] as? CKReference,
             let categoryAsString = cloudKitRecord[Post.categoryAsStringKey] as? String
@@ -129,6 +135,7 @@ class Post {
         self.image = UIImage(ckAsset: imageAsCKAsset)
         self.isAnswered = isAnswered
         self.numberOfFlags = numberOfFlags
+        self.flaggingUsersRefs = flaggingUsersRefs
         self.isBanned = isBanned
         self.creatorRef = creatorRef
         self.categoryAsString = categoryAsString
