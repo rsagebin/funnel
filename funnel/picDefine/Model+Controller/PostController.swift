@@ -279,16 +279,29 @@ class PostController {
         }
     }
 
-    func flag(post: Post) {
+    func flag(post: Post, completion: @escaping (Bool, Bool) -> Void) {
+        
+        // Only increment if user hasn't already flagged the post
+        guard let currentUser = UserController.shared.loggedInUser else { return }
+        
+        let reference = CKReference(recordID: currentUser.ckRecordID, action: .none)
+        
+        if post.flaggingUsersRefs.contains(reference) {
+            return completion(false, true)
+        }
+        
         post.numberOfFlags += 1
         
-        if post.numberOfFlags > 3 {
+        if post.numberOfFlags > 2 {
             self.delete(post: post)
         } else {
             ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
                 if let error = error {
                     print("Error saving post after adding flag: \(error)")
+                    completion(false, false)
                 }
+                
+                completion(true, false)
             }
         }
     }
