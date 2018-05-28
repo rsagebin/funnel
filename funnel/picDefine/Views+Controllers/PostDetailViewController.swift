@@ -37,25 +37,9 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createButton()
-        postApprovedImage.isHidden = true
-        
         updateViews()
         
-        guard let post = self.post else { return }
-        
-        checkIfUserCreatedPost()
-        
-        CommentController.shared.loadCommentsFor(post: post) { (success) in
-            
-            if success {
-                DispatchQueue.main.async {
-                    
-                    self.comments = CommentController.shared.postComments
-                    self.updateViews()
-                    self.checkIfUserCreatedPost()
-                }
-            }
-        }
+        postApprovedImage.isHidden = true
     }
 
     // MARK: - Other functions
@@ -68,18 +52,8 @@ class PostDetailViewController: UIViewController {
         categoryLabel.text = post.categoryAsString
         postImageView.image = post.image
         postFollowingCountLabel.text = String(post.followersRefs.count)
-//        postSuggestCountLabel.text =
         postCommentCountLabel.text = String(comments)
-    }
-    
-    func checkIfUserCreatedPost() {
-        guard let post = post else { return }
-        guard let user = UserController.shared.loggedInUser?.appleUserRef else { return }
-        let postCreator = CKReference(recordID: post.ckRecordID, action: .none)
-        
-        if user == postCreator {
-            // Not working
-        }
+//        postSuggestCountLabel.text = 
     }
     
     func createButton() {
@@ -107,12 +81,27 @@ class PostDetailViewController: UIViewController {
             
             guard let post = self.post else { return }
             PostController.shared.flag(post: post)
+            self.navigationController?.popViewController(animated: true)
             
         }
         
         let blockUser = UIAlertAction(title: "Block User", style: .destructive) { (_) in
             // block user
             
+            guard let post = self.post else { return }
+            
+            let alert = UIAlertController(title: "Are you sure you want to BLOCK this User?", message: "You won't be able to see posts from this user anymore.", preferredStyle: .alert)
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
+                UserController.shared.block(userRecordID: post.creatorRef.recordID)
+                self.navigationController?.popViewController(animated: true)
+            })
+            
+            alert.addAction(cancel)
+            alert.addAction(yesAction)
+            
+            self.present(alert, animated: true, completion: nil)
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -122,7 +111,6 @@ class PostDetailViewController: UIViewController {
         alert.addAction(cancel)
         
         present(alert, animated: true, completion: nil)
-        
     }
     
     @objc func createDeleteAlert() {
