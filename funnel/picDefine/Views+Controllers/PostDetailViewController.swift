@@ -46,13 +46,14 @@ class PostDetailViewController: UIViewController {
     func updateViews() {
         
         guard let post = post else { return }
+        let suggestions = RevisedPostController.shared.revisedPostsToApprove.count
         let comments = CommentController.shared.postComments.count
         descriptionLabel.text = post.description
         categoryLabel.text = post.categoryAsString
         postImageView.image = post.image
         postFollowingCountLabel.text = String(post.followersRefs.count)
         postCommentCountLabel.text = String(comments)
-//        postSuggestCountLabel.text =
+        postSuggestCountLabel.text = String(suggestions)
     }
     
     func createButton() {

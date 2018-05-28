@@ -28,8 +28,8 @@ class FollowingTableViewCell: UITableViewCell {
     // MARK: - Properties
     var userPost: Post? {
         didSet {
-            
             checkUserRef()
+            let comments = CommentController.shared.postComments.count
             if let post = userPost {
                 self.postSubmittedImage.image = post.image
                 self.postAcceptedSolutionIcon.isHidden = true // Call function when suggestions are there
@@ -37,32 +37,39 @@ class FollowingTableViewCell: UITableViewCell {
                 self.postDescriptionLabel.text = post.description
 //                self.postHashTagsLabel.text =
                 self.postFollowingLabel.text = String(post.followersRefs.count)
-//            self.postSuggestionLabel.text =
-//            self.postCommentsLabel.text =
+            self.postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
+            self.postCommentsLabel.text = String(comments)
             }
-        }
-    }
-    
-    var userSuggestion: Post? {
-        didSet {
-            checkUserRef()
         }
     }
     
     var userFollowing: Post? {
         didSet {
             checkUserRef()
+            let comments = CommentController.shared.postComments.count
             if let following = userFollowing {
-                guard let buttonImage = postFollowingButton.imageView else { return }
                 postSubmittedImage.image = following.image
                 postAcceptedSolutionIcon.isHidden = true // Create check function
                 postCategoryLabel.text = following.categoryAsString
                 postDescriptionLabel.text = following.description
-//                postHashTagsLabel.text =
                 postFollowingLabel.text = String(following.followersRefs.count)
-                buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
-//                postSuggestionLabel.text =
-//                postCommentsLabel.text =
+                postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
+                postCommentsLabel.text = String(comments)
+            }
+        }
+    }
+    
+    var userSuggestion: RevisedPost? {
+        didSet {
+            checkUserRef()
+            let comments = CommentController.shared.postComments.count
+            if let suggestion = userSuggestion {
+                postSubmittedImage.image = suggestion.image
+                postAcceptedSolutionIcon.isHidden = true
+                postCategoryLabel.text = suggestion.categoryAsString
+                postDescriptionLabel.text = suggestion.description
+                postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
+                postCommentsLabel.text = String(comments)
             }
         }
     }
