@@ -12,7 +12,7 @@
         <!--ProfileAndSettings-->
         <scene sceneID="7ub-yl-j6N">
             <objects>
-                <viewController title="ProfileAndSettings" id="OIP-DY-fk0" customClass="ProfileViewController" customModule="funnel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ProfileAndSettings" id="OIP-DY-fk0" customClass="ProfileViewController" customModule="picDefine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MpK-py-pu9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,7 +108,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Trd-Ot-PBs"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="user" id="Uir-9M-6Bw"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile-1" selectedImage="profile-2" id="Uir-9M-6Bw"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="userEmail" destination="4Ff-Cq-3qf" id="t7s-9O-lE9"/>
@@ -124,6 +124,7 @@
     </scenes>
     <resources>
         <image name="bowie.tesla1" width="300" height="300"/>
-        <image name="user" width="25" height="25"/>
+        <image name="profile-1" width="50" height="50"/>
+        <image name="profile-2" width="50" height="50"/>
     </resources>
 </document>
