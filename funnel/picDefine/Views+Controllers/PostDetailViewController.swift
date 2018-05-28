@@ -79,9 +79,9 @@ class PostDetailViewController: UIViewController {
         let flagImage = UIAlertAction(title: "Flag Post", style: .destructive) { (_) in
             // flag post
             
-            guard let post = self.post else { return }
-            PostController.shared.flag(post: post)
-            self.navigationController?.popViewController(animated: true)
+//            guard let post = self.post else { return }
+//            PostController.shared.flag(post: post)
+//            self.navigationController?.popViewController(animated: true)
             
         }
         
