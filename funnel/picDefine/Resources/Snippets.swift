@@ -44,10 +44,24 @@ let firstComment = [HashComment(post: "BulletToothTony", comment: "this is a Vol
 let secondComment = [HashComment(post: "Turkish", comment: "Wow.... just wow."), HashComment(post: "Tommy", comment: "Love that car! #VW")]
 
 
-
+/*
+// MARK: Biometric Authentication
+@IBAction func authenticateButtonTapped(_ sender: Any) {
+    let context: LAContext = LAContext()
+    if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+        context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Login with TouchID?", reply: { (wasSuccessful, error) in
+            if wasSuccessful {
+                print("Success")
+            }
+            else {
+                print("Not logged in")
+            }
+        })
+    }
+}
 
 // MARK: - CK Model Template:
-/*
+
 import CloudKit
 
 private class CloudKitManager {
@@ -177,5 +191,7 @@ class ContactController {
             completion(true)
         }
     }
+ 
+ 
 }
 */
