@@ -115,8 +115,8 @@ class UserController {
         return user
     }
     
-    func block(user: User) {
-        let reference = CKReference(recordID: user.ckRecordID, action: .none)
+    func block(userRecordID: CKRecordID) {
+        let reference = CKReference(recordID: userRecordID, action: .none)
         
         guard let loggedInUser = UserController.shared.loggedInUser else { return }
         
