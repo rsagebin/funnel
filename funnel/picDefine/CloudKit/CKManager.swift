@@ -13,6 +13,8 @@ class CloudKitManager {
     // Access public database
     private let publicDB = CKContainer.default().publicCloudDatabase
     
+    static let shared = CloudKitManager()
+    
     // Fetch from CloudKit
     func fetch(type: String, predicate: NSPredicate, sortDescriptor: NSSortDescriptor?, completion: @escaping ((_ records: [CKRecord]?, _ error: Error?) -> Void)) {
         let query = CKQuery(recordType: type, predicate: predicate)

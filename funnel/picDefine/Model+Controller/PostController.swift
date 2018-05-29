@@ -13,8 +13,6 @@ class PostController {
 
     static let feedFetchCompletedNotificationName = "feedFetchCompleted"
     
-    let ckManager = CloudKitManager()
-    
     static let shared = PostController()
     
     var feedPosts = [Post]()
@@ -72,7 +70,7 @@ class PostController {
         
         self.feedPosts.insert(post, at: 0)
         
-        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (record, error) in
+        CloudKitManager.shared.save(records: [post.ckRecord], perRecordCompletion: nil) { (record, error) in
             if let error = error {
                 print("Error saving post to CloudKit: \(error)")
                 return
@@ -100,7 +98,7 @@ class PostController {
             PostController.shared.followingPosts.remove(at: index)
         }
         
-        ckManager.delete(recordID: post.ckRecordID) { (recordID, error) in
+        CloudKitManager.shared.delete(recordID: post.ckRecordID) { (recordID, error) in
             if let error = error {
                 print("Error deleting record from CloudKit: \(error)")
             }
@@ -116,7 +114,7 @@ class PostController {
 
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 return
@@ -139,7 +137,7 @@ class PostController {
     func fetchPostsFor(category1: Category1, completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(format: "category1Ref == %@", category1.ckRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
-        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts for category 1: \(error)")
                 completion(false)
@@ -160,7 +158,7 @@ class PostController {
     func fetchPostsFor(category2: Category2, completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(format: "category2Ref == %@", category2.ckRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
-        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts for category 2: \(error)")
                 completion(false)
@@ -181,7 +179,7 @@ class PostController {
     func fetchPostsFor(category3: Category3, completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(format: "category3Ref == %@", category3.ckRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
-        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts for category 3: \(error)")
                 completion(false)
@@ -230,7 +228,7 @@ class PostController {
         let reference = CKReference(recordID: user.ckRecordID, action: .none)
         post.followersRefs.append(reference)
         
-        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+        CloudKitManager.shared.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving updated following status to CloudKit: \(error)")
                 return
@@ -242,7 +240,7 @@ class PostController {
         let reference = CKReference(recordID: user.ckRecordID, action: .none)
         guard let index = post.followersRefs.index(of: reference) else { return }
         post.followersRefs.remove(at: index)
-        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+        CloudKitManager.shared.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error remove follower from post: \(error)")
                 return
@@ -258,7 +256,7 @@ class PostController {
         let predicate = NSPredicate(format: "followersRefs CONTAINS %@", userReference)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 completion(false)
@@ -296,7 +294,7 @@ class PostController {
             self.delete(post: post)
         } else {
             post.flaggingUsersRefs.append(reference)
-            ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+            CloudKitManager.shared.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
                 if let error = error {
                     print("Error saving post after adding flag: \(error)")
                     completion(false, false)
@@ -313,7 +311,7 @@ class PostController {
         let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
                 completion(false)
@@ -336,7 +334,7 @@ class PostController {
     
 
     func subscribeToPushNotifications(completion: @escaping ((CKSubscription?, Error?) -> Void)) {
-        ckManager.subscribeTo(CloudKitKeys.type, completion: completion)
+        CloudKitManager.shared.subscribeTo(CloudKitKeys.type, completion: completion)
     }
 
     

@@ -10,7 +10,6 @@ import Foundation
 import CloudKit
 
 class CategoryController {
-    let ckManager = CloudKitManager()
 
     static var shared = CategoryController()
     
@@ -24,7 +23,7 @@ class CategoryController {
     func loadTopLevelCategories(completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(value: true)
         let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        ckManager.fetch(type: Category1.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: Category1.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching top level categories: \(error)")
                 completion(false)
@@ -55,7 +54,7 @@ class CategoryController {
                                           Category1(title: "unknown")
             ]
         
-        ckManager.save(records: topCategories.compactMap( { $0.ckRecord } ), perRecordCompletion: nil) { (_, error) in
+        CloudKitManager.shared.save(records: topCategories.compactMap( { $0.ckRecord } ), perRecordCompletion: nil) { (_, error) in
             if let error = error {
                 print("Error saving top level records to CloudKit: \(error)")
             }
@@ -69,7 +68,7 @@ class CategoryController {
         let category = Category2(title: categoryName, parent: category1)
         let parentRef = CKReference(recordID: category1.ckRecordID, action: .deleteSelf)
         category.parentRef = parentRef
-        ckManager.save(records: [category.ckRecord], perRecordCompletion: nil) { (records, error) in
+        CloudKitManager.shared.save(records: [category.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving new category 2 to CloudKit: \(error)")
                 return
@@ -81,7 +80,7 @@ class CategoryController {
         let category = Category3(title: categoryName, parent: category2)
         let parentRef = CKReference(recordID: category2.ckRecordID, action: .deleteSelf)
         category.parentRef = parentRef
-        ckManager.save(records: [category.ckRecord], perRecordCompletion: nil) { (records, error) in
+        CloudKitManager.shared.save(records: [category.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving new category 3 to CloudKit: \(error)")
                 return
