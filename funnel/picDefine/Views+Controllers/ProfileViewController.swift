@@ -48,13 +48,18 @@ class ProfileViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete Account", style: .destructive, handler: { action in
             UserController.shared.deleteCurrentUser(completion: { (success) in
                 if success {
-                    let vc = LoginViewController()
-                    self.present(vc, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        let vc = LoginViewController()
+                        self.present(vc, animated: true, completion: nil)
+                    }
+
                 } else {
-                    let alert = UIAlertController(title: "Error Deleting Account", message: "There was an error deleting your account.", preferredStyle: .alert)
-                    let okay = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(okay)
-                    self.present(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Error Deleting Account", message: "There was an error deleting your account.", preferredStyle: .alert)
+                        let okay = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(okay)
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
             })
             
