@@ -84,8 +84,10 @@ class BrowseCategoriesViewController: UIViewController {
     // EXPLANATION: reference to the picker's selected category as selected array (not a string)
     var selectedCategory: Category1?
     
+    
     // MARK: - Actions
     @IBAction func searchCategoryTapped(_ sender: Any) {
+        self.pickerOne.reloadAllComponents()
         PostController.shared.fetchPostsFor(category1: selectedCategory!) { (success) in
             if success {
                 DispatchQueue.main.async {
@@ -98,6 +100,8 @@ class BrowseCategoriesViewController: UIViewController {
                 print("Category one fetch failed in the View Controller")
             }
         }
+//                print(PostController.shared.category1Posts.count)
+//                print(PostController.shared.category1Posts[0].description)
     }
     
     // EXPLANATION: Top button "Find Category" will reanimate the "find" cell and drop the TVC below it.
@@ -132,7 +136,7 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
 //        if pickerView == pickerOne {
 //            let labelOne = "\(category[row].title)"
 //            self.mainCategoryLabel.text = "\(category[row].title)"
-//            self.selectedCategory = category[row]
+            self.selectedCategory = category[row]
 //            // EXPLANATION: labelOne is the selected category array object set as a string
 //            return labelOne
 //        }
@@ -150,6 +154,7 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
         //            return labelThree
         //        }
         return category[row].title
+        
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.mainCategoryLabel.text = category[row].title
@@ -207,7 +212,7 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
         let mySB = UIStoryboard(name: "PostDetail", bundle: .main)
         let vc = mySB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let selectedPost = PostController.shared.feedPosts[indexPath.row]
+        let selectedPost = PostController.shared.category1Posts[indexPath.row]
         vc.post = selectedPost
         navigationController?.pushViewController(vc, animated: true)
     }
