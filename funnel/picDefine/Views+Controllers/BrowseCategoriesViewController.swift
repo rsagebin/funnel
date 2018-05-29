@@ -21,6 +21,13 @@ class BrowseCategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.categoryView.isHidden = true
+        // EX: adding animations for the categoryView to appear and dissappear
+//        UIView.animate(withDuration: 1.0, animations: {
+//            self.categoryView.alpha = 0
+//        }) { (true) in
+//            self.categoryView.isHidden = true
+//        }
 //        backgroundImage.loadGif(asset: "interstellar")
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
@@ -84,20 +91,29 @@ class BrowseCategoriesViewController: UIViewController {
     // EXPLANATION: reference to the picker's selected category as selected array (not a string)
     var selectedCategory: Category1?
     
+    
     // MARK: - Actions
     @IBAction func searchCategoryTapped(_ sender: Any) {
+        self.pickerOne.reloadAllComponents()
         PostController.shared.fetchPostsFor(category1: selectedCategory!) { (success) in
             if success {
                 DispatchQueue.main.async {
                     // EXPLANATION: the table view below is reloaded and then the mainLabel(red) appears above while the "Category Find" cell becomes hidden.
                     self.tableView.reloadData()
                     self.categoryView.isHidden = true
+//                    UIView.animate(withDuration: 1.0, animations: {
+//                        self.categoryView.alpha = 0
+//                    }) { (true) in
+//                        self.categoryView.isHidden = true
+//                    }
                     self.mainCategoryLabel.isHidden = false
                 }
             } else {
                 print("Category one fetch failed in the View Controller")
             }
         }
+//                print(PostController.shared.category1Posts.count)
+//                print(PostController.shared.category1Posts[0].description)
     }
     
     // EXPLANATION: Top button "Find Category" will reanimate the "find" cell and drop the TVC below it.
@@ -132,7 +148,7 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
 //        if pickerView == pickerOne {
 //            let labelOne = "\(category[row].title)"
 //            self.mainCategoryLabel.text = "\(category[row].title)"
-//            self.selectedCategory = category[row]
+            self.selectedCategory = category[row]
 //            // EXPLANATION: labelOne is the selected category array object set as a string
 //            return labelOne
 //        }
@@ -150,6 +166,7 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
         //            return labelThree
         //        }
         return category[row].title
+        
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.mainCategoryLabel.text = category[row].title
@@ -158,7 +175,14 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
 }
 
 // EXPLANATION: Extension for the Table View Controller portion of the View Controller.
-extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSource, CommentsDelegate {
+extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSource, CommentsDelegate, SuggestionDelegate {
+    func postSuggestionButtonTapped(post: Post) {
+        let submitAndReviewSB = UIStoryboard(name: "CreateAndSuggest", bundle: .main)
+        let submitAndReviewVC = submitAndReviewSB.instantiateViewController(withIdentifier: "CreateAndSuggestSB") as! CreateAndSuggestViewController
+        submitAndReviewVC.post = post
+        navigationController?.pushViewController(submitAndReviewVC, animated: true)
+    }
+    
     
     @objc func reloadFeedView() {
         DispatchQueue.main.async {
@@ -187,7 +211,7 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
         //        cell.tagsTextView.layer.borderWidth = 1.0
         
         cell.commentsDelegate = self
-        
+        cell.suggestDelegate = self
         return cell
     }
     
@@ -207,7 +231,7 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
         let mySB = UIStoryboard(name: "PostDetail", bundle: .main)
         let vc = mySB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let selectedPost = PostController.shared.feedPosts[indexPath.row]
+        let selectedPost = PostController.shared.category1Posts[indexPath.row]
         vc.post = selectedPost
         navigationController?.pushViewController(vc, animated: true)
     }

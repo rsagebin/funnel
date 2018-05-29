@@ -37,7 +37,6 @@ class DetailViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var frontView: UIView!
     
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -98,31 +97,21 @@ class DetailViewCell: UITableViewCell {
     func updateViews() {
         if let post = post {
             
-            backView.layer.cornerRadius = 5
             frontView.layer.cornerRadius = 3
-            
-            guard let buttonImage = postFollowingButton.imageView else { return }
+            frontView.layer.borderColor = UIColor.lightGray.cgColor
+            frontView.layer.borderWidth = 1
             
             self.postApprovedImage.isHidden = true
             self.categoriesLabel.text = post.categoryAsString
             self.descriptionTextView.text = post.description
             self.postImageView.image = post.image
             self.postFollowingCountLabel.text = String(post.followersRefs.count)
-//            self.postSuggestionCountLabel.text =
-//            self.postCommentsCountLabel.text = String(comments.count)
-            
-//            if postFollowingCountLabel.text == String(0) {
-//                buttonImage.tintColor = UIColor.black
-//            }
             
             if isFollowing == true {
-                buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+                postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
             } else {
-                buttonImage.tintColor = UIColor.black
+                postFollowingButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
             }
         }
     }
-    
-    
-    
 }

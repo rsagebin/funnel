@@ -35,7 +35,9 @@
                                                             <constraint firstAttribute="height" constant="30" id="XKk-AT-bjk"/>
                                                             <constraint firstAttribute="width" constant="140" id="hIC-9z-5hk"/>
                                                         </constraints>
-                                                        <state key="normal" title="Find Category"/>
+                                                        <state key="normal" title="Find Category">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="findCategoryButtonTapped:" destination="ddl-jv-GTw" eventType="touchUpInside" id="cBg-iX-XgH"/>
                                                         </connections>
@@ -46,7 +48,7 @@
                                                             <constraint firstAttribute="width" constant="180" id="xro-Lk-xGm"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
-                                                        <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="textColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -67,7 +69,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="3TM-5C-x1T"/>
                                                 </constraints>
-                                                <state key="normal" title="Search Category"/>
+                                                <state key="normal" title="Search Category">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="searchCategoryTapped:" destination="ddl-jv-GTw" eventType="touchUpInside" id="0uB-Uj-ZAx"/>
                                                 </connections>
