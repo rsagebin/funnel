@@ -60,8 +60,10 @@ class CloudKitManager {
     }
     
     func subscribeTo(_ recordType: String, completion: @escaping ((CKSubscription?, Error?) -> Void)) {
-        let predicate = NSPredicate(value: true)
-        let subscription = CKQuerySubscription(recordType: recordType, predicate: predicate, options: [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
+        guard let user = UserController.shared.loggedInUser else {
+            return }
+        let predicate = NSPredicate(format: "creatorRef == %@", user.ckRecordID)
+        let subscription = CKQuerySubscription(recordType: RevisedPost.typeKey, predicate: predicate, options: [.firesOnRecordCreation])
         
         let notificationInfo = CKNotificationInfo()
         notificationInfo.alertBody = "New Notification"
