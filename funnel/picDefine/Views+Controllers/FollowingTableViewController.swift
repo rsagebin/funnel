@@ -112,10 +112,10 @@ class FollowingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? FollowingTableViewCell else { return UITableViewCell() }
         
-        let userPosts = self.allPosts[indexPath.section][indexPath.row]
-        
-        
-        if allPosts[indexPath.section] ==
+//        let userPosts = self.allPosts[indexPath.section][indexPath.row]
+//
+//
+//        if allPosts[indexPath.section] ==
         
         if indexPath.section == 0 {
             let post = userPosts[indexPath.row]
