@@ -33,7 +33,7 @@ class FollowingTableViewCell: UITableViewCell {
             if let post = userPost {
                 self.postSubmittedImage.image = post.image
                 self.postAcceptedSolutionIcon.isHidden = true // Call function when suggestions are there
-                self.postCategoryLabel.text = post.categoryAsString
+                self.postCategoryLabel.text = post.categoryAsString.uppercased()
                 self.postDescriptionLabel.text = post.description
 //                self.postHashTagsLabel.text =
                 self.postFollowingLabel.text = String(post.followersRefs.count)
@@ -50,7 +50,7 @@ class FollowingTableViewCell: UITableViewCell {
             if let following = userFollowing {
                 postSubmittedImage.image = following.image
                 postAcceptedSolutionIcon.isHidden = true // Create check function
-                postCategoryLabel.text = following.categoryAsString
+                postCategoryLabel.text = following.categoryAsString.uppercased()
                 postDescriptionLabel.text = following.description
                 postFollowingLabel.text = String(following.followersRefs.count)
                 postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
@@ -65,10 +65,11 @@ class FollowingTableViewCell: UITableViewCell {
             if let suggestion = communitySuggestion {
                 postSubmittedImage.image = suggestion.image
                 postAcceptedSolutionIcon.isHidden = true
-                postCategoryLabel.text = suggestion.categoryAsString
+                postCategoryLabel.text = suggestion.categoryAsString.uppercased()
                 postDescriptionLabel.text = suggestion.description
-                postFollowingLabel.isHidden = true
-                postFollowingButton.isHidden = true
+                postFollowingLabel.text = ""
+                postFollowingButton.setImage(nil, for: .normal)
+                postFollowingButton.isEnabled = false
                 postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count)
                 postCommentsLabel.text = String(comments)
             }
@@ -82,10 +83,11 @@ class FollowingTableViewCell: UITableViewCell {
             if let suggestion = userSuggestion {
                 postSubmittedImage.image = suggestion.image
                 postAcceptedSolutionIcon.isHidden = true
-                postCategoryLabel.text = suggestion.categoryAsString
+                postCategoryLabel.text = suggestion.categoryAsString.uppercased()
                 postDescriptionLabel.text = suggestion.description
-                postFollowingLabel.isHidden = true
-                postFollowingButton.isHidden = true
+                postFollowingLabel.text = ""
+                postFollowingButton.setImage(nil, for: .normal)
+                postFollowingButton.isEnabled = false
                 postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsUserCreated.count) // Refactor if possible
                 postCommentsLabel.text = String(comments)
             }

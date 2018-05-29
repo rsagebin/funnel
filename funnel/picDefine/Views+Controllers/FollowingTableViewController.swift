@@ -114,35 +114,20 @@ class FollowingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? FollowingTableViewCell else { return UITableViewCell() }
         
-//        let userPosts = self.allPosts[indexPath.section][indexPath.row]
-//
-//
-//        if allPosts[indexPath.section] ==
-        
-        if indexPath.section == 0 {
-            let post = userPosts[indexPath.row]
-            cell.userPost = post
-            return cell
-        }
-
-        if indexPath.section == 1 {
-            let following = userFollowings[indexPath.row]
-            cell.userFollowing = following
-            return cell
-        }
-
-        if indexPath.section == 2 {
-            let suggestion = communitySuggestions[indexPath.row]
-            cell.communitySuggestion = suggestion
-            return cell
-        }
-
-        if indexPath.section == 3 {
-            let suggestion = userSuggestions[indexPath.row]
-            cell.userSuggestion = suggestion
-            return cell
+        if let post = allPosts[indexPath.section][indexPath.row] as? Post {
+            if post.creatorRef.recordID  == UserController.shared.loggedInUser?.ckRecordID {
+                cell.userPost = post
+            }
+            cell.userFollowing = post
         }
         
+        if let revisedPost = allPosts[indexPath.section][indexPath.row] as? RevisedPost {
+            if revisedPost.ckRecordID == UserController.shared.loggedInUser?.ckRecordID {
+                cell.userSuggestion = revisedPost
+            }
+            cell.communitySuggestion = revisedPost
+        }
+
         return cell
     }
     

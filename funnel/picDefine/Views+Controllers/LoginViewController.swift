@@ -12,14 +12,12 @@ class LoginViewController: UIViewController {
     
     // MARK: - Outlets & View Objects
     let backgroundGIFImageView = UIImageView()
-    let appLogoView = UIView()
     let appClearView = UIView()
+    let appAlphaView = UIView()
     let appLoginView = UIView()
-    let appSignUpView = UIView()
-    let appSignedInView = UIView()
     
-    let appLogoImageView = UIImageView()
     let appNameLabel = UILabel()
+    let activityIndicator = UIActivityIndicatorView()
     
     let accountSignUpLabel = UILabel()
     let userNameTextField = UITextField()
@@ -27,14 +25,11 @@ class LoginViewController: UIViewController {
     let userEmailAddressTextField = UITextField()
     let signUpButton = UIButton()
     
-    let signedInLabel = UILabel()
-    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupInitialView()
         fetchUser()
         addDoneButtonOnKeyboard()
     }
@@ -42,6 +37,8 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        setupInitialView()
+        setupClearView()
         checkIfSignedIntoICloud()
     }
     
@@ -60,175 +57,181 @@ class LoginViewController: UIViewController {
         backgroundGIFImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         
         
-        // Login View
+        // Alpha View
+        view.addSubview(appAlphaView)
+        appAlphaView.backgroundColor = UIColor.white
+        appAlphaView.alpha = 0.75
+        appAlphaView.layer.cornerRadius = 10
+        
+        appAlphaView.translatesAutoresizingMaskIntoConstraints = false
+        appAlphaView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 25).isActive = true
+        appAlphaView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        appAlphaView.heightAnchor.constraint(equalTo: appAlphaView.widthAnchor, multiplier: 1.2).isActive = true
+        appAlphaView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
+    }
+    
+    func setupClearView() {
+        
+        // Clear View
         view.addSubview(appClearView)
-        appClearView.backgroundColor = UIColor.white
-        appClearView.alpha = 0.75
+        appClearView.backgroundColor = UIColor.clear
         appClearView.layer.cornerRadius = 10
         
         appClearView.translatesAutoresizingMaskIntoConstraints = false
-        appClearView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 70).isActive = true
-        appClearView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        appClearView.heightAnchor.constraint(equalTo: appClearView.widthAnchor).isActive = true
-        appClearView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
-        
-        
-        // App Logo View
-        view.addSubview(appLogoView)
-        appLogoView.backgroundColor = UIColor.white
-        appLogoView.alpha = 0.75
-        appLogoView.layer.cornerRadius = 85 // change from hardcode later
-        
-        appLogoView.translatesAutoresizingMaskIntoConstraints = false
-        appLogoView.bottomAnchor.constraint(equalTo: appClearView.topAnchor, constant: -10).isActive = true
-        appLogoView.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
-        appLogoView.heightAnchor.constraint(equalTo: appClearView.heightAnchor, multiplier: 0.6).isActive = true
-        appLogoView.widthAnchor.constraint(equalTo: appLogoView.heightAnchor).isActive = true
-        
-        
-        // App Logo Image
-        appLogoView.addSubview(appLogoImageView)
-        appLogoImageView.image = #imageLiteral(resourceName: "picDefine")
-        
-        appLogoImageView.translatesAutoresizingMaskIntoConstraints = false
-        appLogoImageView.centerYAnchor.constraint(equalTo: appLogoView.centerYAnchor, constant: -5).isActive = true
-        appLogoImageView.centerXAnchor.constraint(equalTo: appLogoView.centerXAnchor).isActive = true
-        appLogoImageView.heightAnchor.constraint(equalTo: appLogoView.heightAnchor, multiplier: 0.5).isActive = true
-        appLogoImageView.widthAnchor.constraint(equalTo: appLogoImageView.heightAnchor, multiplier: 3.75/3).isActive = true
+        appClearView.centerYAnchor.constraint(equalTo: appAlphaView.centerYAnchor).isActive = true
+        appClearView.centerXAnchor.constraint(equalTo: appAlphaView.centerXAnchor).isActive = true
+        appClearView.heightAnchor.constraint(equalTo: appAlphaView.widthAnchor).isActive = true
+        appClearView.widthAnchor.constraint(equalTo: appAlphaView.widthAnchor).isActive = true
         
         
         // App Name
-        appLogoView.addSubview(appNameLabel)
+        appClearView.addSubview(appNameLabel)
         appNameLabel.text = "picDefine"
-        appNameLabel.font = UIFont(name: "arial", size: 26)
+        appNameLabel.font = UIFont(name: "Raleway-Regular", size: 42)
         appNameLabel.textAlignment = .center
         appNameLabel.textColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
         
         appNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        appNameLabel.centerYAnchor.constraint(equalTo: appLogoView.centerYAnchor, constant: 42).isActive = true
-        appNameLabel.centerXAnchor.constraint(equalTo: appLogoView.centerXAnchor).isActive = true
+        appNameLabel.centerYAnchor.constraint(equalTo: appClearView.centerYAnchor, constant: -20).isActive = true
+        appNameLabel.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
         appNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        appNameLabel.widthAnchor.constraint(equalTo: appLogoView.widthAnchor, multiplier: 0.75).isActive = true
+        appNameLabel.widthAnchor.constraint(equalTo: appClearView.widthAnchor, multiplier: 0.75).isActive = true
+        
+        
+        // Activity Indicator
+        appClearView.addSubview(activityIndicator)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.topAnchor.constraint(equalTo: appClearView.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
+        activityIndicator.heightAnchor.constraint(equalTo: activityIndicator.widthAnchor).isActive = true
+        activityIndicator.widthAnchor.constraint(equalTo: appClearView.widthAnchor, multiplier: 0.2).isActive = true
     }
     
-    func setupSignUpView() {
-        appClearView.backgroundColor = UIColor.clear
-        appClearView.alpha = 1
-        
-        // Sign Up View
-        appClearView.addSubview(appSignUpView)
-        appSignUpView.backgroundColor = UIColor.white
-        appSignUpView.alpha = 0.75
-        appSignUpView.layer.cornerRadius = 10
-        
-        appSignUpView.translatesAutoresizingMaskIntoConstraints = false
-        appSignUpView.centerYAnchor.constraint(equalTo: appClearView.centerYAnchor).isActive = true
-        appSignUpView.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
-        appSignUpView.heightAnchor.constraint(equalTo: appClearView.heightAnchor).isActive = true
-        appSignUpView.widthAnchor.constraint(equalTo: appClearView.widthAnchor).isActive = true
+    func showSignUpView() {
+        activityIndicator.stopAnimating()
         
         
         // Sign Up Label
         appClearView.addSubview(accountSignUpLabel)
         accountSignUpLabel.text = "ACCOUNT SIGN UP"
-        accountSignUpLabel.font = UIFont(name: "arial", size: 15)
+        accountSignUpLabel.font = UIFont(name: "Raleway-Regular", size: 15)
         accountSignUpLabel.textAlignment = .center
         accountSignUpLabel.textColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+        accountSignUpLabel.alpha = 0
         
         accountSignUpLabel.translatesAutoresizingMaskIntoConstraints = false
-        accountSignUpLabel.topAnchor.constraint(equalTo: appSignUpView.topAnchor, constant: 15).isActive = true
-        accountSignUpLabel.centerXAnchor.constraint(equalTo: appSignUpView.centerXAnchor).isActive = true
+        accountSignUpLabel.topAnchor.constraint(equalTo: appClearView.topAnchor, constant: 50).isActive = true
+        accountSignUpLabel.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
         accountSignUpLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        accountSignUpLabel.widthAnchor.constraint(equalTo: appSignUpView.widthAnchor).isActive = true
+        accountSignUpLabel.widthAnchor.constraint(equalTo: appClearView.widthAnchor).isActive = true
         
         
         // Name Text Field
         appClearView.addSubview(userNameTextField)
         userNameTextField.placeholder = "Name"
-        userNameTextField.font = UIFont(name: "arial", size: 14)
+        userNameTextField.font = UIFont(name: "Raleway-Regular", size: 14)
         userNameTextField.backgroundColor = UIColor.white
         userNameTextField.borderStyle = .roundedRect
+        userNameTextField.alpha = 0
+        userNameTextField.isEnabled = false
         
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        userNameTextField.topAnchor.constraint(equalTo: accountSignUpLabel.bottomAnchor, constant: 15).isActive = true
-        userNameTextField.centerXAnchor.constraint(equalTo: appSignUpView.centerXAnchor).isActive = true
+        userNameTextField.topAnchor.constraint(equalTo: accountSignUpLabel.bottomAnchor, constant: 5).isActive = true
+        userNameTextField.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
         userNameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        userNameTextField.widthAnchor.constraint(equalTo: appSignUpView.widthAnchor, multiplier: 0.8).isActive = true
+        userNameTextField.widthAnchor.constraint(equalTo: appClearView.widthAnchor, multiplier: 0.8).isActive = true
         
         
         // Username TextField
         appClearView.addSubview(userUsernameTextField)
         userUsernameTextField.placeholder = "Username"
         userUsernameTextField.backgroundColor = UIColor.white
-        userUsernameTextField.font = UIFont(name: "arial", size: 14)
+        userUsernameTextField.font = UIFont(name: "Raleway-Regular", size: 14)
         userUsernameTextField.borderStyle = .roundedRect
+        userUsernameTextField.alpha = 0
+        userUsernameTextField.isEnabled = false
         
         userUsernameTextField.translatesAutoresizingMaskIntoConstraints = false
-        userUsernameTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 15).isActive = true
-        userUsernameTextField.centerXAnchor.constraint(equalTo: appSignUpView.centerXAnchor).isActive = true
+        userUsernameTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 10).isActive = true
+        userUsernameTextField.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
         userUsernameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        userUsernameTextField.widthAnchor.constraint(equalTo: appSignUpView.widthAnchor, multiplier: 0.8).isActive = true
+        userUsernameTextField.widthAnchor.constraint(equalTo: appClearView.widthAnchor, multiplier: 0.8).isActive = true
         
         
         // Email Address Text Field
         appClearView.addSubview(userEmailAddressTextField)
         userEmailAddressTextField.placeholder = "Email Address"
-        userEmailAddressTextField.font = UIFont(name: "arial", size: 14)
+        userEmailAddressTextField.font = UIFont(name: "Raleway-Regular", size: 14)
         userEmailAddressTextField.borderStyle = .roundedRect
+        userEmailAddressTextField.alpha = 0
+        userEmailAddressTextField.isEnabled = false
         
         userEmailAddressTextField.translatesAutoresizingMaskIntoConstraints = false
-        userEmailAddressTextField.topAnchor.constraint(equalTo: userUsernameTextField.bottomAnchor, constant: 15).isActive = true
-        userEmailAddressTextField.centerXAnchor.constraint(equalTo: appSignUpView.centerXAnchor).isActive = true
+        userEmailAddressTextField.topAnchor.constraint(equalTo: userUsernameTextField.bottomAnchor, constant: 10).isActive = true
+        userEmailAddressTextField.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
         userEmailAddressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        userEmailAddressTextField.widthAnchor.constraint(equalTo: appSignUpView.widthAnchor, multiplier: 0.8).isActive = true
+        userEmailAddressTextField.widthAnchor.constraint(equalTo: appClearView.widthAnchor, multiplier: 0.8).isActive = true
         
         
         // Sign Up Button
         appClearView.addSubview(signUpButton)
         signUpButton.setTitle("Register", for: .normal)
-        signUpButton.titleLabel?.font = UIFont(name: "arial", size: 15)
+        signUpButton.titleLabel?.font = UIFont(name: "Raleway-Regular", size: 15)
         signUpButton.setTitleColor(UIColor.white, for: .normal)
         signUpButton.backgroundColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
         signUpButton.layer.cornerRadius = 5
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
+        signUpButton.alpha = 0
+        signUpButton.isEnabled = false
         
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
         signUpButton.topAnchor.constraint(equalTo: userEmailAddressTextField.bottomAnchor, constant: 15).isActive = true
-        signUpButton.centerXAnchor.constraint(equalTo: appSignUpView.centerXAnchor).isActive = true
+        signUpButton.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
         signUpButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        signUpButton.widthAnchor.constraint(equalTo: appSignUpView.widthAnchor, multiplier: 0.8).isActive = true
+        signUpButton.widthAnchor.constraint(equalTo: appClearView.widthAnchor, multiplier: 0.8).isActive = true
+        
+        animateSignUp()
     }
     
     func showSignedIn() {
         
-        appClearView.backgroundColor = UIColor.clear
-        appClearView.alpha = 1
+        // App Name
+        appClearView.addSubview(appNameLabel)
+        appNameLabel.text = "picDefine"
+        appNameLabel.font = UIFont(name: "Raleway-Regular", size: 42)
+        appNameLabel.textAlignment = .center
+        appNameLabel.textColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
         
-        // Signed In View
-        appClearView.addSubview(appSignedInView)
-        appSignedInView.backgroundColor = UIColor.white
-        appSignedInView.alpha = 0.75
-        appSignedInView.layer.cornerRadius = 10
-        
-        appSignedInView.translatesAutoresizingMaskIntoConstraints = false
-        appSignedInView.centerYAnchor.constraint(equalTo: appClearView.centerYAnchor).isActive = true
-        appSignedInView.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
-        appSignedInView.heightAnchor.constraint(equalTo: appClearView.heightAnchor).isActive = true
-        appSignedInView.widthAnchor.constraint(equalTo: appClearView.widthAnchor).isActive = true
+        appNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        appNameLabel.centerYAnchor.constraint(equalTo: appClearView.centerYAnchor).isActive = true
+        appNameLabel.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
+        appNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        appNameLabel.widthAnchor.constraint(equalTo: appClearView.widthAnchor, multiplier: 0.75).isActive = true
         
         
-        // Signed In Label
-        appSignedInView.addSubview(signedInLabel)
-        signedInLabel.text = "Signed in"
-        signedInLabel.font = UIFont(name: "arial", size: 20)
-        signedInLabel.textColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
-        signedInLabel.textAlignment = .center
-        
-        signedInLabel.translatesAutoresizingMaskIntoConstraints = false
-        signedInLabel.centerYAnchor.constraint(equalTo: appSignedInView.centerYAnchor).isActive = true
-        signedInLabel.centerXAnchor.constraint(equalTo: appSignedInView.centerXAnchor).isActive = true
-        signedInLabel.heightAnchor.constraint(equalTo: appSignedInView.heightAnchor).isActive = true
-        signedInLabel.widthAnchor.constraint(equalTo: appSignedInView.widthAnchor).isActive = true
+    }
+    
+    func animateSignUp() {
+        activityIndicator.alpha = 0
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveLinear], animations: {
+            let y = (self.appNameLabel.frame.height - (self.appNameLabel.frame.height) * 2.9)
+            self.appNameLabel.transform = CGAffineTransform(translationX: 0, y: y)
+        }) { (success) in
+            UIView.animate(withDuration: 1, animations: {
+                self.accountSignUpLabel.alpha = 1
+                self.userNameTextField.alpha = 1
+                self.userNameTextField.isEnabled = true
+                self.userUsernameTextField.alpha = 1
+                self.userUsernameTextField.isEnabled = true
+                self.userEmailAddressTextField.alpha = 1
+                self.userEmailAddressTextField.isEnabled = true
+                self.signUpButton.alpha = 1
+                self.signUpButton.isEnabled = true
+            })
+        }
     }
     
     func checkIfSignedIntoICloud() { // Not working properly
@@ -284,7 +287,15 @@ class LoginViewController: UIViewController {
         self.startNetworkActivity()
         
         UserController.shared.fetchCurrentUser { (success) in
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                
+                // Show Sign Up
+                if !success {
+                    print("Not able to fetch user")
+                    self.endNetworkActivity()
+                    self.showSignUpView()
+//                    self.checkIfBanned()
+                }
 
                 // Show Signed In
                 if success {
@@ -296,15 +307,7 @@ class LoginViewController: UIViewController {
                         self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
                     })
                 }
-
-                // Show Sign Up
-                if !success {
-                    print("Not able to fetch user")
-                    self.endNetworkActivity()
-                    self.setupSignUpView()
-//                    self.checkIfBanned()
-                }
-            }
+            })
         }
     }
     
@@ -340,19 +343,45 @@ class LoginViewController: UIViewController {
             
             UserController.shared.createNewUserWith(username: username, name: name, email: email) { (success) in
                 
-                // Segue to Main
+                // Present Alert Controller
+                if !success {
+//                    self.couldNotFetchUser()
+    // Remove later
+                    DispatchQueue.main.async {
+                        self.endNetworkActivity()
+                    }
+                }
+                    
+                    // Show Signed In
                 if success {
                     self.endNetworkActivity()
+                    
+                    UIView.animate(withDuration: 1, animations: {
+                        
+                        self.accountSignUpLabel.alpha = 0
+                        self.userNameTextField.alpha = 0
+                        self.userUsernameTextField.alpha = 0
+                        self.userEmailAddressTextField.alpha = 0
+                        self.signUpButton.alpha = 0
+                        
+                    }, completion: { (_) in
+                        
+                        self.signUpButton.removeFromSuperview()
+                        self.userEmailAddressTextField.removeFromSuperview()
+                        self.userUsernameTextField.removeFromSuperview()
+                        self.userNameTextField.removeFromSuperview()
+                        self.accountSignUpLabel.removeFromSuperview()
+                        
+                        UIView.animate(withDuration: 1, animations: {
+                            self.appNameLabel.transform = CGAffineTransform(translationX: 0, y: 10)
+                        })
+                    })
+                    self.appNameLabel.removeFromSuperview()
                     self.showSignedIn()
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.performSegue(withIdentifier: "fromLoginVCToMainVC", sender: nil)
                     })
-                }
-                
-                // Present Alert Controller
-                if !success {
-                    self.couldNotFetchUser()
                 }
             }
         }
