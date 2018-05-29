@@ -14,6 +14,7 @@ class PostDetailViewController: UIViewController {
     // MARK: - Properties
     
     var post: Post?
+    var revisedPost: RevisedPost?
     var isFollowing = false
     var comments = [Comment]()
     
@@ -35,25 +36,39 @@ class PostDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         createButton()
-        updateViews()
+        updatePostView()
         
         postApprovedImage.isHidden = true
     }
 
     // MARK: - Other functions
     
-    func updateViews() {
-        
+    func updatePostView() {
         guard let post = post else { return }
-        let suggestions = RevisedPostController.shared.revisedPostsToApprove.count
-        let comments = CommentController.shared.postComments.count
+//        let suggestions = RevisedPostController.shared.revisedPostsUserCreated.count
+        let commentCount = CommentController.shared.postComments.count
+        
         descriptionLabel.text = post.description
         categoryLabel.text = post.categoryAsString
         postImageView.image = post.image
         postFollowingCountLabel.text = String(post.followersRefs.count)
-        postCommentCountLabel.text = String(comments)
-        postSuggestCountLabel.text = String(suggestions)
+        postCommentCountLabel.text = String(commentCount)
+//        postSuggestCountLabel.text = String(suggestions)
+    }
+    
+    func updateRevisedPostView() {
+        guard let revisedPost = revisedPost else { return }
+        let userSuggestionCount = RevisedPostController.shared.revisedPostsUserCreated.count
+        let communitySuggestionCount = RevisedPostController.shared.revisedPostsToApprove.count
+        let commentCount = CommentController.shared.postComments.count
+        
+        descriptionLabel.text = revisedPost.description
+        categoryLabel.text = revisedPost.categoryAsString
+        postImageView.image = revisedPost.image
+        postSuggestCountLabel.text = String(userSuggestionCount + communitySuggestionCount) // What does this need to be? Check later
+        postCommentCountLabel.text = String(commentCount)
     }
     
     func createButton() {
@@ -168,7 +183,7 @@ class PostDetailViewController: UIViewController {
             buttonImage.tintColor = UIColor.black
             PostController.shared.removeFollowerFromPost(user: user, post: post)
         }
-        updateViews()
+        updatePostView()
     }
     
     @IBAction func branchPostButtonTapped(_ sender: Any) {

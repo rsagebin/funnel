@@ -54,10 +54,10 @@ class LoginViewController: UIViewController {
         backgroundGIFImageView.loadGif(asset: "raining1")
         
         backgroundGIFImageView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundGIFImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        backgroundGIFImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         backgroundGIFImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        backgroundGIFImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        backgroundGIFImageView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor).isActive = true
+        backgroundGIFImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundGIFImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         
         
         // Login View

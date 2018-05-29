@@ -60,19 +60,19 @@ class FollowingTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         var sectionCount = 0
         
-        if sectionTitles[0] == "My Posts" && userPosts.count > 0 {
+        if userPosts.count > 0 {
             sectionCount += 1
         }
         
-        if sectionTitles[1] == "Posts I'm Following" && userFollowings.count > 0 {
+        if userFollowings.count > 0 {
             sectionCount += 1
         }
         
-        if sectionTitles[2] == "Posts to Revise" && communitySuggestions.count > 0 {
+        if communitySuggestions.count > 0 {
             sectionCount += 1
         }
         
-        if sectionTitles[3] == "My Suggested Posts" && userSuggestions.count > 0 {
+        if userSuggestions.count > 0 {
             sectionCount += 1
         }
         
@@ -105,51 +105,36 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if section == 0 { // User posts
-            let posts = userPosts.count
-            return posts
-        }
-
-        if section == 1 { // User followings
-            let followings = userFollowings.count
-            return followings
-        }
-        
-        if section == 2 { // Community submissions
-            let suggestions = communitySuggestions.count
-            return suggestions
-        }
-        
-        if section == 3 { // User submissions
-            let suggestions = userSuggestions.count
-            return suggestions
-        }
-        
-        return 0
+        let rows = allPosts[section].count
+        return rows
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? FollowingTableViewCell else { return UITableViewCell() }
+        
+        let userPosts = self.allPosts[indexPath.section][indexPath.row]
+        
+        
+        if allPosts[indexPath.section] ==
         
         if indexPath.section == 0 {
             let post = userPosts[indexPath.row]
             cell.userPost = post
             return cell
         }
-        
+
         if indexPath.section == 1 {
             let following = userFollowings[indexPath.row]
             cell.userFollowing = following
             return cell
         }
-        
+
         if indexPath.section == 2 {
             let suggestion = communitySuggestions[indexPath.row]
             cell.communitySuggestion = suggestion
             return cell
         }
-        
+
         if indexPath.section == 3 {
             let suggestion = userSuggestions[indexPath.row]
             cell.userSuggestion = suggestion
@@ -161,19 +146,25 @@ class FollowingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let postDetailSB = UIStoryboard(name: "PostDetail", bundle: .main)
-        let currentVC = postDetailSB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         
         let selectedPost = self.allPosts[indexPath.section][indexPath.row]
+        
         if let selectedPost = selectedPost as? Post {
-            currentVC.post = selectedPost
+            
+            let postDetailSB = UIStoryboard(name: "PostDetail", bundle: .main)
+            let postDetailVC = postDetailSB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
+            postDetailVC.post = selectedPost
+            navigationController?.pushViewController(postDetailVC, animated: true)
         }
         
         if let selectedPost = selectedPost as? RevisedPost {
-//            currentVC.revisedPost = selectedPost
+            
+            let createAndSuggestSB = UIStoryboard(name: "CreateAndSuggest", bundle: .main)
+            let createAndSuggestVC = createAndSuggestSB.instantiateViewController(withIdentifier: "CreateAndSuggestSB") as! CreateAndSuggestViewController
+            createAndSuggestVC.revisedPost = selectedPost
+            navigationController?.pushViewController(createAndSuggestVC, animated: true)
         }
-        navigationController?.pushViewController(currentVC, animated: true)
     }
     
     func fetchUserPosts() {
