@@ -25,7 +25,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="0HK-pg-fVU">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-image" translatesAutoresizingMaskIntoConstraints="NO" id="0HK-pg-fVU">
                                             <rect key="frame" x="26" y="18" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="ndh-QW-zQY"/>
@@ -75,6 +75,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="user" width="25" height="25"/>
+        <image name="user-image" width="256" height="256"/>
     </resources>
 </document>
