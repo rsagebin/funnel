@@ -12,7 +12,9 @@ import CloudKit
 class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     // MARK: - Properties
-    var picker = UIImagePickerController()
+    lazy var picker: UIImagePickerController = {
+        return UIImagePickerController()
+    }()
     
     var post: Post?
     
@@ -57,7 +59,9 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (_) in
             RevisedPostController.shared.acceptRevisedPost(revisedPost: revisedPost, for: post) { (success) in
                 if success {
-                    self.navigationController?.popViewController(animated: true)
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         })
@@ -75,7 +79,9 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (_) in
             RevisedPostController.shared.declineRevisedPost(revisedPost: revisedPost, completion: { (success) in
                 if success {
-                    self.navigationController?.popViewController(animated: true)
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             })
         })
@@ -95,7 +101,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         } else {
             PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: "")
         }
-        
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -104,6 +109,9 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        postImageView.layer.borderColor = UIColor.lightGray.cgColor
+        postImageView.layer.borderWidth = 0.5
+        
         descriptionTextView.delegate = self
         descriptionTextView.text = "Add Description..."
         descriptionTextView.textColor = UIColor.lightGray
@@ -111,7 +119,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         self.acceptButton.isHidden = true
         self.declineButton.isHidden = true
         
-        picker.delegate = self
+//        picker.delegate = self
         
         if CategoryController.shared.topCategories.isEmpty {
             CategoryController.shared.loadTopLevelCategories { (success) in
@@ -235,14 +243,16 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
             self.createOrSuggestOutlet.isHidden = true
             self.acceptButton.isHidden = false
             self.declineButton.isHidden = false
+            
+            RevisedPostController.shared.fetchPostForRevisedPost(revisedPost: revisedPost!) { (post) in
+                self.post = post
+                print("Post description from revisedPost:",post?.description)
+            }
         }
         
         
-        guard let revisedPost = revisedPost else { return }
-        RevisedPostController.shared.fetchPostForRevisedPost(revisedPost: revisedPost) { (post) in
-            self.post = post
-            print("Post description from revisedPost:",post?.description)
-        }
+//        guard let revisedPost = revisedPost else { return }
+    
     }
     
     func setButtonTitle() {
@@ -271,6 +281,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     }
     
     @objc func showCameraOrLibrary() {
+        
         showActionSheet()
     }
     
@@ -298,6 +309,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { (_) in
+            self.picker.delegate = self
             // show camera
             
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -325,6 +337,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         }
         
         let goToLibrary = UIAlertAction(title: "Photo Library", style: .default) { (_) in
+            self.picker.delegate = self
             // take to library
 
             self.picker.allowsEditing = true
@@ -337,6 +350,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         actionSheet.addAction(goToLibrary)
         
         present(actionSheet, animated: true, completion: nil)
+        
+        // FIXME: - put picker on background thread
     }
     
     // MARK: - UIImagePickerDelegate functions
