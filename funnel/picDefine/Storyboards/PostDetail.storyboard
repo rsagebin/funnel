@@ -57,7 +57,7 @@
                                                                     <constraint firstAttribute="height" constant="30" id="8Y5-Sb-ucH"/>
                                                                     <constraint firstAttribute="width" constant="30" id="F8I-Cc-3uU"/>
                                                                 </constraints>
-                                                                <state key="normal" image="notification-100"/>
+                                                                <state key="normal" image="star"/>
                                                                 <connections>
                                                                     <action selector="postFollowingButtonTapped:" destination="Hji-QH-X2h" eventType="touchUpInside" id="tRD-0d-PpJ"/>
                                                                 </connections>
@@ -82,7 +82,7 @@
                                                                     <constraint firstAttribute="height" constant="30" id="6fM-e4-mpn"/>
                                                                     <constraint firstAttribute="width" constant="30" id="axN-9E-MIU"/>
                                                                 </constraints>
-                                                                <state key="normal" image="merge-git-100"/>
+                                                                <state key="normal" image="light-on-500"/>
                                                                 <connections>
                                                                     <action selector="branchPostButtonTapped:" destination="Hji-QH-X2h" eventType="touchUpInside" id="78g-zD-50B"/>
                                                                 </connections>
@@ -107,7 +107,7 @@
                                                                     <constraint firstAttribute="width" constant="30" id="FHs-2F-Dac"/>
                                                                     <constraint firstAttribute="height" constant="30" id="dAV-L0-yXN"/>
                                                                 </constraints>
-                                                                <state key="normal" image="topic-100"/>
+                                                                <state key="normal" image="icons8-topic-100"/>
                                                                 <connections>
                                                                     <action selector="commentsButtonTapped:" destination="Hji-QH-X2h" eventType="touchUpInside" id="I72-nI-czK"/>
                                                                 </connections>
@@ -189,9 +189,9 @@
     </scenes>
     <resources>
         <image name="approved1" width="25" height="25"/>
-        <image name="merge-git-100" width="16" height="20"/>
-        <image name="notification-100" width="19" height="22"/>
-        <image name="topic-100" width="20" height="20"/>
+        <image name="icons8-topic-100" width="18" height="17"/>
+        <image name="light-on-500" width="18" height="19"/>
+        <image name="star" width="19" height="19"/>
     </resources>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

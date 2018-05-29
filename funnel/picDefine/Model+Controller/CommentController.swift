@@ -14,8 +14,6 @@ class CommentController {
     
     var postComments: [Comment] = []
     
-    let ckManager = CloudKitManager()
-    
     static let shared = CommentController()
     
     func addCommentTo(post: Post, text: String, completion: @escaping (Bool) -> Void) {
@@ -27,7 +25,7 @@ class CommentController {
         
         let comment = Comment(post: post, text: text, user: user, postReference: postReference, userReference: userReference)
         
-        ckManager.save(records: [comment.ckRecord], perRecordCompletion: nil) { (_, error) in
+        CloudKitManager.shared.save(records: [comment.ckRecord], perRecordCompletion: nil) { (_, error) in
             if let error = error {
                 print("Error saving comment to CloudKit: \(error)")
                 completion(false)
@@ -45,7 +43,7 @@ class CommentController {
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
         
-        ckManager.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error loading comments for post: \(error)")
                 completion(false)
@@ -63,7 +61,7 @@ class CommentController {
         
         let predicate = NSPredicate(format: "recordID == %@", comment.userReference)
         
-        ckManager.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+        CloudKitManager.shared.fetch(type: User.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error fetching user for comment:\(error)")
                 completion(nil)

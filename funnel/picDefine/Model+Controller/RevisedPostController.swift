@@ -11,8 +11,6 @@ import CloudKit
 
 class RevisedPostController {
     
-    let ckManager = CloudKitManager()
-    
     static let shared  = RevisedPostController()
     
     var revisedPostsToApprove: [RevisedPost] = []
@@ -51,7 +49,7 @@ class RevisedPostController {
         
         revisedPost.categoryAsString = categoryAsString
         
-        ckManager.save(records: [revisedPost.ckRecord], perRecordCompletion: nil) { (records, error) in
+        CloudKitManager.shared.save(records: [revisedPost.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving new revised post to CloudKit: \(error)")
             }
@@ -70,7 +68,7 @@ class RevisedPostController {
             RevisedPostController.shared.revisedPostsUserCreated.remove(at: index)
         }
         
-        ckManager.delete(recordID: revisedPost.ckRecordID) { (recordID, error) in
+        CloudKitManager.shared.delete(recordID: revisedPost.ckRecordID) { (recordID, error) in
             if let error = error {
                 print("Error deleting revised post: \(error)")
                 completion(false)
@@ -86,7 +84,7 @@ class RevisedPostController {
         post.category1Ref = revisedPost.category1Ref
         post.isAnswered = true
         
-        ckManager.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
+        CloudKitManager.shared.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving revised post to CloudKit: \(error)")
                 completion(false)
@@ -97,9 +95,10 @@ class RevisedPostController {
                 if !success {
                     print("Error deleting revised post after being accepted.")
                 }
+                
+                completion(true)
             })
             
-            completion(true)
         }
     }
     
@@ -110,7 +109,7 @@ class RevisedPostController {
     func fetchNumberOfSuggestionsFor(post: Post, completion: @escaping (Int) -> Void) {
         var suggestionsArray: [RevisedPost] = []
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
-        ckManager.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+        CloudKitManager.shared.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error fetching count of suggestings for post: \(error)")
                 completion(0)
@@ -132,8 +131,8 @@ class RevisedPostController {
     }
     
     func fetchPostForRevisedPost(revisedPost: RevisedPost, completion: @escaping (Post?) -> Void) {
-        let predicate = NSPredicate(format: "recordID", revisedPost.postReference)
-        ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+        let predicate = NSPredicate(format: "recordID == %@", revisedPost.postReference)
+        CloudKitManager.shared.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error fetching post for revised post: \(error)")
                 completion(nil)
@@ -154,7 +153,7 @@ class RevisedPostController {
         let predicate = NSPredicate(format: "creatorRef == %@", userRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching revised posts from CloudKit: \(error.localizedDescription)")
                 completion(false)
@@ -181,7 +180,7 @@ class RevisedPostController {
         let predicate = NSPredicate(format: "revisedPostCreatorRef == %@", userRecordID)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         
-        ckManager.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+        CloudKitManager.shared.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching revised posts from CloudKit: \(error.localizedDescription)")
                 completion(false)
