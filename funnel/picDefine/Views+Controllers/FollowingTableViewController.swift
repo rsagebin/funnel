@@ -169,6 +169,14 @@ class FollowingTableViewController: UITableViewController {
             createAndSuggestVC.revisedPost = selectedPost
             navigationController?.pushViewController(createAndSuggestVC, animated: true)
         }
+        
+        if let selectedPost = selectedPost as? RevisedPost, selectedPost.creatorRef.recordID != user.ckRecordID {
+            
+            let postDetailSB = UIStoryboard(name: "PostDetail", bundle: .main)
+            let postDetailVC = postDetailSB.instantiateViewController(withIdentifier: "PostDetailSB") as! PostDetailViewController
+            postDetailVC.revisedPost = selectedPost
+            navigationController?.pushViewController(postDetailVC, animated: true)
+        }
     }
     
     func fetchUserPosts() {
