@@ -39,6 +39,8 @@ class FollowingTableViewController: UITableViewController {
             default: print("Unknown Device Height \(#function)")
             }
         }
+        
+//        tableView.contentInset = UIEdgeInsetsMake(0, 10, 0, -10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,6 +150,8 @@ class FollowingTableViewController: UITableViewController {
         
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         
+        guard let user = UserController.shared.loggedInUser else { return }
+        
         let selectedPost = self.allPosts[indexPath.section][indexPath.row]
         
         if let selectedPost = selectedPost as? Post {
@@ -158,7 +162,7 @@ class FollowingTableViewController: UITableViewController {
             navigationController?.pushViewController(postDetailVC, animated: true)
         }
         
-        if let selectedPost = selectedPost as? RevisedPost {
+        if let selectedPost = selectedPost as? RevisedPost, selectedPost.creatorRef.recordID == user.ckRecordID {
             
             let createAndSuggestSB = UIStoryboard(name: "CreateAndSuggest", bundle: .main)
             let createAndSuggestVC = createAndSuggestSB.instantiateViewController(withIdentifier: "CreateAndSuggestSB") as! CreateAndSuggestViewController
