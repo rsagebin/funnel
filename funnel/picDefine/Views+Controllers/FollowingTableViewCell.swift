@@ -145,4 +145,13 @@ class FollowingTableViewCell: UITableViewCell {
 //            }
 //        }
     }
+    
+    override func layoutSubviews() {
+        postDescriptionLabel.sizeToFit()
+        
+//        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
+//        self.contentView.layer.borderWidth = 1
+//        self.contentView.layer.cornerRadius = 4
+    }
+    
 }
