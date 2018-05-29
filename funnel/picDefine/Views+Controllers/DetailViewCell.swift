@@ -59,9 +59,11 @@ class DetailViewCell: UITableViewCell {
         isFollowing = !isFollowing
         
         if isFollowing == true {
+            postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
             PostController.shared.addFollowerToPost(user: user, post: post)
 
         } else if isFollowing == false {
+            postFollowingButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
             PostController.shared.removeFollowerFromPost(user: user, post: post)
         }
         updateViews()
@@ -106,12 +108,6 @@ class DetailViewCell: UITableViewCell {
             self.descriptionTextView.text = post.description
             self.postImageView.image = post.image
             self.postFollowingCountLabel.text = String(post.followersRefs.count)
-            
-            if isFollowing == true {
-                postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
-            } else {
-                postFollowingButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
-            }
         }
     }
 }

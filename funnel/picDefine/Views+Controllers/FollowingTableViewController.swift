@@ -12,7 +12,7 @@ class FollowingTableViewController: UITableViewController {
 
     // MARK: - Properties
     var sectionTitles: [String] = ["My Posts", "Posts I'm Following", "Posts to Revise", "My Suggested Posts"]
-//    var refreshControl: UIRefreshControl!
+    var theRefreshControl: UIRefreshControl!
     var userPosts = [Post]()
     var userFollowings = [Post]()
     var communitySuggestions = [RevisedPost]()
@@ -28,7 +28,7 @@ class FollowingTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Following" // Isn't reflecting on the bar
-//        createRefreshControl()
+        createRefreshControl()
         
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
@@ -263,16 +263,20 @@ class FollowingTableViewController: UITableViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
-//    func createRefreshControl() {
-//        refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
-//        tableView.addSubview(refreshControl)
-//    }
-//    
-//    @objc func didPullForRefresh() {
-//        self.fetchUserPosts()
-//        self.fetchFollowingPosts()
-//        self.fetchSuggestionPosts()
-//        refreshControl.endRefreshing()
-//    }
+    @objc func didPullForRefresh() {
+        
+        fetchUserPosts()
+        fetchFollowingPosts()
+        fetchUserSuggestionPosts()
+        fetchSuggestionsToApprove()
+        tableView.reloadData()
+        theRefreshControl.endRefreshing()
+    }
+    
+    func createRefreshControl() {
+        
+        theRefreshControl = UIRefreshControl()
+        theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
+        tableView.addSubview(theRefreshControl)
+    }
 }
