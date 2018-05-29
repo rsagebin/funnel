@@ -12,7 +12,6 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Outlets
     
-    
     @IBOutlet weak var backOfImageView: UIView!
     @IBOutlet weak var deleteButton: UIButton!
     
@@ -41,12 +40,27 @@ class ProfileViewController: UIViewController {
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Are you sure you want to delete your account?", message: "All your data will be lost", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Are you sure you want to delete your account?", message: "All of your data will be lost.", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alert.addAction(cancelAction)
         
-        let deleteAction = UIAlertAction(title: "Delete Account", style: .destructive, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete Account", style: .destructive, handler: { action in
+            UserController.shared.deleteCurrentUser(completion: { (success) in
+                if success {
+                    let vc = LoginViewController()
+                    self.present(vc, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "Error Deleting Account", message: "There was an error deleting your account.", preferredStyle: .alert)
+                    let okay = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okay)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
+            
+        })
+        
+        
         alert.addAction(deleteAction)
         
         present(alert, animated: true, completion: nil)

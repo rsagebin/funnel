@@ -11,8 +11,6 @@ import CloudKit
 
 class TagController {
     
-    let ckManager = CloudKitManager()
-    
     static let shared = TagController()
     
     func saveTagsOnPost(post: Post, tagString: String) {
@@ -27,7 +25,7 @@ class TagController {
         for string in tagsAsStrings {
             let tag = Tag(text: string, postReference: postReference)
             
-            ckManager.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
+            CloudKitManager.shared.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
                 if let error = error {
                     print("Error saving tag to CloudKit: \(error)")
                     return
@@ -48,7 +46,7 @@ class TagController {
         for string in tagsAsStrings {
             let tag = Tag(text: string, postReference: postReference)
             
-            ckManager.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
+            CloudKitManager.shared.save(records: [tag.ckRecord], perRecordCompletion: nil) { (records, error) in
                 if let error = error {
                     print("Error saving tag to CloudKit: \(error)")
                     return
@@ -62,7 +60,7 @@ class TagController {
         
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
         
-        ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+        CloudKitManager.shared.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error loading tags for post: \(error)")
                 completion(nil)
@@ -78,7 +76,7 @@ class TagController {
     func fetchTagsFor(post: Post, completion: @escaping (String?) -> Void) {
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
         
-        ckManager.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
+        CloudKitManager.shared.fetch(type: Tag.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error loading tags for post: \(error)")
                 completion(nil)

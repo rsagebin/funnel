@@ -94,7 +94,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv3-QT-612">
-                                        <rect key="frame" x="40" y="413.5" width="261" height="44"/>
+                                        <rect key="frame" x="40" y="403.5" width="261" height="44"/>
                                         <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="1Qh-sb-KXT"/>
@@ -115,7 +115,7 @@
                                     <constraint firstAttribute="trailing" secondItem="KAH-OZ-BVj" secondAttribute="trailing" constant="40" id="GSs-og-8De"/>
                                     <constraint firstItem="KAH-OZ-BVj" firstAttribute="leading" secondItem="Y3h-JE-wjP" secondAttribute="leading" constant="40" id="Z3P-W6-QB2"/>
                                     <constraint firstItem="Oz3-5l-3eR" firstAttribute="top" secondItem="Y3h-JE-wjP" secondAttribute="top" constant="20" id="g7h-hK-Vba"/>
-                                    <constraint firstItem="Dv3-QT-612" firstAttribute="top" secondItem="KAH-OZ-BVj" secondAttribute="bottom" constant="40" id="gTV-2f-Veo"/>
+                                    <constraint firstItem="Dv3-QT-612" firstAttribute="top" secondItem="KAH-OZ-BVj" secondAttribute="bottom" constant="30" id="gTV-2f-Veo"/>
                                     <constraint firstItem="KAH-OZ-BVj" firstAttribute="centerX" secondItem="Y3h-JE-wjP" secondAttribute="centerX" id="lpe-wI-FKS"/>
                                     <constraint firstItem="KAH-OZ-BVj" firstAttribute="top" secondItem="Oz3-5l-3eR" secondAttribute="bottom" constant="30" id="nBG-O7-IO7"/>
                                 </constraints>

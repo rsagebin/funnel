@@ -43,6 +43,11 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         // set cells
         let nib = UINib.init(nibName: "DetailCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "DetailCell")
+        
+        tableView.separatorStyle = .none
+        
+        UIApplication.shared.isStatusBarHidden = false
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     @objc func reloadFeedView() {
