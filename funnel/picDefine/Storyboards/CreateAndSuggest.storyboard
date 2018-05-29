@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvo-i7-NC7">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="642"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="652"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaC-H8-gsP" userLabel="CategoryView">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
@@ -135,7 +135,7 @@
                                             <constraint firstItem="L6Y-R4-yL4" firstAttribute="centerY" secondItem="1qq-fs-oln" secondAttribute="centerY" id="SOP-8d-dNq"/>
                                             <constraint firstAttribute="trailing" secondItem="OaC-H8-gsP" secondAttribute="trailing" id="dWJ-VA-8Jt"/>
                                             <constraint firstAttribute="trailing" secondItem="fZH-Lm-5TH" secondAttribute="trailing" constant="15" id="eOh-9G-e5I"/>
-                                            <constraint firstAttribute="bottom" secondItem="WHK-yY-v6h" secondAttribute="bottom" constant="5" id="eSf-k6-m6r"/>
+                                            <constraint firstAttribute="bottom" secondItem="WHK-yY-v6h" secondAttribute="bottom" constant="15" id="eSf-k6-m6r"/>
                                             <constraint firstItem="fZH-Lm-5TH" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" constant="15" id="gB4-0G-jbu"/>
                                             <constraint firstAttribute="trailing" secondItem="1qq-fs-oln" secondAttribute="trailing" constant="15" id="gRX-U9-YIc"/>
                                             <constraint firstItem="L6Y-R4-yL4" firstAttribute="centerX" secondItem="1qq-fs-oln" secondAttribute="centerX" id="mVU-AU-vI6"/>
@@ -171,6 +171,7 @@
                         <outlet property="pickerOne" destination="BCq-ou-fPA" id="pOP-qy-ELe"/>
                         <outlet property="placeholderImageView" destination="L6Y-R4-yL4" id="VPV-75-r6j"/>
                         <outlet property="postImageView" destination="1qq-fs-oln" id="tfT-Fd-fhy"/>
+                        <outlet property="scrollView" destination="sFy-k9-wCE" id="6er-WM-pDB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLf-7t-dEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
