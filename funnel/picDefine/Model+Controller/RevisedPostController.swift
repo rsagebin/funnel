@@ -97,9 +97,10 @@ class RevisedPostController {
                 if !success {
                     print("Error deleting revised post after being accepted.")
                 }
+                
+                completion(true)
             })
             
-            completion(true)
         }
     }
     

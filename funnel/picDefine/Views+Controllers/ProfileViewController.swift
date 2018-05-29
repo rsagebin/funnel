@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     
     
     @IBOutlet weak var backOfImageView: UIView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userUsername: UILabel!
@@ -29,7 +30,7 @@ class ProfileViewController: UIViewController {
         
         userImageView.layer.cornerRadius = userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true
-        userImageView.layer.borderWidth = 5.0
+        userImageView.layer.borderWidth = 9.0
         userImageView.layer.borderColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1).cgColor
         
         updateView()
@@ -55,14 +56,19 @@ class ProfileViewController: UIViewController {
     
     func setUpBorders() {
     
-        userUsername.layer.borderColor = UIColor.black.cgColor
+        userUsername.layer.borderColor = UIColor.lightGray.cgColor
+        userUsername.layer.cornerRadius = 3
         userUsername.layer.borderWidth = 1.0
 
-        userEmail.layer.borderColor = UIColor.black.cgColor
+        userEmail.layer.borderColor = UIColor.lightGray.cgColor
+        userEmail.layer.cornerRadius = 3
         userEmail.layer.borderWidth = 1.0
         
-        userName.layer.borderColor = UIColor.black.cgColor
+        userName.layer.borderColor = UIColor.lightGray.cgColor
+        userName.layer.cornerRadius = 3
         userName.layer.borderWidth = 1.0
+        
+        deleteButton.layer.cornerRadius = 3
     }
     
     func updateView() {

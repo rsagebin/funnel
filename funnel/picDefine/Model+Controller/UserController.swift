@@ -83,10 +83,11 @@ class UserController {
                 if let error = error {
                     print("Error saving new user to CloudKit: \(error)")
                     completion(false)
+                    return
                 }
+                
+                completion(true)
             })
-            
-            completion(true)
             
         }
     }
