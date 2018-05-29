@@ -132,7 +132,7 @@ class RevisedPostController {
     }
     
     func fetchPostForRevisedPost(revisedPost: RevisedPost, completion: @escaping (Post?) -> Void) {
-        let predicate = NSPredicate(format: "recordID", revisedPost.postReference)
+        let predicate = NSPredicate(format: "recordID == %@", revisedPost.postReference)
         ckManager.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error fetching post for revised post: \(error)")
