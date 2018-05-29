@@ -171,16 +171,16 @@ class PostDetailViewController: UIViewController {
         
         guard let user = UserController.shared.loggedInUser else { return }
         guard let post = self.post else { return }
-        guard let buttonImage = postFollowingButton.imageView else { return }
+        
         
         isFollowing = !isFollowing
         
         if isFollowing == true {
-            buttonImage.tintColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+            postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
             PostController.shared.addFollowerToPost(user: user, post: post)
             
         } else if isFollowing == false {
-            buttonImage.tintColor = UIColor.black
+            postFollowingButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
             PostController.shared.removeFollowerFromPost(user: user, post: post)
         }
         updatePostView()
