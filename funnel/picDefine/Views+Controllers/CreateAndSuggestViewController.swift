@@ -51,16 +51,38 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     @IBAction func acceptButtonTapped(_ sender: Any) {
         
-        guard let resivedPost = revisedPost, let post = post else { return }
-        
-        RevisedPostController.shared.acceptRevisedPost(revisedPost: resivedPost, for: post) { (success) in
-            if success {
-                
+        guard let revisedPost = revisedPost, let post = post else { return }
+
+        let alert = UIAlertController(title: "ACCEPT this post suggestion?", message: nil, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (_) in
+            RevisedPostController.shared.acceptRevisedPost(revisedPost: revisedPost, for: post) { (success) in
+                if success {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
-        }
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func declineButtonTapped(_ sender: Any) {
+        
+        guard let revisedPost = revisedPost else { return }
+        
+        let alert = UIAlertController(title: "DECLINE this post suggestion?", message: nil, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (_) in
+            RevisedPostController.shared.declineRevisedPost(revisedPost: revisedPost, completion: { (success) in
+                if success {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            })
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
@@ -213,6 +235,13 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
             self.createOrSuggestOutlet.isHidden = true
             self.acceptButton.isHidden = false
             self.declineButton.isHidden = false
+        }
+        
+        
+        guard let revisedPost = revisedPost else { return }
+        RevisedPostController.shared.fetchPostForRevisedPost(revisedPost: revisedPost) { (post) in
+            self.post = post
+            print("Post description from revisedPost:",post?.description)
         }
     }
     
