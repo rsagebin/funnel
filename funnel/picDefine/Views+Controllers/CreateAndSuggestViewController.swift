@@ -27,6 +27,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     // MARK: - Outlets
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainCategoryLabel: UILabel!
     @IBOutlet weak var pickerOne: UIPickerView!
     @IBOutlet weak var postImageView: UIImageView!
@@ -65,14 +66,14 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         }
         
         showTheRightButtons()
-        createCameraButton()
         updateViews()
+        createCameraButton()
         setButtonTitle()
         setBorders()
         
         //        // Notifications to move view up or down when the keyboard it shown or hidden.
-        //        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//                NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         addDoneButtonOnKeyboard()
     }
@@ -153,7 +154,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     @objc func doneButtonAction() {
         
-        descriptionTextView .resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
     }
     
     // MARK: - Other functions
@@ -191,7 +192,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
             
             RevisedPostController.shared.fetchPostForRevisedPost(revisedPost: revisedPost!) { (post) in
                 self.post = post
-                print("Post description from revisedPost:",post?.description)
             }
         }
     }
@@ -206,15 +206,25 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     }
     
     func updateViews() {
-        guard let post = post else { return }
-        placeholderImageView.image = nil
-        self.postImageView.image = post.image
-        self.descriptionTextView.text = post.description
+        
+        if revisedPost != nil {
+            
+            placeholderImageView.image = nil
+            self.postImageView.image = revisedPost?.image
+            self.descriptionTextView.text = revisedPost?.description
+            
+        } else {
+            
+            guard let post = post else { return }
+            placeholderImageView.image = nil
+            self.postImageView.image = post.image
+            self.descriptionTextView.text = post.description
+        }
     }
     
     func createCameraButton() {
         
-        if post?.image == nil {
+        if postImageView.image == nil {
             
             let button: UIButton = UIButton(type: UIButtonType.custom)
             
@@ -234,21 +244,20 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         showActionSheet()
     }
     
-//    // Code to move the view up when the keyboard is shown
-//    @objc func keyboardWillShow(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.view.frame.origin.y == 0{
-//                self.view.frame.origin.y -= keyboardSize.height
-//            }
-//        }
-//    }
+    // Code to move the view up when the keyboard is shown
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+                self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 310, right: 0)
+
+    }
 //    // Code to move the view down when the keyboard is hidden
 //    @objc func keyboardWillHide(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.view.frame.origin.y != 0{
-//                self.view.frame.origin.y += keyboardSize.height
-//            }
-//        }
+////        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+////            if self.view.frame.origin.y != 0{
+////                self.view.frame.origin.y += keyboardSize.height
+////            }
+////        }
+////        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 //    }
     
     func showActionSheet() {
