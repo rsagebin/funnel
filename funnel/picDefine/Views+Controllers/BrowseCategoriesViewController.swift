@@ -23,10 +23,10 @@ class BrowseCategoriesViewController: UIViewController {
         super.viewDidLoad()
         self.categoryView.isHidden = true
         // EX: adding animations for the categoryView to appear and dissappear
-//        UIView.animate(withDuration: 0.3, animations: {
+//        UIView.animate(withDuration: 1.0, animations: {
 //            self.categoryView.alpha = 0
-//        }) { (finished) in
-//            self.categoryView.isHidden = finished
+//        }) { (true) in
+//            self.categoryView.isHidden = true
 //        }
 //        backgroundImage.loadGif(asset: "interstellar")
         
@@ -101,6 +101,11 @@ class BrowseCategoriesViewController: UIViewController {
                     // EXPLANATION: the table view below is reloaded and then the mainLabel(red) appears above while the "Category Find" cell becomes hidden.
                     self.tableView.reloadData()
                     self.categoryView.isHidden = true
+//                    UIView.animate(withDuration: 1.0, animations: {
+//                        self.categoryView.alpha = 0
+//                    }) { (true) in
+//                        self.categoryView.isHidden = true
+//                    }
                     self.mainCategoryLabel.isHidden = false
                 }
             } else {
