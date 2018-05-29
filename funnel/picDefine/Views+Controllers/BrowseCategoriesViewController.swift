@@ -21,6 +21,13 @@ class BrowseCategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.categoryView.isHidden = true
+        // EX: adding animations for the categoryView to appear and dissappear
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.categoryView.alpha = 0
+//        }) { (finished) in
+//            self.categoryView.isHidden = finished
+//        }
 //        backgroundImage.loadGif(asset: "interstellar")
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
@@ -163,7 +170,14 @@ extension BrowseCategoriesViewController: UIPickerViewDataSource, UIPickerViewDe
 }
 
 // EXPLANATION: Extension for the Table View Controller portion of the View Controller.
-extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSource, CommentsDelegate {
+extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSource, CommentsDelegate, SuggestionDelegate {
+    func postSuggestionButtonTapped(post: Post) {
+        let submitAndReviewSB = UIStoryboard(name: "CreateAndSuggest", bundle: .main)
+        let submitAndReviewVC = submitAndReviewSB.instantiateViewController(withIdentifier: "CreateAndSuggestSB") as! CreateAndSuggestViewController
+        submitAndReviewVC.post = post
+        navigationController?.pushViewController(submitAndReviewVC, animated: true)
+    }
+    
     
     @objc func reloadFeedView() {
         DispatchQueue.main.async {
@@ -192,7 +206,7 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
         //        cell.tagsTextView.layer.borderWidth = 1.0
         
         cell.commentsDelegate = self
-        
+        cell.suggestDelegate = self
         return cell
     }
     
