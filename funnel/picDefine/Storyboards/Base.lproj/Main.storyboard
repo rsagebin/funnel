@@ -81,7 +81,7 @@
         <scene sceneID="jXy-SJ-KlG">
             <objects>
                 <viewControllerPlaceholder storyboardName="Profile" id="bve-hw-fRZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" selectedImage="profile-2" id="MMO-ik-NQI"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="MMO-ik-NQI"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uni-RH-Kxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -116,7 +116,6 @@
     </scenes>
     <resources>
         <image name="feed-1" width="25" height="25"/>
-        <image name="profile-2" width="50" height="50"/>
         <namedColor name="Color">
             <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
