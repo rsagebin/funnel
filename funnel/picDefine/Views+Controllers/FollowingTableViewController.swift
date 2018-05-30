@@ -65,15 +65,15 @@ class FollowingTableViewController: UITableViewController {
         if userPosts.count > 0 {
             sectionCount += 1
         }
-        
+
         if userFollowings.count > 0 {
             sectionCount += 1
         }
-        
+
         if communitySuggestions.count > 0 {
             sectionCount += 1
         }
-        
+
         if userSuggestions.count > 0 {
             sectionCount += 1
         }
