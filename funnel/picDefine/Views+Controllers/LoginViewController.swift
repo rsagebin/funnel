@@ -284,10 +284,10 @@ class LoginViewController: UIViewController {
     }
 
     func fetchUser() {
-        self.startNetworkActivity()
-        
         UserController.shared.fetchCurrentUser { (success) in
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                
+                self.startNetworkActivity()
                 
                 // Show Sign Up
                 if !success {
@@ -354,28 +354,31 @@ class LoginViewController: UIViewController {
                     
                     // Show Signed In
                 if success {
-                    self.endNetworkActivity()
-                    
-                    UIView.animate(withDuration: 1, animations: {
+                    DispatchQueue.main.async {
                         
-                        self.accountSignUpLabel.alpha = 0
-                        self.userNameTextField.alpha = 0
-                        self.userUsernameTextField.alpha = 0
-                        self.userEmailAddressTextField.alpha = 0
-                        self.signUpButton.alpha = 0
-                        
-                    }, completion: { (_) in
-                        
-                        self.signUpButton.removeFromSuperview()
-                        self.userEmailAddressTextField.removeFromSuperview()
-                        self.userUsernameTextField.removeFromSuperview()
-                        self.userNameTextField.removeFromSuperview()
-                        self.accountSignUpLabel.removeFromSuperview()
+                        self.endNetworkActivity()
                         
                         UIView.animate(withDuration: 1, animations: {
-                            self.appNameLabel.transform = CGAffineTransform(translationX: 0, y: 10)
+                            
+                            self.accountSignUpLabel.alpha = 0
+                            self.userNameTextField.alpha = 0
+                            self.userUsernameTextField.alpha = 0
+                            self.userEmailAddressTextField.alpha = 0
+                            self.signUpButton.alpha = 0
+                            
+                        }, completion: { (_) in
+                            
+                            self.signUpButton.removeFromSuperview()
+                            self.userEmailAddressTextField.removeFromSuperview()
+                            self.userUsernameTextField.removeFromSuperview()
+                            self.userNameTextField.removeFromSuperview()
+                            self.accountSignUpLabel.removeFromSuperview()
+                            
+                            UIView.animate(withDuration: 1, animations: {
+                                self.appNameLabel.transform = CGAffineTransform(translationX: 0, y: 10)
+                            })
                         })
-                    })
+                    }
                     self.appNameLabel.removeFromSuperview()
                     self.showSignedIn()
                     

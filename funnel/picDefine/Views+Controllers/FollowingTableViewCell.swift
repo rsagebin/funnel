@@ -52,6 +52,7 @@ class FollowingTableViewCell: UITableViewCell {
                 postAcceptedSolutionIcon.isHidden = true // Create check function
                 postCategoryLabel.text = following.categoryAsString.uppercased()
                 postDescriptionLabel.text = following.description
+                postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
                 postFollowingLabel.text = String(following.followersRefs.count)
                 postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
                 postCommentsLabel.text = String(comments)
