@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,13 +34,13 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Category" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdH-ib-wb6">
                                                 <rect key="frame" x="15" y="3" width="260" height="30"/>
-                                                <color key="textColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="Color"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d6-Ha-2Lo">
                                                 <rect key="frame" x="295" y="3" width="60" height="30"/>
-                                                <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="688-DO-98D"/>
                                                     <constraint firstAttribute="height" constant="30" id="Qag-Fa-iAp"/>
@@ -119,7 +120,7 @@
                 <pickerView contentMode="scaleToFill" id="gzZ-CR-Dne">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" name="Color"/>
                 </pickerView>
             </objects>
             <point key="canvasLocation" x="-385" y="-204"/>
@@ -128,5 +129,8 @@
     <resources>
         <image name="categories-1" width="25" height="25"/>
         <image name="categories-2" width="25" height="25"/>
+        <namedColor name="Color">
+            <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

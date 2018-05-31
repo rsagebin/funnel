@@ -43,7 +43,7 @@ class CommentsTableViewCell: UITableViewCell {
         userImageView.layer.cornerRadius = userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true
         userImageView.layer.borderWidth = 3.0
-        userImageView.layer.borderColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1).cgColor
+        userImageView.layer.borderColor = UIColor(named: "Color")?.cgColor
         
     }
 

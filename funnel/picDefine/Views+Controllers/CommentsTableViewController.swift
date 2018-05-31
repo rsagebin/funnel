@@ -53,7 +53,7 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
 
         let submitButton = UIButton(type: .system)
         submitButton.setTitle("Send", for: .normal)
-        submitButton.setTitleColor(UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1), for: .normal)
+        submitButton.setTitleColor(UIColor(named: "Color"), for: .normal)
         submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
         containerView.addSubview(submitButton)
