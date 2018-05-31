@@ -82,9 +82,6 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         tableView.reloadData()
         theRefreshControl.endRefreshing()
         
-        
-        // notes for things
-        
     }
     
 //    func createAddPostButton() {
