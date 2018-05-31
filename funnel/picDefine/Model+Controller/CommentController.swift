@@ -38,6 +38,25 @@ class CommentController {
         
     }
     
+    func loadCommentCountFor(post: Post, completion: @escaping (Bool, Int) -> Void) {
+        
+        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+        
+        CloudKitManager.shared.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
+            if let error = error {
+                print("Error loading comments for post: \(error)")
+                completion(false, 0)
+                return
+            }
+            
+            guard let commentsArray = records?.compactMap({Comment(cloudKitRecord: $0)}) else { return }
+            
+            completion(true, commentsArray.count)
+        }
+        
+    }
+    
     func loadCommentsFor(post: Post, completion: @escaping (Bool) -> Void) {
         
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
