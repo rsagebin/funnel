@@ -11,8 +11,9 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: - Outlets & View Objects
-    let scrollView = UIScrollView()
     let GIFImageView = UIImageView()
+    let viewToScroll = UIView()
+    let scrollView = UIScrollView()
     let appClearView = UIView()
     let appAlphaView = UIView()
     
@@ -32,10 +33,11 @@ class LoginViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         fetchUser()
         addDoneButtonOnKeyboard()
-        NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,6 +52,13 @@ class LoginViewController: UIViewController {
     // MARK: - Methods
     func setupInitialView() {
         
+        // Background GIF
+        view.addSubview(GIFImageView)
+        GIFImageView.loadGif(asset: "raining1")
+        
+        GIFImageView.frame = self.view.frame
+        
+        
         // Scroll View
         scrollView.isScrollEnabled = false
         scrollView.isPagingEnabled = false
@@ -57,13 +66,6 @@ class LoginViewController: UIViewController {
         
         scrollView.frame = view.frame
         scrollView.contentSize = view.bounds.size
-        
-        
-        // Background GIF
-        view.addSubview(GIFImageView)
-        GIFImageView.loadGif(asset: "raining1")
-        
-        GIFImageView.frame = self.view.frame
         
         
         // Alpha View
@@ -307,7 +309,7 @@ class LoginViewController: UIViewController {
                     self.showSignedIn()
                     print("User fetched successfully")
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: { // Change back to 2
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                         self.performSegue(withIdentifier: self.segueIdentifier, sender: nil)
                     })
                 }
@@ -393,14 +395,16 @@ class LoginViewController: UIViewController {
                             
                             UIView.animate(withDuration: 1, animations: {
                                 self.appNameLabel.transform = CGAffineTransform(translationX: 0, y: 10)
+//
                             })
                         })
                         
-                        self.appNameLabel.removeFromSuperview()
-                        self.showSignedIn()
+//                        self.appNameLabel.removeFromSuperview()
+//                        self.showSignedIn()
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                             self.performSegue(withIdentifier: self.segueIdentifier, sender: nil)
+              
                         })
                     }
                     
@@ -411,6 +415,7 @@ class LoginViewController: UIViewController {
                     }
                 }
             }
+            self.dismiss(animated: true, completion: nil)
         }
         
         alertcontroller.addAction(declineButton)
@@ -458,8 +463,22 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 310, right: 0)
+        scrollView.isScrollEnabled = true
+        let bottom: CGFloat = 400
+        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.scrollView.isScrollEnabled = false
+        })
     }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        scrollView.isScrollEnabled = true
+        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.scrollView.isScrollEnabled = false
+        })
+    }
+    
 
     // MARK: - ToolBar
     func addDoneButtonOnKeyboard() {
