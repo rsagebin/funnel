@@ -178,7 +178,9 @@
                     </view>
                     <connections>
                         <outlet property="branchButtonOutlet" destination="Z6R-i8-JF7" id="cb4-l4-M84"/>
+                        <outlet property="buttonsStackView" destination="KSM-z6-dv6" id="d9A-Ub-HGL"/>
                         <outlet property="categoryLabel" destination="7sh-vL-BMp" id="cRh-yR-LIQ"/>
+                        <outlet property="commentButton" destination="oux-iq-Yz5" id="Bme-a9-a2p"/>
                         <outlet property="descriptionLabel" destination="Arp-aY-Tgw" id="I1c-sO-AUN"/>
                         <outlet property="postApprovedImage" destination="D3x-mb-26k" id="HXO-yM-65a"/>
                         <outlet property="postCommentCountLabel" destination="RBJ-Kt-RzL" id="wMh-yf-EF1"/>

@@ -32,6 +32,8 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var postSuggestCountLabel: UILabel!
     @IBOutlet weak var branchButtonOutlet: UIButton!
     @IBOutlet weak var postCommentCountLabel: UILabel!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var buttonsStackView: UIStackView!
     
     // MARK: - Life Cycle
     
@@ -105,14 +107,27 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func updatePostView() {
-        guard let post = post else { return }
-
-        descriptionLabel.text = post.description
-        categoryLabel.text = post.categoryAsString.uppercased()
-        postImageView.image = post.image
-        postImageView.layer.borderColor = UIColor.lightGray.cgColor
-        postImageView.layer.borderWidth = 1
-        postFollowingCountLabel.text = String(post.followersRefs.count)
+    
+        if post != nil {
+            
+            descriptionLabel.text = post?.description
+            categoryLabel.text = post?.categoryAsString.uppercased()
+            postImageView.image = post?.image
+            postImageView.layer.borderColor = UIColor.lightGray.cgColor
+            postImageView.layer.borderWidth = 1
+            postFollowingCountLabel.text = "\(post?.followersRefs.count ?? 0)"
+            
+        } else if revisedPost != nil {
+            descriptionLabel.text = revisedPost?.description
+            categoryLabel.text = revisedPost?.categoryAsString.uppercased()
+            postImageView.image = revisedPost?.image
+            postImageView.layer.borderColor = UIColor.lightGray.cgColor
+            postImageView.layer.borderWidth = 1
+            
+            postFollowingButton.isEnabled = false
+            branchButtonOutlet.isEnabled = false
+            commentButton.isEnabled = false
+        }
         
     }
     
