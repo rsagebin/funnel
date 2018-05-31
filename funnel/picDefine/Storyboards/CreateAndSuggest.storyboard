@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +35,7 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select category..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fdx-Ze-HDi">
                                                         <rect key="frame" x="15" y="10" width="345" height="30"/>
-                                                        <color key="textColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" name="Color"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -64,7 +65,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8o-3S-mCH">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="32"/>
-                                                        <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" name="Color"/>
                                                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                         <state key="normal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -89,7 +90,7 @@
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnM-6s-ghm">
                                                                 <rect key="frame" x="182.5" y="0.0" width="162.5" height="32"/>
-                                                                <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="backgroundColor" name="Color"/>
                                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                                 <state key="normal" title="Accept">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -160,7 +161,7 @@
                 <pickerView contentMode="scaleToFill" id="vDj-1v-hkf">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" name="Color"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="ShQ-qW-rno" id="SY2-mX-5A6"/>
@@ -173,5 +174,8 @@
     </scenes>
     <resources>
         <image name="image-500 (1)" width="212" height="170"/>
+        <namedColor name="Color">
+            <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

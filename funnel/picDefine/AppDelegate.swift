@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationBarAppearace = UINavigationBar.appearance()
         
-        navigationBarAppearace.tintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
+        navigationBarAppearace.tintColor = UIColor(named: "Color")
         
     }
     

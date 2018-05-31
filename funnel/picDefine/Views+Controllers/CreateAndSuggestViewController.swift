@@ -154,7 +154,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         
         doneToolbar.items = items
 
-        doneToolbar.barTintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
+        doneToolbar.barTintColor = UIColor(named: "Color")
         mainCategoryLabel.inputAccessoryView = doneToolbar
         
     }
