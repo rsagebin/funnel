@@ -25,21 +25,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-image" translatesAutoresizingMaskIntoConstraints="NO" id="0HK-pg-fVU">
-                                            <rect key="frame" x="26" y="18" width="60" height="60"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-image-grey" translatesAutoresizingMaskIntoConstraints="NO" id="0HK-pg-fVU">
+                                            <rect key="frame" x="26" y="28" width="40" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="ndh-QW-zQY"/>
-                                                <constraint firstAttribute="width" constant="60" id="tQN-yi-jfp"/>
+                                                <constraint firstAttribute="height" constant="40" id="ndh-QW-zQY"/>
+                                                <constraint firstAttribute="width" constant="40" id="tQN-yi-jfp"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0L-bF-vaS">
-                                            <rect key="frame" x="101" y="18" width="3.5" height="15"/>
+                                            <rect key="frame" x="81" y="18" width="3.5" height="15"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDr-4D-JPG">
-                                            <rect key="frame" x="101" y="36" width="243" height="29"/>
+                                            <rect key="frame" x="81" y="36" width="263" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -75,6 +75,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="user-image" width="256" height="256"/>
+        <image name="user-image-grey" width="256" height="256"/>
     </resources>
 </document>

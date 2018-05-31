@@ -43,7 +43,6 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
         
         createButton()
         checkIfUserIsFollowing()
-        updatePostView()
         
         postApprovedImage.isHidden = true
     }
@@ -51,13 +50,30 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        updatePostView()
+        
         guard let post = post else { return }
+        guard let user = UserController.shared.loggedInUser else { return }
+        
         CommentController.shared.loadCommentsFor(post: post) { (success) in
             if success {
                 DispatchQueue.main.async {
                     self.postCommentCountLabel.text = String(CommentController.shared.postComments.count)
                 }
             }
+        }
+        
+        RevisedPostController.shared.fetchNumberOfSuggestionsFor(post: post) { (success, number) in
+            if success {
+                DispatchQueue.main.async {
+                    self.postSuggestCountLabel.text = String(number)
+                }
+            }
+        }
+     
+        if post.creatorRef.recordID == user.ckRecordID {
+            postFollowingButton.isEnabled = false
+            branchButtonOutlet.isEnabled = false
         }
     }
 

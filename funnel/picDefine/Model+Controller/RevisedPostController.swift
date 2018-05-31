@@ -91,34 +91,34 @@ class RevisedPostController {
                 return
             }
             
-            self.deleteRevisedPost(revisedPost: revisedPost, completion: { (success) in
-                if !success {
-                    print("Error deleting revised post after being accepted.")
-                }
-                
-                completion(true)
-            })
-            
         }
+        
+        self.deleteRevisedPost(revisedPost: revisedPost, completion: { (success) in
+            if !success {
+                print("Error deleting revised post after being accepted.")
+            }
+            
+            completion(true)
+        })
     }
     
     func declineRevisedPost(revisedPost: RevisedPost, completion: @escaping (Bool) -> Void) {
         self.deleteRevisedPost(revisedPost: revisedPost, completion: completion)
     }
     
-    func fetchNumberOfSuggestionsFor(post: Post, completion: @escaping (Int) -> Void) {
+    func fetchNumberOfSuggestionsFor(post: Post, completion: @escaping (Bool, Int) -> Void) {
         var suggestionsArray: [RevisedPost] = []
         let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
         CloudKitManager.shared.fetch(type: RevisedPost.typeKey, predicate: predicate, sortDescriptor: nil) { (records, error) in
             if let error = error {
                 print("Error fetching count of suggestings for post: \(error)")
-                completion(0)
+                completion(false, 0)
                 return
             }
             
             guard let records = records else {
                 print("Found nil for records fetched from CloudKit.")
-                completion(0)
+                completion(false, 0)
                 return
             }
             
@@ -126,7 +126,7 @@ class RevisedPostController {
             
             suggestionsArray = recordsArray
             
-            completion(suggestionsArray.count)
+            completion(true, suggestionsArray.count)
         }
     }
     

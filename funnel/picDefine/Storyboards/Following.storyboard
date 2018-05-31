@@ -64,29 +64,29 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Description)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRz-Sl-6bg" userLabel="Description Label">
-                                                            <rect key="frame" x="0.0" y="22" width="243.33333333333334" height="28.666666666666671"/>
+                                                            <rect key="frame" x="0.0" y="22" width="243.33333333333334" height="13.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1cM-Qd-iwa">
-                                                            <rect key="frame" x="0.0" y="55.666666666666657" width="243.33333333333334" height="50"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1cM-Qd-iwa">
+                                                            <rect key="frame" x="0.0" y="40.333333333333336" width="243.33333333333334" height="65.333333333333314"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="230" verticalHuggingPriority="230" translatesAutoresizingMaskIntoConstraints="NO" id="JcS-ze-pph">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="117.33333333333333" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="15.333333333333329" width="117.33333333333333" height="50"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="58t-yi-x4l">
-                                                                    <rect key="frame" x="127.33333333333331" y="0.0" width="32" height="50"/>
+                                                                    <rect key="frame" x="127.33333333333333" y="43.333333333333336" width="34.666666666666671" height="22.000000000000007"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loj-ns-BBD">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="9" height="50"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loj-ns-BBD">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="11.666666666666666" height="22"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRt-6R-BXs">
-                                                                            <rect key="frame" x="13" y="0.0" width="19" height="50"/>
+                                                                            <rect key="frame" x="15.666666666666686" y="0.0" width="19" height="22"/>
                                                                             <state key="normal" image="star"/>
                                                                             <connections>
                                                                                 <action selector="postFollowingButtonTapped:" destination="Hlz-pP-dk0" eventType="touchUpInside" id="MYu-Nd-8eY"/>
@@ -95,16 +95,16 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ku9-eH-fJy">
-                                                                    <rect key="frame" x="169.33333333333331" y="0.0" width="31" height="50"/>
+                                                                    <rect key="frame" x="172" y="43.333333333333336" width="29.666666666666657" height="22.000000000000007"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkY-Bf-ola">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="9" height="50"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkY-Bf-ola">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="7.666666666666667" height="22"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCF-sS-NoP">
-                                                                            <rect key="frame" x="13" y="0.0" width="18" height="50"/>
+                                                                            <rect key="frame" x="11.666666666666629" y="0.0" width="18" height="22"/>
                                                                             <state key="normal" image="light-on-500"/>
                                                                             <connections>
                                                                                 <action selector="postSuggestionButtonTapped:" destination="Hlz-pP-dk0" eventType="touchUpInside" id="2t9-ks-0Y1"/>
@@ -113,16 +113,16 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qnI-Mv-CCL">
-                                                                    <rect key="frame" x="210.33333333333331" y="0.0" width="33" height="50"/>
+                                                                    <rect key="frame" x="211.66666666666663" y="43.333333333333336" width="31.666666666666657" height="22.000000000000007"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-qR-C7e">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="9" height="50"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-qR-C7e">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="7.666666666666667" height="22"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZk-85-kA7">
-                                                                            <rect key="frame" x="13" y="0.0" width="20" height="50"/>
+                                                                            <rect key="frame" x="11.666666666666686" y="0.0" width="20" height="22"/>
                                                                             <state key="normal" image="topic-100"/>
                                                                             <connections>
                                                                                 <action selector="postCommentsButtonTapped:" destination="Hlz-pP-dk0" eventType="touchUpInside" id="6FH-ES-CO8"/>

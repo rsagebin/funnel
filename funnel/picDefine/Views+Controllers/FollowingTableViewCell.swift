@@ -29,7 +29,6 @@ class FollowingTableViewCell: UITableViewCell {
     var userPost: Post? {
         didSet {
             checkUserRef()
-            let comments = CommentController.shared.postComments.count
             if let post = userPost {
                 self.postSubmittedImage.image = post.image
                 self.postAcceptedSolutionIcon.isHidden = true // Call function when suggestions are there
@@ -37,8 +36,33 @@ class FollowingTableViewCell: UITableViewCell {
                 self.postDescriptionLabel.text = post.description
 //                self.postHashTagsLabel.text =
                 self.postFollowingLabel.text = String(post.followersRefs.count)
-            self.postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
-            self.postCommentsLabel.text = String(comments)
+                self.postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
+                
+                postFollowingLabel.isHidden = false
+                postFollowingButton.isHidden = false
+                
+                postSuggestionLabel.isHidden = false
+                postSuggestionButton.isHidden = false
+                
+                postCommentsLabel.isHidden = false
+                postCommentsButton.isHidden = false
+                
+                
+                CommentController.shared.loadCommentCountFor(post: post) { (success, count) in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.postCommentsLabel.text = String(count)
+                        }
+                        
+                    }
+                }
+                
+                RevisedPostController.shared.fetchNumberOfSuggestionsFor(post: post) { (success, count) in
+                    DispatchQueue.main.async {
+                        self.postSuggestionLabel.text = String(count)
+                    }
+                }
+                
             }
         }
     }
@@ -46,7 +70,6 @@ class FollowingTableViewCell: UITableViewCell {
     var userFollowing: Post? {
         didSet {
             checkUserRef()
-            let comments = CommentController.shared.postComments.count
             if let following = userFollowing {
                 postSubmittedImage.image = following.image
                 postAcceptedSolutionIcon.isHidden = true // Create check function
@@ -55,24 +78,53 @@ class FollowingTableViewCell: UITableViewCell {
                 postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
                 postFollowingLabel.text = String(following.followersRefs.count)
                 postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count) // Refactor if possible
-                postCommentsLabel.text = String(comments)
+                
+                postFollowingLabel.isHidden = false
+                postFollowingButton.isHidden = false
+                
+                postSuggestionLabel.isHidden = false
+                postSuggestionButton.isHidden = false
+                
+                postCommentsLabel.isHidden = false
+                postCommentsButton.isHidden = false
+                
+                CommentController.shared.loadCommentCountFor(post: following) { (success, count) in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.postCommentsLabel.text = String(count)
+                        }
+                        
+                    }
+                }
+                
+                RevisedPostController.shared.fetchNumberOfSuggestionsFor(post: following) { (success, count) in
+                    DispatchQueue.main.async {
+                        self.postSuggestionLabel.text = String(count)
+                    }
+                }
             }
         }
     }
     
     var communitySuggestion: RevisedPost? {
         didSet {
-            let comments = CommentController.shared.postComments.count
+
             if let suggestion = communitySuggestion {
                 postSubmittedImage.image = suggestion.image
                 postAcceptedSolutionIcon.isHidden = true
                 postCategoryLabel.text = suggestion.categoryAsString.uppercased()
                 postDescriptionLabel.text = suggestion.description
-                postFollowingLabel.text = ""
-                postFollowingButton.setImage(nil, for: .normal)
-                postFollowingButton.isEnabled = false
-                postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsToApprove.count)
-                postCommentsLabel.text = String(comments)
+                
+                
+                postFollowingLabel.isHidden = true
+                postFollowingButton.isHidden = true
+                
+                postSuggestionLabel.isHidden = true
+                postSuggestionButton.isHidden = true
+                
+                postCommentsLabel.isHidden = true
+                postCommentsButton.isHidden = true
+                
             }
         }
     }
@@ -80,17 +132,22 @@ class FollowingTableViewCell: UITableViewCell {
     var userSuggestion: RevisedPost? {
         didSet {
             checkUserRef()
-            let comments = CommentController.shared.postComments.count
+
             if let suggestion = userSuggestion {
                 postSubmittedImage.image = suggestion.image
                 postAcceptedSolutionIcon.isHidden = true
                 postCategoryLabel.text = suggestion.categoryAsString.uppercased()
                 postDescriptionLabel.text = suggestion.description
-                postFollowingLabel.text = ""
-                postFollowingButton.setImage(nil, for: .normal)
-                postFollowingButton.isEnabled = false
-                postSuggestionLabel.text = String(RevisedPostController.shared.revisedPostsUserCreated.count) // Refactor if possible
-                postCommentsLabel.text = String(comments)
+                
+                postFollowingLabel.isHidden = true
+                postFollowingButton.isHidden = true
+                
+                postSuggestionLabel.isHidden = true
+                postSuggestionButton.isHidden = true
+                
+                postCommentsLabel.isHidden = true
+                postCommentsButton.isHidden = true
+                
             }
         }
     }
@@ -150,11 +207,18 @@ class FollowingTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        postDescriptionLabel.sizeToFit()
         
 //        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
 //        self.contentView.layer.borderWidth = 1
 //        self.contentView.layer.cornerRadius = 4
+    }
+    
+    override func prepareForReuse() {
+//        postCategoryLabel.text = nil
+//        postDescriptionLabel.text = nil
+//        postFollowingLabel.text = nil
+//        postSuggestionLabel.text = nil
+//        postCommentsLabel.text = nil
     }
     
 }
