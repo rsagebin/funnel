@@ -46,7 +46,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         super.viewDidLoad()
         
         mainCategoryLabel.inputView = pickerOne
-        
+
         postImageView.layer.borderColor = UIColor.lightGray.cgColor
         postImageView.layer.borderWidth = 1.0
         
@@ -80,6 +80,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
 //                NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         addDoneButtonOnKeyboard()
+        addDoneButtonOnPicker()
     }
     
     // MARK: - Actions
@@ -140,9 +141,27 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     // MARK: - Tool Bar
     
+    func addDoneButtonOnPicker() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 32))
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(CreateAndSuggestViewController.doneButtonAction))
+        done.tintColor = UIColor.white
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+
+        doneToolbar.barTintColor = UIColor(red: 29/255, green: 169/255, blue: 162/255, alpha: 1)
+        mainCategoryLabel.inputAccessoryView = doneToolbar
+        
+    }
+    
     func addDoneButtonOnKeyboard() {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
-        doneToolbar.barStyle = UIBarStyle.default
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 32))
+        
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(CreateAndSuggestViewController.doneButtonAction))
         done.tintColor = UIColor.black
@@ -155,10 +174,11 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         
         descriptionTextView.inputAccessoryView = doneToolbar
     }
-    
+   
     @objc func doneButtonAction() {
         
         descriptionTextView.resignFirstResponder()
+        mainCategoryLabel.resignFirstResponder()
     }
     
     // MARK: - Other functions
@@ -353,7 +373,13 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
         
         category1Selected = category1[row]
         mainCategoryLabel.text = category1[row].title.uppercased()
-        self.view.endEditing(true)
+//        self.view.endEditing(true)
         print("Category1:",category1[row].title)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        let string = category1[row].title
+        return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     }
 }

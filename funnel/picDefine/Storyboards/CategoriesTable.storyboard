@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Categories-->
         <scene sceneID="G0B-t5-juM">
@@ -23,89 +28,43 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BbD-XM-Ezx">
                                 <rect key="frame" x="0.0" y="30" width="375" height="637"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJc-vO-jnW">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="ioP-UP-NUm">
-                                                <rect key="frame" x="-3" y="0.0" width="380" height="30"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgV-6k-Hza">
-                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="XKk-AT-bjk"/>
-                                                            <constraint firstAttribute="width" constant="140" id="hIC-9z-5hk"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Find Category">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="findCategoryButtonTapped:" destination="ddl-jv-GTw" eventType="touchUpInside" id="cBg-iX-XgH"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UBn-ak-o86">
-                                                        <rect key="frame" x="200" y="3" width="180" height="24"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="180" id="xro-Lk-xGm"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
-                                                        <color key="textColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="5CB-iu-tJ1"/>
-                                            <constraint firstItem="ioP-UP-NUm" firstAttribute="centerY" secondItem="KJc-vO-jnW" secondAttribute="centerY" id="6wb-XD-hU6"/>
-                                            <constraint firstItem="ioP-UP-NUm" firstAttribute="centerX" secondItem="KJc-vO-jnW" secondAttribute="centerX" id="qdW-z3-o54"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-96-S5g">
-                                        <rect key="frame" x="0.0" y="30" width="375" height="160"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCY-x1-NBa">
-                                                <rect key="frame" x="130" y="120" width="115" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Category" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdH-ib-wb6">
+                                                <rect key="frame" x="15" y="3" width="260" height="30"/>
+                                                <color key="textColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d6-Ha-2Lo">
+                                                <rect key="frame" x="295" y="3" width="60" height="30"/>
+                                                <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="3TM-5C-x1T"/>
+                                                    <constraint firstAttribute="width" constant="60" id="688-DO-98D"/>
+                                                    <constraint firstAttribute="height" constant="30" id="Qag-Fa-iAp"/>
                                                 </constraints>
-                                                <state key="normal" title="Search Category">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
+                                                <state key="normal" title="Search">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="searchCategoryTapped:" destination="ddl-jv-GTw" eventType="touchUpInside" id="0uB-Uj-ZAx"/>
+                                                    <action selector="searchCategoryTapped:" destination="ddl-jv-GTw" eventType="touchUpInside" id="ZzY-Oc-FcS"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hzf-ls-lh1">
-                                                <rect key="frame" x="37.5" y="30" width="300" height="100"/>
-                                                <subviews>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqC-3a-RwJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="100" id="SJZ-7x-QQ5"/>
-                                                            <constraint firstAttribute="width" constant="300" id="ll9-i8-xSV"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="ddl-jv-GTw" id="tFq-bk-D5V"/>
-                                                            <outlet property="delegate" destination="ddl-jv-GTw" id="c3p-g0-pJO"/>
-                                                        </connections>
-                                                    </pickerView>
-                                                </subviews>
-                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="ZCY-x1-NBa" firstAttribute="centerX" secondItem="QF2-96-S5g" secondAttribute="centerX" id="PbI-E6-LhW"/>
-                                            <constraint firstAttribute="bottom" secondItem="ZCY-x1-NBa" secondAttribute="bottom" constant="10" id="SQs-Jg-hm0"/>
-                                            <constraint firstItem="ZCY-x1-NBa" firstAttribute="leading" secondItem="QF2-96-S5g" secondAttribute="leading" constant="130" id="WpT-XR-vDh"/>
-                                            <constraint firstItem="hzf-ls-lh1" firstAttribute="centerY" secondItem="QF2-96-S5g" secondAttribute="centerY" id="gX5-dd-NS1"/>
-                                            <constraint firstAttribute="trailing" secondItem="ZCY-x1-NBa" secondAttribute="trailing" constant="130" id="rQ8-su-xEs"/>
-                                            <constraint firstAttribute="height" constant="160" id="svG-dh-wlL"/>
-                                            <constraint firstItem="hzf-ls-lh1" firstAttribute="centerX" secondItem="QF2-96-S5g" secondAttribute="centerX" id="wTZ-Fc-DaO"/>
+                                            <constraint firstItem="4d6-Ha-2Lo" firstAttribute="top" secondItem="QF2-96-S5g" secondAttribute="top" constant="3" id="RCQ-xd-2zx"/>
+                                            <constraint firstAttribute="trailing" secondItem="4d6-Ha-2Lo" secondAttribute="trailing" constant="20" id="X3H-Y8-XZf"/>
+                                            <constraint firstItem="IdH-ib-wb6" firstAttribute="leading" secondItem="QF2-96-S5g" secondAttribute="leading" constant="15" id="adu-Yl-qg8"/>
+                                            <constraint firstAttribute="height" constant="40" id="svG-dh-wlL"/>
+                                            <constraint firstItem="IdH-ib-wb6" firstAttribute="top" secondItem="QF2-96-S5g" secondAttribute="top" constant="3" id="z4V-s4-GUg"/>
+                                            <constraint firstItem="4d6-Ha-2Lo" firstAttribute="leading" secondItem="IdH-ib-wb6" secondAttribute="trailing" constant="20" id="zVh-aQ-1W1"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B7K-d5-wat">
-                                        <rect key="frame" x="0.0" y="190" width="375" height="447"/>
+                                        <rect key="frame" x="0.0" y="40" width="375" height="597"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="500" id="iaF-br-9LA" customClass="DetailViewCell" customModule="picDefine" customModuleProvider="target">
@@ -127,10 +86,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="QF2-96-S5g" secondAttribute="trailing" id="AeH-kN-Y4N"/>
-                                    <constraint firstAttribute="trailing" secondItem="KJc-vO-jnW" secondAttribute="trailing" id="Eyn-kR-hZc"/>
-                                    <constraint firstAttribute="trailing" secondItem="QF2-96-S5g" secondAttribute="trailing" id="IsB-sO-1B8"/>
-                                    <constraint firstItem="QF2-96-S5g" firstAttribute="leading" secondItem="BbD-XM-Ezx" secondAttribute="leading" id="WvY-qb-M8e"/>
-                                    <constraint firstItem="KJc-vO-jnW" firstAttribute="leading" secondItem="BbD-XM-Ezx" secondAttribute="leading" id="rkM-1P-dpz"/>
                                     <constraint firstItem="QF2-96-S5g" firstAttribute="leading" secondItem="BbD-XM-Ezx" secondAttribute="leading" id="z4F-w3-eN3"/>
                                 </constraints>
                             </stackView>
@@ -154,12 +109,18 @@
                     <connections>
                         <outlet property="backgroundImage" destination="EjA-Zp-MIX" id="sbm-dx-OwC"/>
                         <outlet property="categoryView" destination="QF2-96-S5g" id="HFg-sq-6YX"/>
-                        <outlet property="mainCategoryLabel" destination="UBn-ak-o86" id="r9S-4c-sdQ"/>
-                        <outlet property="pickerOne" destination="dqC-3a-RwJ" id="bVr-k4-NOj"/>
+                        <outlet property="pickerOne" destination="gzZ-CR-Dne" id="xNt-fv-nd7"/>
+                        <outlet property="searchButton" destination="4d6-Ha-2Lo" id="GWe-rD-DnB"/>
+                        <outlet property="searchCategoryTextField" destination="IdH-ib-wb6" id="ecq-W2-gSq"/>
                         <outlet property="tableView" destination="B7K-d5-wat" id="f40-6m-JXw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JwC-Mg-iRw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pickerView contentMode="scaleToFill" id="gzZ-CR-Dne">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.115602" green="0.66089399999999998" blue="0.63505599999999995" alpha="1" colorSpace="calibratedRGB"/>
+                </pickerView>
             </objects>
             <point key="canvasLocation" x="-385" y="-204"/>
         </scene>
