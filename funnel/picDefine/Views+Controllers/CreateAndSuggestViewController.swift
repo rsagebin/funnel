@@ -28,7 +28,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     // MARK: - Outlets
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var mainCategoryLabel: UILabel!
+    @IBOutlet weak var mainCategoryLabel: UITextField!
+    
     @IBOutlet weak var pickerOne: UIPickerView!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var placeholderImageView: UIImageView!
@@ -43,6 +44,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainCategoryLabel.inputView = pickerOne
         
         postImageView.layer.borderColor = UIColor.lightGray.cgColor
         postImageView.layer.borderWidth = 1.0
@@ -59,6 +62,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
                 DispatchQueue.main.async {
                     self.category1 = CategoryController.shared.topCategories
                     self.pickerOne.reloadAllComponents()
+                    self.category1Selected = CategoryController.shared.topCategories.last
                 }
             }
         } else {
@@ -318,7 +322,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
 
         guard let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
         placeholderImageView.image = nil
-        postImageView.contentMode = .scaleToFill
+        postImageView.contentMode = .scaleAspectFit
         postImageView.image = chosenImage
         dismiss(animated:true, completion: nil)
     }
@@ -330,7 +334,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
 
     // MARK: - Categories Picker Methods
 
-extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -348,7 +352,8 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         category1Selected = category1[row]
-        mainCategoryLabel.text = category1[row].title
+        mainCategoryLabel.text = category1[row].title.uppercased()
+        self.view.endEditing(true)
         print("Category1:",category1[row].title)
     }
 }
