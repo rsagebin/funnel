@@ -38,21 +38,27 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet weak var declineButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
     
-
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mainCategoryLabel.inputView = pickerOne
-
+        
         postImageView.layer.borderColor = UIColor.lightGray.cgColor
         postImageView.layer.borderWidth = 1.0
         
         descriptionTextView.delegate = self
         descriptionTextView.text = "Add Description..."
         descriptionTextView.textColor = UIColor.lightGray
+        
+        if post == nil && revisedPost == nil {
+            navigationItem.title = "Create"
+        } else if post == nil && revisedPost != nil {
+            navigationItem.title = "Accept/Decline"
+        } else if post != nil {
+            navigationItem.title = "Suggest"
+        }
         
         self.acceptButton.isHidden = true
         self.declineButton.isHidden = true
@@ -75,9 +81,9 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         setButtonTitle()
         setBorders()
         
-        //        // Notifications to move view up or down when the keyboard it shown or hidden.
-                NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//                NotificationCenter.default.addObserver(self, selector: #selector(CreateAndSuggestViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        // Notifications to move view up or down when the keyboard it shown or hidden.
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         addDoneButtonOnKeyboard()
         addDoneButtonOnPicker()
@@ -138,7 +144,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         navigationController?.popToRootViewController(animated: true)
     }
     
-    
     // MARK: - Tool Bar
     
     func addDoneButtonOnPicker() {
@@ -156,7 +161,6 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
 
         doneToolbar.barTintColor = UIColor(named: "Color")
         mainCategoryLabel.inputAccessoryView = doneToolbar
-        
     }
     
     func addDoneButtonOnKeyboard() {
@@ -236,6 +240,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
             placeholderImageView.image = nil
             self.postImageView.image = revisedPost?.image
             self.descriptionTextView.text = revisedPost?.description
+            self.mainCategoryLabel.text = revisedPost?.categoryAsString.uppercased()
             
         } else {
             
@@ -271,18 +276,16 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     // Code to move the view up when the keyboard is shown
     
     @objc func keyboardWillShow(notification: NSNotification) {
-                self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 310, right: 0)
+        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 350, right: 0)
 
     }
-//    // Code to move the view down when the keyboard is hidden
-//    @objc func keyboardWillHide(notification: NSNotification) {
-////        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-////            if self.view.frame.origin.y != 0{
-////                self.view.frame.origin.y += keyboardSize.height
-////            }
-////        }
-////        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    }
+    
+    // Code to move the view down when the keyboard is hidden
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+
+        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
     
     func showActionSheet() {
         
@@ -373,8 +376,6 @@ extension CreateAndSuggestViewController: UIPickerViewDelegate, UIPickerViewData
         
         category1Selected = category1[row]
         mainCategoryLabel.text = category1[row].title.uppercased()
-//        self.view.endEditing(true)
-        print("Category1:",category1[row].title)
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
