@@ -11,16 +11,14 @@ import UIKit
 class FollowingTableViewController: UITableViewController {
 
     // MARK: - Properties
-    var sectionTitles: [String] = ["My Posts", "Posts I'm Following", "Posts to Revise", "My Suggested Posts"]
+    var sectionTitles: [String] = []
     var theRefreshControl: UIRefreshControl!
     var userPosts = [Post]()
     var userFollowings = [Post]()
     var communitySuggestions = [RevisedPost]()
     var userSuggestions = [RevisedPost]()
     
-    var allPosts: [[Any]] {
-        return [userPosts, userFollowings, communitySuggestions, userSuggestions]
-    }
+    var allPosts: [[Any]] = []
 //    var revisedPost: RevisedPost? move back to PostDetail
 
     // MARK: - Lifecycle
@@ -60,25 +58,7 @@ class FollowingTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var sectionCount = 0
-        
-        if userPosts.count > 0 {
-            sectionCount += 1
-        }
-
-        if userFollowings.count > 0 {
-            sectionCount += 1
-        }
-
-        if communitySuggestions.count > 0 {
-            sectionCount += 1
-        }
-
-        if userSuggestions.count > 0 {
-            sectionCount += 1
-        }
-        
-        return sectionCount
+        return allPosts.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -176,6 +156,7 @@ class FollowingTableViewController: UITableViewController {
                 if success {
                     self.userPosts = PostController.shared.userPosts
                     self.endNetworkActivity()
+                    self.setUpAllPostsArray()
                     self.tableView.reloadData()
                 }
                 
@@ -199,6 +180,7 @@ class FollowingTableViewController: UITableViewController {
                 if success {
                     self.userFollowings = PostController.shared.followingPosts
                     self.endNetworkActivity()
+                    self.setUpAllPostsArray()
                     self.tableView.reloadData()
                 }
                 
@@ -222,6 +204,7 @@ class FollowingTableViewController: UITableViewController {
                 if success {
                     self.communitySuggestions = RevisedPostController.shared.revisedPostsToApprove
                     self.endNetworkActivity()
+                    self.setUpAllPostsArray()
                     self.tableView.reloadData()
                 }
                 
@@ -244,6 +227,7 @@ class FollowingTableViewController: UITableViewController {
                 if success {
                     self.userSuggestions = RevisedPostController.shared.revisedPostsUserCreated
                     self.endNetworkActivity()
+                    self.setUpAllPostsArray()
                     self.tableView.reloadData()
                 }
                 
@@ -253,6 +237,32 @@ class FollowingTableViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    func setUpAllPostsArray() {
+        var allPostsArray: [[Any]] = []
+        self.sectionTitles = []
+        
+        if userPosts.count > 0 {
+            allPostsArray.append(self.userPosts)
+            sectionTitles.append("My Posts")
+        }
+        
+        if userFollowings.count > 0 {
+            allPostsArray.append(self.userFollowings)
+            sectionTitles.append("Post I'm Following")
+        }
+        
+        if communitySuggestions.count > 0 {
+            allPostsArray.append(self.communitySuggestions)
+            sectionTitles.append("Posts To Approve")
+        }
+        
+        if userSuggestions.count > 0 {
+            allPostsArray.append(self.userSuggestions)
+            sectionTitles.append("Posts I've Suggested")
+        }
+        self.allPosts = allPostsArray
     }
     
     func startNetworkActivity() {
