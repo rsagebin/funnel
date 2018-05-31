@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class PostDetailViewController: UIViewController {
+class PostDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Properties
     
@@ -20,6 +20,7 @@ class PostDetailViewController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var postImageView: UIImageView!
@@ -37,25 +38,60 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.maximumZoomScale = 6.0
+        
         createButton()
+        checkIfUserIsFollowing()
         updatePostView()
         
         postApprovedImage.isHidden = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        guard let post = post else { return }
+        CommentController.shared.loadCommentsFor(post: post) { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.postCommentCountLabel.text = String(CommentController.shared.postComments.count)
+                }
+            }
+        }
+    }
 
+
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.postImageView
+    }
     // MARK: - Other functions
+    
+    func checkIfUserIsFollowing() {
+        isFollowing = false
+        guard let userID = UserController.shared.loggedInUser else { return }
+        let userRef = CKReference(recordID: userID.ckRecordID, action: .none)
+        guard let followersRefs = post?.followersRefs else { return }
+        
+        for refNumber in followersRefs {
+            if refNumber == userRef {
+                isFollowing = true
+                postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
+                return
+            }
+        }
+    }
     
     func updatePostView() {
         guard let post = post else { return }
-//        let suggestions = RevisedPostController.shared.revisedPostsUserCreated.count
-        let commentCount = CommentController.shared.postComments.count
-        
+
         descriptionLabel.text = post.description
-        categoryLabel.text = post.categoryAsString
+        categoryLabel.text = post.categoryAsString.uppercased()
         postImageView.image = post.image
+        postImageView.layer.borderColor = UIColor.lightGray.cgColor
+        postImageView.layer.borderWidth = 1
         postFollowingCountLabel.text = String(post.followersRefs.count)
-        postCommentCountLabel.text = String(commentCount)
-//        postSuggestCountLabel.text = String(suggestions)
+        
     }
     
     func updateRevisedPostView() {

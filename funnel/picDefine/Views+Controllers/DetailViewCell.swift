@@ -43,11 +43,11 @@ class DetailViewCell: UITableViewCell {
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var postApprovedImage: UIImageView!
-    @IBOutlet weak var postFollowingCountLabel: UILabel!
+   
     @IBOutlet weak var postFollowingButton: UIButton!
-    @IBOutlet weak var postSuggestionCountLabel: UILabel!
+    
     @IBOutlet weak var postSuggestionButton: UIButton!
-    @IBOutlet weak var postCommentsCountLabel: UILabel!
+   
     @IBOutlet weak var commentsButtonOutlet: UIButton!
     
     // MARK: - Actions
@@ -71,6 +71,7 @@ class DetailViewCell: UITableViewCell {
     
     func checkIfUserIsFollowing() {
         isFollowing = false
+        postFollowingButton.setImage(#imageLiteral(resourceName: "star"), for: .normal)
         guard let userID = UserController.shared.loggedInUser else { return }
         let userRef = CKReference(recordID: userID.ckRecordID, action: .none)
         guard let followersRefs = post?.followersRefs else { return }
@@ -78,6 +79,7 @@ class DetailViewCell: UITableViewCell {
         for refNumber in followersRefs {
             if refNumber == userRef {
                 isFollowing = true
+                postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
                 return
             }
         }
@@ -104,10 +106,9 @@ class DetailViewCell: UITableViewCell {
             frontView.layer.borderWidth = 1
             
             self.postApprovedImage.isHidden = true
-            self.categoriesLabel.text = post.categoryAsString
+            self.categoriesLabel.text = post.categoryAsString.uppercased()
             self.descriptionTextView.text = post.description
             self.postImageView.image = post.image
-            self.postFollowingCountLabel.text = String(post.followersRefs.count)
         }
     }
 }
