@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d5o-BR-nEm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d5o-BR-nEm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -42,7 +42,7 @@
         <!--picDefine-->
         <scene sceneID="nTQ-m5-GAk">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="c0o-Rb-SrI" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tbc" automaticallyAdjustsScrollViewInsets="NO" id="c0o-Rb-SrI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="picDefine" id="5rY-mq-f7k">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9K3-Hb-Ghf">
