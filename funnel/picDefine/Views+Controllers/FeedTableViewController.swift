@@ -63,14 +63,25 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         self.tableView.reloadData()
     }
     
+    func startNetworkActivity() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func endNetworkActivity() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
     
     // MARK: - Other Functions
     
     @objc func didPullForRefresh() {
         
+        startNetworkActivity()
+        
         PostController.shared.fetchFeedPosts()
         tableView.reloadData()
         theRefreshControl.endRefreshing()
+        
     }
     
 //    func createAddPostButton() {
