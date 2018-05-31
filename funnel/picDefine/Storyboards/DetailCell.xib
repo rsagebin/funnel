@@ -91,11 +91,11 @@
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dB7-tR-9o9">
-                                <rect key="frame" x="272" y="40" width="50" height="50"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="approve-green" translatesAutoresizingMaskIntoConstraints="NO" id="zZ5-KD-xcU">
+                                <rect key="frame" x="267" y="40" width="40" height="66"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="c57-oG-cv2"/>
-                                    <constraint firstAttribute="height" constant="50" id="pbn-sL-TGX"/>
+                                    <constraint firstAttribute="width" constant="40" id="FrR-Pu-Hsm"/>
+                                    <constraint firstAttribute="height" constant="66" id="xp5-5v-UXt"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -112,11 +112,11 @@
                             <constraint firstItem="mNn-wi-NUM" firstAttribute="centerX" secondItem="8OU-Bl-RpS" secondAttribute="centerX" id="UfD-DL-sb3"/>
                             <constraint firstAttribute="trailing" secondItem="hzU-TO-BsW" secondAttribute="trailing" constant="15" id="Zkl-xC-JpG"/>
                             <constraint firstItem="mNn-wi-NUM" firstAttribute="leading" secondItem="8OU-Bl-RpS" secondAttribute="leading" constant="15" id="h3U-XY-36A"/>
-                            <constraint firstItem="dB7-tR-9o9" firstAttribute="trailing" secondItem="uDG-25-vMF" secondAttribute="trailing" id="ihs-If-nFp"/>
                             <constraint firstAttribute="trailing" secondItem="mNn-wi-NUM" secondAttribute="trailing" constant="15" id="jf8-gH-ShQ"/>
-                            <constraint firstItem="dB7-tR-9o9" firstAttribute="top" secondItem="uDG-25-vMF" secondAttribute="bottom" constant="5" id="sNU-3k-Iyf"/>
+                            <constraint firstItem="zZ5-KD-xcU" firstAttribute="top" secondItem="mNn-wi-NUM" secondAttribute="top" id="m8H-0p-sNI"/>
                             <constraint firstItem="hzU-TO-BsW" firstAttribute="top" secondItem="jQc-0f-PZj" secondAttribute="bottom" id="sYP-aB-NMv"/>
                             <constraint firstItem="uDG-25-vMF" firstAttribute="centerX" secondItem="8OU-Bl-RpS" secondAttribute="centerX" id="vbi-ot-o21"/>
+                            <constraint firstItem="zZ5-KD-xcU" firstAttribute="trailing" secondItem="mNn-wi-NUM" secondAttribute="trailing" constant="-15" id="zHt-8g-yZz"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -133,7 +133,7 @@
                 <outlet property="commentsButtonOutlet" destination="mEh-UG-1qM" id="WdQ-Tj-taF"/>
                 <outlet property="descriptionTextView" destination="hzU-TO-BsW" id="7CX-w3-jrC"/>
                 <outlet property="frontView" destination="8OU-Bl-RpS" id="lhZ-Sj-qc7"/>
-                <outlet property="postApprovedImage" destination="dB7-tR-9o9" id="Azw-e7-8u3"/>
+                <outlet property="postApprovedImage" destination="zZ5-KD-xcU" id="v8F-gh-sow"/>
                 <outlet property="postFollowingButton" destination="1bh-4A-hIB" id="p0N-Mt-uBr"/>
                 <outlet property="postImageView" destination="mNn-wi-NUM" id="dph-al-RYM"/>
                 <outlet property="postSuggestionButton" destination="tLe-Ju-GGR" id="vy8-vx-srj"/>
@@ -142,6 +142,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="approve-green" width="50" height="82"/>
         <image name="icons8-topic-100" width="18" height="17"/>
         <image name="light-on-500" width="18" height="19"/>
         <image name="star" width="19" height="19"/>

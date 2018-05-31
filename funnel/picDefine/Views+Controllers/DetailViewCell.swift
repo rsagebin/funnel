@@ -105,10 +105,17 @@ class DetailViewCell: UITableViewCell {
             frontView.layer.borderColor = UIColor.lightGray.cgColor
             frontView.layer.borderWidth = 1
             
-            self.postApprovedImage.isHidden = true
+            
             self.categoriesLabel.text = post.categoryAsString.uppercased()
             self.descriptionTextView.text = post.description
             self.postImageView.image = post.image
+            
+            if post.isAnswered {
+                self.postApprovedImage.isHidden = false
+            } else {
+                self.postApprovedImage.isHidden = true
+            }
+            
         }
     }
 }

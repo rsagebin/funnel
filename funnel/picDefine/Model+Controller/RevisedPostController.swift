@@ -82,6 +82,7 @@ class RevisedPostController {
     func acceptRevisedPost(revisedPost: RevisedPost, for post: Post, completion: @escaping (Bool) -> Void) {
         post.description = revisedPost.description
         post.category1Ref = revisedPost.category1Ref
+        post.categoryAsString = revisedPost.categoryAsString
         post.isAnswered = true
         
         CloudKitManager.shared.save(records: [post.ckRecord], perRecordCompletion: nil) { (records, error) in
