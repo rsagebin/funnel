@@ -24,14 +24,18 @@ class FollowingTableViewCell: UITableViewCell {
     @IBOutlet weak var postCommentsLabel: UILabel!
     @IBOutlet weak var postCommentsButton: UIButton!
     
+    @IBOutlet weak var suggestedIcon: UIImageView!
+    
+    
     
     // MARK: - Properties
     var userPost: Post? {
         didSet {
             checkUserRef()
             if let post = userPost {
+                self.suggestedIcon.isHidden = true
                 self.postSubmittedImage.image = post.image
-                self.postAcceptedSolutionIcon.isHidden = true // Call function when suggestions are there
+                checkIfNeedApprovedIcon()
                 self.postCategoryLabel.text = post.categoryAsString.uppercased()
                 self.postDescriptionLabel.text = post.description
 //                self.postHashTagsLabel.text =
@@ -71,8 +75,9 @@ class FollowingTableViewCell: UITableViewCell {
         didSet {
             checkUserRef()
             if let following = userFollowing {
+                self.suggestedIcon.isHidden = true
                 postSubmittedImage.image = following.image
-                postAcceptedSolutionIcon.isHidden = true // Create check function
+                checkIfNeedApprovedIcon()
                 postCategoryLabel.text = following.categoryAsString.uppercased()
                 postDescriptionLabel.text = following.description
                 postFollowingButton.setImage(#imageLiteral(resourceName: "star-filled-500"), for: .normal)
@@ -110,6 +115,7 @@ class FollowingTableViewCell: UITableViewCell {
         didSet {
 
             if let suggestion = communitySuggestion {
+                self.suggestedIcon.isHidden = false
                 postSubmittedImage.image = suggestion.image
                 postAcceptedSolutionIcon.isHidden = true
                 postCategoryLabel.text = suggestion.categoryAsString.uppercased()
@@ -134,6 +140,7 @@ class FollowingTableViewCell: UITableViewCell {
             checkUserRef()
 
             if let suggestion = userSuggestion {
+                self.suggestedIcon.isHidden = false
                 postSubmittedImage.image = suggestion.image
                 postAcceptedSolutionIcon.isHidden = true
                 postCategoryLabel.text = suggestion.categoryAsString.uppercased()
@@ -206,6 +213,20 @@ class FollowingTableViewCell: UITableViewCell {
 //        }
     }
     
+    func checkIfNeedApprovedIcon() {
+        if let post = self.userPost, post.isAnswered == true  {
+            self.postAcceptedSolutionIcon.isHidden = false
+        } else {
+            self.postAcceptedSolutionIcon.isHidden = true
+        }
+        
+        if let userFollowing = self.userFollowing, userFollowing.isAnswered == true  {
+            self.postAcceptedSolutionIcon.isHidden = false
+        } else {
+            self.postAcceptedSolutionIcon.isHidden = true
+        }
+    }
+    
     override func layoutSubviews() {
         
 //        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
@@ -214,11 +235,7 @@ class FollowingTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-//        postCategoryLabel.text = nil
-//        postDescriptionLabel.text = nil
-//        postFollowingLabel.text = nil
-//        postSuggestionLabel.text = nil
-//        postCommentsLabel.text = nil
+        self.postAcceptedSolutionIcon.isHidden = true
     }
     
 }

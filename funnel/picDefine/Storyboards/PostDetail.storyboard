@@ -125,32 +125,32 @@
                                                     <constraint firstAttribute="height" constant="30" id="VEc-9S-IYH"/>
                                                 </constraints>
                                             </stackView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="approved1" translatesAutoresizingMaskIntoConstraints="NO" id="AAQ-WP-y6H">
-                                                <rect key="frame" x="285" y="40" width="80" height="80"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="AAQ-WP-y6H" secondAttribute="height" multiplier="1:1" id="P0f-0V-uKd"/>
-                                                    <constraint firstAttribute="height" constant="80" id="TrD-WM-P3O"/>
-                                                </constraints>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Arp-aY-Tgw">
                                                 <rect key="frame" x="10" y="455" width="355" height="20"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                 <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="approve-green" translatesAutoresizingMaskIntoConstraints="NO" id="D3x-mb-26k">
+                                                <rect key="frame" x="310" y="40" width="40" height="66"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="66" id="5gk-mY-wzp"/>
+                                                    <constraint firstAttribute="width" constant="40" id="Vps-yI-udB"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="KSM-z6-dv6" firstAttribute="top" secondItem="IbP-DJ-gPm" secondAttribute="bottom" constant="5" id="1xC-aZ-gXq"/>
+                                            <constraint firstItem="D3x-mb-26k" firstAttribute="trailing" secondItem="IbP-DJ-gPm" secondAttribute="trailing" constant="-15" id="2fE-iY-77Q"/>
                                             <constraint firstAttribute="trailing" secondItem="KSM-z6-dv6" secondAttribute="trailing" constant="15" id="8Xs-xX-0Dc"/>
-                                            <constraint firstItem="AAQ-WP-y6H" firstAttribute="trailing" secondItem="IbP-DJ-gPm" secondAttribute="trailing" id="CIf-0E-lam"/>
                                             <constraint firstItem="Arp-aY-Tgw" firstAttribute="top" secondItem="KSM-z6-dv6" secondAttribute="bottom" constant="25" id="GVk-bX-UWd"/>
                                             <constraint firstAttribute="trailing" secondItem="Arp-aY-Tgw" secondAttribute="trailing" constant="10" id="IEw-em-oTa"/>
                                             <constraint firstItem="IbP-DJ-gPm" firstAttribute="top" secondItem="7sh-vL-BMp" secondAttribute="bottom" constant="10" id="RUJ-JW-fI6"/>
+                                            <constraint firstItem="D3x-mb-26k" firstAttribute="top" secondItem="IbP-DJ-gPm" secondAttribute="top" id="Tda-uj-6LR"/>
                                             <constraint firstAttribute="bottom" secondItem="Arp-aY-Tgw" secondAttribute="bottom" constant="20" id="iJe-Z0-nDc"/>
                                             <constraint firstItem="IbP-DJ-gPm" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" constant="10" id="m9D-v3-ZLt"/>
                                             <constraint firstItem="7sh-vL-BMp" firstAttribute="top" secondItem="HYl-qu-L1u" secondAttribute="top" constant="10" id="maJ-bU-r0w"/>
-                                            <constraint firstItem="AAQ-WP-y6H" firstAttribute="top" secondItem="IbP-DJ-gPm" secondAttribute="top" id="rKf-I2-XpG"/>
                                             <constraint firstAttribute="trailing" secondItem="7sh-vL-BMp" secondAttribute="trailing" constant="15" id="sVl-9A-AtL"/>
                                             <constraint firstItem="7sh-vL-BMp" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" constant="15" id="wHc-IJ-YYZ"/>
                                             <constraint firstItem="Arp-aY-Tgw" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" constant="10" id="wqq-5r-dNC"/>
@@ -180,7 +180,7 @@
                         <outlet property="branchButtonOutlet" destination="Z6R-i8-JF7" id="cb4-l4-M84"/>
                         <outlet property="categoryLabel" destination="7sh-vL-BMp" id="cRh-yR-LIQ"/>
                         <outlet property="descriptionLabel" destination="Arp-aY-Tgw" id="I1c-sO-AUN"/>
-                        <outlet property="postApprovedImage" destination="AAQ-WP-y6H" id="Mcg-sK-ZmB"/>
+                        <outlet property="postApprovedImage" destination="D3x-mb-26k" id="HXO-yM-65a"/>
                         <outlet property="postCommentCountLabel" destination="RBJ-Kt-RzL" id="wMh-yf-EF1"/>
                         <outlet property="postFollowingButton" destination="uSW-1h-Cjx" id="l0S-Cd-OuW"/>
                         <outlet property="postFollowingCountLabel" destination="6mK-cR-bzy" id="Yi9-ay-fF3"/>
@@ -195,7 +195,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="approved1" width="25" height="25"/>
+        <image name="approve-green" width="50" height="82"/>
         <image name="icons8-topic-100" width="18" height="17"/>
         <image name="light-on-500" width="18" height="19"/>
         <image name="star" width="19" height="19"/>

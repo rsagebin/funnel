@@ -105,10 +105,13 @@ class PostController {
         }
     }
     
-    func fetchFeedPosts() {
+    func fetchFeedPosts(completion: @escaping (Bool) -> Void) {
         self.feedPosts = []
         
-        guard let loggedInUser = UserController.shared.loggedInUser else { return }
+        guard let loggedInUser = UserController.shared.loggedInUser else {
+            completion(false)
+            return
+        }
         
         let predicate = NSPredicate(format: "NOT (creatorRef IN %@)", loggedInUser.blockedUsers)
 
@@ -117,11 +120,13 @@ class PostController {
         CloudKitManager.shared.fetch(type: Post.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
             if let error = error {
                 print("Error fetching posts from CloudKit: \(error.localizedDescription)")
+                completion(false)
                 return
             }
             
             guard let records = records else {
                 print("Found nil for records fetched from CloudKit.")
+                completion(false)
                 return
             }
             
@@ -130,6 +135,8 @@ class PostController {
             self.feedPosts = recordsArray
             
             NotificationCenter.default.post(name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: self)
+            
+            completion(true)
         }
     }
     

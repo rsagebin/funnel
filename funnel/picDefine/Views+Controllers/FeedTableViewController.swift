@@ -36,7 +36,14 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         ]
         
         // fetch posts
-        PostController.shared.fetchFeedPosts()
+        PostController.shared.fetchFeedPosts { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.endNetworkActivity()
+                }
+
+            }
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFeedView), name: NSNotification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
         
@@ -78,7 +85,14 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         
         startNetworkActivity()
         
-        PostController.shared.fetchFeedPosts()
+        PostController.shared.fetchFeedPosts { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.endNetworkActivity()
+                }
+                
+            }
+        }
         tableView.reloadData()
         theRefreshControl.endRefreshing()
         
