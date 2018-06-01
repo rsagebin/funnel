@@ -46,13 +46,12 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
         createButton()
         checkIfUserIsFollowing()
         
-        guard let post = post else { return }
-        
-        if post.isAnswered {
+        if let regularPost = self.post, regularPost.isAnswered {
             self.postApprovedImage.isHidden = false
         } else {
             self.postApprovedImage.isHidden = true
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

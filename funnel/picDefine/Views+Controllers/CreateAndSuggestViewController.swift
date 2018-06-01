@@ -137,11 +137,23 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
 
         if post != nil {
             guard let post = post else { return }
-            RevisedPostController.shared.createRevisedPost(for: post, description: description, category1: category1Selected, category2: nil, category3: nil, tagsAsString: "")
+            RevisedPostController.shared.createRevisedPost(for: post, description: description, category1: category1Selected, category2: nil, category3: nil, tagsAsString: "", completion: {(success) in
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            })
+
         } else {
-            PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: "")
+            PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: "", completion:{(success) in
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+                
+            })
+            
         }
-        navigationController?.popToRootViewController(animated: true)
+
+       
     }
     
     // MARK: - Tool Bar
