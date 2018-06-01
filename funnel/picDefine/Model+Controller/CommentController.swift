@@ -101,4 +101,16 @@ class CommentController {
 
     }
     
+    func deleteComment(commentID: CKRecordID, completion: @escaping (Bool) -> Void) {
+        CloudKitManager.shared.delete(recordID: commentID) { (recordID, error) in
+            if let error = error {
+                print("Error deleting comment from CloudKit: \(error)")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
+    }
+    
 }

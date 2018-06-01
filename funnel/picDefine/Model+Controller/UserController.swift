@@ -126,18 +126,25 @@ class UserController {
         }
     }
     
-    func block(userRecordID: CKRecordID) {
+    func block(userRecordID: CKRecordID, completion: @escaping (Bool) -> Void) {
         let reference = CKReference(recordID: userRecordID, action: .none)
         
-        guard let loggedInUser = UserController.shared.loggedInUser else { return }
+        guard let loggedInUser = UserController.shared.loggedInUser else {
+            completion(false)
+            return
+            
+        }
         
         loggedInUser.blockedUsers.append(reference)
         
         CloudKitManager.shared.save(records: [loggedInUser.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving user after adding a blocked user: \(error)")
+                completion(false)
                 return
             }
+            
+            completion(true)
         }
     }
     

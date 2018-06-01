@@ -196,7 +196,9 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
             
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
-                UserController.shared.block(userRecordID: post.creatorRef.recordID)
+                UserController.shared.block(userRecordID: post.creatorRef.recordID, completion: {(success) in
+                
+                })
                 self.navigationController?.popViewController(animated: true)
             })
             
