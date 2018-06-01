@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import UserNotifications
 
 class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -146,6 +147,36 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         } else {
             PostController.shared.createPost(description: description, image: image, category1: category1Selected, category2: nil, category3: nil, tagString: "", completion:{(success) in
                 DispatchQueue.main.async {
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
+                    { (_, error) in
+                        if let error = error {
+                            print("No permission granted: \(error.localizedDescription)")
+                        }
+                        
+                    }
+                    
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (success, error) in
+                        
+                        if let error = error {
+                            print("Error asking for permission: \(error.localizedDescription)")
+                            return
+                        }
+                        
+                        print("Success in asking for permission.")
+                        
+                        if success {
+                            DispatchQueue.main.async {
+                                UIApplication.shared.registerForRemoteNotifications()
+                                CloudKitManager.shared.subscribeToRevisionPostedNotfication(completion: { (_, error) in
+                                    print("Error subscribing to revision notfications: \(String(describing: error))")
+                                })
+                            }
+                            
+                        }
+                        
+                    }
+            
+
                     self.navigationController?.popToRootViewController(animated: true)
                 }
                 

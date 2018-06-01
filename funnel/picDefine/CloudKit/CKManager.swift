@@ -61,14 +61,15 @@ class CloudKitManager {
         CKContainer.default().fetchUserRecordID(completionHandler: completion)
     }
     
-    func subscribeTo(_ recordType: String, completion: @escaping ((CKSubscription?, Error?) -> Void)) {
+    func subscribeToRevisionPostedNotfication(completion: @escaping ((CKSubscription?, Error?) -> Void)) {
         guard let user = UserController.shared.loggedInUser else {
             return }
         let predicate = NSPredicate(format: "creatorRef == %@", user.ckRecordID)
         let subscription = CKQuerySubscription(recordType: RevisedPost.typeKey, predicate: predicate, options: [.firesOnRecordCreation])
         
         let notificationInfo = CKNotificationInfo()
-        notificationInfo.alertBody = "New Notification"
+        notificationInfo.title = "New Post Suggestion"
+        notificationInfo.alertBody = "You have received a new suggestion on your post."
         notificationInfo.soundName = "default"
         notificationInfo.shouldBadge = true
         subscription.notificationInfo = notificationInfo
