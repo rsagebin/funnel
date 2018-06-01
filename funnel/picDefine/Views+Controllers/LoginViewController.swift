@@ -313,7 +313,7 @@ class LoginViewController: UIViewController {
                     print("User fetched successfully")
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                        self.performSegue(withIdentifier: self.segueIdentifier, sender: nil)
+                        self.segueToMain()
                     })
                 }
 
@@ -406,8 +406,7 @@ class LoginViewController: UIViewController {
                         self.showSignedIn()
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                            self.performSegue(withIdentifier: self.segueIdentifier, sender: nil)
-              
+                            self.segueToMain()
                         })
                     }
                     
@@ -463,6 +462,12 @@ class LoginViewController: UIViewController {
             
             termsAndConditions()
         }
+    }
+    
+    func segueToMain() {
+        let mainSB = UIStoryboard(name: "Main", bundle: .main)
+        let mainVC = mainSB.instantiateViewController(withIdentifier: "navigation") as! UINavigationController
+        self.present(mainVC, animated: true, completion: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
