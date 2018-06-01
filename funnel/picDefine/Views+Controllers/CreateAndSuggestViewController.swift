@@ -10,7 +10,7 @@ import UIKit
 import CloudKit
 import UserNotifications
 
-class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UNUserNotificationCenterDelegate {
 
     // MARK: - Properties
     
@@ -175,6 +175,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
                         }
                         
                     }
+                    
+                    UNUserNotificationCenter.current().delegate = self
             
 
                     self.navigationController?.popToRootViewController(animated: true)
