@@ -23,7 +23,7 @@ class PostController {
     var category2Posts = [Post]()
     var category3Posts = [Post]()
 
-    func createPost(description: String, image: UIImage, category1: Category1?, category2: Category2?, category3: Category3?, tagString: String) {
+    func createPost(description: String, image: UIImage, category1: Category1?, category2: Category2?, category3: Category3?, tagString: String, completion: @escaping (Bool) -> Void) {
         
         // Create CKAsset from image
         // Write image to disk as a temprary file in order to create CKAsset
@@ -34,12 +34,16 @@ class PostController {
             try imageAsJpeg?.write(to: url)
         } catch {
             print("Couldn't write temporary image to file: \(error)")
+            completion(false)
             return
         }
         
         let asset = CKAsset(fileURL: url)
         
-        guard let user = UserController.shared.loggedInUser else { return }
+        guard let user = UserController.shared.loggedInUser else {
+            completion(false)
+            return
+        }
         
         let creatorReference = CKReference(recordID: user.ckRecordID, action: .deleteSelf)
         
@@ -73,19 +77,24 @@ class PostController {
         CloudKitManager.shared.save(records: [post.ckRecord], perRecordCompletion: nil) { (record, error) in
             if let error = error {
                 print("Error saving post to CloudKit: \(error)")
+                completion(false)
                 return
             }
+            
+            completion(true)
             
             // Delete temporary image after creating CKAsset and saving new post
             do {
                 try FileManager.default.removeItem(at: url)
             } catch {
                 print("Error deleting temporary image file: \(error)")
+                completion(false)
                 return
             }
+            
         }
         
-        TagController.shared.saveTagsOnPost(post: post, tagString: tagString)
+//        TagController.shared.saveTagsOnPost(post: post, tagString: tagString)
 
     }
     

@@ -20,14 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
-        { (_, error) in
-            if let error = error {
-                print("No permission granted: \(error.localizedDescription)")
-            }
-        }
-        
-        UIApplication.shared.registerForRemoteNotifications()
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
+//        { (_, error) in
+//            if let error = error {
+//                print("No permission granted: \(error.localizedDescription)")
+//            }
+//        }
+//
+//        UIApplication.shared.registerForRemoteNotifications()
         return true
     }
     

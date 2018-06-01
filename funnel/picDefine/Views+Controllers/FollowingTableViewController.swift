@@ -65,11 +65,7 @@ class FollowingTableViewController: UITableViewController {
         guard sectionTitles.indices ~= section else { return nil }
         return sectionTitles[section]
     }
-    
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        <#code#>
-//    }
-    
+
     // Rows
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var cellHeight = 115
@@ -152,12 +148,13 @@ class FollowingTableViewController: UITableViewController {
         
         PostController.shared.fetchUserPosts(user: user) { (success) in
             DispatchQueue.main.async {
-                
                 if success {
+                    
                     self.userPosts = PostController.shared.userPosts
                     self.endNetworkActivity()
                     self.setUpAllPostsArray()
                     self.tableView.reloadData()
+                    
                 }
                 
                 if !success {
@@ -199,8 +196,8 @@ class FollowingTableViewController: UITableViewController {
         guard let user = UserController.shared.loggedInUser else { return }
         
         RevisedPostController.shared.fetchRevisedPostsToApprove(originalPostCreator: user) { (success) in
+            
             DispatchQueue.main.async {
-                
                 if success {
                     self.communitySuggestions = RevisedPostController.shared.revisedPostsToApprove
                     self.endNetworkActivity()

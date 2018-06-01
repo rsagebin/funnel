@@ -16,7 +16,7 @@ class RevisedPostController {
     var revisedPostsToApprove: [RevisedPost] = []
     var revisedPostsUserCreated: [RevisedPost] = []
     
-    func createRevisedPost(for post: Post, description: String, category1: Category1?, category2: Category2?, category3: Category3?, tagsAsString: String) {
+    func createRevisedPost(for post: Post, description: String, category1: Category1?, category2: Category2?, category3: Category3?, tagsAsString: String, completion: @escaping (Bool) -> Void) {
         
         var categoryAsString = ""
         
@@ -39,7 +39,11 @@ class RevisedPostController {
             categoryAsString += "\\" + "\(category3.title)"
         }
 
-        guard let loggedInUser = UserController.shared.loggedInUser else { return }
+        guard let loggedInUser = UserController.shared.loggedInUser else {
+            completion(false)
+            return
+            
+        }
         
         let reference = CKReference(recordID: loggedInUser.ckRecordID, action: .none)
         
@@ -52,10 +56,14 @@ class RevisedPostController {
         CloudKitManager.shared.save(records: [revisedPost.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving new revised post to CloudKit: \(error)")
+                completion(false)
             }
+            
+            completion(true)
         }
         
-        TagController.shared.saveTagsOnRevisedPost(post: revisedPost, tagString: tagsAsString)
+        
+//        TagController.shared.saveTagsOnRevisedPost(post: revisedPost, tagString: tagsAsString)
         
     }
     
