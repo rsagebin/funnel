@@ -24,6 +24,12 @@ class DetailViewCell: UITableViewCell {
     
     var suggestDelegate: SuggestionDelegate?
     
+    var user: User? {
+        didSet {
+            updateViews()
+        }
+    }
+    
     var post: Post? {
         didSet {
             checkIfUserIsFollowing()
@@ -37,6 +43,7 @@ class DetailViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var frontView: UIView!
     
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -104,8 +111,9 @@ class DetailViewCell: UITableViewCell {
             frontView.layer.cornerRadius = 3
             frontView.layer.borderColor = UIColor.lightGray.cgColor
             frontView.layer.borderWidth = 1
+            guard let user = user else { return }
             
-            
+            self.usernameLabel.text = " \(user.username)"
             self.categoriesLabel.text = post.categoryAsString.uppercased()
             self.descriptionTextView.text = post.description
             self.postImageView.image = post.image
