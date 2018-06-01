@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
         appAlphaView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: 25).isActive = true
         appAlphaView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         appAlphaView.heightAnchor.constraint(equalTo: appAlphaView.widthAnchor, multiplier: 1.2).isActive = true
-        appAlphaView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.7).isActive = true
+        appAlphaView.widthAnchor.constraint(equalToConstant: 275).isActive = true
         
         view.addSubview(scrollView)
     }
@@ -115,12 +115,13 @@ class LoginViewController: UIViewController {
         appClearView.addSubview(activityIndicator)
         activityIndicator.activityIndicatorViewStyle = .whiteLarge
         activityIndicator.color = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
+        activityIndicator.startAnimating()
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.topAnchor.constraint(equalTo: appClearView.centerYAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: appClearView.centerYAnchor, constant: 25).isActive = true
         activityIndicator.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
-        activityIndicator.heightAnchor.constraint(equalTo: activityIndicator.widthAnchor).isActive = true
-        activityIndicator.widthAnchor.constraint(equalTo: appClearView.widthAnchor).isActive = true
+        activityIndicator.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        activityIndicator.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
 
     func showSignUpView() {
@@ -193,7 +194,7 @@ class LoginViewController: UIViewController {
         // Sign Up Button
         appClearView.addSubview(signUpButton)
         signUpButton.setTitle("Register", for: .normal)
-        signUpButton.titleLabel?.font = UIFont(name: ralewayFont, size: 15)
+        signUpButton.titleLabel?.font = UIFont(name: ralewayFont, size: 16)
         signUpButton.setTitleColor(UIColor.white, for: .normal)
         signUpButton.backgroundColor = #colorLiteral(red: 0.08600000292, green: 0.6269999743, blue: 0.5220000148, alpha: 1)
         signUpButton.layer.cornerRadius = 5
@@ -224,8 +225,10 @@ class LoginViewController: UIViewController {
         appNameLabel.centerXAnchor.constraint(equalTo: appClearView.centerXAnchor).isActive = true
         appNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         appNameLabel.widthAnchor.constraint(equalTo: appClearView.widthAnchor, multiplier: 0.75).isActive = true
-
-
+        
+        UIView.animate(withDuration: 3, animations: {
+            self.activityIndicator.alpha = 1
+        }, completion: nil)
     }
 
     func animateSignUp() {
@@ -399,8 +402,8 @@ class LoginViewController: UIViewController {
                             })
                         })
                         
-//                        self.appNameLabel.removeFromSuperview()
-//                        self.showSignedIn()
+                        self.appNameLabel.removeFromSuperview()
+                        self.showSignedIn()
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                             self.performSegue(withIdentifier: self.segueIdentifier, sender: nil)
