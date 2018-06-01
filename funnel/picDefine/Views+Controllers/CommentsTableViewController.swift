@@ -28,12 +28,13 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         commentTextView.textColor = UIColor.lightGray
         
         navigationItem.title = "Comments"
-        
-        fetchComents()
-        
         theRefreshControl = UIRefreshControl()
         theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
         tableView.addSubview(theRefreshControl)
+        
+        fetchComents()
+        
+
     }
     
     func fetchComents() {
@@ -41,10 +42,12 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         CommentController.shared.loadCommentsFor(post: post) { (success) in
             if success {
                 DispatchQueue.main.async {
+                    self.theRefreshControl.endRefreshing()
                     self.tableView.reloadData()
                 }
             }
         }
+        
     }
     
     lazy var containerView: UIView = {
@@ -144,8 +147,6 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     @objc func didPullForRefresh() {
         
         fetchComents()
-        self.refreshControl?.endRefreshing()
-        
     }
     
     // MARK: - Table view data source
@@ -184,12 +185,12 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
             
             let delete = UITableViewRowAction(style: .default, title: "Delete") { (_, IndexPath) in
                 // delete comment
-//                CommentController.shared.deleteComment(commentID: comment.ckRecordID, completion: { (success) in
-//                    if success {
-//                        self.fetchComents()
-//                    }
-//                        
-//                })
+                CommentController.shared.deleteComment(commentID: comment.ckRecordID, completion: { (success) in
+                    if success {
+                        self.fetchComents()
+                    }
+                    
+                })
             }
             
             action = delete
