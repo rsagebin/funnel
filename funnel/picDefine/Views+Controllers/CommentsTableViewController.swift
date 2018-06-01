@@ -29,6 +29,14 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         
         navigationItem.title = "Comments"
         
+        fetchComents()
+        
+        theRefreshControl = UIRefreshControl()
+        theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
+        tableView.addSubview(theRefreshControl)
+    }
+    
+    func fetchComents() {
         guard let post = post else { return }
         CommentController.shared.loadCommentsFor(post: post) { (success) in
             if success {
@@ -37,10 +45,6 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
                 }
             }
         }
-        
-        theRefreshControl = UIRefreshControl()
-        theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
-        tableView.addSubview(theRefreshControl)
     }
     
     lazy var containerView: UIView = {
@@ -139,15 +143,9 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     
     @objc func didPullForRefresh() {
         
-        guard let post = post else { return }
-        CommentController.shared.loadCommentsFor(post: post) { (success) in
-            if success {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.theRefreshControl.endRefreshing()
-                }
-            }
-        }
+        fetchComents()
+        self.refreshControl?.endRefreshing()
+        
     }
     
     // MARK: - Table view data source
@@ -186,6 +184,12 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
             
             let delete = UITableViewRowAction(style: .default, title: "Delete") { (_, IndexPath) in
                 // delete comment
+//                CommentController.shared.deleteComment(commentID: comment.ckRecordID, completion: { (success) in
+//                    if success {
+//                        self.fetchComents()
+//                    }
+//                        
+//                })
             }
             
             action = delete
@@ -194,8 +198,13 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
             
             let block = UITableViewRowAction(style: .default, title: "Block User") { (_, IndexPath) in
                 // block user
-                UserController.shared.block(userRecordID: comment.userReference.recordID)
-                self.tableView.reloadData()
+                UserController.shared.block(userRecordID: comment.userReference.recordID, completion: { (success) in
+                    if success {
+                        self.fetchComents()
+                        
+                    }
+                })
+                
             }
             
             action = block
