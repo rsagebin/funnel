@@ -129,6 +129,12 @@ class FeedTableViewController: UITableViewController, SuggestionDelegate, Commen
         
         let post = PostController.shared.feedPosts[indexPath.row]
         cell.post = post
+        UserController.shared.fetchUser(ckRecordID: post.creatorRef.recordID) { (user) in
+            DispatchQueue.main.async {
+                
+                cell.user = user
+            }
+        }
         cell.descriptionTextView.isEditable = false
         cell.commentsDelegate = self
         cell.suggestDelegate = self
