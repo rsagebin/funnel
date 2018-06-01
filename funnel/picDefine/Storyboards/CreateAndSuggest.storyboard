@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ShQ-qW-rno">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Create And Suggest View Controller-->
+        <scene sceneID="b5P-p8-ZWP">
+            <objects>
+                <viewController storyboardIdentifier="CreateAndSuggestSB" id="ShQ-qW-rno" customClass="CreateAndSuggestViewController" customModule="picDefine" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BxG-i6-gRG" userLabel="TopView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sFy-k9-wCE">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvo-i7-NC7">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="552"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaC-H8-gsP" userLabel="CategoryView">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select category..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fdx-Ze-HDi">
+                                                        <rect key="frame" x="15" y="10" width="345" height="30"/>
+                                                        <color key="textColor" name="Color"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="JC2-lV-B1G"/>
+                                                </constraints>
+                                            </view>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1qq-fs-oln">
+                                                <rect key="frame" x="15" y="60" width="345" height="345"/>
+                                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="1qq-fs-oln" secondAttribute="height" multiplier="1:1" id="GiB-09-dbe"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-500 (1)" translatesAutoresizingMaskIntoConstraints="NO" id="L6Y-R4-yL4">
+                                                <rect key="frame" x="81.5" y="147.5" width="212" height="170"/>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" scrollEnabled="NO" text="Description..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-Lm-5TH">
+                                                <rect key="frame" x="15" y="425" width="345" height="33"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="WHK-yY-v6h">
+                                                <rect key="frame" x="15" y="468" width="345" height="69"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8o-3S-mCH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="32"/>
+                                                        <color key="backgroundColor" name="Color"/>
+                                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="createOrSuggestPostButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="bIP-Wz-UfN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Wtr-xZ-HVm">
+                                                        <rect key="frame" x="0.0" y="37" width="345" height="32"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4r-Do-MI2">
+                                                                <rect key="frame" x="0.0" y="0.0" width="162.5" height="32"/>
+                                                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
+                                                                <state key="normal" title="Decline">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="declineButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="o0A-0q-ynd"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnM-6s-ghm">
+                                                                <rect key="frame" x="182.5" y="0.0" width="162.5" height="32"/>
+                                                                <color key="backgroundColor" name="Color"/>
+                                                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
+                                                                <state key="normal" title="Accept">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="acceptButtonTapped:" destination="ShQ-qW-rno" eventType="touchUpInside" id="kn4-3x-MBs"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="WHK-yY-v6h" firstAttribute="top" secondItem="fZH-Lm-5TH" secondAttribute="bottom" constant="10" id="0bN-RI-LJo"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fdx-Ze-HDi" secondAttribute="trailing" constant="15" id="1gO-qx-m1u"/>
+                                            <constraint firstItem="Fdx-Ze-HDi" firstAttribute="top" secondItem="qvo-i7-NC7" secondAttribute="top" constant="10" id="61h-SR-bFT"/>
+                                            <constraint firstItem="1qq-fs-oln" firstAttribute="top" secondItem="OaC-H8-gsP" secondAttribute="bottom" constant="20" id="9vV-lH-BSx"/>
+                                            <constraint firstItem="OaC-H8-gsP" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" id="Eyl-o0-jM9"/>
+                                            <constraint firstAttribute="trailing" secondItem="WHK-yY-v6h" secondAttribute="trailing" constant="15" id="Hic-mn-M2y"/>
+                                            <constraint firstItem="fZH-Lm-5TH" firstAttribute="top" secondItem="1qq-fs-oln" secondAttribute="bottom" constant="20" id="Iez-o3-ytO"/>
+                                            <constraint firstItem="1qq-fs-oln" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" constant="15" id="PKU-pt-tbU"/>
+                                            <constraint firstItem="L6Y-R4-yL4" firstAttribute="centerY" secondItem="1qq-fs-oln" secondAttribute="centerY" id="SOP-8d-dNq"/>
+                                            <constraint firstItem="Fdx-Ze-HDi" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" constant="15" id="Xqn-AU-UJ9"/>
+                                            <constraint firstAttribute="trailing" secondItem="OaC-H8-gsP" secondAttribute="trailing" id="dWJ-VA-8Jt"/>
+                                            <constraint firstAttribute="trailing" secondItem="fZH-Lm-5TH" secondAttribute="trailing" constant="15" id="eOh-9G-e5I"/>
+                                            <constraint firstAttribute="bottom" secondItem="WHK-yY-v6h" secondAttribute="bottom" constant="15" id="eSf-k6-m6r"/>
+                                            <constraint firstItem="fZH-Lm-5TH" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" constant="15" id="gB4-0G-jbu"/>
+                                            <constraint firstAttribute="trailing" secondItem="1qq-fs-oln" secondAttribute="trailing" constant="15" id="gRX-U9-YIc"/>
+                                            <constraint firstItem="L6Y-R4-yL4" firstAttribute="centerX" secondItem="1qq-fs-oln" secondAttribute="centerX" id="mVU-AU-vI6"/>
+                                            <constraint firstItem="OaC-H8-gsP" firstAttribute="top" secondItem="qvo-i7-NC7" secondAttribute="top" id="pk2-sG-H4Y"/>
+                                            <constraint firstItem="WHK-yY-v6h" firstAttribute="leading" secondItem="qvo-i7-NC7" secondAttribute="leading" constant="15" id="qP4-5o-BmU"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qvo-i7-NC7" firstAttribute="top" secondItem="sFy-k9-wCE" secondAttribute="top" id="0OY-e8-Y1d"/>
+                                    <constraint firstItem="qvo-i7-NC7" firstAttribute="leading" secondItem="sFy-k9-wCE" secondAttribute="leading" id="Epg-93-J6Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="qvo-i7-NC7" secondAttribute="trailing" id="Z7K-hr-yJL"/>
+                                    <constraint firstAttribute="bottom" secondItem="qvo-i7-NC7" secondAttribute="bottom" id="hVh-Cj-FdK"/>
+                                    <constraint firstItem="qvo-i7-NC7" firstAttribute="width" secondItem="sFy-k9-wCE" secondAttribute="width" id="yJy-0t-0XH"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sFy-k9-wCE" firstAttribute="trailing" secondItem="YQz-yd-njm" secondAttribute="trailing" id="0nt-8E-LvV"/>
+                            <constraint firstItem="sFy-k9-wCE" firstAttribute="leading" secondItem="YQz-yd-njm" secondAttribute="leading" id="7Ek-nj-JV8"/>
+                            <constraint firstItem="sFy-k9-wCE" firstAttribute="bottom" secondItem="YQz-yd-njm" secondAttribute="bottom" priority="500" id="BWW-wb-Nez"/>
+                            <constraint firstItem="sFy-k9-wCE" firstAttribute="top" secondItem="YQz-yd-njm" secondAttribute="top" id="cGz-Hm-dbV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YQz-yd-njm"/>
+                    </view>
+                    <connections>
+                        <outlet property="acceptButton" destination="hnM-6s-ghm" id="DCF-VO-25S"/>
+                        <outlet property="createOrSuggestOutlet" destination="A8o-3S-mCH" id="mwO-4c-gSC"/>
+                        <outlet property="declineButton" destination="u4r-Do-MI2" id="tBu-OW-WT6"/>
+                        <outlet property="descriptionTextView" destination="fZH-Lm-5TH" id="NbP-Th-hqY"/>
+                        <outlet property="mainCategoryLabel" destination="Fdx-Ze-HDi" id="XxA-sT-Rae"/>
+                        <outlet property="pickerOne" destination="vDj-1v-hkf" id="BKZ-Im-pYZ"/>
+                        <outlet property="placeholderImageView" destination="L6Y-R4-yL4" id="VPV-75-r6j"/>
+                        <outlet property="postImageView" destination="1qq-fs-oln" id="tfT-Fd-fhy"/>
+                        <outlet property="scrollView" destination="sFy-k9-wCE" id="6er-WM-pDB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mLf-7t-dEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pickerView contentMode="scaleToFill" id="vDj-1v-hkf">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" name="Color"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="ShQ-qW-rno" id="SY2-mX-5A6"/>
+                        <outlet property="delegate" destination="ShQ-qW-rno" id="MCt-xk-Iql"/>
+                    </connections>
+                </pickerView>
+            </objects>
+            <point key="canvasLocation" x="3605.5999999999999" y="8.5457271364317844"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="image-500 (1)" width="212" height="170"/>
+        <namedColor name="Color">
+            <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
