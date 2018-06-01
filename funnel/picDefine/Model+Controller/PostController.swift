@@ -349,9 +349,9 @@ class PostController {
     }
     
 
-    func subscribeToPushNotifications(completion: @escaping ((CKSubscription?, Error?) -> Void)) {
-        CloudKitManager.shared.subscribeTo(CloudKitKeys.type, completion: completion)
-    }
+//    func subscribeToPushNotifications(completion: @escaping ((CKSubscription?, Error?) -> Void)) {
+//        CloudKitManager.shared.subscribeTo(CloudKitKeys.type, completion: completion)
+//    }
 
     
     init() {    

@@ -32,8 +32,13 @@ class ProfileViewController: UIViewController {
         userImageView.layer.borderWidth = 9.0
         userImageView.layer.borderColor = UIColor(named: "Color")?.cgColor
         
-        updateView()
         setUpBorders()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.updateView()
     }
 
     // MARK: - Actions
@@ -51,6 +56,9 @@ class ProfileViewController: UIViewController {
                     DispatchQueue.main.async {
                         let vc = LoginViewController()
                         self.present(vc, animated: true, completion: nil)
+//                        self.userName = nil
+//                        self.userUsername = nil
+//                        self.userEmail = nil
                     }
 
                 } else {
