@@ -166,6 +166,7 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
                         
                         if success {
                             DispatchQueue.main.async {
+                                
                                 UIApplication.shared.registerForRemoteNotifications()
                                 CloudKitManager.shared.subscribeToRevisionPostedNotfication(completion: { (_, error) in
                                     print("Error subscribing to revision notfications: \(String(describing: error))")
