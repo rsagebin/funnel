@@ -21,6 +21,8 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        submitButton.isEnabled = false
+        
         commentTextView.delegate = self
         commentTextView.text = "   Enter comment..."
         commentTextView.textColor = UIColor.lightGray
@@ -51,13 +53,8 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         containerView.addSubview(self.commentTextView)
         self.commentTextView.translatesAutoresizingMaskIntoConstraints = false
 
-        let submitButton = UIButton(type: .system)
-        submitButton.setTitle("Send", for: .normal)
-        submitButton.setTitleColor(UIColor(named: "Color"), for: .normal)
-        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
         containerView.addSubview(submitButton)
-        submitButton.translatesAutoresizingMaskIntoConstraints = false
+        self.submitButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint(item: submitButton, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 5).isActive = true
@@ -69,6 +66,15 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         NSLayoutConstraint(item: self.commentTextView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: -10).isActive = true
         
         return containerView
+    }()
+    
+    let submitButton: UIButton = {
+        let submitButton = UIButton(type: .system)
+        submitButton.setTitle("Send", for: .normal)
+        submitButton.setTitleColor(UIColor(named: "Color"), for: .normal)
+        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+        return submitButton
     }()
     
     // MARK: - Comments Text View
@@ -87,6 +93,8 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
+        submitButton.isEnabled = true
+        
         if commentTextView.textColor == UIColor.lightGray {
             commentTextView.text = nil
             commentTextView.textColor = UIColor.black
@@ -94,10 +102,12 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if commentTextView.text.isEmpty {
-            commentTextView.text = "   Enter comment..."
-            commentTextView.textColor = UIColor.lightGray
-        }
+        
+        submitButton.isEnabled = false
+        
+        commentTextView.text = "   Enter comment..."
+        commentTextView.textColor = UIColor.lightGray
+      
     }
     
     @objc func handleSubmit() {
