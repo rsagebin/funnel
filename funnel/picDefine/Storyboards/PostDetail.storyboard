@@ -11,6 +11,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+        </array>
         <array key="Raleway-Regular.ttf">
             <string>Raleway-Regular</string>
         </array>
@@ -28,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYl-qu-L1u">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="495"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="480"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sh-vL-BMp">
                                                 <rect key="frame" x="15" y="10" width="345" height="20"/>
@@ -126,7 +129,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Arp-aY-Tgw">
-                                                <rect key="frame" x="10" y="455" width="355" height="20"/>
+                                                <rect key="frame" x="10" y="440" width="355" height="20"/>
                                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="17"/>
                                                 <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -138,16 +141,24 @@
                                                     <constraint firstAttribute="width" constant="40" id="Vps-yI-udB"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMi-Fx-AzE">
+                                                <rect key="frame" x="10" y="400" width="4.5" height="30"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="17"/>
+                                                <color key="textColor" name="Color"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="KSM-z6-dv6" firstAttribute="top" secondItem="IbP-DJ-gPm" secondAttribute="bottom" constant="5" id="1xC-aZ-gXq"/>
                                             <constraint firstItem="D3x-mb-26k" firstAttribute="trailing" secondItem="IbP-DJ-gPm" secondAttribute="trailing" constant="-15" id="2fE-iY-77Q"/>
+                                            <constraint firstItem="HMi-Fx-AzE" firstAttribute="height" secondItem="KSM-z6-dv6" secondAttribute="height" id="63X-fR-dMP"/>
                                             <constraint firstAttribute="trailing" secondItem="KSM-z6-dv6" secondAttribute="trailing" constant="15" id="8Xs-xX-0Dc"/>
-                                            <constraint firstItem="Arp-aY-Tgw" firstAttribute="top" secondItem="KSM-z6-dv6" secondAttribute="bottom" constant="25" id="GVk-bX-UWd"/>
+                                            <constraint firstItem="Arp-aY-Tgw" firstAttribute="top" secondItem="KSM-z6-dv6" secondAttribute="bottom" constant="10" id="GVk-bX-UWd"/>
                                             <constraint firstAttribute="trailing" secondItem="Arp-aY-Tgw" secondAttribute="trailing" constant="10" id="IEw-em-oTa"/>
                                             <constraint firstItem="IbP-DJ-gPm" firstAttribute="top" secondItem="7sh-vL-BMp" secondAttribute="bottom" constant="10" id="RUJ-JW-fI6"/>
                                             <constraint firstItem="D3x-mb-26k" firstAttribute="top" secondItem="IbP-DJ-gPm" secondAttribute="top" id="Tda-uj-6LR"/>
+                                            <constraint firstItem="HMi-Fx-AzE" firstAttribute="top" secondItem="KSM-z6-dv6" secondAttribute="top" id="hFU-iU-MBh"/>
                                             <constraint firstAttribute="bottom" secondItem="Arp-aY-Tgw" secondAttribute="bottom" constant="20" id="iJe-Z0-nDc"/>
                                             <constraint firstItem="IbP-DJ-gPm" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" constant="10" id="m9D-v3-ZLt"/>
                                             <constraint firstItem="7sh-vL-BMp" firstAttribute="top" secondItem="HYl-qu-L1u" secondAttribute="top" constant="10" id="maJ-bU-r0w"/>
@@ -155,6 +166,7 @@
                                             <constraint firstItem="7sh-vL-BMp" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" constant="15" id="wHc-IJ-YYZ"/>
                                             <constraint firstItem="Arp-aY-Tgw" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" constant="10" id="wqq-5r-dNC"/>
                                             <constraint firstAttribute="trailing" secondItem="IbP-DJ-gPm" secondAttribute="trailing" constant="10" id="xen-dh-Wvh"/>
+                                            <constraint firstItem="HMi-Fx-AzE" firstAttribute="leading" secondItem="HYl-qu-L1u" secondAttribute="leading" constant="10" id="ygD-xm-5gN"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -189,6 +201,7 @@
                         <outlet property="postImageView" destination="IbP-DJ-gPm" id="evT-Yh-NZh"/>
                         <outlet property="postSuggestCountLabel" destination="EPw-WY-LWf" id="jV3-RE-DPX"/>
                         <outlet property="scrollView" destination="hXw-Z4-D7w" id="IC7-2a-3BP"/>
+                        <outlet property="usernameLabel" destination="HMi-Fx-AzE" id="bv7-Qv-3sC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3GD-4z-xqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -201,6 +214,9 @@
         <image name="icons8-topic-100" width="18" height="17"/>
         <image name="light-on-500" width="18" height="19"/>
         <image name="star" width="19" height="19"/>
+        <namedColor name="Color">
+            <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color">
             <color red="0.086000002920627594" green="0.62699997425079346" blue="0.5220000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
