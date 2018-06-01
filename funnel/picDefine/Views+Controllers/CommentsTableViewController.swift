@@ -163,6 +163,10 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         let comment = CommentController.shared.postComments[indexPath.row]
         cell.comment = comment
         
+//        if UserController.shared.loggedInUser?.ckRecordID == comment.userReference.recordID {
+//            cell.blockUserButton.isHidden = true
+//        }
+        
         CommentController.shared.loadUserFor(comment: comment, completion: { (user) in
             DispatchQueue.main.async {
                 cell.user = user
@@ -170,5 +174,35 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         })
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        var action: UITableViewRowAction?
+        
+        let comment = CommentController.shared.postComments[indexPath.row]
+        
+        if UserController.shared.loggedInUser?.ckRecordID == comment.userReference.recordID {
+            
+            let delete = UITableViewRowAction(style: .default, title: "Delete") { (_, IndexPath) in
+                // delete comment
+            }
+            
+            action = delete
+            
+        } else {
+            
+            let block = UITableViewRowAction(style: .default, title: "Block User") { (_, IndexPath) in
+                // block user
+                UserController.shared.block(userRecordID: comment.userReference.recordID)
+                self.tableView.reloadData()
+            }
+            
+            action = block
+        }
+        
+        
+        
+        return [action!]
     }
 }
