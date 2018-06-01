@@ -12,8 +12,6 @@ import CloudKit
 
 class UserController {
     
-    var mockUser = MockUser()
-    
     static let shared = UserController()
     
     var loggedInUser: User?
