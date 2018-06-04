@@ -22,24 +22,16 @@ class CommentsTableViewCell: UITableViewCell {
         }
     }
 
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        
-//    }
-    
-
+    @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
     func updateViews() {
         guard let comment = comment else { return }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.commentLabel.text = comment.text
-//        }
-    
-//        self.layoutIfNeeded()
-        
+
+        self.commentLabel.text = comment.text
+
         userImageView.layer.cornerRadius = userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true
         userImageView.layer.borderWidth = 3.0
@@ -49,11 +41,13 @@ class CommentsTableViewCell: UITableViewCell {
 
     func updateUser() {
         guard let user = user  else { return }
-         self.usernameLabel.text = user.username
-
-
+        self.usernameLabel.text = user.username
     }
     
+   
+    @IBAction func optionButtonTapped(_ sender: Any) {
+        
+    }
     
 
 }

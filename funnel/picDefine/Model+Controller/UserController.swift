@@ -88,28 +88,25 @@ class UserController {
         }
     }
     
-    func fetchUser(ckRecordID: CKRecordID) -> User? {
-        
-        var user: User?
+    func fetchUser(ckRecordID: CKRecordID, completion: @escaping (User?) -> Void) {
         
         CloudKitManager.shared.fetchSingleRecord(ckRecordID: ckRecordID) { (record, error) in
             if let error = error {
                 print("Error fetching a single user record: \(error)")
-                user = nil
+                completion(nil)
                 return
             }
             
             guard let record = record else {
-                user = nil
+                completion(nil)
                 return
             }
             
             let fetchedUser = User(cloudKitRecord: record)
-            user = fetchedUser
-            return
+            completion(fetchedUser)
+
         }
-        
-        return user
+
     }
     
     func deleteCurrentUser(completion: @escaping (Bool) -> Void) {
@@ -126,18 +123,25 @@ class UserController {
         }
     }
     
-    func block(userRecordID: CKRecordID) {
+    func block(userRecordID: CKRecordID, completion: @escaping (Bool) -> Void) {
         let reference = CKReference(recordID: userRecordID, action: .none)
         
-        guard let loggedInUser = UserController.shared.loggedInUser else { return }
+        guard let loggedInUser = UserController.shared.loggedInUser else {
+            completion(false)
+            return
+            
+        }
         
         loggedInUser.blockedUsers.append(reference)
         
         CloudKitManager.shared.save(records: [loggedInUser.ckRecord], perRecordCompletion: nil) { (records, error) in
             if let error = error {
                 print("Error saving user after adding a blocked user: \(error)")
+                completion(false)
                 return
             }
+            
+            completion(true)
         }
     }
     

@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     
@@ -19,15 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
-//        { (_, error) in
-//            if let error = error {
-//                print("No permission granted: \(error.localizedDescription)")
-//            }
-//        }
-//
-//        UIApplication.shared.registerForRemoteNotifications()
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+
         return true
     }
     
@@ -37,6 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navigationBarAppearace.tintColor = UIColor(named: "Color")
         
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler( [.alert])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
     }
     
 //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

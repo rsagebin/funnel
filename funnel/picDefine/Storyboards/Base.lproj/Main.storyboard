@@ -23,7 +23,7 @@
         <!--Navigation Controller-->
         <scene sceneID="htj-vE-rSk">
             <objects>
-                <navigationController storyboardIdentifier="UINavigationController-d5o-BR-nEm" title="Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="d5o-BR-nEm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigation" title="Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="d5o-BR-nEm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="16h-U1-VEN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2rA-Pa-Bgn">

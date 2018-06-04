@@ -40,7 +40,9 @@ class CommentController {
     
     func loadCommentCountFor(post: Post, completion: @escaping (Bool, Int) -> Void) {
         
-        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
+        guard let user = UserController.shared.loggedInUser else { return }
+        
+        let predicate = NSPredicate(format: "postReference == %@ && NOT (userReference IN %@)", post.ckRecordID, user.blockedUsers)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
         
         CloudKitManager.shared.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
@@ -59,7 +61,9 @@ class CommentController {
     
     func loadCommentsFor(post: Post, completion: @escaping (Bool) -> Void) {
         
-        let predicate = NSPredicate(format: "postReference == %@", post.ckRecordID)
+        guard let user = UserController.shared.loggedInUser else { return }
+        
+        let predicate = NSPredicate(format: "postReference == %@ && NOT (userReference IN %@)", post.ckRecordID, user.blockedUsers)
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
         
         CloudKitManager.shared.fetch(type: Comment.typeKey, predicate: predicate, sortDescriptor: sortDescriptor) { (records, error) in
@@ -95,6 +99,18 @@ class CommentController {
 
         }
 
+    }
+    
+    func deleteComment(commentID: CKRecordID, completion: @escaping (Bool) -> Void) {
+        CloudKitManager.shared.delete(recordID: commentID) { (recordID, error) in
+            if let error = error {
+                print("Error deleting comment from CloudKit: \(error)")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
     
 }

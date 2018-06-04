@@ -21,24 +21,33 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        submitButton.isEnabled = false
+        
         commentTextView.delegate = self
         commentTextView.text = "   Enter comment..."
         commentTextView.textColor = UIColor.lightGray
         
         navigationItem.title = "Comments"
+        theRefreshControl = UIRefreshControl()
+        theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
+        tableView.addSubview(theRefreshControl)
         
+        fetchComents()
+        
+
+    }
+    
+    func fetchComents() {
         guard let post = post else { return }
         CommentController.shared.loadCommentsFor(post: post) { (success) in
             if success {
                 DispatchQueue.main.async {
+                    self.theRefreshControl.endRefreshing()
                     self.tableView.reloadData()
                 }
             }
         }
         
-        theRefreshControl = UIRefreshControl()
-        theRefreshControl.addTarget(self, action: #selector(didPullForRefresh), for: .valueChanged)
-        tableView.addSubview(theRefreshControl)
     }
     
     lazy var containerView: UIView = {
@@ -51,13 +60,8 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         containerView.addSubview(self.commentTextView)
         self.commentTextView.translatesAutoresizingMaskIntoConstraints = false
 
-        let submitButton = UIButton(type: .system)
-        submitButton.setTitle("Send", for: .normal)
-        submitButton.setTitleColor(UIColor(named: "Color"), for: .normal)
-        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
         containerView.addSubview(submitButton)
-        submitButton.translatesAutoresizingMaskIntoConstraints = false
+        self.submitButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint(item: submitButton, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 5).isActive = true
@@ -69,6 +73,15 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         NSLayoutConstraint(item: self.commentTextView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: -10).isActive = true
         
         return containerView
+    }()
+    
+    let submitButton: UIButton = {
+        let submitButton = UIButton(type: .system)
+        submitButton.setTitle("Send", for: .normal)
+        submitButton.setTitleColor(UIColor(named: "Color"), for: .normal)
+        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+        return submitButton
     }()
     
     // MARK: - Comments Text View
@@ -87,6 +100,8 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
+        submitButton.isEnabled = true
+        
         if commentTextView.textColor == UIColor.lightGray {
             commentTextView.text = nil
             commentTextView.textColor = UIColor.black
@@ -94,10 +109,12 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if commentTextView.text.isEmpty {
-            commentTextView.text = "   Enter comment..."
-            commentTextView.textColor = UIColor.lightGray
-        }
+        
+        submitButton.isEnabled = false
+        
+        commentTextView.text = "   Enter comment..."
+        commentTextView.textColor = UIColor.lightGray
+      
     }
     
     @objc func handleSubmit() {
@@ -129,15 +146,7 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
     
     @objc func didPullForRefresh() {
         
-        guard let post = post else { return }
-        CommentController.shared.loadCommentsFor(post: post) { (success) in
-            if success {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.theRefreshControl.endRefreshing()
-                }
-            }
-        }
+        fetchComents()
     }
     
     // MARK: - Table view data source
@@ -153,6 +162,10 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         let comment = CommentController.shared.postComments[indexPath.row]
         cell.comment = comment
         
+//        if UserController.shared.loggedInUser?.ckRecordID == comment.userReference.recordID {
+//            cell.blockUserButton.isHidden = true
+//        }
+        
         CommentController.shared.loadUserFor(comment: comment, completion: { (user) in
             DispatchQueue.main.async {
                 cell.user = user
@@ -160,5 +173,46 @@ class CommentsTableViewController: UITableViewController, UITextViewDelegate {
         })
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        var action: UITableViewRowAction?
+        
+        let comment = CommentController.shared.postComments[indexPath.row]
+        
+        if UserController.shared.loggedInUser?.ckRecordID == comment.userReference.recordID {
+            
+            let delete = UITableViewRowAction(style: .default, title: "Delete") { (_, IndexPath) in
+                // delete comment
+                CommentController.shared.deleteComment(commentID: comment.ckRecordID, completion: { (success) in
+                    if success {
+                        self.fetchComents()
+                    }
+                    
+                })
+            }
+            
+            action = delete
+            
+        } else {
+            
+            let block = UITableViewRowAction(style: .default, title: "Block User") { (_, IndexPath) in
+                // block user
+                UserController.shared.block(userRecordID: comment.userReference.recordID, completion: { (success) in
+                    if success {
+                        self.fetchComents()
+                        
+                    }
+                })
+                
+            }
+            
+            action = block
+        }
+        
+        
+        
+        return [action!]
     }
 }

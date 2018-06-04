@@ -22,14 +22,9 @@ class Comment {
     var user: User?
     let postReference: CKReference
     let userReference: CKReference
-    var ckRecordID: CKRecordID?
+    var ckRecordID: CKRecordID
     var ckRecord: CKRecord {
-        let record: CKRecord
-        if let ckRecordID = ckRecordID {
-            record = CKRecord(recordType: Comment.typeKey, recordID: ckRecordID)
-        } else {
-            record = CKRecord(recordType: Comment.typeKey)
-        }
+        let record = CKRecord(recordType: Comment.typeKey, recordID: ckRecordID)
         
         record.setValue(text, forKey: Comment.textKey)
         record.setValue(postReference, forKey: Comment.postReferenceKey)
@@ -58,6 +53,8 @@ class Comment {
         self.user = user
         self.postReference = postReference
         self.userReference = userReference
+        
+        self.ckRecordID = CKRecordID(recordName: UUID().uuidString)
         
     }
 }

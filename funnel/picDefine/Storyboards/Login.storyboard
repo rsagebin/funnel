@@ -20,9 +20,6 @@
                         <viewLayoutGuide key="safeArea" id="o9u-63-ZrU"/>
                     </view>
                     <navigationItem key="navigationItem" id="02r-VH-e98"/>
-                    <connections>
-                        <segue destination="jtt-qs-lMy" kind="show" identifier="fromLoginVCToMainVC" id="Yep-dL-BwH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMm-Kj-gR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

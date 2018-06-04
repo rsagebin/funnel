@@ -92,7 +92,9 @@ class BrowseCategoriesViewController: UIViewController {
     
     @IBAction func searchCategoryTapped(_ sender: Any) {
 
-        PostController.shared.fetchPostsFor(category1: selectedCategory!) { (success) in
+        guard let selectedCategoty = selectedCategory else { return }
+        
+        PostController.shared.fetchPostsFor(category1: selectedCategoty) { (success) in
             if success {
                 DispatchQueue.main.async {
                     // EXPLANATION: the table view below is reloaded and then the mainLabel(red) appears above while the "Category Find" cell becomes hidden.
@@ -168,6 +170,12 @@ extension BrowseCategoriesViewController: UITableViewDelegate, UITableViewDataSo
         
         let post = PostController.shared.category1Posts[indexPath.row]
         cell.post = post
+        UserController.shared.fetchUser(ckRecordID: post.creatorRef.recordID) { (user) in
+            DispatchQueue.main.async {
+                
+                cell.user = user
+            }
+        }
         cell.commentsDelegate = self
         cell.suggestDelegate = self
         return cell
