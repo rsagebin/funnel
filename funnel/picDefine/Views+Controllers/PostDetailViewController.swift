@@ -55,6 +55,8 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
             self.postApprovedImage.isHidden = true
         }
         
+        updatePostView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,9 +129,6 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
             postImageView.layer.borderWidth = 1
             postFollowingCountLabel.text = "\(post?.followersRefs.count ?? 0)"
 
-            
-            
-            
         } else if revisedPost != nil {
             descriptionLabel.text = revisedPost?.description
             categoryLabel.text = revisedPost?.categoryAsString.uppercased()
@@ -140,8 +139,9 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
             postFollowingButton.isEnabled = false
             branchButtonOutlet.isEnabled = false
             commentButton.isEnabled = false
+            
+//            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
-        
     }
     
     func updateRevisedPostView() {
@@ -159,7 +159,7 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func createButton() {
         
-        if UserController.shared.loggedInUser?.ckRecordID == self.post?.creatorRef.recordID {
+        if UserController.shared.loggedInUser?.ckRecordID == self.post?.creatorRef.recordID || UserController.shared.loggedInUser?.ckRecordID == revisedPost?.revisedPostCreatorRef.recordID {
             
             let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(createDeleteAlert))
             deleteButton.tintColor = UIColor.white
@@ -232,21 +232,48 @@ class PostDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func createDeleteAlert() {
-        
-        let alert = UIAlertController(title: "Delete Post", message: "Are you sure you want to delete this post?", preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alert.addAction(cancelAction)
-        
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
-            self.deletePost()
+        if post != nil {
+            
+            let alert = UIAlertController(title: "Delete Post", message: "Are you sure you want to delete this post?", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alert.addAction(cancelAction)
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+                self.deletePost()
+            }
+            alert.addAction(deleteAction)
+            
+            present(alert, animated: true, completion: nil)
+        } else if revisedPost != nil {
+            
+            let alert = UIAlertController(title: "Delete Suggested Post", message: "Are you sure you want to delete this suggested post?", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alert.addAction(cancelAction)
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+                self.deleteSuggestedPost()
+            }
+            alert.addAction(deleteAction)
+            
+            present(alert, animated: true, completion: nil)
         }
-        alert.addAction(deleteAction)
-        
-        present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteSuggestedPost() {
+        guard let revisedPost = revisedPost else { return }
+        RevisedPostController.shared.deleteRevisedPost(revisedPost: revisedPost) { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
     }
     
     func deletePost() {
+        
         guard let post = post else { return }
         PostController.shared.delete(post: post)
         NotificationCenter.default.post(name: Notification.Name(PostController.feedFetchCompletedNotificationName), object: nil)
