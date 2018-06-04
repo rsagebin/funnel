@@ -18,6 +18,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         return UIImagePickerController()
     }()
     
+    var textViewWasEdited = false
+    
     var post: Post?
     
     var revisedPost: RevisedPost?
@@ -90,6 +92,11 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
         addDoneButtonOnPicker()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.category1Selected = CategoryController.shared.topCategories.last
+    }
+    
     // MARK: - Actions
     
     @IBAction func acceptButtonTapped(_ sender: Any) {
@@ -134,6 +141,9 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     
     @IBAction func createOrSuggestPostButtonTapped(_ sender: Any) {
         
+        if textViewWasEdited == false {
+            descriptionTextView.text = ""
+        }
         guard let description = descriptionTextView.text, let image = postImageView.image else { return }
 
         if post != nil {
@@ -232,6 +242,8 @@ class CreateAndSuggestViewController: UIViewController, UIImagePickerControllerD
     // MARK: - Other functions
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        textViewWasEdited = true
         
         if descriptionTextView.textColor == UIColor.lightGray {
             descriptionTextView.text = nil
